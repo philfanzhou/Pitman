@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A30C8A09-79C1-4672-ADEC-ED870352169E}</ProjectGuid>
+    <ProjectGuid>{BD4CB1D0-D94F-41EA-BE5C-016115934595}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Quantum.Data.DataReader.Test</RootNamespace>
-    <AssemblyName>Quantum.Data.DataReader.Test</AssemblyName>
+    <RootNamespace>Pitman.DataReader.Test</RootNamespace>
+    <AssemblyName>Pitman.DataReader.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,17 +54,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\Quantum.Data.Domain\Quantum.Data.Domain.csproj">
-      <Project>{ee8de1b7-135e-4770-880f-e9eed0a13e7f}</Project>
-      <Name>Quantum.Data.Domain</Name>
+    <ProjectReference Include="..\..\3-Domain\Pitman.Metadata\Pitman.Metadata.csproj">
+      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
+      <Name>Pitman.Metadata</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\3-Domain\Quantum.Data.Metadata\Quantum.Data.Metadata.csproj">
-      <Project>{0f4cf551-4c9c-4d4b-bef9-93972aa46cd5}</Project>
-      <Name>Quantum.Data.Metadata</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\4-Infrastructure\Quantum.Data.DataReader\Quantum.Data.DataReader.csproj">
-      <Project>{4a02f5e9-0657-49e6-8445-da0011ca6353}</Project>
-      <Name>Quantum.Data.DataReader</Name>
+    <ProjectReference Include="..\..\4-Infrastructure\Pitman.DataReader\Pitman.DataReader.csproj">
+      <Project>{8bcfd6f9-b14d-401b-a6ab-e78d84e56672}</Project>
+      <Name>Pitman.DataReader</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

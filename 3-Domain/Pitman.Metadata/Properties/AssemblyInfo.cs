@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Quantum.Data.DataReader")]
+[assembly: AssemblyTitle("Pitman.Metadata")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Motorola")]
-[assembly: AssemblyProduct("Quantum.Data.DataReader")]
+[assembly: AssemblyProduct("Pitman.Metadata")]
 [assembly: AssemblyCopyright("Copyright © Motorola 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("df84c03d-1c28-43a7-9181-2b1eed67d732")]
+[assembly: Guid("e0967d83-6b48-479c-aa69-547eccef01ba")]
 
 // Version information for an assembly consists of the following four values:
 //

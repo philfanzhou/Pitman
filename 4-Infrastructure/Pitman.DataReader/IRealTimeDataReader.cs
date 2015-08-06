@@ -1,7 +1,7 @@
-﻿using Quantum.Data.Metadata;
+﻿using Pitman.Metadata;
 using System.Collections.Generic;
 
-namespace Quantum.Data.DataReader
+namespace Pitman.DataReader
 {
     /// <summary>
     /// 实时行情数据读取器接口定义

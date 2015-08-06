@@ -1,11 +1,11 @@
-﻿using Quantum.Data.Metadata;
+﻿using Pitman.Metadata;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Quantum.Data.DataReader
+namespace Pitman.DataReader
 {
     internal class SinaDataReader : IRealTimeDataReader
     {

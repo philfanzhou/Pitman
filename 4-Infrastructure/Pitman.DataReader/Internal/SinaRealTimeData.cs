@@ -1,7 +1,7 @@
-﻿using Quantum.Data.Metadata;
+﻿using Pitman.Metadata;
 using System;
 
-namespace Quantum.Data.DataReader
+namespace Pitman.DataReader
 {
     internal class SinaRealTimeData : IRealTimeData
     {

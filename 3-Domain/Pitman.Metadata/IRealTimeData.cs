@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Quantum.Data.Metadata
+namespace Pitman.Metadata
 {
     /// <summary>
     /// 实时行情数据结构接口
@@ -46,7 +46,7 @@ namespace Quantum.Data.Metadata
         /// 成交量
         /// </summary>
         double Volume { get; }
-        
+
         /// <summary>
         /// 成交额
         /// </summary>

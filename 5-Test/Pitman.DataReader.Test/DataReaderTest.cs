@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Quantum.Data.Metadata;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pitman.DataReader;
+using Pitman.Metadata;
 using System.Collections.Generic;
 
 namespace Quantum.Data.DataReader.Test

@@ -1,5 +1,5 @@
 ﻿
-namespace Quantum.Data.DataReader
+namespace Pitman.DataReader
 {
     public static class DataReaderCreator
     {
