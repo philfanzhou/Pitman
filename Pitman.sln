@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{736BABDF-CA17-4965-9FE7-0B432FF6EE61}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Domain", "3_Domain", "{736BABDF-CA17-4965-9FE7-0B432FF6EE61}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infrastructure", "{63C2FF89-1BD4-4066-8E72-F803C1931F6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_Infrastructure", "4_Infrastructure", "{63C2FF89-1BD4-4066-8E72-F803C1931F6C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Test", "5-Test", "{06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_Test", "5_Test", "{06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Metadata", "3-Domain\Pitman.Metadata\Pitman.Metadata.csproj", "{39A8BE22-B472-4684-84CF-6CBB10B2CE00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.DataReader", "4_Infrastructure\Pitman.DataReader\Pitman.DataReader.csproj", "{8BCFD6F9-B14D-401B-A6AB-E78D84E56672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.DataReader", "4-Infrastructure\Pitman.DataReader\Pitman.DataReader.csproj", "{8BCFD6F9-B14D-401B-A6AB-E78D84E56672}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.DataReader.Test", "5_Test\Pitman.DataReader.Test\Pitman.DataReader.Test.csproj", "{BD4CB1D0-D94F-41EA-BE5C-016115934595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.DataReader.Test", "5-Test\Pitman.DataReader.Test\Pitman.DataReader.Test.csproj", "{BD4CB1D0-D94F-41EA-BE5C-016115934595}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Domain", "3_Domain\Pitman.Domain\Pitman.Domain.csproj", "{F5F95A72-7BAD-408B-B1EC-75166F89EB7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Metadata", "4_Infrastructure\Pitman.Metadata\Pitman.Metadata.csproj", "{39A8BE22-B472-4684-84CF-6CBB10B2CE00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BCFD6F9-B14D-401B-A6AB-E78D84E56672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BCFD6F9-B14D-401B-A6AB-E78D84E56672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BCFD6F9-B14D-401B-A6AB-E78D84E56672}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,13 +31,22 @@ Global
 		{BD4CB1D0-D94F-41EA-BE5C-016115934595}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4CB1D0-D94F-41EA-BE5C-016115934595}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4CB1D0-D94F-41EA-BE5C-016115934595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{39A8BE22-B472-4684-84CF-6CBB10B2CE00} = {736BABDF-CA17-4965-9FE7-0B432FF6EE61}
+		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E} = {736BABDF-CA17-4965-9FE7-0B432FF6EE61}
 		{8BCFD6F9-B14D-401B-A6AB-E78D84E56672} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{39A8BE22-B472-4684-84CF-6CBB10B2CE00} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{BD4CB1D0-D94F-41EA-BE5C-016115934595} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 	EndGlobalSection
 EndGlobal

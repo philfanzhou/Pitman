@@ -54,13 +54,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\Pitman.Metadata\Pitman.Metadata.csproj">
-      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
-      <Name>Pitman.Metadata</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\4-Infrastructure\Pitman.DataReader\Pitman.DataReader.csproj">
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.DataReader\Pitman.DataReader.csproj">
       <Project>{8bcfd6f9-b14d-401b-a6ab-e78d84e56672}</Project>
       <Name>Pitman.DataReader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Metadata\Pitman.Metadata.csproj">
+      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
+      <Name>Pitman.Metadata</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -14,6 +14,10 @@ namespace Quantum.Data.DataReader.Test
             IRealTimeDataReader reader = DataReaderCreator.Create();
             IRealTimeData data = reader.GetData("sh600036");
             Assert.IsNotNull(data);
+
+            data = null;
+            data = reader.GetData("sz399001");
+            Assert.IsNotNull(data);
         }
 
         [TestMethod]

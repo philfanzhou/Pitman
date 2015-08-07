@@ -8,7 +8,7 @@ namespace Pitman.Metadata
     public interface IRealTimeData
     {
         /// <summary>
-        /// 挂牌代码
+        /// 代码
         /// </summary>
         string Code { get; }
 
