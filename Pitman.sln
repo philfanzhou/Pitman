@@ -17,6 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Domain", "3_Domain\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Metadata", "4_Infrastructure\Pitman.Metadata\Pitman.Metadata.csproj", "{39A8BE22-B472-4684-84CF-6CBB10B2CE00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.Repository", "4_Infrastructure\Pitman.Infrastructure.Repository\Pitman.Infrastructure.Repository.csproj", "{F44E3592-C638-4493-90D9-1EC805112898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.EntityFramework.Configuration", "4_Infrastructure\Pitman.Infrastructure.EntityFramework.Configuration\Pitman.Infrastructure.EntityFramework.Configuration.csproj", "{00E1E89E-57C2-458F-AA30-E9549B5B86E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Application", "2_Application", "{03B33133-5623-413D-B99D-B912763F7878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Application.Import", "2_Application\Pitman.Application.Import\Pitman.Application.Import.csproj", "{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +47,18 @@ Global
 		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A8BE22-B472-4684-84CF-6CBB10B2CE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44E3592-C638-4493-90D9-1EC805112898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44E3592-C638-4493-90D9-1EC805112898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44E3592-C638-4493-90D9-1EC805112898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44E3592-C638-4493-90D9-1EC805112898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E1E89E-57C2-458F-AA30-E9549B5B86E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E1E89E-57C2-458F-AA30-E9549B5B86E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E1E89E-57C2-458F-AA30-E9549B5B86E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E1E89E-57C2-458F-AA30-E9549B5B86E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +67,9 @@ Global
 		{F5F95A72-7BAD-408B-B1EC-75166F89EB7E} = {736BABDF-CA17-4965-9FE7-0B432FF6EE61}
 		{8BCFD6F9-B14D-401B-A6AB-E78D84E56672} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{39A8BE22-B472-4684-84CF-6CBB10B2CE00} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{F44E3592-C638-4493-90D9-1EC805112898} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{00E1E89E-57C2-458F-AA30-E9549B5B86E2} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{BD4CB1D0-D94F-41EA-BE5C-016115934595} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
+		{B3385D7A-FDCD-48CA-A5CE-2743B1D74FB7} = {03B33133-5623-413D-B99D-B912763F7878}
 	EndGlobalSection
 EndGlobal
