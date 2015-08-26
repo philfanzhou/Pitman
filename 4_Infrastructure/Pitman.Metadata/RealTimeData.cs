@@ -1,160 +1,158 @@
-﻿using System;
+﻿using Framework.Infrastructure.Repository;
+using System;
 
 namespace Pitman.Metadata
 {
-    /// <summary>
-    /// 实时行情数据结构接口
-    /// </summary>
-    public interface IRealTimeData
+    public class RealTimeData : Entity
     {
         /// <summary>
         /// 代码
         /// </summary>
-        string Code { get; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 今开
         /// </summary>
-        double TodayOpen { get; }
+        public double TodayOpen { get; set; }
 
         /// <summary>
         /// 昨收
         /// </summary>
-        double YesterdayClose { get; }
+        public double YesterdayClose { get; set; }
 
         /// <summary>
-        /// 成交
+        /// 成交价
         /// </summary>
-        double Price { get; }
+        public double Price { get; set; }
 
         /// <summary>
         /// 最高
         /// </summary>
-        double High { get; }
+        public double High { get; set; }
 
         /// <summary>
         /// 最低
         /// </summary>
-        double Low { get; }
+        public double Low { get; set; }
 
         /// <summary>
         /// 成交量
         /// </summary>
-        double Volume { get; }
+        public double Volume { get; set; }
 
         /// <summary>
         /// 成交额
         /// </summary>
-        double Amount { get; }
+        public double Amount { get; set; }
 
         /// <summary>
         /// 卖五价
         /// </summary>
-        double SellFivePrice { get; }
+        public double SellFivePrice { get; set; }
 
         /// <summary>
         /// 卖五量
         /// </summary>
-        double SellFiveVolume { get; }
+        public double SellFiveVolume { get; set; }
 
         /// <summary>
         /// 卖四价
         /// </summary>
-        double SellFourPrice { get; }
+        public double SellFourPrice { get; set; }
 
         /// <summary>
         /// 卖四量
         /// </summary>
-        double SellFourVolume { get; }
+        public double SellFourVolume { get; set; }
 
         /// <summary>
         /// 卖三价
         /// </summary>
-        double SellThreePrice { get; }
+        public double SellThreePrice { get; set; }
 
         /// <summary>
         /// 卖三量
         /// </summary>
-        double SellThreeVolume { get; }
+        public double SellThreeVolume { get; set; }
 
         /// <summary>
         /// 卖二价
         /// </summary>
-        double SellTwoPrice { get; }
+        public double SellTwoPrice { get; set; }
 
         /// <summary>
         /// 卖二量
         /// </summary>
-        double SellTwoVolume { get; }
+        public double SellTwoVolume { get; set; }
 
         /// <summary>
         /// 卖一价
         /// </summary>
-        double SellOnePrice { get; }
+        public double SellOnePrice { get; set; }
 
         /// <summary>
         /// 卖一量
         /// </summary>
-        double SellOneVolume { get; }
+        public double SellOneVolume { get; set; }
 
         /// <summary>
         /// 买一价
         /// </summary>
-        double BuyOnePrice { get; }
+        public double BuyOnePrice { get; set; }
 
         /// <summary>
         /// 买一量
         /// </summary>
-        double BuyOneVolume { get; }
+        public double BuyOneVolume { get; set; }
 
         /// <summary>
         /// 买二价
         /// </summary>
-        double BuyTwoPrice { get; }
+        public double BuyTwoPrice { get; set; }
 
         /// <summary>
         /// 买二量
         /// </summary>
-        double BuyTwoVolume { get; }
+        public double BuyTwoVolume { get; set; }
 
         /// <summary>
         /// 买三价
         /// </summary>
-        double BuyThreePrice { get; }
+        public double BuyThreePrice { get; set; }
 
         /// <summary>
         /// 买三量
         /// </summary>
-        double BuyThreeVolume { get; }
+        public double BuyThreeVolume { get; set; }
 
         /// <summary>
         /// 买四价
         /// </summary>
-        double BuyFourPrice { get; }
+        public double BuyFourPrice { get; set; }
 
         /// <summary>
         /// 买四量
         /// </summary>
-        double BuyFourVolume { get; }
+        public double BuyFourVolume { get; set; }
 
         /// <summary>
         /// 买五价
         /// </summary>
-        double BuyFivePrice { get; }
+        public double BuyFivePrice { get; set; }
 
         /// <summary>
         /// 买五量
         /// </summary>
-        double BuyFiveVolume { get; }
+        public double BuyFiveVolume { get; set; }
 
         /// <summary>
         /// 日期与时间
         /// </summary>
-        DateTime Time { get; }
+        public DateTime Time { get; set; }
     }
 }

@@ -3,72 +3,8 @@ using System;
 
 namespace Pitman.DataReader
 {
-    internal class SinaRealTimeData : IRealTimeData
+    internal class SinaRealTimeData : RealTimeData
     {
-        #region Property
-
-        public string Code { get; private set; }
-
-        public string Name { get; private set; }
-
-        public double TodayOpen { get; private set; }
-
-        public double YesterdayClose { get; private set; }
-
-        public double Price { get; private set; }
-
-        public double High { get; private set; }
-
-        public double Low { get; private set; }
-
-        public double Volume { get; private set; }
-
-        public double Amount { get; private set; }
-
-        public double SellFivePrice { get; private set; }
-
-        public double SellFiveVolume { get; private set; }
-
-        public double SellFourPrice { get; private set; }
-
-        public double SellFourVolume { get; private set; }
-
-        public double SellThreePrice { get; private set; }
-
-        public double SellThreeVolume { get; private set; }
-
-        public double SellTwoPrice { get; private set; }
-
-        public double SellTwoVolume { get; private set; }
-
-        public double SellOnePrice { get; private set; }
-
-        public double SellOneVolume { get; private set; }
-
-        public double BuyOnePrice { get; private set; }
-
-        public double BuyOneVolume { get; private set; }
-
-        public double BuyTwoPrice { get; private set; }
-
-        public double BuyTwoVolume { get; private set; }
-
-        public double BuyThreePrice { get; private set; }
-
-        public double BuyThreeVolume { get; private set; }
-
-        public double BuyFourPrice { get; private set; }
-
-        public double BuyFourVolume { get; private set; }
-
-        public double BuyFivePrice { get; private set; }
-
-        public double BuyFiveVolume { get; private set; }
-
-        public DateTime Time { get; private set; }
-
-        #endregion Porperty
-
         public SinaRealTimeData(string strData)
         {
             strData = strData.Remove(0, 11);

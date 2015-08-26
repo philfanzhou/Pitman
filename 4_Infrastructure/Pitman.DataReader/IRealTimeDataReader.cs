@@ -8,8 +8,8 @@ namespace Pitman.DataReader
     /// </summary>
     public interface IRealTimeDataReader
     {
-        IRealTimeData GetData(string code);
+        RealTimeData GetData(string code);
 
-        IEnumerable<IRealTimeData> GetData(IEnumerable<string> codes);
+        IEnumerable<RealTimeData> GetData(IEnumerable<string> codes);
     }
 }

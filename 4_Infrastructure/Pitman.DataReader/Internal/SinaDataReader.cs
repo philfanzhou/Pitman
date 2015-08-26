@@ -17,7 +17,7 @@ namespace Pitman.DataReader
         /// <param name="code"></param>
         /// <example>code = "sh600036"</example>
         /// <returns></returns>
-        public IRealTimeData GetData(string code)
+        public RealTimeData GetData(string code)
         {
             string url = WebApiAddress + code;
             string strData = GetStringData(url);
@@ -25,7 +25,7 @@ namespace Pitman.DataReader
             return data;
         }
 
-        public IEnumerable<IRealTimeData> GetData(IEnumerable<string> codes)
+        public IEnumerable<RealTimeData> GetData(IEnumerable<string> codes)
         {
             StringBuilder codesBuilder = new StringBuilder();
             foreach(string code in codes)
@@ -40,7 +40,7 @@ namespace Pitman.DataReader
             string strData = GetStringData(WebApiAddress + codesBuilder.ToString());
             string[] strDatas = strData.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            List<IRealTimeData> datas = new List<IRealTimeData>();
+            List<RealTimeData> datas = new List<RealTimeData>();
             foreach (string item in strDatas)
             {
                 SinaRealTimeData data = new SinaRealTimeData(item);
