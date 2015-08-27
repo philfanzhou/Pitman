@@ -27,9 +27,7 @@ namespace Pitman.Application.Import
             using (IRepositoryContext context = RepositoryContext.Create())
             {
                 var repository = context.GetRepository<Repository<OrgPercent>>();
-                IEnumerable<OrgPercent> allOrgs = repository.GetAll().Where(p => p.Day == lastTradeDay);
-                if (allOrgs.Count() == 0) return new List<OrgPercent>();
-                else return allOrgs.ToList();
+                return repository.GetAll().Where(p => p.Day == lastTradeDay).ToList();
             }
         }
 

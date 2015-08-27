@@ -332,8 +332,7 @@ namespace Pitman.Application.Import
                 }
 
                 //获取当前交易日所有股票机构控盘度数据
-                string orgSqlWhere = "Day='" + message.Substring(message.IndexOf("数据日期") + 5, 10) + "'";
-                List<OrgPercent> orgList = ImportService.GetOrgList(orgSqlWhere);
+                List<OrgPercent> orgList = ImportService.GetOrgList(message.Substring(message.IndexOf("数据日期") + 5, 10));
 
                 //重新生成所有股票代码的副本列表
                 List<string> allTickersCopy = Common.GetListCopy<string>(allTickers);
