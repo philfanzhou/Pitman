@@ -1,13 +1,18 @@
-﻿using Framework.Infrastructure.Repository;
-using System;
+﻿using System;
 
-namespace Pitman.Infrastructure.Repository
+namespace Pitman.Metadata
 {
     /// <summary>
     /// 机构参与度
     /// </summary>
-    public class OrgPercent : Entity
+    public class OrgPercent
     {
+        public int ID
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// 股票代码
         /// </summary>

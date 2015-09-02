@@ -154,7 +154,6 @@
             // 
             // btnEqu
             // 
-            this.btnEqu.Enabled = false;
             this.btnEqu.Location = new System.Drawing.Point(6, 30);
             this.btnEqu.Name = "btnEqu";
             this.btnEqu.Size = new System.Drawing.Size(87, 23);

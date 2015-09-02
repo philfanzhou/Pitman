@@ -1,5 +1,4 @@
-﻿using Framework.Infrastructure.Repository;
-using Pitman.Infrastructure.EntityFramework.Configuration;
+﻿using Pitman.Infrastructure.IRepository;
 using Pitman.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,33 +10,35 @@ namespace Pitman.Application.Import
 {
     public class ImportService
     {
-        public static void Initialize()
+        public static IEquRepository EquService
         {
-            DatabaseHelper.Initialize(true);
-        }
-
-        public static List<string> GetAllCodes()
-        {
-            //先做测试
-            return new List<string>() { "600000", "000001"};
-        }
-
-        public static List<OrgPercent> GetOrgList(string lastTradeDay)
-        {
-            using (IRepositoryContext context = RepositoryContext.Create())
+            get 
             {
-                var repository = context.GetRepository<Repository<OrgPercent>>();
-                return repository.GetAll().Where(p => p.Day == lastTradeDay).ToList();
+                return new EquRepository();
             }
         }
 
-        public static bool AddNewOrg(OrgPercent org)
+        public static IMktEqudRepository MktEqudService
         {
-            using (IRepositoryContext context = RepositoryContext.Create())
+            get 
             {
-                var repository = context.GetRepository<Repository<OrgPercent>>();
-                repository.Add(org);
-                return true;
+                return new MktEqudRepository();
+            }
+        }
+
+        public static IMktIdxdRepository MktIdxdService
+        {
+            get 
+            {
+                return new MktIdxdRepository();
+            }
+        }
+
+        public static IOrgPercentRepository OrgPercentService
+        {
+            get 
+            {
+                return new OrgPercentRepository();
             }
         }
     }

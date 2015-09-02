@@ -1,4 +1,5 @@
-﻿using Pitman.Infrastructure.Repository;
+﻿using Pitman.Infrastructure.IRepository;
+using Pitman.Metadata;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,18 +46,18 @@ namespace Pitman.Application.Import
             timer.Stop();
 
             DateTime dtNow = DateTime.Now;
-            if ((dtNow.Hour == 17 || dtNow.Hour == 23) && dtNow.DayOfWeek != DayOfWeek.Saturday && dtNow.DayOfWeek != DayOfWeek.Sunday)
+            if (dtNow.Hour == 18 || dtNow.Hour == 20 || dtNow.Hour == 22)
             {
-                //if (this.btnMktEqud.Enabled)
-                //{
-                //    //启动股票日线行情
-                //    btnMktEqud_Click(null, null);
-                //}
-                //if (this.btnMktIdxd.Enabled)
-                //{
-                //    //启动指数日线行情
-                //    btnMktIdxd_Click(null, null);
-                //}
+                if (this.btnMktEqud.Enabled)
+                {
+                    //启动股票日线行情
+                    btnMktEqud_Click(null, null);
+                }
+                if (this.btnMktIdxd.Enabled)
+                {
+                    //启动指数日线行情
+                    btnMktIdxd_Click(null, null);
+                }
                 if (this.btnOrgPercent.Enabled)
                 {
                     //启动机构参与度
@@ -67,233 +68,233 @@ namespace Pitman.Application.Import
             timer.Start();
         }
 
-        //#region 下载股票基本信息
+        #region 下载股票基本信息
 
         private void btnEqu_Click(object sender, EventArgs e)
         {
-        //    this.pbEqu.Value = 0;
-        //    this.lblEqu.Text = "下载中...";
-        //    this.btnEqu.Enabled = false;
+            this.pbEqu.Value = 0;
+            this.lblEqu.Text = "下载中...";
+            this.btnEqu.Enabled = false;
 
-        //    Thread thread = new Thread(new ThreadStart(DownEquData));
-        //    thread.IsBackground = true;
-        //    thread.Start();
+            Thread thread = new Thread(new ThreadStart(DownEquData));
+            thread.IsBackground = true;
+            thread.Start();
         }
 
-        //private void DownEquData()
-        //{
-        //    string message = Wmcloud.GetDataFromUrl(Wmcloud.EquUrl);
-        //    if (message == null || !message.Contains("Success")) return;
-        //    message = Wmcloud.GetJsonStrByMessage(message);
-        //    List<Equ> equList = JsonHelper.JsonToList<Equ>(message);
+        private void DownEquData()
+        {
+            string message = Wmcloud.GetDataFromUrl(Wmcloud.EquUrl);
+            if (message == null || !message.Contains("Success")) return;
+            message = Wmcloud.GetJsonStrByMessage(message);
+            List<Equ> equList = JsonHelper.JsonToList<Equ>(message);
 
-        //    IEquRepository equService = ImportService.EquService;
-        //    if (!equService.DeleteAllEqus())
-        //    {
-        //        this.lblEqu.Text = "数据库异常D";
-        //        this.btnEqu.Enabled = true;
-        //        return;
-        //    }
+            IEquRepository equService = ImportService.EquService;
+            if (!equService.DeleteAllEqus())
+            {
+                this.lblEqu.Text = "数据库异常D";
+                this.btnEqu.Enabled = true;
+                return;
+            }
 
-        //    int index = 0;
-        //    foreach (Equ entity in equList)
-        //    {
-        //        this.pbEqu.Value = (index * 100) / equList.Count;
-        //        this.lblEqu.Text = string.Format("{0}/{1}", ++index, equList.Count);
+            int index = 0;
+            foreach (Equ entity in equList)
+            {
+                this.pbEqu.Value = (index * 100) / equList.Count;
+                this.lblEqu.Text = string.Format("{0}/{1}", ++index, equList.Count);
 
-        //        //如果插入失败，反复插入数据；以后请修改为更新历史数据方式
-        //        if (!equService.Insert(entity))
-        //        {
-        //            Thread.Sleep(5000);
-        //            equService.Insert(entity);
-        //        }
-        //    }
+                //如果插入失败，反复插入数据；以后请修改为更新历史数据方式
+                if (!equService.Insert(entity))
+                {
+                    Thread.Sleep(5000);
+                    equService.Insert(entity);
+                }
+            }
 
-        //    this.pbEqu.Value = 100;
-        //    this.lblEqu.Text = "下载完毕！";
-        //    this.btnEqu.Enabled = true;
-        //}
+            this.pbEqu.Value = 100;
+            this.lblEqu.Text = "下载完毕！";
+            this.btnEqu.Enabled = true;
+        }
 
-        //#endregion
+        #endregion
 
-        //#region 下载股票日线数据
+        #region 下载股票日线数据
 
         private void btnMktEqud_Click(object sender, EventArgs e)
         {
-        //    this.pbMktEqud.Value = 0;
-        //    this.lblMktEqud.Text = "下载中...";
-        //    this.btnMktEqud.Enabled = false;
+            this.pbMktEqud.Value = 0;
+            this.lblMktEqud.Text = "下载中...";
+            this.btnMktEqud.Enabled = false;
 
-        //    Thread thread = new Thread(new ThreadStart(DownMktEqudData));
-        //    thread.IsBackground = true;
-        //    thread.Start();
+            Thread thread = new Thread(new ThreadStart(DownMktEqudData));
+            thread.IsBackground = true;
+            thread.Start();
         }
 
-        //private void DownMktEqudData()
-        //{
-        //    IEquRepository equService = ImportService.EquService;
-        //    List<string> allTickers = equService.GetAllCodes();
-        //    if (allTickers == null)
-        //    {
-        //        this.lblMktEqud.Text = "数据库异常Q";
-        //        this.btnMktEqud.Enabled = true;
-        //        return;
-        //    }
+        private void DownMktEqudData()
+        {
+            IEquRepository equService = ImportService.EquService;
+            List<string> allTickers = equService.GetAllTickers();
+            if (allTickers == null)
+            {
+                this.lblMktEqud.Text = "数据库异常Q";
+                this.btnMktEqud.Enabled = true;
+                return;
+            }
 
-        //    int tickerIndex = 0;
-        //    int tickersCount = allTickers.Count;
-        //    IMktEqudRepository mktEqudService = ImportService.MktEqudService;
+            int tickerIndex = 0;
+            int tickersCount = allTickers.Count;
+            IMktEqudRepository mktEqudService = ImportService.MktEqudService;
 
-        //    while (allTickers.Count > 0)
-        //    {
-        //        List<string> allTickersCopy = Common.GetListCopy<string>(allTickers);
-        //        foreach (string ticker in allTickersCopy)
-        //        {
-        //            this.pbMktEqud.Value = (tickerIndex * 100) / tickersCount;
+            while (allTickers.Count > 0)
+            {
+                List<string> allTickersCopy = Common.GetListCopy<string>(allTickers);
+                foreach (string ticker in allTickersCopy)
+                {
+                    this.pbMktEqud.Value = (tickerIndex * 100) / tickersCount;
 
-        //            DateTime dtCurrent = Common.GetCurrentDataDate();
-        //            string strBeginDate = Common.StartDateInputStr;
-        //            string strEndDate = Common.GetInputDateFormat(dtCurrent);
-        //            string lastTradeDate = mktEqudService.GetLastTradeDate(ticker);
-        //            //数据库查询异常，先返回，避免插入重复数据
-        //            if (lastTradeDate == null) 
-        //            {
-        //                continue;
-        //            }
-        //            if (lastTradeDate != string.Empty)
-        //            {
-        //                if (lastTradeDate == Common.GetOutputDateFormat(dtCurrent))
-        //                {
-        //                    allTickers.Remove(ticker);
-        //                    this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                    continue;
-        //                }
-        //                else
-        //                {
-        //                    DateTime dtNewStartDay = Common.GetDateFromOutput(lastTradeDate).AddDays(1);
-        //                    strBeginDate = Common.GetInputDateFormat(dtNewStartDay);
-        //                }
-        //            }
+                    DateTime dtCurrent = Common.GetCurrentDataDate();
+                    string strBeginDate = Common.StartDateInputStr;
+                    string strEndDate = Common.GetInputDateFormat(dtCurrent);
+                    string lastTradeDate = mktEqudService.GetLastTradeDate(ticker);
+                    //数据库查询异常，先返回，避免插入重复数据
+                    if (lastTradeDate == null) 
+                    {
+                        continue;
+                    }
+                    if (lastTradeDate != string.Empty)
+                    {
+                        if (lastTradeDate == Common.GetOutputDateFormat(dtCurrent))
+                        {
+                            allTickers.Remove(ticker);
+                            this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                            continue;
+                        }
+                        else
+                        {
+                            DateTime dtNewStartDay = Common.GetDateFromOutput(lastTradeDate).AddDays(1);
+                            strBeginDate = Common.GetInputDateFormat(dtNewStartDay);
+                        }
+                    }
 
-        //            string mktEqudUrl = string.Format(Wmcloud.MktEqudUrl, strBeginDate, strEndDate, ticker);
-        //            string message = Wmcloud.GetDataFromUrl(mktEqudUrl);
-        //            if (message == null)
-        //            {
-        //                Thread.Sleep(10000);
-        //                continue;
-        //            }
+                    string mktEqudUrl = string.Format(Wmcloud.MktEqudUrl, strBeginDate, strEndDate, ticker);
+                    string message = Wmcloud.GetDataFromUrl(mktEqudUrl);
+                    if (message == null)
+                    {
+                        Thread.Sleep(10000);
+                        continue;
+                    }
 
-        //            //表示能正确返回API，但确实是无数据的
-        //            if (message.Contains("No Data Returned"))
-        //            {
-        //                allTickers.Remove(ticker);
-        //                this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                continue;
-        //            }
+                    //表示能正确返回API，但确实是无数据的
+                    if (message.Contains("No Data Returned"))
+                    {
+                        allTickers.Remove(ticker);
+                        this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                        continue;
+                    }
 
-        //            message = Wmcloud.GetJsonStrByMessage(message);
-        //            List<MktEqud> mktEqudList = JsonHelper.JsonToList<MktEqud>(message);
-        //            if (mktEqudService.Insert(mktEqudList))
-        //            {
-        //                allTickers.Remove(ticker);
-        //                this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                continue;
-        //            }
-        //        }
-        //    }
+                    message = Wmcloud.GetJsonStrByMessage(message);
+                    List<MktEqud> mktEqudList = JsonHelper.JsonToList<MktEqud>(message);
+                    if (mktEqudService.Insert(mktEqudList))
+                    {
+                        allTickers.Remove(ticker);
+                        this.lblMktEqud.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                        continue;
+                    }
+                }
+            }
 
-        //    this.pbMktEqud.Value = 100;
-        //    this.lblMktEqud.Text = "下载完毕！";
-        //    this.btnMktEqud.Enabled = true;
-        //}
+            this.pbMktEqud.Value = 100;
+            this.lblMktEqud.Text = "下载完毕！";
+            this.btnMktEqud.Enabled = true;
+        }
 
-        //#endregion
+        #endregion
 
-        //#region 下载指数日线数据
+        #region 下载指数日线数据
 
         private void btnMktIdxd_Click(object sender, EventArgs e)
         {
-        //    this.pbMktIdxd.Value = 0;
-        //    this.lblMktIdxd.Text = "下载中...";
-        //    this.btnMktIdxd.Enabled = false;
+            this.pbMktIdxd.Value = 0;
+            this.lblMktIdxd.Text = "下载中...";
+            this.btnMktIdxd.Enabled = false;
 
-        //    Thread thread = new Thread(new ThreadStart(DownMktIdxdData));
-        //    thread.IsBackground = true;
-        //    thread.Start();
+            Thread thread = new Thread(new ThreadStart(DownMktIdxdData));
+            thread.IsBackground = true;
+            thread.Start();
         }
 
-        //private void DownMktIdxdData()
-        //{
-        //    IMktIdxdRepository mktIdxdService = ImportService.MktIdxdService;
-        //    List<string> mktIdxTickers = new List<string>() { "000001", "399001", "399006", "399005" };
+        private void DownMktIdxdData()
+        {
+            IMktIdxdRepository mktIdxdService = ImportService.MktIdxdService;
+            List<string> mktIdxTickers = new List<string>() { "000001", "399001", "399006", "399005" };
 
-        //    int tickerIndex = 0;
-        //    int tickersCount = mktIdxTickers.Count;
+            int tickerIndex = 0;
+            int tickersCount = mktIdxTickers.Count;
 
-        //    while (mktIdxTickers.Count > 0)
-        //    {
-        //        List<string> mktIdxTickersCopy = Common.GetListCopy<string>(mktIdxTickers);
-        //        foreach (string ticker in mktIdxTickersCopy)
-        //        {
-        //            this.pbMktIdxd.Value = (tickerIndex * 100) / tickersCount;
+            while (mktIdxTickers.Count > 0)
+            {
+                List<string> mktIdxTickersCopy = Common.GetListCopy<string>(mktIdxTickers);
+                foreach (string ticker in mktIdxTickersCopy)
+                {
+                    this.pbMktIdxd.Value = (tickerIndex * 100) / tickersCount;
 
-        //            DateTime dtCurrent = Common.GetCurrentDataDate();
-        //            string strBeginDate = Common.StartDateInputStr;                    
-        //            string strEndDate = Common.GetInputDateFormat(dtCurrent);
-        //            string lastTradeDate = mktIdxdService.GetLastTradeDateByCode(ticker);
-        //            //数据库查询异常，先返回，避免插入重复数据
-        //            if (lastTradeDate == null)
-        //            {
-        //                continue;
-        //            }
-        //            if (lastTradeDate != string.Empty)
-        //            {
-        //                if (lastTradeDate == Common.GetOutputDateFormat(dtCurrent))
-        //                {
-        //                    mktIdxTickers.Remove(ticker);
-        //                    this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                    continue;
-        //                }
-        //                else
-        //                {
-        //                    DateTime dtNewStartDay = Common.GetDateFromOutput(lastTradeDate).AddDays(1);
-        //                    strBeginDate = Common.GetInputDateFormat(dtNewStartDay);
-        //                }
-        //            }
+                    DateTime dtCurrent = Common.GetCurrentDataDate();
+                    string strBeginDate = Common.StartDateInputStr;                    
+                    string strEndDate = Common.GetInputDateFormat(dtCurrent);
+                    string lastTradeDate = mktIdxdService.GetLastTradeDateByCode(ticker);
+                    //数据库查询异常，先返回，避免插入重复数据
+                    if (lastTradeDate == null)
+                    {
+                        continue;
+                    }
+                    if (lastTradeDate != string.Empty)
+                    {
+                        if (lastTradeDate == Common.GetOutputDateFormat(dtCurrent))
+                        {
+                            mktIdxTickers.Remove(ticker);
+                            this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                            continue;
+                        }
+                        else
+                        {
+                            DateTime dtNewStartDay = Common.GetDateFromOutput(lastTradeDate).AddDays(1);
+                            strBeginDate = Common.GetInputDateFormat(dtNewStartDay);
+                        }
+                    }
 
-        //            string mktIdxdUrl = string.Format(Wmcloud.MktIdxdUrl, strBeginDate, strEndDate, ticker);
-        //            string message = Wmcloud.GetDataFromUrl(mktIdxdUrl);
-        //            if (message == null)
-        //            {
-        //                Thread.Sleep(10000);
-        //                continue;
-        //            }
+                    string mktIdxdUrl = string.Format(Wmcloud.MktIdxdUrl, strBeginDate, strEndDate, ticker);
+                    string message = Wmcloud.GetDataFromUrl(mktIdxdUrl);
+                    if (message == null)
+                    {
+                        Thread.Sleep(10000);
+                        continue;
+                    }
 
-        //            //表示能正确返回API，但确实是无数据的
-        //            if (message.Contains("No Data Returned"))
-        //            {
-        //                mktIdxTickers.Remove(ticker);
-        //                this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                continue;
-        //            }
+                    //表示能正确返回API，但确实是无数据的
+                    if (message.Contains("No Data Returned"))
+                    {
+                        mktIdxTickers.Remove(ticker);
+                        this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                        continue;
+                    }
 
-        //            message = Wmcloud.GetJsonStrByMessage(message);
-        //            List<MktIdxd> mktIdxdList = JsonHelper.JsonToList<MktIdxd>(message);
-        //            if (mktIdxdService.Insert(mktIdxdList))
-        //            {
-        //                mktIdxTickers.Remove(ticker);
-        //                this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
-        //                continue;
-        //            }
-        //        }
-        //    }
+                    message = Wmcloud.GetJsonStrByMessage(message);
+                    List<MktIdxd> mktIdxdList = JsonHelper.JsonToList<MktIdxd>(message);
+                    if (mktIdxdService.Insert(mktIdxdList))
+                    {
+                        mktIdxTickers.Remove(ticker);
+                        this.lblMktIdxd.Text = string.Format("{0}/{1}", ++tickerIndex, tickersCount);
+                        continue;
+                    }
+                }
+            }
 
-        //    this.pbMktIdxd.Value = 100;
-        //    this.lblMktIdxd.Text = "下载完毕！";
-        //    this.btnMktIdxd.Enabled = true;
-        //}
+            this.pbMktIdxd.Value = 100;
+            this.lblMktIdxd.Text = "下载完毕！";
+            this.btnMktIdxd.Enabled = true;
+        }
 
-        //#endregion
+        #endregion
 
         #region 机构控盘度数据下载
 
@@ -310,7 +311,8 @@ namespace Pitman.Application.Import
 
         private void DownOrgPercentData()
         {
-            List<string> allTickers = ImportService.GetAllCodes();
+            IEquRepository equService = ImportService.EquService;
+            List<string> allTickers = equService.GetAllTickers();
             if (allTickers == null)
             {
                 this.lblMktEqud.Text = "数据库异常Q";
@@ -320,6 +322,7 @@ namespace Pitman.Application.Import
 
             int tickerIndex = 0;
             int tickersCount = allTickers.Count;
+            IOrgPercentRepository orgPercentService = ImportService.OrgPercentService;
 
             while (allTickers.Count > 0)
             {
@@ -332,7 +335,8 @@ namespace Pitman.Application.Import
                 }
 
                 //获取当前交易日所有股票机构控盘度数据
-                List<OrgPercent> orgList = ImportService.GetOrgList(message.Substring(message.IndexOf("数据日期") + 5, 10));
+                string orgSqlWhere = "Day='" + message.Substring(message.IndexOf("数据日期") + 5, 10) + "'";
+                List<OrgPercent> orgList = orgPercentService.GetOrgPercentByWhere(orgSqlWhere);
 
                 //重新生成所有股票代码的副本列表
                 List<string> allTickersCopy = Common.GetListCopy<string>(allTickers);
@@ -362,7 +366,7 @@ namespace Pitman.Application.Import
                                 newOrg.Value = float.Parse(strOrgPercent);
                                 newOrg.Zhuli = double.Parse(message.Substring(message.IndexOf("主力净流入") + 5, 100).Split('>')[1].Split('<')[0]);
                                 newOrg.Chaoda = double.Parse(message.Substring(message.IndexOf("超大单流入") + 5, 100).Split('>')[1].Split('<')[0]);
-                                if (!ImportService.AddNewOrg(newOrg))
+                                if (!orgPercentService.Insert(newOrg))
                                 {
                                     Thread.Sleep(1024);
                                     continue;

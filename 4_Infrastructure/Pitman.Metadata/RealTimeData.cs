@@ -1,9 +1,8 @@
-﻿using Framework.Infrastructure.Repository;
-using System;
+﻿using System;
 
 namespace Pitman.Metadata
 {
-    public class RealTimeData : Entity
+    public class RealTimeData
     {
         /// <summary>
         /// 代码

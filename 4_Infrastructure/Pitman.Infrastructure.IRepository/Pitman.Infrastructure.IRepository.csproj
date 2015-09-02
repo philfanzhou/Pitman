@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39A8BE22-B472-4684-84CF-6CBB10B2CE00}</ProjectGuid>
+    <ProjectGuid>{46F93D4B-3D80-47CD-95C7-B36E96B83E3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pitman.Metadata</RootNamespace>
-    <AssemblyName>Pitman.Metadata</AssemblyName>
+    <RootNamespace>Pitman.Infrastructure.IRepository</RootNamespace>
+    <AssemblyName>Pitman.Infrastructure.IRepository</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,12 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Equ.cs" />
-    <Compile Include="MktEqud.cs" />
-    <Compile Include="MktIdxd.cs" />
-    <Compile Include="OrgPercent.cs" />
+    <Compile Include="IEquRepository.cs" />
+    <Compile Include="IMktEqudRepository.cs" />
+    <Compile Include="IMktIdxdRepository.cs" />
+    <Compile Include="IOrgPercentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealTimeData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pitman.Metadata\Pitman.Metadata.csproj">
+      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
+      <Name>Pitman.Metadata</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

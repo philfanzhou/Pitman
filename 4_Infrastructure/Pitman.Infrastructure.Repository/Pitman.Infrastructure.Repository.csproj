@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Infrastructure.Repository">
-      <HintPath>..\..\Pitman.Dll\Framework.Infrastructure.Repository.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrgPercent.cs" />
+    <Compile Include="EquRepository.cs" />
+    <Compile Include="MktEqudRepository.cs" />
+    <Compile Include="MktIdxdRepository.cs" />
+    <Compile Include="OrgPercentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pitman.Infrastructure.IRepository\Pitman.Infrastructure.IRepository.csproj">
+      <Project>{46f93d4b-3d80-47cd-95c7-b36e96b83e3f}</Project>
+      <Name>Pitman.Infrastructure.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pitman.Metadata\Pitman.Metadata.csproj">
+      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
+      <Name>Pitman.Metadata</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

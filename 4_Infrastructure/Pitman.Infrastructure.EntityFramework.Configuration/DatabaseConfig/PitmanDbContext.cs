@@ -31,7 +31,7 @@ namespace Pitman.Infrastructure.EntityFramework.Configuration
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Import Models
-            modelBuilder.Configurations.Add(new OrgPercentConfig());
+            //modelBuilder.Configurations.Add(new OrgPercentConfig());
 
             // TO DO : Add others
             //modelBuilder.Configurations.Add(new OtherConfigType());

@@ -33,11 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Infrastructure.Repository">
-      <HintPath>..\..\Pitman.Dll\Framework.Infrastructure.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +49,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="Eastmoney.cs" />
     <Compile Include="ImportService.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +58,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wmcloud.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,13 +86,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.EntityFramework.Configuration\Pitman.Infrastructure.EntityFramework.Configuration.csproj">
-      <Project>{00e1e89e-57c2-458f-aa30-e9549b5b86e2}</Project>
-      <Name>Pitman.Infrastructure.EntityFramework.Configuration</Name>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.IRepository\Pitman.Infrastructure.IRepository.csproj">
+      <Project>{46f93d4b-3d80-47cd-95c7-b36e96b83e3f}</Project>
+      <Name>Pitman.Infrastructure.IRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.Repository\Pitman.Infrastructure.Repository.csproj">
       <Project>{f44e3592-c638-4493-90d9-1ec805112898}</Project>
       <Name>Pitman.Infrastructure.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Metadata\Pitman.Metadata.csproj">
+      <Project>{39a8be22-b472-4684-84cf-6cbb10b2ce00}</Project>
+      <Name>Pitman.Metadata</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
