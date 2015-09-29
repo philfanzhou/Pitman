@@ -37,8 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{5C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{FC2A27BB-1E1E-4B1E-9ED2-74C26544FA44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.HistoryData.Easemoney", "4_Infrastructure\Pitman.Infrastructure.HistoryData.Easemoney\Pitman.Infrastructure.HistoryData.Easemoney.csproj", "{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.HistoryData.Wmcloud", "4_Infrastructure\Pitman.Infrastructure.HistoryData.Wmcloud\Pitman.Infrastructure.HistoryData.Wmcloud.csproj", "{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Domain.MarketData", "5_Test\Test.Domain.MarketData\Test.Domain.MarketData.csproj", "{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}"
@@ -46,6 +44,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Infrastructure.RealTimeData.Sina", "5_Test\Test.Infrastructure.RealTimeData.Sina\Test.Infrastructure.RealTimeData.Sina.csproj", "{D4C4CA32-F67A-4754-86E2-D43A56E9B596}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataSource", "DataSource", "{E100A50D-618C-40CC-8666-2157C6D42C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.HistoryData.Eastmoney", "4_Infrastructure\Pitman.Infrastructure.HistoryData.Eastmoney\Pitman.Infrastructure.HistoryData.Eastmoney.csproj", "{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,10 +93,6 @@ Global
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -109,6 +105,10 @@ Global
 		{D4C4CA32-F67A-4754-86E2-D43A56E9B596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C4CA32-F67A-4754-86E2-D43A56E9B596}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C4CA32-F67A-4754-86E2-D43A56E9B596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,10 +126,10 @@ Global
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9} = {03B33133-5623-413D-B99D-B912763F7878}
 		{5C442F76-1D76-494A-8542-3D8359D06B91} = {03B33133-5623-413D-B99D-B912763F7878}
 		{FC2A27BB-1E1E-4B1E-9ED2-74C26544FA44} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69} = {E100A50D-618C-40CC-8666-2157C6D42C2D}
 		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669} = {E100A50D-618C-40CC-8666-2157C6D42C2D}
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 		{D4C4CA32-F67A-4754-86E2-D43A56E9B596} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 		{E100A50D-618C-40CC-8666-2157C6D42C2D} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69} = {E100A50D-618C-40CC-8666-2157C6D42C2D}
 	EndGlobalSection
 EndGlobal
