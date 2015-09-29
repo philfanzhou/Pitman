@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Pitman.Infrastructure.RealTimeData.Sina;
 using System.Linq;
 using Pitman.Application.MarketData;
+using Pitman.Domain.MarketData;
 
-namespace Pitman.Domain.MarketData.Test
+namespace Test.Domain.MarketData
 {
     [TestClass]
     public class IntradayInfoTest

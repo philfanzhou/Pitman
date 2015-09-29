@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.DataReader;
-using Pitman.Metadata;
+using Pitman.Infrastructure.RealTimeData.Sina;
 using System.Collections.Generic;
 
-namespace Quantum.Data.DataReader.Test
+namespace Test.Infrastructure.RealTimeData.Sina
 {
     [TestClass]
     public class DataReaderTest
@@ -11,8 +10,8 @@ namespace Quantum.Data.DataReader.Test
         [TestMethod]
         public void SinaRealTimeDataConstructorTest()
         {
-            IRealTimeDataReader reader = DataReaderCreator.Create();
-            RealTimeData data = reader.GetData("sh600036");
+            SinaDataReader reader = new SinaDataReader();
+            SinaRealTimeData data = reader.GetData("sh600036");
             Assert.IsNotNull(data);
 
             data = null;
@@ -24,11 +23,11 @@ namespace Quantum.Data.DataReader.Test
         public void GetMultipleDataTest()
         {
             string[] codes = new string[] { "sh600036","sz150209","sh600518","sz300118","sh600298","sh601009","sh601933","sh600660","sh600196" };
-            IRealTimeDataReader reader = DataReaderCreator.Create();
-            IEnumerable<RealTimeData> datas = reader.GetData(codes);
+            SinaDataReader reader = new SinaDataReader();
+            IEnumerable<SinaRealTimeData> datas = reader.GetData(codes);
 
             Assert.IsNotNull(datas);
-            foreach(RealTimeData data in datas)
+            foreach(SinaRealTimeData data in datas)
             {
                 Assert.IsNotNull(data);
             }

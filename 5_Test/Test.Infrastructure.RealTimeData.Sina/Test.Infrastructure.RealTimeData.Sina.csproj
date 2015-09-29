@@ -6,8 +6,8 @@
     <ProjectGuid>{D4C4CA32-F67A-4754-86E2-D43A56E9B596}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pitman.Infrastructure.RealTimeData.Sina.Test</RootNamespace>
-    <AssemblyName>Pitman.Infrastructure.RealTimeData.Sina.Test</AssemblyName>
+    <RootNamespace>Test.Infrastructure.RealTimeData.Sina</RootNamespace>
+    <AssemblyName>Test.Infrastructure.RealTimeData.Sina</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
