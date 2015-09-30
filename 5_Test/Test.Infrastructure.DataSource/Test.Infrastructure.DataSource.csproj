@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4C4CA32-F67A-4754-86E2-D43A56E9B596}</ProjectGuid>
+    <ProjectGuid>{62FE3184-8382-4868-AA7C-EED8E14F19B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.Infrastructure.RealTimeData.Sina</RootNamespace>
-    <AssemblyName>Test.Infrastructure.RealTimeData.Sina</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Test.Infrastructure.DataSource</RootNamespace>
+    <AssemblyName>Test.Infrastructure.DataSource</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -50,10 +50,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DataReaderTest.cs" />
+    <Compile Include="EastmoneyDataTest.cs" />
+    <Compile Include="SinaDataTest.cs" />
+    <Compile Include="WmcloudDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.HistoryData.Eastmoney\Pitman.Infrastructure.HistoryData.Eastmoney.csproj">
+      <Project>{d2f995e6-b758-42f3-8caa-b7df825faa69}</Project>
+      <Name>Pitman.Infrastructure.HistoryData.Eastmoney</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.HistoryData.Wmcloud\Pitman.Infrastructure.HistoryData.Wmcloud.csproj">
+      <Project>{85dfb7bc-0fd8-4e5a-8dc5-b8f4d9fea669}</Project>
+      <Name>Pitman.Infrastructure.HistoryData.Wmcloud</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.RealTimeData.Sina\Pitman.Infrastructure.RealTimeData.Sina.csproj">
       <Project>{9bdd56e8-a695-4c06-8853-331719d1d531}</Project>
       <Name>Pitman.Infrastructure.RealTimeData.Sina</Name>

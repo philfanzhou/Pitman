@@ -206,18 +206,5 @@ namespace Pitman.Infrastructure.RealTimeData.Sina
 
             this.Time = Convert.ToDateTime(fields[30] + " " + fields[31]);
         }
-
-        public override string ToString()
-        {
-            if (!string.IsNullOrWhiteSpace(this.Code) &&
-                !string.IsNullOrWhiteSpace(this.Name))
-            {
-                return this.Code + " " + this.Name + " " + this.Price;
-            }
-            else
-            {
-                return base.ToString();
-            }
-        }
     }
 }

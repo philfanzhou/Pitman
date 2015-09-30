@@ -2,10 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pitman.Infrastructure.HistoryData.Eastmoney;
 
-namespace Test.Infrastructure.HistoryData.Eastmoney
+namespace Test.Infrastructure.DataSource
 {
     [TestClass]
-    public class DataReaderTest
+    public class EastmoneyDataTest
     {
         [TestMethod]
         public void TestReadOrgPercentData()

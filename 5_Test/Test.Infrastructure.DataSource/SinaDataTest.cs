@@ -2,10 +2,10 @@
 using Pitman.Infrastructure.RealTimeData.Sina;
 using System.Collections.Generic;
 
-namespace Test.Infrastructure.RealTimeData.Sina
+namespace Test.Infrastructure.DataSource
 {
     [TestClass]
-    public class DataReaderTest
+    public class SinaDataTest
     {
         [TestMethod]
         public void SinaRealTimeDataConstructorTest()
@@ -13,6 +13,8 @@ namespace Test.Infrastructure.RealTimeData.Sina
             SinaDataReader reader = new SinaDataReader();
             SinaRealTimeData data = reader.GetData("sh600036");
             Assert.IsNotNull(data);
+            Assert.AreEqual("sh600036", data.Code);
+            Assert.AreEqual("招商银行", data.Name);
 
             data = null;
             data = reader.GetData("sz399001");

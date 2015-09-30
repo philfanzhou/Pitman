@@ -11,6 +11,7 @@ field	string	是	可选参数，用","分隔,默认为空，返回全部字段�
 ****************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -20,15 +21,15 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
     public class WmcloudDataReader
     {
         //股票基本信息URL
-        internal static string EquUrl = "https://api.wmcloud.com:443/data/v1/api/equity/getEqu.json?field=&listStatusCD=L&secID=&ticker=&equTypeCD=A";
+        private static string EquUrl = "https://api.wmcloud.com:443/data/v1/api/equity/getEqu.json?field=&listStatusCD=L&secID=&ticker=&equTypeCD=A";
 
         //指数日线行情URL
-        internal static string MktIdxdUrl = "https://api.wmcloud.com:443/data/v1/api/market/getMktIdxd.json?field=&beginDate={0}&endDate={1}&indexID=&ticker={2}&tradeDate=";
+        private static string MktIdxdUrl = "https://api.wmcloud.com:443/data/v1/api/market/getMktIdxd.json?field=&beginDate={0}&endDate={1}&indexID=&ticker={2}&tradeDate=";
 
         //股票日线数据URL
-        internal static string MktEqudUrl = "https://api.wmcloud.com:443/data/v1/api/market/getMktEqud.json?field=&beginDate={0}&endDate={1}&secID=&ticker={2}&tradeDate=";
+        private static string MktEqudUrl = "https://api.wmcloud.com:443/data/v1/api/market/getMktEqud.json?field=&beginDate={0}&endDate={1}&secID=&ticker={2}&tradeDate=";
 
-        internal static string GetDataFromUrl(string url)
+        private static string GetDataFromUrl(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
@@ -70,10 +71,45 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
             }
         }
 
-        internal static string GetJsonStrByMessage(string message)
+        private static string GetJsonStrByMessage(string message)
         {
             message = message.Split(new string[] { "data\":" }, StringSplitOptions.RemoveEmptyEntries)[1];
             return message.Substring(0, message.Length - 1);
+        }
+
+        public IEnumerable<BasicInfo> GetBasicInfo()
+        {
+            string message = GetDataFromUrl(EquUrl);
+            message = GetJsonStrByMessage(message);
+            List<BasicInfo> equList = JsonHelper.JsonToList<BasicInfo>(message);
+
+            return equList;
+        }
+
+        public IEnumerable<MktEqud> GetDailyStockData(string code, DateTime beginDay, DateTime endDay)
+        {
+            string strBeginDate = beginDay.ToString("yyyyMMdd");
+            string strEndDate = endDay.ToString("yyyyMMdd");
+            string mktEqudUrl = string.Format(MktEqudUrl, strBeginDate, strEndDate, code);
+
+            string message = GetDataFromUrl(mktEqudUrl);
+            message = GetJsonStrByMessage(message);
+            List<MktEqud> mktEqudList = JsonHelper.JsonToList<MktEqud>(message);
+
+            return mktEqudList;
+        }
+
+        public IEnumerable<MktIdxd> GetDailyIndexData(string code, DateTime beginDay, DateTime endDay)
+        {
+            string strBeginDate = beginDay.ToString("yyyyMMdd");
+            string strEndDate = endDay.ToString("yyyyMMdd");
+            string mktIdxdUrl = string.Format(MktIdxdUrl, strBeginDate, strEndDate, code);
+            string message = GetDataFromUrl(mktIdxdUrl);
+
+            message = GetJsonStrByMessage(message);
+            List<MktIdxd> mktIdxdList = JsonHelper.JsonToList<MktIdxd>(message);
+
+            return mktIdxdList;
         }
     }
 }
