@@ -62,13 +62,13 @@
       <Project>{5791453e-1ee3-4b33-a3aa-ed1c3cf0de69}</Project>
       <Name>Pitman.Domain.MarketData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.MarketData.API\Pitman.Infrastructure.MarketData.API.csproj">
+      <Project>{061b737d-fe5d-4d3a-a728-14dc402c2528}</Project>
+      <Name>Pitman.Infrastructure.MarketData.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.RealTimeData.Repository\Pitman.Infrastructure.RealTimeData.Repository.csproj">
       <Project>{52349b4d-3d85-4382-979f-c2f9d7bc9aed}</Project>
       <Name>Pitman.Infrastructure.RealTimeData.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.RealTimeData.Sina\Pitman.Infrastructure.RealTimeData.Sina.csproj">
-      <Project>{9bdd56e8-a695-4c06-8853-331719d1d531}</Project>
-      <Name>Pitman.Infrastructure.RealTimeData.Sina</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

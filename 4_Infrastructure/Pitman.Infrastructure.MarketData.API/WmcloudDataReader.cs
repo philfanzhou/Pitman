@@ -16,7 +16,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Pitman.Infrastructure.HistoryData.Wmcloud
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class WmcloudDataReader
     {

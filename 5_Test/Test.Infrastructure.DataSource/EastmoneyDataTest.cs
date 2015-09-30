@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.Infrastructure.HistoryData.Eastmoney;
+using Pitman.Infrastructure.MarketData.API;
 
 namespace Test.Infrastructure.DataSource
 {

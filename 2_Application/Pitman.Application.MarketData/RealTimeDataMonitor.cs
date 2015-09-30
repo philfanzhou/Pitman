@@ -1,4 +1,4 @@
-﻿using Pitman.Infrastructure.RealTimeData.Sina;
+﻿using Pitman.Infrastructure.MarketData.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;

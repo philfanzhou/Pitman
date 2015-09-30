@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Pitman.Infrastructure.RealTimeData.Sina")]
+[assembly: AssemblyTitle("Pitman.Infrastructure.MarketData.API")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Motorola")]
-[assembly: AssemblyProduct("Pitman.Infrastructure.RealTimeData.Sina")]
-[assembly: AssemblyCopyright("Copyright © Motorola 2015")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Pitman.Infrastructure.MarketData.API")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9bdd56e8-a695-4c06-8853-331719d1d531")]
+[assembly: Guid("061b737d-fe5d-4d3a-a728-14dc402c2528")]
 
 // Version information for an assembly consists of the following four values:
 //

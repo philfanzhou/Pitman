@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Infrastructure.HistoryData.Eastmoney
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class OrgPercentData
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.Infrastructure.HistoryData.Wmcloud;
+using Pitman.Infrastructure.MarketData.API;
 using System.Collections.Generic;
 using System.Linq;
 

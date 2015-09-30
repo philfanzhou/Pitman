@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.Infrastructure.RealTimeData.Sina;
+using Pitman.Infrastructure.MarketData.API;
 using System.Collections.Generic;
 
 namespace Test.Infrastructure.DataSource

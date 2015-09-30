@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pitman.Infrastructure.RealTimeData.Sina
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class SinaRealTimeData
     {

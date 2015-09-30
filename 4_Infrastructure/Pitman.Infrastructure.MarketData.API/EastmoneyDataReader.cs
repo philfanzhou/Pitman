@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 
-namespace Pitman.Infrastructure.HistoryData.Eastmoney
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class EastmoneyDataReader
     {

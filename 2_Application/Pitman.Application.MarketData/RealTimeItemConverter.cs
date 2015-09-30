@@ -1,5 +1,5 @@
 ﻿using Pitman.Infrastructure.RealTimeData.Repository;
-using Pitman.Infrastructure.RealTimeData.Sina;
+using Pitman.Infrastructure.MarketData.API;
 
 namespace Pitman.Application.MarketData
 {

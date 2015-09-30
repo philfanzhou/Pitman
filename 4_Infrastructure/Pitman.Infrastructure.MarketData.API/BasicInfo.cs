@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Infrastructure.HistoryData.Wmcloud
+namespace Pitman.Infrastructure.MarketData.API
 {
     /// <summary>
     /// 股票基本信息

@@ -29,21 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Presentation", "1_Present
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Presentation.Winform", "1_Presentation\Pitman.Presentation.Winform\Pitman.Presentation.Winform.csproj", "{C8D6130C-1084-45F9-91A3-97FE09BE4FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.RealTimeData.Sina", "4_Infrastructure\Pitman.Infrastructure.RealTimeData.Sina\Pitman.Infrastructure.RealTimeData.Sina.csproj", "{9BDD56E8-A695-4C06-8853-331719D1D531}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Application.MarketData", "2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj", "{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{5C442F76-1D76-494A-8542-3D8359D06B91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{FC2A27BB-1E1E-4B1E-9ED2-74C26544FA44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.HistoryData.Wmcloud", "4_Infrastructure\Pitman.Infrastructure.HistoryData.Wmcloud\Pitman.Infrastructure.HistoryData.Wmcloud.csproj", "{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Domain.MarketData", "5_Test\Test.Domain.MarketData\Test.Domain.MarketData.csproj", "{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.HistoryData.Eastmoney", "4_Infrastructure\Pitman.Infrastructure.HistoryData.Eastmoney\Pitman.Infrastructure.HistoryData.Eastmoney.csproj", "{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Infrastructure.DataSource", "5_Test\Test.Infrastructure.DataSource\Test.Infrastructure.DataSource.csproj", "{62FE3184-8382-4868-AA7C-EED8E14F19B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.MarketData.API", "4_Infrastructure\Pitman.Infrastructure.MarketData.API\Pitman.Infrastructure.MarketData.API.csproj", "{061B737D-FE5D-4D3A-A728-14DC402C2528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,30 +79,22 @@ Global
 		{C8D6130C-1084-45F9-91A3-97FE09BE4FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8D6130C-1084-45F9-91A3-97FE09BE4FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8D6130C-1084-45F9-91A3-97FE09BE4FA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BDD56E8-A695-4C06-8853-331719D1D531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BDD56E8-A695-4C06-8853-331719D1D531}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BDD56E8-A695-4C06-8853-331719D1D531}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BDD56E8-A695-4C06-8853-331719D1D531}.Release|Any CPU.Build.0 = Release|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62FE3184-8382-4868-AA7C-EED8E14F19B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62FE3184-8382-4868-AA7C-EED8E14F19B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62FE3184-8382-4868-AA7C-EED8E14F19B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62FE3184-8382-4868-AA7C-EED8E14F19B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061B737D-FE5D-4D3A-A728-14DC402C2528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061B737D-FE5D-4D3A-A728-14DC402C2528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061B737D-FE5D-4D3A-A728-14DC402C2528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061B737D-FE5D-4D3A-A728-14DC402C2528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,13 +108,11 @@ Global
 		{52349B4D-3D85-4382-979F-C2F9D7BC9AED} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{5791453E-1EE3-4B33-A3AA-ED1C3CF0DE69} = {736BABDF-CA17-4965-9FE7-0B432FF6EE61}
 		{C8D6130C-1084-45F9-91A3-97FE09BE4FA0} = {A7008C68-B65C-4CB1-81CF-D0BC591A61DD}
-		{9BDD56E8-A695-4C06-8853-331719D1D531} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{279485C8-2084-4C2C-A8A4-7F90A21CBCB9} = {03B33133-5623-413D-B99D-B912763F7878}
 		{5C442F76-1D76-494A-8542-3D8359D06B91} = {03B33133-5623-413D-B99D-B912763F7878}
 		{FC2A27BB-1E1E-4B1E-9ED2-74C26544FA44} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
-		{85DFB7BC-0FD8-4E5A-8DC5-B8F4D9FEA669} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
-		{D2F995E6-B758-42F3-8CAA-B7DF825FAA69} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{62FE3184-8382-4868-AA7C-EED8E14F19B2} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
+		{061B737D-FE5D-4D3A-A728-14DC402C2528} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 	EndGlobalSection
 EndGlobal

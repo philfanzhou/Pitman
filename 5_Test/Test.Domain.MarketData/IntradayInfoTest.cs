@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Pitman.Infrastructure.RealTimeData.Sina;
+using Pitman.Infrastructure.MarketData.API;
 using System.Linq;
 using Pitman.Application.MarketData;
 using Pitman.Domain.MarketData;

@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Infrastructure.HistoryData.Wmcloud
+namespace Pitman.Infrastructure.MarketData.API
 {
     /// <summary>
-    /// 沪深股票日线行情
+    /// 指数日线行情
     /// </summary>
-    public class MktEqud
+    public class MktIdxd
     {
         /// <summary>
-        /// 证券内部编码 600726.XSHG
+        /// 指数内部编码 000001.ZICN
         /// </summary>
-        public string secID
+        public string indexID
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 交易日 2015-06-26
+        /// 交易日：2015-07-03
         /// </summary>
         public string tradeDate
         {
@@ -30,7 +30,7 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
         }
 
         /// <summary>
-        /// 证券代码 600726
+        /// 指数代码：000001
         /// </summary>
         public string ticker
         {
@@ -39,7 +39,16 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
         }
 
         /// <summary>
-        /// 证券简称 华电能源
+        /// 发布机构全称:上海证券交易所
+        /// </summary>
+        public string porgFullName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 证券简称:上证综指
         /// </summary>
         public string secShortName
         {
@@ -57,54 +66,45 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
         }
 
         /// <summary>
-        /// 昨收盘：已除权后的价格
+        /// 昨收盘指数
         /// </summary>
-        public float preClosePrice
+        public double preCloseIndex
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 实际昨收盘：未除权
+        /// 今开盘指数
         /// </summary>
-        public float actPreClosePrice
+        public double openIndex
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 今开盘
+        /// 最低价指数
         /// </summary>
-        public float openPrice
+        public double lowestIndex
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 最高价
+        /// 最高价指数
         /// </summary>
-        public float highestPrice
+        public double highestIndex
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 最低价
+        /// 今收盘指数
         /// </summary>
-        public float lowestPrice
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 今收盘
-        /// </summary>
-        public float closePrice
+        public double closeIndex
         {
             get;
             set;
@@ -129,72 +129,18 @@ namespace Pitman.Infrastructure.HistoryData.Wmcloud
         }
 
         /// <summary>
-        /// 成交笔数
+        /// 涨跌
         /// </summary>
-        public double dealAmount
+        public double CHG
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 日换手率
+        /// 涨跌幅
         /// </summary>
-        public float turnoverRate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 累积复权因子：前复权
-        /// </summary>
-        public float accumAdjFactor
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 流通市值
-        /// </summary>
-        public double negMarketValue
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 总市值
-        /// </summary>
-        public double marketValue
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 滚动市盈率
-        /// </summary>
-        public float PE
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 市盈率
-        /// </summary>
-        public float PE1
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 市净率
-        /// </summary>
-        public float PB
+        public double CHGPct
         {
             get;
             set;

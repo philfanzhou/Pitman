@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Infrastructure.HistoryData.Wmcloud
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class JsonHelper
     {

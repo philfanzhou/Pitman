@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Pitman.Infrastructure.RealTimeData.Sina
+namespace Pitman.Infrastructure.MarketData.API
 {
     public class SinaDataReader
     {
