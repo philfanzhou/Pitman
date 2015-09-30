@@ -6,9 +6,9 @@ namespace Pitman.Infrastructure.HistoryData.Eastmoney
 {
     public class EastmoneyDataReader
     {
-        internal static string OrgPercentUrl = "http://data.eastmoney.com/stockcomment/{0}.html";
+        private static string OrgPercentUrl = "http://data.eastmoney.com/stockcomment/{0}.html";
 
-        internal static string GetDataFromUrl(string url)
+        private static string GetDataFromUrl(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
@@ -47,6 +47,14 @@ namespace Pitman.Infrastructure.HistoryData.Eastmoney
                     request = null;
                 }
             }
+        }
+
+        public OrgPercentData Get(string code)
+        {
+            string url = string.Format(OrgPercentUrl, code);
+            string message = GetDataFromUrl(url);
+            
+            return new OrgPercentData(code, message);
         }
     }
 }
