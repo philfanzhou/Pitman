@@ -54,10 +54,12 @@ namespace Pitman.Infrastructure.MarketData.API
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (StreamReader myreader
-                = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("GBK")))
             {
-                return myreader.ReadToEnd();
+                using (StreamReader myreader
+                    = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("GBK")))
+                {
+                    return myreader.ReadToEnd();
+                }
             }
         }
     }

@@ -15,36 +15,12 @@ namespace Pitman.Infrastructure.MarketData.API
             request.Timeout = 5000;
             request.Proxy = null;
 
-            try
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
-                WebResponse response = request.GetResponse();
-
-                try
+                using (StreamReader streamReader
+                    = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gb2312")))
                 {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader streamReader = new StreamReader(stream, Encoding.GetEncoding("gb2312"));
                     return streamReader.ReadToEnd();
-                }
-                finally
-                {
-                    if (response != null)
-                    {
-                        response.Close();
-                        response = null;
-                    }
-                }
-            }
-            catch
-            {
-                //访问Url的过程中出现网络异常
-                return null;
-            }
-            finally
-            {
-                if (request != null)
-                {
-                    request.Abort();
-                    request = null;
                 }
             }
         }

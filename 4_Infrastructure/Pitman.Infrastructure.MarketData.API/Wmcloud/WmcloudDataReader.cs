@@ -37,36 +37,12 @@ namespace Pitman.Infrastructure.MarketData.API
             request.Proxy = null;
             request.Headers.Add("Authorization: Bearer 4e4851b6b5d3c33c84fa82f28e93fa403c422b10bb4cb60bead35734a82288eb");
 
-            try
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
-                WebResponse response = request.GetResponse();
-
-                try
+                using (StreamReader streamReader
+                    = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
                     return streamReader.ReadToEnd();
-                }
-                finally
-                {
-                    if (response != null)
-                    {
-                        response.Close();
-                        response = null;
-                    }
-                }
-            }
-            catch
-            {
-                //访问Url的过程中出现网络异常
-                return null;
-            }
-            finally
-            {
-                if (request != null)
-                {
-                    request.Abort();
-                    request = null;
                 }
             }
         }

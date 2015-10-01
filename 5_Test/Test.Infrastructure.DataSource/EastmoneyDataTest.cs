@@ -18,7 +18,6 @@ namespace Test.Infrastructure.DataSource
             Assert.IsTrue(data.Zhuli > 0);
             Assert.IsTrue(data.Chaoda > 0);
             Assert.IsTrue(data.Day.Year == DateTime.Now.Year);
-            Assert.IsTrue(data.Day.Month == DateTime.Now.Month);
         }
     }
 }

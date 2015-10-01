@@ -41,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicInfo.cs" />
-    <Compile Include="EastmoneyDataReader.cs" />
+    <Compile Include="Wmcloud\BasicInfo.cs" />
+    <Compile Include="Eastmoney\EastmoneyDataReader.cs" />
     <Compile Include="JsonHelper.cs" />
-    <Compile Include="MktEqud.cs" />
-    <Compile Include="MktIdxd.cs" />
-    <Compile Include="OrgPercentData.cs" />
+    <Compile Include="Wmcloud\MktEqud.cs" />
+    <Compile Include="Wmcloud\MktIdxd.cs" />
+    <Compile Include="Eastmoney\OrgPercentData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SinaDataReader.cs" />
-    <Compile Include="SinaRealTimeData.cs" />
-    <Compile Include="WmcloudDataReader.cs" />
+    <Compile Include="Sina\SinaDataReader.cs" />
+    <Compile Include="Sina\SinaRealTimeData.cs" />
+    <Compile Include="Wmcloud\WmcloudDataReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Infrastructure.MarketData.API
 {
@@ -20,21 +17,9 @@ namespace Pitman.Infrastructure.MarketData.API
         {
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
             {
-                try
-                {
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-                    T returnOjbect = (T)serializer.ReadObject(ms);
-                    return returnOjbect;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    ms.Close();
-                    ms.Dispose();
-                }
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+                T returnOjbect = (T)serializer.ReadObject(ms);
+                return returnOjbect;
             }
         }
 
