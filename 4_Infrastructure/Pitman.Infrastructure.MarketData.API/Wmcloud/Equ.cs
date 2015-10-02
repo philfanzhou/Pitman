@@ -9,29 +9,32 @@ namespace Pitman.Infrastructure.MarketData.API
     /// <summary>
     /// 股票基本信息
     /// </summary>
-    public class BasicInfo
+    public class Equ
     {
-        /// <summary>
+        /// <summary>+
         /// 证券内部编码
         /// </summary>
+        /// <example>000001.XSHE</example>
         public string secID
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 交易代码
         /// </summary>
+        /// <example>000001</example>
         public string ticker
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易市场
+        /// <summary>+
+        /// 交易市场编码
         /// </summary>
+        /// <example>XSHG</example>
         public string exchangeCD
         {
             get;
@@ -41,7 +44,8 @@ namespace Pitman.Infrastructure.MarketData.API
         /// <summary>
         /// 上市板块编码
         /// </summary>
-        public string ListSectorCD
+        /// <example>1</example>
+        public int ListSectorCD
         {
             get;
             set;
@@ -50,58 +54,64 @@ namespace Pitman.Infrastructure.MarketData.API
         /// <summary>
         /// 上市板块
         /// </summary>
+        /// <example>主板</example>
         public string ListSector
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易货币
+        /// <summary>+
+        /// 交易货币编码
         /// </summary>
+        /// <example>CNY</example>
         public string transCurrCD
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 证券简称
         /// </summary>
+        /// <example>平安银行</example>
         public string secShortName
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 证券全称
         /// </summary>
+        /// <example>平安银行股份有限公司</example>
         public string secFullName
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 上市状态
         /// </summary>
+        /// <example>L-上市，S-暂停，DE-终止上市，UN-未上市</example>
         public string listStatusCD
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 上市时间
         /// </summary>
+        /// <example>1991-04-03</example>
         public string listDate
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 摘牌时间
         /// </summary>
         public string delistDate
@@ -113,6 +123,7 @@ namespace Pitman.Infrastructure.MarketData.API
         /// <summary>
         /// 股票分类编码
         /// </summary>
+        /// <example>A或B对应A股或B股</example>
         public string equTypeCD
         {
             get;
@@ -122,15 +133,17 @@ namespace Pitman.Infrastructure.MarketData.API
         /// <summary>
         /// 股票类别
         /// </summary>
+        /// <example>沪深A股</example>
         public string equType
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易市场所属地区
+        /// <summary>+
+        /// 交易市场所属地区编码
         /// </summary>
+        /// <example>CHN</example>
         public string exCountryCD
         {
             get;
@@ -140,13 +153,14 @@ namespace Pitman.Infrastructure.MarketData.API
         /// <summary>
         /// 机构内部ID
         /// </summary>
+        /// <example>2</example>
         public string partyID
         {
             get;
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 总股本(最新)
         /// </summary>
         public double totalShares
@@ -173,7 +187,7 @@ namespace Pitman.Infrastructure.MarketData.API
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 办公地址
         /// </summary>
         public string officeAddr
@@ -182,7 +196,7 @@ namespace Pitman.Infrastructure.MarketData.API
             set;
         }
 
-        /// <summary>
+        /// <summary>+
         /// 主营业务范围
         /// </summary>
         public string primeOperating
@@ -190,5 +204,15 @@ namespace Pitman.Infrastructure.MarketData.API
             get;
             set;
         }
+
+        /// <summary>+
+        /// 财务报告日期
+        /// </summary>
+        public string endDate { get; set; }
+
+        /// <summary>+
+        /// 所有者权益合计
+        /// </summary>
+        public double TShEquity { get; set; }
     }
 }

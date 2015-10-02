@@ -13,7 +13,7 @@ namespace Test.Infrastructure.DataSource
         public void TestGetBasicInfo()
         {
             WmcloudDataReader reader = new WmcloudDataReader();
-            List<BasicInfo> infoList = reader.GetBasicInfo().ToList();
+            List<Equ> infoList = reader.GetBasicInfo().ToList();
 
             Assert.IsNotNull(infoList);
             Assert.IsTrue(infoList.Count > 0);
@@ -22,7 +22,7 @@ namespace Test.Infrastructure.DataSource
             Assert.IsNotNull(dataItem);
 
             Assert.AreEqual("主板", dataItem.ListSector);
-            Assert.AreEqual("1", dataItem.ListSectorCD);
+            Assert.AreEqual(1, dataItem.ListSectorCD);
             Assert.AreEqual(null, dataItem.delistDate);
             Assert.AreEqual("沪深A股", dataItem.equType);
             Assert.AreEqual("A", dataItem.equTypeCD);
@@ -41,6 +41,8 @@ namespace Test.Infrastructure.DataSource
             Assert.AreEqual("000001", dataItem.ticker);
             Assert.IsTrue(dataItem.totalShares - 14308676139 < 0.000001);
             Assert.AreEqual("CNY", dataItem.transCurrCD);
+            Assert.AreEqual("2015-06-30", dataItem.endDate);
+            Assert.IsTrue(dataItem.TShEquity - 150880000000 < 0.000001);
         }
 
         [TestMethod]

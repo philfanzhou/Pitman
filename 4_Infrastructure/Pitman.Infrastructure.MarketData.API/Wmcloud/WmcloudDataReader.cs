@@ -53,11 +53,11 @@ namespace Pitman.Infrastructure.MarketData.API
             return message.Substring(0, message.Length - 1);
         }
 
-        public IEnumerable<BasicInfo> GetBasicInfo()
+        public IEnumerable<Equ> GetBasicInfo()
         {
             string message = GetDataFromUrl(EquUrl);
             message = GetJsonStrByMessage(message);
-            List<BasicInfo> equList = JsonHelper.JsonToList<BasicInfo>(message);
+            List<Equ> equList = JsonHelper.JsonToList<Equ>(message);
 
             return equList;
         }
