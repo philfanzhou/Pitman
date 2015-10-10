@@ -45,10 +45,6 @@
     <Compile Include="RealTimeItemConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.MarketData.API\Pitman.Infrastructure.MarketData.API.csproj">
-      <Project>{061b737d-fe5d-4d3a-a728-14dc402c2528}</Project>
-      <Name>Pitman.Infrastructure.MarketData.API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.RealTimeData.Repository\Pitman.Infrastructure.RealTimeData.Repository.csproj">
       <Project>{52349b4d-3d85-4382-979f-c2f9d7bc9aed}</Project>
       <Name>Pitman.Infrastructure.RealTimeData.Repository</Name>

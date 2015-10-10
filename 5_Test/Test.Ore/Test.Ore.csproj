@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62FE3184-8382-4868-AA7C-EED8E14F19B2}</ProjectGuid>
+    <ProjectGuid>{746E7D23-3D9C-4004-9F76-98D884D00C3E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.Infrastructure.DataSource</RootNamespace>
-    <AssemblyName>Test.Infrastructure.DataSource</AssemblyName>
+    <RootNamespace>Test.Ore</RootNamespace>
+    <AssemblyName>Test.Ore</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,8 +52,18 @@
   <ItemGroup>
     <Compile Include="EastmoneyDataTest.cs" />
     <Compile Include="SinaDataTest.cs" />
-    <Compile Include="WmcloudDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WmcloudDataTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\4_Infrastructure\Ore.Infrastructure.MarketData.Implementation\Ore.Infrastructure.MarketData.Implementation.csproj">
+      <Project>{a6e65ca4-c677-4eaa-8c34-9f030ba90e55}</Project>
+      <Name>Ore.Infrastructure.MarketData.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.csproj">
+      <Project>{11e69835-a2a1-4631-96c0-fe078b09f5f5}</Project>
+      <Name>Ore.Infrastructure.MarketData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
