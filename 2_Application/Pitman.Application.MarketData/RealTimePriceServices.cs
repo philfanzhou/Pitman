@@ -3,18 +3,17 @@ using Ore.Infrastructure.MarketData.DataSource.Sina;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace Pitman.Application.MarketData
 {
     public class RealTimePriceServices : IDataCollectionService
     {
-        private readonly TimeSpan StartTime = new DateTime(1900, 1, 1, 9, 10, 0).TimeOfDay;
-        private readonly TimeSpan StopTime = new DateTime(1900, 1, 1, 15, 15, 0).TimeOfDay;
-
-        private Task getDataTask;
+        #region Field
+        private readonly TimeSpan morningStart = new DateTime(1900, 1, 1, 9, 10, 0).TimeOfDay;
+        private readonly TimeSpan noonStop = new DateTime(1900, 1, 1, 11, 55, 0).TimeOfDay;
+        private readonly TimeSpan noonStart = new DateTime(1900, 1, 1, 12, 55, 0).TimeOfDay;
+        private readonly TimeSpan afternoonStop = new DateTime(1900, 1, 1, 15, 15, 0).TimeOfDay;
 
         /// <summary>
         /// 获取数据的Timer
@@ -26,31 +25,40 @@ namespace Pitman.Application.MarketData
         /// </summary>
         private Timer saveDataTimer = new Timer(1000);
 
-        private ServiceStatus status = ServiceStatus.Stopped;
-
-        private Dictionary<string, IStockRealTimePrice> latestData
+        private Dictionary<string, IStockRealTimePrice> previousData
             = new Dictionary<string, IStockRealTimePrice>();
 
         private Dictionary<string, Queue<IStockRealTimePrice>> dataQueue
             = new Dictionary<string, Queue<IStockRealTimePrice>>();
 
-        public ServiceStatus Status
-        {
-            get
-            {
-                return status;
-            }
-        }
-
         /// <summary>
         /// 分时数据的精度为5秒，这里取3秒时间差作为数据是否已经更新的依据
         /// </summary>
         private TimeSpan dataSpan = new TimeSpan(0, 0, 3);
+        #endregion
+
+        #region Property
+        public ServiceStatus Status
+        {
+            get
+            {
+                if(getDataTimer.Enabled && saveDataTimer.Enabled)
+                {
+                    return ServiceStatus.Running;
+                }
+                else
+                {
+                    return ServiceStatus.Stopped;
+                }
+            }
+        }
+        #endregion
 
         public bool IsWorkingTime(DateTime now)
         {
             TimeSpan current = now.TimeOfDay;
-            if(StartTime < current && current < StopTime)
+            if((morningStart < current && current < noonStop) ||
+                (noonStart < current && current < afternoonStop))
             {
                 return true;
             }
@@ -62,34 +70,29 @@ namespace Pitman.Application.MarketData
 
         public void Start()
         {
-            if(status == ServiceStatus.Running)
+            if(Status == ServiceStatus.Running)
             {
                 return;
             }
-
-            getDataTask = new Task(GetDataTimer_Elapsed);
-            getDataTask.Start();
-
+            
             //开始获取数据
-            //getDataTimer.Elapsed += GetDataTimer_Elapsed;
-            //getDataTimer.Enabled = true;
+            getDataTimer.Elapsed += GetDataTimer_Elapsed;
+            getDataTimer.Enabled = true;
 
-            //saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
-            //saveDataTimer.Enabled = true;
-
-            this.status = ServiceStatus.Running;
+            saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
+            saveDataTimer.Enabled = true;
         }
 
         public void Stop()
         {
-            if (status == ServiceStatus.Stopped)
+            if (Status == ServiceStatus.Stopped)
             {
                 return;
             }
 
             if(getDataTimer != null)
             {
-                //getDataTimer.Elapsed -= GetDataTimer_Elapsed;
+                getDataTimer.Elapsed -= GetDataTimer_Elapsed;
                 getDataTimer.Enabled = false;
                 getDataTimer.Stop();
                 getDataTimer.Dispose();
@@ -105,27 +108,31 @@ namespace Pitman.Application.MarketData
                 saveDataTimer = null;
             }
 
-            latestData.Clear();
-            dataQueue.Clear();
+            //todo:清理数据之前，还应该将最后剩余的数据进行保存
 
-            this.status = ServiceStatus.Stopped;
+            previousData.Clear();
+            dataQueue.Clear();
         }
 
-        private void GetDataTimer_Elapsed()
+        #region Private Method
+        private void GetDataTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            System.Threading.Timer
-                IEnumerable<IStockRealTimePrice> datas = GetRealTimeDatas();
-                if (null == datas)
-                {
-                    return;
-                }
+            getDataTimer.Enabled = false;
 
+            IEnumerable<IStockRealTimePrice> datas = GetRealTimeDatas();
+            if (null != datas)
+            {
                 CheckDataAndAddToQueue(datas);
+            }
+
+            getDataTimer.Enabled = true;
         }
 
         private void SaveDataTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
+            saveDataTimer.Enabled = false;
+
+            saveDataTimer.Enabled = true;
         }
 
         private IEnumerable<ISecurity> GetStockList()
@@ -145,11 +152,11 @@ namespace Pitman.Application.MarketData
             IEnumerable<IStockRealTimePrice> datas;
             try
             {
-                datas = api.GetData(stocks);
+                datas = api.GetData(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
             }
             catch
             {
-                datas = null;
+                datas = new List<IStockRealTimePrice>();
             }
 
             return datas;
@@ -166,18 +173,17 @@ namespace Pitman.Application.MarketData
             {
                 string marketAndCode = GetMarketAndCode(currentData);
 
-                if(!latestData.ContainsKey(marketAndCode))
+                if(!previousData.ContainsKey(marketAndCode))
                 {
-                    latestData.Add(marketAndCode, currentData);
-
+                    previousData.Add(marketAndCode, currentData);
                     AddDataToQueue(marketAndCode, currentData);
                 }
                 else
                 {
-                    var previousData = latestData[marketAndCode];
+                    var previousData = this.previousData[marketAndCode];
                     if(currentData.Time - previousData.Time > dataSpan)
                     {
-                        latestData[marketAndCode] = currentData;
+                        this.previousData[marketAndCode] = currentData;
                         AddDataToQueue(marketAndCode, currentData);
                     }
                 }
@@ -219,5 +225,6 @@ namespace Pitman.Application.MarketData
                 }
             }
         }
+        #endregion
     }
 }
