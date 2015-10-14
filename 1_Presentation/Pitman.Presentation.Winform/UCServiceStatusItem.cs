@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Pitman.Presentation.Winform
 {
-    public partial class Main : Form
+    public partial class UCServiceStatusItem : UserControl
     {
-        public Main()
+        public UCServiceStatusItem()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.ucServiceStatus1.StartService();
         }
     }
 }

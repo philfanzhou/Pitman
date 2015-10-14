@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pitman.Application.MarketData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,24 +10,60 @@ namespace Pitman.Application.Management
 {
     public class ServiceManager
     {
-        // todo: singleton
+        #region Singleton
+        private static ServiceManager instance;
+
+        public static ServiceManager Instance
+        {
+            get
+            {
+                if (null == instance)
+                {
+                    System.Threading.Interlocked.CompareExchange(ref instance, new ServiceManager(), null);
+                }
+                return instance;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 服务控制timer，每30秒刷新一次
         /// </summary>
         private readonly Timer ServiceStatusCheckTimer = new Timer(30000);
 
+        private readonly List<IDataCollectionService> serviceList = ServiceFactory.CreateAllService().ToList();
+
         private ServiceManager()
         {
+            // 启动服务观察timer
             ServiceStatusCheckTimer.Elapsed += ServiceStatusCheckTimer_Elapsed;
             ServiceStatusCheckTimer.Enabled = true;
+            ServiceStatusCheckTimer.Start();
+        }
+
+        public IEnumerable<IDataCollectionService> Services
+        {
+            get { return this.serviceList; }
         }
 
         private void ServiceStatusCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            DateTime now = DateTime.Now;
+            ServiceStatusCheckTimer.Enabled = false;
 
-            //if(now.Hour)
+            DateTime now = DateTime.Now;
+            foreach(var service in serviceList)
+            {
+                if(service.IsWorkingTime(now))
+                {
+                    service.Start();
+                }
+                else
+                {
+                    service.Stop();
+                }
+            }
+
+            ServiceStatusCheckTimer.Enabled = true;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Timers;
 
 namespace Pitman.Application.MarketData
 {
-    public class RealTimePriceServices : IDataCollectionService
+    internal class RealTimePriceServices : IDataCollectionService
     {
         #region Field
         private readonly TimeSpan morningStart = new DateTime(1900, 1, 1, 9, 10, 0).TimeOfDay;
