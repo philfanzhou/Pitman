@@ -1,12 +1,34 @@
-﻿using System;
+﻿using Ore.Infrastructure.MarketData;
+using System;
 
 namespace Pitman.Infrastructure.RealTimeData.Repository
 {
     /// <summary>
     /// 实时数据结构体定义
     /// </summary>
-    public struct RealTimeItem
+    internal struct RealTimeItem : IStockRealTimePrice
     {
+        public string Code
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string ShortName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// 交易市场
+        /// </summary>
+        public Market Market { get; set; }
+
         /// <summary>
         /// 今开
         /// </summary>
@@ -18,9 +40,9 @@ namespace Pitman.Infrastructure.RealTimeData.Repository
         public double YesterdayClose { get; set; }
 
         /// <summary>
-        /// 成交价
+        /// 当前成交价
         /// </summary>
-        public double Price { get; set; }
+        public double Current { get; set; }
 
         /// <summary>
         /// 最高
@@ -52,52 +74,52 @@ namespace Pitman.Infrastructure.RealTimeData.Repository
         /// <summary>
         /// 卖五价
         /// </summary>
-        public double SellFivePrice { get; set; }
+        public double Sell5Price { get; set; }
 
         /// <summary>
         /// 卖五量
         /// </summary>
-        public double SellFiveVolume { get; set; }
+        public double Sell5Volume { get; set; }
 
         /// <summary>
         /// 卖四价
         /// </summary>
-        public double SellFourPrice { get; set; }
+        public double Sell4Price { get; set; }
 
         /// <summary>
         /// 卖四量
         /// </summary>
-        public double SellFourVolume { get; set; }
+        public double Sell4Volume { get; set; }
 
         /// <summary>
         /// 卖三价
         /// </summary>
-        public double SellThreePrice { get; set; }
+        public double Sell3Price { get; set; }
 
         /// <summary>
         /// 卖三量
         /// </summary>
-        public double SellThreeVolume { get; set; }
+        public double Sell3Volume { get; set; }
 
         /// <summary>
         /// 卖二价
         /// </summary>
-        public double SellTwoPrice { get; set; }
+        public double Sell2Price { get; set; }
 
         /// <summary>
         /// 卖二量
         /// </summary>
-        public double SellTwoVolume { get; set; }
+        public double Sell2Volume { get; set; }
 
         /// <summary>
         /// 卖一价
         /// </summary>
-        public double SellOnePrice { get; set; }
+        public double Sell1Price { get; set; }
 
         /// <summary>
         /// 卖一量
         /// </summary>
-        public double SellOneVolume { get; set; }
+        public double Sell1Volume { get; set; }
 
         #endregion
 
@@ -106,58 +128,58 @@ namespace Pitman.Infrastructure.RealTimeData.Repository
         /// <summary>
         /// 买一价
         /// </summary>
-        public double BuyOnePrice { get; set; }
+        public double Buy1Price { get; set; }
 
         /// <summary>
         /// 买一量
         /// </summary>
-        public double BuyOneVolume { get; set; }
+        public double Buy1Volume { get; set; }
 
         /// <summary>
         /// 买二价
         /// </summary>
-        public double BuyTwoPrice { get; set; }
+        public double Buy2Price { get; set; }
 
         /// <summary>
         /// 买二量
         /// </summary>
-        public double BuyTwoVolume { get; set; }
+        public double Buy2Volume { get; set; }
 
         /// <summary>
         /// 买三价
         /// </summary>
-        public double BuyThreePrice { get; set; }
+        public double Buy3Price { get; set; }
 
         /// <summary>
         /// 买三量
         /// </summary>
-        public double BuyThreeVolume { get; set; }
+        public double Buy3Volume { get; set; }
 
         /// <summary>
         /// 买四价
         /// </summary>
-        public double BuyFourPrice { get; set; }
+        public double Buy4Price { get; set; }
 
         /// <summary>
         /// 买四量
         /// </summary>
-        public double BuyFourVolume { get; set; }
+        public double Buy4Volume { get; set; }
 
         /// <summary>
         /// 买五价
         /// </summary>
-        public double BuyFivePrice { get; set; }
+        public double Buy5Price { get; set; }
 
         /// <summary>
         /// 买五量
         /// </summary>
-        public double BuyFiveVolume { get; set; }
+        public double Buy5Volume { get; set; }
 
         #endregion
 
         public override string ToString()
         {
-            return this.Time.ToString("HH:mm:ss") + "  " + this.Price.ToString();
+            return this.Time.ToString("HH:mm:ss") + "  " + this.Current.ToString();
         }
     }
 }

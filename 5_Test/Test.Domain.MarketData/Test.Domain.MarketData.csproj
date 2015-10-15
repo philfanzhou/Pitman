@@ -55,6 +55,7 @@
     <Compile Include="IntradayInfoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest1.cs" />
+    <Compile Include="MarketDataTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
