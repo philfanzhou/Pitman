@@ -1,4 +1,5 @@
-﻿using Ore.Infrastructure.MarketData;
+﻿using Framework.Infrastructure.MemoryMap;
+using Ore.Infrastructure.MarketData;
 using System;
 
 namespace Pitman.Infrastructure.RealTimeData.Repository
@@ -8,19 +9,35 @@ namespace Pitman.Infrastructure.RealTimeData.Repository
     /// </summary>
     internal struct RealTimeItem : IStockRealTimePrice
     {
+        private String64 code;
+        /// <summary>
+        /// 交易代码
+        /// </summary>
         public string Code
         {
             get
             {
-                throw new NotImplementedException();
+                return code.Value;
+            }
+            set
+            {
+                code.Value = value;
             }
         }
 
+        private String256 shortName;
+        /// <summary>
+        /// 股票简称
+        /// </summary>
         public string ShortName
         {
             get
             {
-                throw new NotImplementedException();
+                return shortName.Value;
+            }
+            set
+            {
+                shortName.Value = value;
             }
         }
 

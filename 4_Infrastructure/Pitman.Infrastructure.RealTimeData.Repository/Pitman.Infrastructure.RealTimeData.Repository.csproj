@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Infrastructure.MemoryMappedFile, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Refer.Dll\Framework.Infrastructure.MemoryMappedFile.dll</HintPath>
+    <Reference Include="Framework.Infrastructure.MemoryMap">
+      <HintPath>..\..\Refer.Dll\Framework.Infrastructure.MemoryMap.dll</HintPath>
     </Reference>
     <Reference Include="Ore.Infrastructure.MarketData">
       <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
@@ -53,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimeDataRepository.cs" />
     <Compile Include="FileDatabase\MarketDataFileHeader.cs" />
-    <Compile Include="FileDatabase\StockCode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

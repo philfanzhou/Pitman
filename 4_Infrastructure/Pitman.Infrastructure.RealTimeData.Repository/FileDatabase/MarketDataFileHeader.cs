@@ -1,4 +1,4 @@
-﻿using Framework.Infrastructure.MemoryMappedFile;
+﻿using Framework.Infrastructure.MemoryMap;
 using System;
 
 namespace Pitman.Infrastructure.RealTimeData.Repository
