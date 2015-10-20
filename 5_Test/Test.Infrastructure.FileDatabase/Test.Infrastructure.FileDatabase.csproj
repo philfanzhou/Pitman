@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}</ProjectGuid>
+    <ProjectGuid>{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.Domain.MarketData</RootNamespace>
-    <AssemblyName>Test.Domain.MarketData</AssemblyName>
+    <RootNamespace>Test.Infrastructure.FileDatabase</RootNamespace>
+    <AssemblyName>Test.Infrastructure.FileDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
+    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Sina">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Sina.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -45,25 +51,19 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IntradayInfoTest.cs" />
+    <Compile Include="TestData\SecurityInfo.cs" />
+    <Compile Include="TestRealTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
-      <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
-      <Name>Pitman.Application.MarketData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.MarketData\Pitman.Domain.MarketData.csproj">
-      <Project>{5791453e-1ee3-4b33-a3aa-ed1c3cf0de69}</Project>
-      <Name>Pitman.Domain.MarketData</Name>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
+      <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
+      <Name>Pitman.Infrastructure.FileDatabase</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
