@@ -12,7 +12,7 @@ namespace Pitman.Infrastructure.FileDatabase
         /// <summary>
         /// (10缓冲 + 15集合竞价 + 4小时交易 + 10缓冲)每分钟12条记录
         /// </summary>
-        private static int maxDataCount = (10 + 15 + 4 * 60 + 10) * 12;
+        private static int maxDataCount = (10 + 15 + (4 * 60) + 10) * 12;
 
         #region Constructor
         private RealTimeFile(string fullPath) : base(fullPath) { }
