@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Application.Manageme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.FileDatabase", "4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj", "{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Infrastructure.FileDatabase", "5_Test\Test.Infrastructure.FileDatabase\Test.Infrastructure.FileDatabase.csproj", "{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40703417-9D3F-4DC6-88CC-AB3B4E9B6503}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +113,6 @@ Global
 		{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 		{904C9618-5BB9-4782-81BD-CD15A03E59EC} = {03B33133-5623-413D-B99D-B912763F7878}
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{40703417-9D3F-4DC6-88CC-AB3B4E9B6503} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 	EndGlobalSection
 EndGlobal

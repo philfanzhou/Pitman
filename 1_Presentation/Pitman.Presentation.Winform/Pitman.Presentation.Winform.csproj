@@ -102,6 +102,10 @@
       <Project>{904c9618-5bb9-4782-81bd-cd15a03e59ec}</Project>
       <Name>Pitman.Application.Management</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
+      <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
+      <Name>Pitman.Application.MarketData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

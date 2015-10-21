@@ -16,5 +16,17 @@ namespace Pitman.Presentation.Winform
         {
             InitializeComponent();
         }
+
+        public string ServiceType
+        {
+            get { return this.lblServiceType.Text; }
+            set { this.lblServiceType.Text = value; }
+        }
+
+        public string ServiceStatus
+        {
+            get { return this.lblServiceStatus.Text; }
+            set { this.lblServiceStatus.Text = value; }
+        }
     }
 }

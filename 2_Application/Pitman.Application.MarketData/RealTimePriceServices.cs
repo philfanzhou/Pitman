@@ -1,5 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.Sina;
+using Pitman.Infrastructure.FileDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace Pitman.Application.MarketData
         private Dictionary<string, IStockRealTimePrice> previousData
             = new Dictionary<string, IStockRealTimePrice>();
 
-        private Dictionary<string, Queue<IStockRealTimePrice>> dataQueue
-            = new Dictionary<string, Queue<IStockRealTimePrice>>();
+        private Queue<IStockRealTimePrice> dataQueue
+            = new Queue<IStockRealTimePrice>();
 
         /// <summary>
         /// 分时数据的精度为5秒，这里取3秒时间差作为数据是否已经更新的依据
@@ -120,10 +121,7 @@ namespace Pitman.Application.MarketData
             getDataTimer.Enabled = false;
 
             IEnumerable<IStockRealTimePrice> datas = GetRealTimeDatas();
-            if (null != datas)
-            {
-                CheckDataAndAddToQueue(datas);
-            }
+            CheckDataAndAddToQueue(datas);
 
             getDataTimer.Enabled = true;
         }
@@ -132,14 +130,31 @@ namespace Pitman.Application.MarketData
         {
             saveDataTimer.Enabled = false;
 
+            if (dataQueue.Count > 0)
+            {
+                var repository = new RealTimeDataRepository();
+                while (dataQueue.Count > 0)
+                {
+                    repository.Add(dataQueue.Dequeue());
+                }
+            }
+
             saveDataTimer.Enabled = true;
         }
 
         private IEnumerable<ISecurity> GetStockList()
         {
             List<ISecurity> result = new List<ISecurity>();
+            result.Add(new StockInfo { Code = "600518", Market = Market.XSHG });
             result.Add(new StockInfo { Code = "600036", Market = Market.XSHG });
+            result.Add(new StockInfo { Code = "600298", Market = Market.XSHG });
+            result.Add(new StockInfo { Code = "601933", Market = Market.XSHG });
+            result.Add(new StockInfo { Code = "600660", Market = Market.XSHG });
+            result.Add(new StockInfo { Code = "600196", Market = Market.XSHG });
+
+            result.Add(new StockInfo { Code = "300118", Market = Market.XSHE });
             result.Add(new StockInfo { Code = "000800", Market = Market.XSHE });
+
 
             return result;
         }
@@ -162,42 +177,25 @@ namespace Pitman.Application.MarketData
             return datas;
         }
 
-        private static string GetMarketAndCode(IStockRealTimePrice data)
-        {
-            return data.Market.ToString() + data.Code;
-        }
-
         private void CheckDataAndAddToQueue(IEnumerable<IStockRealTimePrice> datas)
         {
             foreach(var currentData in datas)
             {
-                string marketAndCode = GetMarketAndCode(currentData);
-
-                if(!previousData.ContainsKey(marketAndCode))
+                if(!previousData.ContainsKey(currentData.Code))
                 {
-                    previousData.Add(marketAndCode, currentData);
-                    AddDataToQueue(marketAndCode, currentData);
+                    previousData.Add(currentData.Code, currentData);
+                    dataQueue.Enqueue(currentData);
                 }
                 else
                 {
-                    var previousData = this.previousData[marketAndCode];
-                    if(currentData.Time - previousData.Time > dataSpan)
+                    var preData = this.previousData[currentData.Code];
+                    if(currentData.Time - preData.Time > dataSpan)
                     {
-                        this.previousData[marketAndCode] = currentData;
-                        AddDataToQueue(marketAndCode, currentData);
+                        this.previousData[currentData.Code] = currentData;
+                        dataQueue.Enqueue(currentData);
                     }
                 }
             }
-        }
-
-        private void AddDataToQueue(string marketAndCode, IStockRealTimePrice data)
-        {
-            if(!dataQueue.ContainsKey(marketAndCode))
-            {
-                dataQueue.Add(marketAndCode, new Queue<IStockRealTimePrice>());
-            }
-
-            dataQueue[marketAndCode].Enqueue(data);
         }
 
         private class StockInfo : ISecurity

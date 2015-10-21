@@ -13,6 +13,8 @@ namespace Pitman.Presentation.Winform
 {
     public partial class UCServiceStatus : UserControl
     {
+        private ServiceManager manager;
+
         public UCServiceStatus()
         {
             InitializeComponent();
@@ -20,27 +22,16 @@ namespace Pitman.Presentation.Winform
 
         public void StartService()
         {
-            ServiceManager manager = ServiceManager.Instance;
-
-            
+            manager = ServiceManager.Instance;
+            this.ucRealTimeService.ServiceType = "实时数据";
+            this.timerServiceStatus.Enabled = true;
         }
 
-        private void AddServiceStatusItem(int index)
+        private void timerServiceStatus_Tick(object sender, EventArgs e)
         {
-            this.grpBoxServices.SuspendLayout();
-            this.SuspendLayout();
+            string status = manager.Services.FirstOrDefault().Status.ToString();
 
-            UCServiceStatusItem statusItem = new UCServiceStatusItem();
-            this.grpBoxServices.Controls.Add(statusItem);
-
-            statusItem.Dock = DockStyle.Top;
-            //this.ucServiceStatusItem1.Location = new Point(3, 16);
-            statusItem.Name = "ucServiceStatusItem" + index;
-            statusItem.Size = new Size(667, 66);
-            statusItem.TabIndex = index;
-
-            this.grpBoxServices.ResumeLayout(false);
-            this.ResumeLayout(false);
+            this.ucRealTimeService.ServiceStatus = status;
         }
     }
 }

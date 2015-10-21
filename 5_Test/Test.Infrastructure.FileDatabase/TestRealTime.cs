@@ -64,10 +64,10 @@ namespace Test.Infrastructure.FileDatabase
 
             var securityInfo = GetSecurityInfo();
             var expected = api.GetData(securityInfo);
-            repository.Add(securityInfo, expected);
+            repository.Add(expected);
 
             repository = new RealTimeDataRepository();
-            var actual = repository.GetOneDayData(securityInfo, DateTime.Now).Last();
+            var actual = repository.GetOneDayData(securityInfo.Code, DateTime.Now).Last();
 
             CompareDataField(expected, actual);
         }

@@ -15,11 +15,12 @@ namespace Pitman.Presentation.Winform
         public Main()
         {
             InitializeComponent();
+
+            this.ucServiceStatus.StartService();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            this.ucServiceStatus1.StartService();
         }
     }
 }

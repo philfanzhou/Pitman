@@ -21,37 +21,49 @@ namespace Pitman.Infrastructure.FileDatabase
 
         #region Create and Open
 
-        private static string GetFilePath(ISecurity securityInfo, DateTime day)
+        private static string GetFilePath(string stockCode, DateTime day)
         {
             string path = dataFolder;
-            if (securityInfo.Market == Market.XSHG)
-            {
-                path += @"Shanghai\";
-            }
-            else if (securityInfo.Market == Market.XSHE)
-            {
-                path += @"Shenzhen\";
-            }
-
-            path += securityInfo.Code + @"\";
+            path += GetMarket(stockCode);
+            path += @"\" + stockCode + @"\";
             path += day.ToString("yyyyMMdd") + ".dat";
 
             return path;
         }
 
-        internal static bool Exist(ISecurity securityInfo, DateTime day)
+        private static string GetMarket(string stockCode)
         {
-            string path = GetFilePath(securityInfo, day);
+            if (stockCode.StartsWith("5") ||
+                stockCode.StartsWith("6") ||
+                stockCode.StartsWith("9"))
+            {
+                return "Shanghai";
+            }
+            else if (stockCode.StartsWith("009") ||
+                stockCode.StartsWith("126") ||
+                stockCode.StartsWith("110"))
+            {
+                return "Shanghai";
+            }
+            else
+            {
+                return "Shenzhen";
+            }
+        }
+
+        internal static bool Exist(string stockCode, DateTime day)
+        {
+            string path = GetFilePath(stockCode, day);
             return File.Exists(path);
         }
 
-        internal static RealTimeFile Open(ISecurity securityInfo, DateTime day)
+        internal static RealTimeFile Open(string stockCode, DateTime day)
         {
-            string path = GetFilePath(securityInfo, day);
+            string path = GetFilePath(stockCode, day);
             return new RealTimeFile(path);
         }
 
-        internal static RealTimeFile Create(ISecurity securityInfo, DateTime day)
+        internal static RealTimeFile Create(string stockCode, DateTime day)
         {
             MarketDataFileHeader heaer = new MarketDataFileHeader
             {
@@ -62,19 +74,19 @@ namespace Pitman.Infrastructure.FileDatabase
                 EndDay = day
             };
 
-            string path = GetFilePath(securityInfo, day);
+            string path = GetFilePath(stockCode, day);
             return new RealTimeFile(path, heaer);
         }
 
-        internal static RealTimeFile CreateOrOpen(ISecurity securityInfo, DateTime day)
+        internal static RealTimeFile CreateOrOpen(string stockCode, DateTime day)
         {
-            if (Exist(securityInfo, day))
+            if (Exist(stockCode, day))
             {
-                return Open(securityInfo, day);
+                return Open(stockCode, day);
             }
             else
             {
-                return Create(securityInfo, day);
+                return Create(stockCode, day);
             }
         }
 

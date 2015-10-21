@@ -52,6 +52,12 @@
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="ServiceType.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
+      <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
+      <Name>Pitman.Infrastructure.FileDatabase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

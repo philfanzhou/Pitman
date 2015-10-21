@@ -7,18 +7,18 @@ namespace Pitman.Infrastructure.FileDatabase
 {
     public class RealTimeDataRepository
     {
-        public void Add(ISecurity securityInfo, IStockRealTimePrice data)
+        public void Add(IStockRealTimePrice data)
         {
-            using (var file = RealTimeFile.CreateOrOpen(securityInfo, data.Time))
+            using (var file = RealTimeFile.CreateOrOpen(data.Code, data.Time))
             {
                 RealTimeItem dataItem = data.Convert();
                 file.Add(dataItem);
             }
         }
 
-        public IEnumerable<IStockRealTimePrice> GetOneDayData(ISecurity securityInfo, DateTime day)
+        public IEnumerable<IStockRealTimePrice> GetOneDayData(string stockCode, DateTime day)
         {
-            using (var file = RealTimeFile.Open(securityInfo, day))
+            using (var file = RealTimeFile.Open(stockCode, day))
             {
                 var data = file.ReadAll().ToList();
                 string code = data.Last().Code;
