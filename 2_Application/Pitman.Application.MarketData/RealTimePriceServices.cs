@@ -41,19 +41,17 @@ namespace Pitman.Application.MarketData
         #region Property
         public ServiceStatus Status
         {
-            get
-            {
-                if(getDataTimer.Enabled && saveDataTimer.Enabled)
-                {
-                    return ServiceStatus.Running;
-                }
-                else
-                {
-                    return ServiceStatus.Stopped;
-                }
-            }
+            get; private set;
         }
         #endregion
+
+        public RealTimePriceServices()
+        {
+            getDataTimer.Elapsed += GetDataTimer_Elapsed;
+            saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
+
+            Status = ServiceStatus.Stopped;
+        }
 
         public bool IsWorkingTime(DateTime now)
         {
@@ -76,12 +74,10 @@ namespace Pitman.Application.MarketData
                 return;
             }
             
-            //开始获取数据
-            getDataTimer.Elapsed += GetDataTimer_Elapsed;
             getDataTimer.Enabled = true;
-
-            saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
             saveDataTimer.Enabled = true;
+
+            Status = ServiceStatus.Running;
         }
 
         public void Stop()
@@ -91,28 +87,31 @@ namespace Pitman.Application.MarketData
                 return;
             }
 
-            if(getDataTimer != null)
-            {
-                getDataTimer.Elapsed -= GetDataTimer_Elapsed;
-                getDataTimer.Enabled = false;
-                getDataTimer.Stop();
-                getDataTimer.Dispose();
-                getDataTimer = null;
-            }
+            getDataTimer.Stop();
+            saveDataTimer.Stop();
 
-            if(saveDataTimer != null)
-            {
-                saveDataTimer.Elapsed -= SaveDataTimer_Elapsed;
-                saveDataTimer.Enabled = false;
-                saveDataTimer.Stop();
-                saveDataTimer.Dispose();
-                saveDataTimer = null;
-            }
+            //还应该将最后剩余的数据进行保存
+            WriteDataToFile();
 
-            //todo:清理数据之前，还应该将最后剩余的数据进行保存
+            Status = ServiceStatus.Stopped;
 
-            previousData.Clear();
-            dataQueue.Clear();
+            //if (getDataTimer != null)
+            //{
+            //    getDataTimer.Elapsed -= GetDataTimer_Elapsed;
+            //    getDataTimer.Enabled = false;
+            //    getDataTimer.Stop();
+            //    getDataTimer.Dispose();
+            //    getDataTimer = null;
+            //}
+
+            //if(saveDataTimer != null)
+            //{
+            //    saveDataTimer.Elapsed -= SaveDataTimer_Elapsed;
+            //    saveDataTimer.Enabled = false;
+            //    saveDataTimer.Stop();
+            //    saveDataTimer.Dispose();
+            //    saveDataTimer = null;
+            //}
         }
 
         #region Private Method
@@ -129,7 +128,12 @@ namespace Pitman.Application.MarketData
         private void SaveDataTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             saveDataTimer.Enabled = false;
+            WriteDataToFile();
+            saveDataTimer.Enabled = true;
+        }
 
+        private void WriteDataToFile()
+        {
             if (dataQueue.Count > 0)
             {
                 var repository = new RealTimeDataRepository();
@@ -138,8 +142,6 @@ namespace Pitman.Application.MarketData
                     repository.Add(dataQueue.Dequeue());
                 }
             }
-
-            saveDataTimer.Enabled = true;
         }
 
         private IEnumerable<ISecurity> GetStockList()
