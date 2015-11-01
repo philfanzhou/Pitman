@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Pitman.Console")]
+[assembly: AssemblyTitle("Pitman.DistributedService.Dto")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Pitman.Console")]
+[assembly: AssemblyProduct("Pitman.DistributedService.Dto")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c96acc1d-06c2-4a47-87ce-40bebf4938ac")]
+[assembly: Guid("370d1c1d-5ae1-4438-92bd-d4bae3b31dfc")]
 
 // Version information for an assembly consists of the following four values:
 //
