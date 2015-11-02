@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Pitman.DistributedService;
+using System;
 using System.Diagnostics;
 
 namespace Pitman.ConsoleApp
 {
     class Program
     {
+        private static ServiceManager serviceManager;
+
         static void Main(string[] args)
         {
             Console.WriteLine("=================================");
-            Console.WriteLine("");
+            Console.WriteLine("Pitman.ConsoleApp");
             Console.WriteLine("=================================");
 
             if (Process.GetProcessesByName("Pitman.ConsoleApp").Length > 1)
@@ -31,6 +34,12 @@ namespace Pitman.ConsoleApp
                 //        typeof (PriceDataService)
                 //    });
                 //serviceManager.Open();
+
+                serviceManager = new ServiceManager();
+                serviceManager.OpenAllService();
+
+
+
                 Console.WriteLine("service start sucessfully.");
                 Console.Read();
             }

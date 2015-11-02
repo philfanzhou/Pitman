@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService\Pitman.DistributedService.csproj">
+      <Project>{5cc7b231-73a3-49e4-82f4-dfff14e9d0a2}</Project>
+      <Name>Pitman.DistributedService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

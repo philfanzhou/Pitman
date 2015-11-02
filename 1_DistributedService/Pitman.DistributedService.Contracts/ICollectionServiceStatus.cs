@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace Pitman.DistributedService.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(Name = "CollectionServiceStatus", Namespace = "http://pitman.quantum.com/")]
     public interface ICollectionServiceStatus
     {
         [OperationContract]
