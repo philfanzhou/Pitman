@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRealTimePrice.cs" />
-    <Compile Include="IServiceStatus.cs" />
+    <Compile Include="ICollectionServiceStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

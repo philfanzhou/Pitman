@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Pitman.DistributedService.Dto;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Pitman.DistributedService.Contracts
 {
     [ServiceContract]
-    public interface IServiceStatus
+    public interface ICollectionServiceStatus
     {
         [OperationContract]
-        bool IsAlive(string serviceName);
+        CollectionServiceStatusDto GetStatus(string serviceName);
 
         [OperationContract]
         IEnumerable<string> GetAllServiceName();
