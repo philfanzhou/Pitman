@@ -1,11 +1,14 @@
 ﻿using Pitman.DistributedService;
 using System;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Pitman.ConsoleApp
 {
     class Program
     {
+        private static Mutex mutex;
+
         private static ServiceManager serviceManager;
 
         static void Main(string[] args)
@@ -14,13 +17,8 @@ namespace Pitman.ConsoleApp
             Console.WriteLine("Pitman.ConsoleApp");
             Console.WriteLine("=================================");
 
-            if (Process.GetProcessesByName("Pitman.ConsoleApp").Length > 1)
-            {
-                Console.WriteLine("Pitman.ConsoleApp is already running");
-                Console.WriteLine("Press any key to exit....");
-                Console.Read();
-            }
-            else
+            mutex = new Mutex(true, "OnlyRun");
+            if (mutex.WaitOne(0, false))
             {
                 //ServiceInitialize.Init();
 
@@ -41,6 +39,12 @@ namespace Pitman.ConsoleApp
 
 
                 Console.WriteLine("service start sucessfully.");
+                Console.Read();
+            }
+            else
+            {
+                Console.WriteLine("Pitman.ConsoleApp is already running");
+                Console.WriteLine("Press any key to exit....");
                 Console.Read();
             }
         }
