@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.DistributedService.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.DistributedService", "..\Framework\2_DistributedService\Framework.DistributedService\Framework.DistributedService.csproj", "{A40855F6-CEDA-4464-976D-4BD9536365CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Application.DataCollection", "2_Application\Pitman.Application.DataCollection\Pitman.Application.DataCollection.csproj", "{E6BF2980-C230-41BC-9001-5480AECE5280}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{A40855F6-CEDA-4464-976D-4BD9536365CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A40855F6-CEDA-4464-976D-4BD9536365CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A40855F6-CEDA-4464-976D-4BD9536365CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6BF2980-C230-41BC-9001-5480AECE5280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BF2980-C230-41BC-9001-5480AECE5280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6BF2980-C230-41BC-9001-5480AECE5280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BF2980-C230-41BC-9001-5480AECE5280}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,5 +164,6 @@ Global
 		{01D4BF12-C5A9-4D8E-9CC0-1DD52926BCEA} = {A7008C68-B65C-4CB1-81CF-D0BC591A61DD}
 		{370D1C1D-5AE1-4438-92BD-D4BAE3B31DFC} = {9FF38106-1F22-4F16-B40B-5BE1FA50D5CC}
 		{A40855F6-CEDA-4464-976D-4BD9536365CE} = {9FF38106-1F22-4F16-B40B-5BE1FA50D5CC}
+		{E6BF2980-C230-41BC-9001-5480AECE5280} = {03B33133-5623-413D-B99D-B912763F7878}
 	EndGlobalSection
 EndGlobal
