@@ -3,7 +3,7 @@
 namespace Pitman.DistributedService.Dto
 {
     [DataContract]
-    public enum CollectionServiceStatusDto
+    public enum CollectionStatusDto
     {
         Unknown = 0,
 

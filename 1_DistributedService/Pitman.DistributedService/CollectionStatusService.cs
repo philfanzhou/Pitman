@@ -5,7 +5,7 @@ using System.ServiceModel.Web;
 
 namespace Pitman.DistributedService
 {
-    public class CollectionServiceStatus : ICollectionServiceStatus
+    internal class CollectionStatusService : ICollectionStatus
     {
         [WebGet(UriTemplate = "/AllServiceName", ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<string> GetAllServiceName()
@@ -13,9 +13,9 @@ namespace Pitman.DistributedService
             return new List<string> { "Test ok" };
         }
 
-        public CollectionServiceStatusDto GetStatus(string serviceName)
+        public CollectionStatusDto GetStatus(string serviceName)
         {
-            return CollectionServiceStatusDto.Running;
+            return CollectionStatusDto.Running;
         }
     }
 }

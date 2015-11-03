@@ -1,6 +1,6 @@
-﻿using Pitman.DistributedService;
+﻿using Framework.DistributedService;
+using Pitman.DistributedService;
 using System;
-using System.Diagnostics;
 using System.Threading;
 
 namespace Pitman.ConsoleApp
@@ -9,44 +9,47 @@ namespace Pitman.ConsoleApp
     {
         private static Mutex mutex;
 
-        private static ServiceManager serviceManager;
+        private static DistributedHostManager serviceManager;
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine("=================================");
             Console.WriteLine("Pitman.ConsoleApp");
             Console.WriteLine("=================================");
 
             mutex = new Mutex(true, "OnlyRun");
-            if (mutex.WaitOne(0, false))
-            {
-                //ServiceInitialize.Init();
-
-                //var serviceManager =
-                //    new ServiceManager(new List<object>
-                //    {
-                //        typeof (AuthenticationService),
-                //        typeof (OAuth2AuthorizationServer),
-                //        typeof (CrosscuttingService),
-                //        typeof (FinanceDataService),
-                //        typeof (PriceDataService)
-                //    });
-                //serviceManager.Open();
-
-                serviceManager = new ServiceManager();
-                serviceManager.OpenAllService();
-
-
-
-                Console.WriteLine("service start sucessfully.");
-                Console.Read();
-            }
-            else
+            if (!mutex.WaitOne(0, false))
             {
                 Console.WriteLine("Pitman.ConsoleApp is already running");
                 Console.WriteLine("Press any key to exit....");
                 Console.Read();
             }
+            else
+            {
+                serviceManager = new DistributedHostManager();
+                serviceManager.Initialize();
+                serviceManager.HostStatusReportEvent += ServiceManager_HostStatusReportEvent;
+                serviceManager.OpenAllService();
+
+                Console.Read();
+            }
+        }
+
+        private static void ServiceManager_HostStatusReportEvent(object sender, HostStatusReportEventArgs e)
+        {
+            Console.SetCursorPosition(0, 3);
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------------------------");
+            foreach(var item in e.Items)
+            {
+                Console.WriteLine("{0}          {1}         {2}", item.HostName.PadRight(20, ' '), item.HostStatus, item.Time.ToString("HH:mm:ss"));
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit....");
         }
     }
 }
