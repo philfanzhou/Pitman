@@ -1,5 +1,4 @@
 ﻿using Pitman.DistributedService.Contracts;
-using Pitman.DistributedService.Dto;
 using System.Collections.Generic;
 using System.ServiceModel.Web;
 
@@ -13,9 +12,9 @@ namespace Pitman.DistributedService
             return new List<string> { "Test ok" };
         }
 
-        public CollectionStatusDto GetStatus(string serviceName)
+        public string GetStatus(string serviceName)
         {
-            return CollectionStatusDto.Running;
+            return "GetStatus ok";
         }
     }
 }

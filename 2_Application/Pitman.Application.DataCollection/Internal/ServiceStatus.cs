@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Pitman.Application.DataCollection
 {
-    public class Class1
+    internal enum ServiceStatus
     {
+        Unknown = 0,
+
+        Stopped = 1,
+
+        Running = 2
     }
 }

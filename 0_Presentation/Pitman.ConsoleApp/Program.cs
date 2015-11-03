@@ -19,7 +19,7 @@ namespace Pitman.ConsoleApp
             Console.WriteLine("Pitman.ConsoleApp");
             Console.WriteLine("=================================");
 
-            mutex = new Mutex(true, "OnlyRun");
+            mutex = new Mutex(true, "Pitman.OnlyRun");
             if (!mutex.WaitOne(0, false))
             {
                 Console.WriteLine("Pitman.ConsoleApp is already running");

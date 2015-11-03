@@ -8,7 +8,7 @@ namespace Pitman.DistributedService.Contracts
     public interface ICollectionStatus
     {
         [OperationContract]
-        CollectionStatusDto GetStatus(string serviceName);
+        string GetStatus(string serviceName);
 
         [OperationContract]
         IEnumerable<string> GetAllServiceName();
