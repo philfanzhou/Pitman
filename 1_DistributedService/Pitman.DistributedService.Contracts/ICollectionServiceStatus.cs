@@ -1,10 +1,11 @@
 ﻿using Pitman.DistributedService.Dto;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 
 namespace Pitman.DistributedService.Contracts
 {
-    [ServiceContract(Name = "CollectionServiceStatus", Namespace = "http://pitman.quantum.com/")]
+    [ServiceContract]
     public interface ICollectionServiceStatus
     {
         [OperationContract]
