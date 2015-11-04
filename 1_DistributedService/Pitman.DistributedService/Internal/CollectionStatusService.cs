@@ -1,4 +1,5 @@
-﻿using Pitman.DistributedService.Contracts;
+﻿using Pitman.Application.DataCollection;
+using Pitman.DistributedService.Contracts;
 using System.Collections.Generic;
 using System.ServiceModel.Web;
 
@@ -9,12 +10,13 @@ namespace Pitman.DistributedService
         [WebGet(UriTemplate = "/AllServiceName", ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<string> GetAllServiceName()
         {
-            return new List<string> { "Test ok" };
+            return CollectionServiceManager.Instance.GetAllServiceName();
         }
 
+        //[WebGet(UriTemplate = "/GetStatus", ResponseFormat = WebMessageFormat.Json)]
         public string GetStatus(string serviceName)
         {
-            return "GetStatus ok";
+            return CollectionServiceManager.Instance.GetStatus(serviceName);
         }
     }
 }

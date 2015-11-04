@@ -15,22 +15,12 @@ namespace Pitman.Application.DataCollection
             new CollectionServiceContainer();
 
         #region Singleton
-        private static object _lockObj = new object();
-
-        private static CollectionServiceManager _instance;
+        private static CollectionServiceManager _instance = new CollectionServiceManager();
 
         public static CollectionServiceManager Instance
         {
             get
             {
-
-                lock (_lockObj)
-                {
-                    if (null == _instance)
-                    {
-                        System.Threading.Interlocked.CompareExchange(ref _instance, new CollectionServiceManager(), null);
-                    }
-                }
                 return _instance;
             }
         }

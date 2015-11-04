@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionStatusHost.cs" />
-    <Compile Include="CollectionStatusService.cs" />
+    <Compile Include="Internal\CollectionStatusHost.cs" />
+    <Compile Include="Internal\CollectionStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DistributedHostManager.cs" />
   </ItemGroup>
@@ -51,6 +51,10 @@
     <ProjectReference Include="..\..\..\Framework\2_DistributedService\Framework.DistributedService\Framework.DistributedService.csproj">
       <Project>{a40855f6-ceda-4464-976d-4bd9536365ce}</Project>
       <Name>Framework.DistributedService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2_Application\Pitman.Application.DataCollection\Pitman.Application.DataCollection.csproj">
+      <Project>{e6bf2980-c230-41bc-9001-5480aece5280}</Project>
+      <Name>Pitman.Application.DataCollection</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
       <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
