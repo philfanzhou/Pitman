@@ -6,11 +6,11 @@ using System.ServiceModel.Description;
 
 namespace Pitman.DistributedService
 {
-    internal class CollectionStatusHost : DistributedHostBase
+    internal class CollectionStatusHost : ServiceHost, IDistributedHost
     {
         private static Uri baseAddress = new Uri("http://127.0.0.1:9999/CollectionServiceStatus");
         
-        public override string Name
+        public string Name
         {
             get
             {

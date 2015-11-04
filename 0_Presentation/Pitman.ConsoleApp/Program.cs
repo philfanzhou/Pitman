@@ -24,7 +24,7 @@ namespace Pitman.ConsoleApp
             {
                 Console.WriteLine("Pitman.ConsoleApp is already running");
                 Console.WriteLine("Press any key to exit....");
-                Console.Read();
+                Console.ReadKey();
             }
             else
             {
@@ -33,7 +33,13 @@ namespace Pitman.ConsoleApp
                 serviceManager.HostStatusReportEvent += ServiceManager_HostStatusReportEvent;
                 serviceManager.OpenAllService();
 
-                Console.Read();
+                while (true)
+                {
+                    if(Console.ReadLine().ToLower() == "exit")
+                    {
+                        break;
+                    }
+                }
             }
         }
 
@@ -46,10 +52,7 @@ namespace Pitman.ConsoleApp
             {
                 Console.WriteLine("{0}          {1}         {2}", item.HostName.PadRight(20, ' '), item.HostStatus, item.Time.ToString("HH:mm:ss"));
             }
-
-
             Console.WriteLine();
-            Console.WriteLine("Press any key to exit....");
         }
     }
 }
