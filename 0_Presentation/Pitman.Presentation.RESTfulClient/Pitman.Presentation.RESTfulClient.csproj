@@ -45,6 +45,7 @@
     <Compile Include="Clients\RealTimePriceClient.cs" />
     <Compile Include="ClientFactory.cs" />
     <Compile Include="Clients\CollectionStatusClient.cs" />
+    <Compile Include="Clients\RestfulClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

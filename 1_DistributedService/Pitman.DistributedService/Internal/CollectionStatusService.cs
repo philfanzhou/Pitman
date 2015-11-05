@@ -17,7 +17,7 @@ namespace Pitman.DistributedService
             return CollectionServiceManager.Instance.GetAllServiceName();
         }
 
-        [WebGet(UriTemplate = "Status/{serviceName}",
+        [WebGet(UriTemplate = "/Status/{serviceName}",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json)]
         public string GetStatus(string serviceName)

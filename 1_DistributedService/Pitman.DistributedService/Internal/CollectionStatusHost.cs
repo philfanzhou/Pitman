@@ -8,7 +8,7 @@ namespace Pitman.DistributedService
 {
     internal class CollectionStatusHost : ServiceHost, IDistributedHost
     {
-        private static Uri baseAddress = new Uri("http://localhost:9999/CollectionService");
+        private static Uri baseAddress = new Uri("http://localhost:9999/CollectionService/");
         
         public string Name
         {
