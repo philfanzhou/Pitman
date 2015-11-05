@@ -56,7 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestData\SecurityInfo.cs" />
+    <Compile Include="SecurityInfo.cs" />
     <Compile Include="TestRealTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +65,11 @@
       <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
       <Name>Pitman.Infrastructure.FileDatabase</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151102.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

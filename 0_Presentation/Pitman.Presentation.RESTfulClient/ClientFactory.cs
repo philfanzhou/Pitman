@@ -13,5 +13,10 @@ namespace Pitman.Presentation.RESTfulClient
         {
             return new CollectionStatusClient();
         }
+
+        public static IRealTimePrice CreateRealTimePrice()
+        {
+            return new RealTimePriceClient();
+        }
     }
 }

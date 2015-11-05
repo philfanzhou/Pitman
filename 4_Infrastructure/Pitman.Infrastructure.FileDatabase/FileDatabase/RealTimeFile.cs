@@ -6,7 +6,7 @@ using System.IO;
 namespace Pitman.Infrastructure.FileDatabase
 {
     internal class RealTimeFile
-        : NonConcurrentMemoryMappedFile<MarketDataFileHeader, RealTimeItem>
+        : ConcurrentFile<MarketDataFileHeader, RealTimeItem>
     {
         private static string dataFolder = Environment.CurrentDirectory + @"\Data\RealTimeData\";
         /// <summary>

@@ -42,15 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clients\RealTimePriceClient.cs" />
     <Compile Include="ClientFactory.cs" />
     <Compile Include="Clients\CollectionStatusClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Framework\5_Infrastructure\Framework.Infrastructure.RESTful\Framework.Infrastructure.RESTful.csproj">
-      <Project>{6bcf4213-9883-40d9-909a-c539eb26ee77}</Project>
-      <Name>Framework.Infrastructure.RESTful</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
       <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
       <Name>Pitman.DistributedService.Contracts</Name>

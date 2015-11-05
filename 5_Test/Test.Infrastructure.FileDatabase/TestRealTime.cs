@@ -71,5 +71,18 @@ namespace Test.Infrastructure.FileDatabase
 
             CompareDataField(expected, actual);
         }
+
+        [TestMethod]
+        public void TestReadData()
+        {
+            var securityInfo = GetSecurityInfo();
+            var repository = new RealTimeDataRepository();
+            var actual = repository.GetOneDayData(securityInfo.Code, new DateTime(2015, 11, 2)).ToList();
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Count == 3003);
+            Assert.IsTrue(actual[0].Current == 0);
+            Assert.IsTrue(actual[3002].Current == 17.83);
+        }
     }
 }

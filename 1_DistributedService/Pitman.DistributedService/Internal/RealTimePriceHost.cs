@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Application.MarketData
+namespace Pitman.DistributedService
 {
-    public enum ServiceType
+    class RealTimePriceHost
     {
-        RealTimeData = 1
     }
 }

@@ -16,6 +16,11 @@ namespace Pitman.Infrastructure.FileDatabase
             }
         }
 
+        //public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
+        //{
+
+        //}
+
         public IEnumerable<IStockRealTimePrice> GetOneDayData(string stockCode, DateTime day)
         {
             using (var file = RealTimeFile.Open(stockCode, day))
