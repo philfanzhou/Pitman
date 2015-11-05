@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class RestfulClient : HttpClient
+    internal class HttpClientEx : HttpClient
     {
-        public RestfulClient()
+        public HttpClientEx()
         {
             DefaultRequestHeaders.Accept.Clear();
             DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -32,7 +32,8 @@ namespace Pitman.Presentation.RESTfulClient
                 return sb.ToString();
             }
         }
-        internal static T ToJsonObject<T>(string jsonString)
+
+        private static T ToJsonObject<T>(string jsonString)
         {
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
             {

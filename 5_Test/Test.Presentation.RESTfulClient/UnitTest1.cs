@@ -11,7 +11,9 @@ namespace Test.Presentation.RESTfulClient
         [TestMethod]
         public void TestMethod1()
         {
-            var client = ClientFactory.CreateCollectionStatusClient();
+            //string hostName = "http://quantum1234.cloudapp.net:6688";
+            string hostName = "http://localhost:9999";
+            var client = ClientFactory.CreateCollectionStatusClient(hostName);
             var result = client.GetAllServiceName().ToList();
 
             Assert.IsNotNull(result);

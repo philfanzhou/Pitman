@@ -1,6 +1,7 @@
 ﻿using Pitman.DistributedService.Contracts;
 using Pitman.DistributedService.Dto;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
@@ -19,6 +20,7 @@ namespace Pitman.DistributedService
         {
             StockRealTimePriceDto dto = new StockRealTimePriceDto();
             dto.ShortName = "测试股票";
+            dto.Code = stockCodes.ToList()[0];
 
             return new List<StockRealTimePriceDto>() { dto };
         }

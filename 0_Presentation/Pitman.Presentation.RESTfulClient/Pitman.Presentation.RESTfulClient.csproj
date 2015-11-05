@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\RestfulClient.cs" />
     <Compile Include="Clients\RealTimePriceClient.cs" />
     <Compile Include="ClientFactory.cs" />
     <Compile Include="Clients\CollectionStatusClient.cs" />
-    <Compile Include="Clients\RestfulClient.cs" />
+    <Compile Include="Base\HttpClientEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
