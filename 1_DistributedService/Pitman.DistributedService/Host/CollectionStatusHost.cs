@@ -6,7 +6,7 @@ namespace Pitman.DistributedService
     internal class CollectionStatusHost : WebHttpHost<ICollectionStatus, CollectionStatusService>
     {
         internal CollectionStatusHost(string serverAddress)
-            : base(serverAddress, "CollectionStatus")
+            : base(serverAddress, CollectionStatusConst.ServiceName)
         { }
     }
 }

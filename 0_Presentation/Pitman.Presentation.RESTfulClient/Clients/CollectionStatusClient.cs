@@ -5,14 +5,13 @@ namespace Pitman.Presentation.RESTfulClient
 {
     internal class CollectionStatusClient : RestfulClient, ICollectionStatus
     {
-        public CollectionStatusClient(string serverAddress) : base(serverAddress, "CollectionStatus") { }
+        public CollectionStatusClient(string serverAddress) : base(serverAddress, CollectionStatusConst.ServiceName) { }
 
         public IEnumerable<string> GetAllServiceName()
         {
             using (var client = GetHttpClient())
             {
-                string uri = "AllServiceName";
-                return client.GetAndReadAs<IEnumerable<string>>(uri);
+                return client.GetAndReadAs<IEnumerable<string>>(CollectionStatusConst.Uri_GetAllServiceName);
             }
         }
 
@@ -20,7 +19,7 @@ namespace Pitman.Presentation.RESTfulClient
         {
             using (var client = GetHttpClient())
             {
-                string uri = string.Format("Status/{0}", serviceName);
+                string uri = string.Format(CollectionStatusConst.Uri_GetStatus_ClientSide, serviceName);
                 return client.GetAndReadAs<string>(uri);
             }
         }

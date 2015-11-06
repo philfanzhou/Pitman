@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionStatusConst.cs" />
     <Compile Include="IRealTimePrice.cs" />
     <Compile Include="ICollectionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealTimePrice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pitman.DistributedService.Dto\Pitman.DistributedService.Dto.csproj">

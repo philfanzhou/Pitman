@@ -11,13 +11,13 @@ namespace Pitman.DistributedService
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     internal class CollectionStatusService : ICollectionStatus
     {
-        [WebGet(UriTemplate = "AllServiceName", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = CollectionStatusConst.Uri_GetAllServiceName, ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<string> GetAllServiceName()
         {
             return CollectionServiceManager.Instance.GetAllServiceName();
         }
 
-        [WebGet(UriTemplate = "Status/{serviceName}", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = CollectionStatusConst.Uri_GetStatus_ServerSide, ResponseFormat = WebMessageFormat.Json)]
         public string GetStatus(string serviceName)
         {
             return CollectionServiceManager.Instance.GetStatus(serviceName);

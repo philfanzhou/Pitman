@@ -13,7 +13,7 @@ namespace Pitman.DistributedService
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     internal class RealTimePriceService : IRealTimePrice
     {
-        [WebInvoke(UriTemplate = "Latest", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = RealTimePrice.Uri_GetLatest, ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<StockRealTimePriceDto> GetLatest(IEnumerable<string> stockCodes)
         {
             StockRealTimePriceDto dto = new StockRealTimePriceDto();
