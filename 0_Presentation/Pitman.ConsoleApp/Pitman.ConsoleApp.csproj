@@ -47,9 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Framework\2_DistributedService\Framework.DistributedService\Framework.DistributedService.csproj">
       <Project>{a40855f6-ceda-4464-976d-4bd9536365ce}</Project>
       <Name>Framework.DistributedService</Name>

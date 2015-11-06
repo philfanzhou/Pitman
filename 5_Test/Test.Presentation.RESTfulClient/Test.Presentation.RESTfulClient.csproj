@@ -50,7 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="RESTfulClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +61,10 @@
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
       <Project>{7B5F4FAA-78BC-4481-AE7A-8C0F7FCD4B33}</Project>
       <Name>Pitman.DistributedService.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Dto\Pitman.DistributedService.Dto.csproj">
+      <Project>{370d1c1d-5ae1-4438-92bd-d4bae3b31dfc}</Project>
+      <Name>Pitman.DistributedService.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

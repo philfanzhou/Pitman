@@ -47,6 +47,7 @@
     <Compile Include="ClientFactory.cs" />
     <Compile Include="Clients\CollectionStatusClient.cs" />
     <Compile Include="Base\HttpClientEx.cs" />
+    <Compile Include="Base\JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

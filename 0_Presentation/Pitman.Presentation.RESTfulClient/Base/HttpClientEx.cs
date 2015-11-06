@@ -1,46 +1,48 @@
-﻿using System.IO;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Serialization.Json;
-using System.Text;
 
 namespace Pitman.Presentation.RESTfulClient
 {
     internal class HttpClientEx : HttpClient
     {
+        private readonly JsonSerializer _jsonSerializer = new JsonSerializer();
+
         public HttpClientEx()
         {
             DefaultRequestHeaders.Accept.Clear();
             DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public T GetAndReadAs<T>(string uri)
+        public T GetAndReadAs<T>(string requestUri)
         {
-            HttpResponseMessage response = this.GetAsync(uri).Result.EnsureSuccessStatusCode();
-            string jsonStr = response.Content.ReadAsStringAsync().Result;
-            return ToJsonObject<T>(jsonStr);
-        }
-
-        private static string ToJsonString<T>(T obj)
-        {
-            using (MemoryStream ms = new MemoryStream())
+            using (HttpResponseMessage response = this.GetAsync(requestUri).Result.EnsureSuccessStatusCode())
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-                serializer.WriteObject(ms, obj);
-                StringBuilder sb = new StringBuilder();
-                sb.Append(Encoding.UTF8.GetString(ms.ToArray()));
-                return sb.ToString();
+                string jsonStr = response.Content.ReadAsStringAsync().Result;
+                return _jsonSerializer.Deserialize<T>(jsonStr);
             }
         }
 
-        private static T ToJsonObject<T>(string jsonString)
+        public TResult PostAndReasAs<TResult, TPostData>(string requestUri, TPostData postData)
         {
-            using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
+            using (HttpContent content = GetContentWithJson(postData))
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-                T returnOjbect = (T)serializer.ReadObject(ms);
-                return returnOjbect;
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                using (HttpResponseMessage response
+                    = this.PostAsync(requestUri, content).Result.EnsureSuccessStatusCode())
+                {
+                    string jsonStr = response.Content.ReadAsStringAsync().Result;
+                    return _jsonSerializer.Deserialize<TResult>(jsonStr);
+                }
             }
+        }
+
+        private StringContent GetContentWithJson<T>(T data)
+        {
+            string jsonStr = _jsonSerializer.Serialize(data);
+            StringContent content = new StringContent(jsonStr);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return content;
         }
     }
 }

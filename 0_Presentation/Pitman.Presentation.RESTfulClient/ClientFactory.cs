@@ -4,14 +4,14 @@ namespace Pitman.Presentation.RESTfulClient
 {
     public static class ClientFactory
     {
-        public static ICollectionStatus CreateCollectionStatusClient(string hostName)
+        public static ICollectionStatus CreateCollectionStatusClient(string serverAddress)
         {
-            return new CollectionStatusClient(hostName);
+            return new CollectionStatusClient(serverAddress);
         }
 
-        public static IRealTimePrice CreateRealTimePrice()
+        public static IRealTimePrice CreateRealTimePrice(string serverAddress)
         {
-            return new RealTimePriceClient();
+            return new RealTimePriceClient(serverAddress);
         }
     }
 }
