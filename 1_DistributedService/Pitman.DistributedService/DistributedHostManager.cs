@@ -12,6 +12,7 @@ namespace Pitman.DistributedService
 
             AddHost(new CollectionStatusHost(_serverAddress));
             AddHost(new RealTimePriceHost(_serverAddress));
+            AddHost(new HistoryPriceHost(_serverAddress));
         }
     }
 }

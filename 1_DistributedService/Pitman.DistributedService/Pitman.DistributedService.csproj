@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Host\HistoryPriceHost.cs" />
+    <Compile Include="Service\HistoryPriceService.cs" />
     <Compile Include="Host\CollectionStatusHost.cs" />
     <Compile Include="Service\CollectionStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

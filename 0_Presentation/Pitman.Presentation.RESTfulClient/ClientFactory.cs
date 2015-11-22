@@ -13,5 +13,10 @@ namespace Pitman.Presentation.RESTfulClient
         {
             return new RealTimePriceClient(serverAddress);
         }
+
+        public static IHistoryPrice CreateHistoryPriceClient(string serverAddress)
+        {
+            return new HistoryPriceClient(serverAddress);
+        }
     }
 }

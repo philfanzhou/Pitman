@@ -6,13 +6,13 @@ namespace Pitman.Presentation.RESTfulClient
 {
     internal class RealTimePriceClient : RestfulClient, IRealTimePrice
     {
-        public RealTimePriceClient(string serverAddress) : base(serverAddress, RealTimePrice.ServiceName) { }
+        public RealTimePriceClient(string serverAddress) : base(serverAddress, RealTimePriceConst.ServiceName) { }
 
         public IEnumerable<StockRealTimePriceDto> GetLatest(IEnumerable<string> stockCodes)
         {
             using (var client = GetHttpClient())
             {
-                return client.PostAndReasAs<IEnumerable<StockRealTimePriceDto>, IEnumerable<string>>(RealTimePrice.Uri_GetLatest, stockCodes);
+                return client.PostAndReadAs<IEnumerable<StockRealTimePriceDto>, IEnumerable<string>>(RealTimePriceConst.Uri_GetLatest, stockCodes);
             }
         }
     }

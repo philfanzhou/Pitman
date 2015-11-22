@@ -22,23 +22,32 @@ namespace Pitman.Presentation.RESTfulClient
             }
         }
 
-        public TResult PostAndReasAs<TResult, TPostData>(string requestUri, TPostData postData)
+        public TResult PostAndReadAs<TResult>(string requestUri, HttpContent content)
         {
-            using (HttpContent content = GetContentWithJson(postData))
-            {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                using (HttpResponseMessage response
+            using (HttpResponseMessage response
                     = this.PostAsync(requestUri, content).Result.EnsureSuccessStatusCode())
-                {
-                    string jsonStr = response.Content.ReadAsStringAsync().Result;
-                    return _jsonSerializer.Deserialize<TResult>(jsonStr);
-                }
+            {
+                string jsonStr = response.Content.ReadAsStringAsync().Result;
+                return _jsonSerializer.Deserialize<TResult>(jsonStr);
             }
         }
 
-        private StringContent GetContentWithJson<T>(T data)
+        public TResult PostAndReadAs<TResult>(string requestUri, string jsonStr)
         {
-            string jsonStr = _jsonSerializer.Serialize(data);
+            using (HttpContent content = CreateContentWithJsonString(jsonStr))
+            {
+                return PostAndReadAs<TResult>(requestUri, content);
+            }
+        }
+
+        public TResult PostAndReadAs<TResult, TPostData>(string requestUri, TPostData postData)
+        {
+            string jsonStr = _jsonSerializer.Serialize(postData);
+            return PostAndReadAs<TResult>(requestUri, jsonStr);
+        }
+
+        private StringContent CreateContentWithJsonString(string jsonStr)
+        {
             StringContent content = new StringContent(jsonStr);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 

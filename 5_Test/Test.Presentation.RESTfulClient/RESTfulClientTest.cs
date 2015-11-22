@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pitman.Presentation.RESTfulClient;
 using System.Linq;
 using System.Collections.Generic;
+using Pitman.DistributedService.Dto;
 
 namespace Test.Presentation.RESTfulClient
 {
@@ -31,6 +32,17 @@ namespace Test.Presentation.RESTfulClient
 
             Assert.IsNotNull(result);
             Assert.AreEqual("600036", result[0].Code);
+        }
+
+        [TestMethod]
+        public void TestHistoryPriceClient()
+        {
+            var client = ClientFactory.CreateHistoryPriceClient(serverAddress);
+            var result = client.GetData(
+                new List<string>() { "600036" }, 
+                PriceDataType.Minute_1, 
+                DateTime.Now, 
+                DateTime.Now).ToList();
         }
     }
 }

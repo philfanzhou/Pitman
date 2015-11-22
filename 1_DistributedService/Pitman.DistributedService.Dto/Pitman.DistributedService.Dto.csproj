@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MarketDto.cs" />
+    <Compile Include="PriceDataType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockHistoryPriceDto.cs" />
     <Compile Include="StockRealTimePriceDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
