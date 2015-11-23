@@ -12,25 +12,10 @@ namespace Pitman.Presentation.RESTfulClient
 
         public IEnumerable<StockHistoryPriceDto> GetData(
             IEnumerable<string> stockCodes, 
-            PriceDataType dataType, 
+            PriceDataTypeDto dataType, 
             DateTime startDate, 
             DateTime endDate)
         {
-            //JsonSerializer serializer = new JsonSerializer();
-            //string dataString = string.Format("\"{0}\":{1},\"{2}\":{3},\"{4}\":{5},\"{6}\":{7}",
-            //    "stockCodes", serializer.Serialize(stockCodes),
-            //    "dataType", serializer.Serialize(dataType),
-            //    "startDate", serializer.Serialize(startDate),
-            //    "endDate", serializer.Serialize(endDate));
-            //string postString = "{" + dataString + "}";
-
-            //using (var client = GetHttpClient())
-            //{
-            //    return client.PostAndReadAs<IEnumerable<StockHistoryPriceDto>>(
-            //        HistoryPriceConst.Uri_GetData,
-            //        postString);
-            //}
-
             PostData data = new PostData
             {
                 StockCodes = stockCodes,
@@ -54,7 +39,7 @@ namespace Pitman.Presentation.RESTfulClient
             public IEnumerable<string> StockCodes { get; set; }
 
             [DataMember(Name = "dataType")]
-            public PriceDataType DataType { get; set; }
+            public PriceDataTypeDto DataType { get; set; }
 
             [DataMember(Name = "startDate")]
             public DateTime StartDate { get; set; }

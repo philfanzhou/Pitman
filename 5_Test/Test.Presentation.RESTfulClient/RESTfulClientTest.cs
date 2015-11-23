@@ -40,7 +40,7 @@ namespace Test.Presentation.RESTfulClient
             var client = ClientFactory.CreateHistoryPriceClient(serverAddress);
             var result = client.GetData(
                 new List<string>() { "600036" }, 
-                PriceDataType.Minute_1, 
+                PriceDataTypeDto.Minute_1, 
                 DateTime.Now, 
                 DateTime.Now).ToList();
         }

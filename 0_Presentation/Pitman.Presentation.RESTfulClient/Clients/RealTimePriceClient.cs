@@ -12,7 +12,9 @@ namespace Pitman.Presentation.RESTfulClient
         {
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockRealTimePriceDto>, IEnumerable<string>>(RealTimePriceConst.Uri_GetLatest, stockCodes);
+                return client.PostAndReadAs<IEnumerable<StockRealTimePriceDto>, IEnumerable<string>>(
+                    RealTimePriceConst.Uri_GetLatest, 
+                    stockCodes);
             }
         }
     }

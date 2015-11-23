@@ -43,10 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HistoryPriceAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimePriceAppService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.MarketData\Pitman.Domain.MarketData.csproj">
+      <Project>{5791453e-1ee3-4b33-a3aa-ed1c3cf0de69}</Project>
+      <Name>Pitman.Domain.MarketData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
       <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
       <Name>Pitman.Infrastructure.FileDatabase</Name>
