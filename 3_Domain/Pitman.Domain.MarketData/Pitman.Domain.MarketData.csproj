@@ -46,6 +46,7 @@
     <Compile Include="Internal\RealTimeItemExt.cs" />
     <Compile Include="IntradayData.cs" />
     <Compile Include="IntradayInfo.cs" />
+    <Compile Include="PriceDataConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockHistoryPrice.cs" />
   </ItemGroup>

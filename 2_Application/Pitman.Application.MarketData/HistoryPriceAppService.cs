@@ -1,5 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Domain.MarketData;
+using Pitman.Infrastructure.FileDatabase;
 using System;
 using System.Collections.Generic;
 
@@ -12,8 +13,9 @@ namespace Pitman.Application.MarketData
             DateTime startDate,
             DateTime endDate)
         {
-            StockHistoryPrice item = new StockHistoryPrice();
-            return new List<StockHistoryPrice>() { item };
+            RealTimeDataRepository repository = new RealTimeDataRepository();
+            var realTimeData = repository.GetData(stockCodes, startDate, endDate);
+            return PriceDataConvert.ConvertToOneMinuteData(realTimeData);
         }
     }
 }
