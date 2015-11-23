@@ -1,9 +1,7 @@
 ﻿using Ore.Infrastructure.MarketData;
+using Pitman.Infrastructure.FileDatabase;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Application.MarketData
 {
@@ -11,7 +9,17 @@ namespace Pitman.Application.MarketData
     {
         public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
         {
-            throw new NotImplementedException();
+            RealTimeDataRepository repository = new RealTimeDataRepository();
+            return repository.GetLatest(stockCodes);
+        }
+
+        public IEnumerable<IStockRealTimePrice> GetData(
+            IEnumerable<string> stockCodes,
+            DateTime startDate,
+            DateTime endDate)
+        {
+            RealTimeDataRepository repository = new RealTimeDataRepository();
+            return repository.GetData(stockCodes, startDate, endDate);
         }
     }
 }

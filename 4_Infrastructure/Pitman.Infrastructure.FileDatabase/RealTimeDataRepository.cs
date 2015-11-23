@@ -16,10 +16,27 @@ namespace Pitman.Infrastructure.FileDatabase
             }
         }
 
-        //public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
-        //{
+        public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
+        {
+            RealTimeItem data = new RealTimeItem();
+            data.ShortName = "测试股票";
+            data.Code = stockCodes.ToList()[0];
+            data.Time = DateTime.Now;
+            data.Current = 22.58;
 
-        //}
+            List<RealTimeItem> result = new List<RealTimeItem>();
+            result.Add(data);
+
+            return result.Cast<IStockRealTimePrice>();
+        }
+
+        public IEnumerable<IStockRealTimePrice> GetData(
+            IEnumerable<string> stockCodes,
+            DateTime startDate,
+            DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<IStockRealTimePrice> GetOneDayData(string stockCode, DateTime day)
         {

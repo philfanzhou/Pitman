@@ -5,5 +5,7 @@
         public const string ServiceName = "RealTimePrice";
 
         public const string Uri_GetLatest = "Latest";
+
+        public const string Uri_GetData = "GetData";
     }
 }
