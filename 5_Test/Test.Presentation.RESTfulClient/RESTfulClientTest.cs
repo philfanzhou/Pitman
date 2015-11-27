@@ -10,8 +10,8 @@ namespace Test.Presentation.RESTfulClient
     [TestClass]
     public class RESTfulClientTest
     {
-        private string serverAddress = "http://localhost:9999";
-        //private string serverAddress = "http://quantum1234.cloudapp.net:6688";
+        //private string serverAddress = "http://localhost:9999";
+        private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
         [TestMethod]
         public void TestCollectionStatusClient()
@@ -29,6 +29,16 @@ namespace Test.Presentation.RESTfulClient
         {
             var client = ClientFactory.CreateRealTimePrice(serverAddress);
             var result = client.GetLatest(new List<string>() { "600036"}).ToList();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("600036", result[0].Code);
+        }
+
+        [TestMethod]
+        public void TestRealTimePriceClient1()
+        {
+            var client = ClientFactory.CreateRealTimePrice(serverAddress);
+            var result = client.GetData("600036", new DateTime(2015, 11, 15), new DateTime(2015, 11, 18)).ToList();
 
             Assert.IsNotNull(result);
             Assert.AreEqual("600036", result[0].Code);

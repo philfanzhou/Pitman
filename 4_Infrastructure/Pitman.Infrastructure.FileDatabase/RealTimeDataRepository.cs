@@ -19,14 +19,16 @@ namespace Pitman.Infrastructure.FileDatabase
 
         public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
         {
-            RealTimeItem data = new RealTimeItem();
-            data.ShortName = "测试股票";
-            data.Code = stockCodes.ToList()[0];
-            data.Time = DateTime.Now;
-            data.Current = 22.58;
-
             List<RealTimeItem> result = new List<RealTimeItem>();
-            result.Add(data);
+            foreach(string code in stockCodes)
+            {
+                string filePath = string.Empty;
+                if (PathHelper.GetLatestFilePath(code, ref filePath))
+                {
+                    var file = new RealTimeFile(filePath);
+                    result.Add(file.Read(file.Header.DataCount - 1));
+                }
+            }
 
             return result.Cast<IStockRealTimePrice>();
         }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Pitman.Infrastructure.FileDatabase
 {
@@ -40,6 +42,32 @@ namespace Pitman.Infrastructure.FileDatabase
         internal static string GetFilePath(string stockCode, DateTime day)
         {
             return GetFileFolder(stockCode) + GetFileName(day);
+        }
+
+        internal static bool GetLatestFilePath(string stockCode, ref string latestFilePath)
+        {
+            latestFilePath = string.Empty;
+
+            string todayFilePath = GetFilePath(stockCode, DateTime.Now.Date);
+            if(File.Exists(todayFilePath))
+            {
+                latestFilePath = todayFilePath;
+                return true;
+            }
+
+            string fileFolder = GetFileFolder(stockCode);
+            if(Directory.Exists(fileFolder))
+            {
+                DirectoryInfo dir = new DirectoryInfo(fileFolder);
+                FileInfo file = dir.GetFiles().OrderBy(p => p.CreationTime).LastOrDefault();
+                if(file != null)
+                {
+                    latestFilePath = file.FullName;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         internal static IEnumerable<string> GetFilePath(string stockCode, DateTime startDay, DateTime endDay)

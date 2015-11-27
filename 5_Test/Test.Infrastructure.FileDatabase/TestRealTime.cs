@@ -83,6 +83,15 @@ namespace Test.Infrastructure.FileDatabase
             Assert.IsNotNull(actual);
         }
 
+        [TestMethod]
+        public void TestGetLatestFilePath()
+        {
+            string path = string.Empty;
+            bool result = PathHelper.GetLatestFilePath("600036", ref path);
+
+            Assert.IsFalse(string.IsNullOrEmpty(path));
+        }
+
 
         [TestMethod]
         public void TestPathHelper()
