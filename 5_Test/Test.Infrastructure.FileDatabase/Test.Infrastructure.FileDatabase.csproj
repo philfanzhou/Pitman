@@ -56,7 +56,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SecurityInfo.cs" />
     <Compile Include="TestRealTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,7 +66,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151102.dat">
+    <None Include="Data\RealTimeData\Shanghai\600036\20151106.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151109.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151110.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151111.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

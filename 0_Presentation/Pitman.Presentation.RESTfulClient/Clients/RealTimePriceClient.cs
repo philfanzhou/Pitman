@@ -21,7 +21,7 @@ namespace Pitman.Presentation.RESTfulClient
         }
 
         public IEnumerable<StockRealTimePriceDto> GetData(
-            IEnumerable<string> stockCodes, 
+            string stockCodes, 
             DateTime startDate, 
             DateTime endDate)
         {
@@ -44,7 +44,7 @@ namespace Pitman.Presentation.RESTfulClient
         private class PostData
         {
             [DataMember(Name = "stockCodes")]
-            public IEnumerable<string> StockCodes { get; set; }
+            public string StockCodes { get; set; }
 
             [DataMember(Name = "startDate")]
             public DateTime StartDate { get; set; }

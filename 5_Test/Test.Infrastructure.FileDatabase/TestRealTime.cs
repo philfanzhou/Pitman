@@ -4,23 +4,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pitman.Infrastructure.FileDatabase;
 using Ore.Infrastructure.MarketData.DataSource.Sina;
 using Ore.Infrastructure.MarketData;
+using System.Collections.Generic;
 
 namespace Test.Infrastructure.FileDatabase
 {
     [TestClass]
     public class TestRealTime
     {
-        private SecurityInfo GetSecurityInfo()
-        {
-            SecurityInfo info = new SecurityInfo();
-            info.Code = "600036";
-            info.Market = Market.XSHG;
-            info.ShortName = "招商银行";
-            info.Type = SecurityType.Sotck;
-
-            return info;
-        }
-
         private void CompareDataField(IStockRealTimePrice expected, IStockRealTimePrice actual)
         {
             Assert.AreEqual(expected.Amount, actual.Amount);
@@ -56,33 +46,70 @@ namespace Test.Infrastructure.FileDatabase
             Assert.AreEqual(expected.YesterdayClose, actual.YesterdayClose);
         }
 
+        //[TestMethod]
+        //public void TestAddRealTimeData()
+        //{
+        //    var api = new SinaRealTimePriceAPI();
+        //    var repository = new RealTimeDataRepository();
+
+        //    var securityInfo = GetSecurityInfo();
+        //    var expected = api.GetData(securityInfo);
+        //    repository.Add(expected);
+
+        //    repository = new RealTimeDataRepository();
+        //    var actual = repository.GetOneDayData(securityInfo.Code, DateTime.Now).Last();
+
+        //    CompareDataField(expected, actual);
+        //}
+
+        //[TestMethod]
+        //public void TestReadData()
+        //{
+        //    var securityInfo = GetSecurityInfo();
+        //    var repository = new RealTimeDataRepository();
+        //    var actual = repository.GetOneDayData(securityInfo.Code, new DateTime(2015, 11, 2)).ToList();
+
+        //    Assert.IsNotNull(actual);
+        //    Assert.IsTrue(actual.Count == 3003);
+        //    Assert.IsTrue(actual[0].Current == 0);
+        //    Assert.IsTrue(actual[3002].Current == 17.83);
+        //}
+
         [TestMethod]
-        public void TestAddRealTimeData()
+        public void TestGetData()
         {
-            var api = new SinaRealTimePriceAPI();
             var repository = new RealTimeDataRepository();
-
-            var securityInfo = GetSecurityInfo();
-            var expected = api.GetData(securityInfo);
-            repository.Add(expected);
-
-            repository = new RealTimeDataRepository();
-            var actual = repository.GetOneDayData(securityInfo.Code, DateTime.Now).Last();
-
-            CompareDataField(expected, actual);
+            var actual = repository.GetData("600036", new DateTime(2015, 11, 03), new DateTime(2015, 11, 08)).ToList();
+            Assert.IsNotNull(actual);
         }
 
-        [TestMethod]
-        public void TestReadData()
-        {
-            var securityInfo = GetSecurityInfo();
-            var repository = new RealTimeDataRepository();
-            var actual = repository.GetOneDayData(securityInfo.Code, new DateTime(2015, 11, 2)).ToList();
 
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual.Count == 3003);
-            Assert.IsTrue(actual[0].Current == 0);
-            Assert.IsTrue(actual[3002].Current == 17.83);
+        [TestMethod]
+        public void TestPathHelper()
+        {
+            var result = PathHelper.GetFilePath("600036", new DateTime(2015, 11, 5), new DateTime(2015, 11, 16));
+
+            List<string> expected = new List<string>();
+            string folder = Environment.CurrentDirectory + @"\Data\RealTimeData\Shanghai\600036\";
+            expected.Add(folder + "20151105.dat");
+            expected.Add(folder + "20151106.dat");
+            expected.Add(folder + "20151107.dat");
+            expected.Add(folder + "20151108.dat");
+            expected.Add(folder + "20151109.dat");
+            expected.Add(folder + "20151110.dat");
+            expected.Add(folder + "20151111.dat");
+            expected.Add(folder + "20151112.dat");
+            expected.Add(folder + "20151113.dat");
+            expected.Add(folder + "20151114.dat");
+            expected.Add(folder + "20151115.dat");
+            expected.Add(folder + "20151116.dat");
+
+            List<string> actual = result.ToList();
+            Assert.AreEqual(expected.Count, actual.Count);
+            for(int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
     }
 }

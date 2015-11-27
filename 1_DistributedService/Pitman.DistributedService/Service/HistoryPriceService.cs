@@ -20,7 +20,7 @@ namespace Pitman.DistributedService
             ResponseFormat = WebMessageFormat.Json, 
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         public IEnumerable<StockHistoryPriceDto> GetData(
-            IEnumerable<string> stockCodes, 
+            string stockCodes, 
             PriceDataTypeDto dataType, 
             DateTime startDate, 
             DateTime endDate)

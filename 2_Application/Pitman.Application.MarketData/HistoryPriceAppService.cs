@@ -8,10 +8,7 @@ namespace Pitman.Application.MarketData
 {
     public class HistoryPriceAppService
     {
-        public IEnumerable<IStockHistoryPrice> GetMinutesData(
-            IEnumerable<string> stockCodes,
-            DateTime startDate,
-            DateTime endDate)
+        public IEnumerable<IStockHistoryPrice> GetMinutesData(string stockCodes, DateTime startDate, DateTime endDate)
         {
             RealTimeDataRepository repository = new RealTimeDataRepository();
             var realTimeData = repository.GetData(stockCodes, startDate, endDate);

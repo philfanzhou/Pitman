@@ -28,7 +28,7 @@ namespace Pitman.DistributedService
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         public IEnumerable<StockRealTimePriceDto> GetData(
-            IEnumerable<string> stockCodes, 
+            string stockCodes, 
             DateTime startDate, 
             DateTime endDate)
         {

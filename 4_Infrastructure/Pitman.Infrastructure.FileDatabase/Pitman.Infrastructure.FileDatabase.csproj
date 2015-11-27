@@ -51,6 +51,7 @@
     <Compile Include="FileDatabase\MarketDataFileHeader.cs" />
     <Compile Include="FileDatabase\RealTimeDataItem.cs" />
     <Compile Include="FileDatabase\RealTimeFile.cs" />
+    <Compile Include="Utility\PathHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimeDataRepository.cs" />
   </ItemGroup>

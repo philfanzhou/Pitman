@@ -10,7 +10,7 @@ namespace Pitman.DistributedService.Contracts
     {
         [OperationContract]
         IEnumerable<StockHistoryPriceDto> GetData(
-            IEnumerable<string> stockCodes, 
+            string stockCodes, 
             PriceDataTypeDto dataType,
             DateTime startDate, 
             DateTime endDate);

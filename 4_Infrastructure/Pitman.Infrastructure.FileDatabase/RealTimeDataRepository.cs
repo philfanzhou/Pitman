@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Pitman.Infrastructure.FileDatabase
 {
@@ -30,22 +31,21 @@ namespace Pitman.Infrastructure.FileDatabase
             return result.Cast<IStockRealTimePrice>();
         }
 
-        public IEnumerable<IStockRealTimePrice> GetData(
-            IEnumerable<string> stockCodes,
-            DateTime startDate,
-            DateTime endDate)
+        public IEnumerable<IStockRealTimePrice> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
-        }
+            List<string> pathList = PathHelper.GetFilePath(stockCode, startDate, endDate).ToList();
 
-        public IEnumerable<IStockRealTimePrice> GetOneDayData(string stockCode, DateTime day)
-        {
-            using (var file = RealTimeFile.Open(stockCode, day))
+            List<RealTimeItem> result = new List<RealTimeItem>();
+            foreach(string path in pathList)
             {
-                var data = file.ReadAll().ToList();
-                string code = data.Last().Code;
-                return data.Cast<IStockRealTimePrice>();
+                if(File.Exists(path))
+                {
+                    var file = new RealTimeFile(path);
+                    result.AddRange(file.ReadAll());
+                }
             }
+
+            return result.Cast<IStockRealTimePrice>();
         }
     }
 
