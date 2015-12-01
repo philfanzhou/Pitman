@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,16 +48,12 @@
     <Compile Include="CollectionStatus\CollectionStatusConst.cs" />
     <Compile Include="HistoryPrice\HistoryPriceConst.cs" />
     <Compile Include="HistoryPrice\IHistoryPrice.cs" />
+    <Compile Include="HistoryPrice\StockHistoryPriceDto.cs" />
     <Compile Include="RealTimePrice\IRealTimePrice.cs" />
     <Compile Include="CollectionStatus\ICollectionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimePrice\RealTimePriceConst.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Pitman.DistributedService.Dto\Pitman.DistributedService.Dto.csproj">
-      <Project>{370d1c1d-5ae1-4438-92bd-d4bae3b31dfc}</Project>
-      <Name>Pitman.DistributedService.Dto</Name>
-    </ProjectReference>
+    <Compile Include="RealTimePrice\StockRealTimePriceDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

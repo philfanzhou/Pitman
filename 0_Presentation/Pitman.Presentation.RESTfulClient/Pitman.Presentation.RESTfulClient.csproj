@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -55,10 +58,6 @@
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
       <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
       <Name>Pitman.DistributedService.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Dto\Pitman.DistributedService.Dto.csproj">
-      <Project>{370d1c1d-5ae1-4438-92bd-d4bae3b31dfc}</Project>
-      <Name>Pitman.DistributedService.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

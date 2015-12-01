@@ -21,10 +21,10 @@ namespace Pitman.Domain.MarketData
 
         public DateTime Time { get; set; }
 
-        public double TodayOpen { get; set; }
+        public double Open { get; set; }
 
         public double Volume { get; set; }
 
-        public double YesterdayClose { get; set; }
+        public double PreClose { get; set; }
     }
 }

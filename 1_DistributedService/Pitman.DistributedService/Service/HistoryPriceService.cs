@@ -1,7 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
 using Pitman.DistributedService.Contracts;
-using Pitman.DistributedService.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +15,13 @@ namespace Pitman.DistributedService
         RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     internal class HistoryPriceService : IHistoryPrice
     {
-        [WebInvoke(UriTemplate = HistoryPriceConst.Uri_GetData, 
-            ResponseFormat = WebMessageFormat.Json, 
+        [WebInvoke(UriTemplate = HistoryPriceConst.Uri_1MinuteData,
+            ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public IEnumerable<StockHistoryPriceDto> GetData(
-            string stockCodes, 
-            PriceDataTypeDto dataType, 
-            DateTime startDate, 
-            DateTime endDate)
+        public IEnumerable<StockHistoryPriceDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
         {
             HistoryPriceAppService appService = new HistoryPriceAppService();
-            var result = appService.GetMinutesData(stockCodes, startDate, endDate);
+            var result = appService.GetMinutesData(stockCode, startTime, endTime);
             return result.Select(t => ConvertToDto(t));
         }
 
@@ -39,12 +34,12 @@ namespace Pitman.DistributedService
                 Current = priceData.Current,
                 High = priceData.High,
                 Low = priceData.Low,
-                Market = (MarketDto)Enum.Parse(typeof(MarketDto), priceData.Market.ToString()),
+                MarketStr = priceData.Market.ToString(),
                 ShortName = priceData.ShortName,
                 Time = priceData.Time,
-                TodayOpen = priceData.TodayOpen,
+                Open = priceData.Open,
                 Volume = priceData.Volume,
-                YesterdayClose = priceData.YesterdayClose
+                PreClose = priceData.PreClose
             };
         }
     }

@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.DistributedService.Dto
+namespace Pitman.DistributedService.Contracts
 {
     [DataContract(Name = "stockHistoryPrice")]
     public class StockHistoryPriceDto : IStockHistoryPrice
@@ -25,7 +25,13 @@ namespace Pitman.DistributedService.Dto
         [DataMember(Name = "market")]
         public string MarketStr { get; set; }
 
-        public Market Market { get { return (Market)Enum.Parse(typeof(Market), MarketStr); } }
+        public Market Market
+        {
+            get
+            {
+                return (Market)Enum.Parse(typeof(Market), MarketStr);
+            }
+        }
 
         /// <summary>
         /// 今开

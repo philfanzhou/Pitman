@@ -1,17 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pitman.Presentation.RESTfulClient;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using Pitman.DistributedService.Dto;
+using System.Linq;
 
 namespace Test.Presentation.RESTfulClient
 {
     [TestClass]
     public class RESTfulClientTest
     {
-        //private string serverAddress = "http://localhost:9999";
-        private string serverAddress = "http://quantum1234.cloudapp.net:6688";
+        private string serverAddress = "http://localhost:9999";
+        //private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
         [TestMethod]
         public void TestCollectionStatusClient()
@@ -38,21 +37,19 @@ namespace Test.Presentation.RESTfulClient
         public void TestRealTimePriceClient1()
         {
             var client = ClientFactory.CreateRealTimePrice(serverAddress);
-            var result = client.GetData("600036", new DateTime(2015, 11, 15), new DateTime(2015, 11, 18)).ToList();
+            var result = client.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
 
             Assert.IsNotNull(result);
             Assert.AreEqual("600036", result[0].Code);
         }
 
         [TestMethod]
-        public void TestHistoryPriceClient()
+        public void Test1MinuteDataClient()
         {
             var client = ClientFactory.CreateHistoryPriceClient(serverAddress);
-            var result = client.GetData(
-                "600036", 
-                PriceDataTypeDto.Minute_1, 
-                DateTime.Now, 
-                DateTime.Now).ToList();
+            var result = client.Get1MinuteData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+            Assert.IsNotNull(result);
         }
     }
 }

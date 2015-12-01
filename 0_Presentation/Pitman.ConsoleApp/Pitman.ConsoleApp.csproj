@@ -56,6 +56,20 @@
       <Name>Pitman.DistributedService</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151106.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151109.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151110.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151111.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

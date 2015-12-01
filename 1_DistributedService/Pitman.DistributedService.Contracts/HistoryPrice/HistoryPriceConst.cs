@@ -4,6 +4,6 @@
     {
         public const string ServiceName = "HistoryPrice";
 
-        public const string Uri_GetData = "GetData";
+        public const string Uri_1MinuteData = "Get1MinureData";
     }
 }

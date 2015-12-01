@@ -1,5 +1,4 @@
 ﻿using Pitman.DistributedService.Contracts;
-using Pitman.DistributedService.Dto;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -10,36 +9,28 @@ namespace Pitman.Presentation.RESTfulClient
     {
         public HistoryPriceClient(string serverAddress) : base(serverAddress, HistoryPriceConst.ServiceName) { }
 
-        public IEnumerable<StockHistoryPriceDto> GetData(
-            string stockCodes, 
-            PriceDataTypeDto dataType, 
-            DateTime startDate, 
-            DateTime endDate)
+        public IEnumerable<StockHistoryPriceDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
         {
-            PostData data = new PostData
+            Get1MinutePostData data = new Get1MinutePostData
             {
-                StockCodes = stockCodes,
-                DataType = dataType,
-                StartDate = startDate,
-                EndDate = endDate
+                StockCode = stockCode,
+                StartDate = startTime,
+                EndDate = endTime
             };
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockHistoryPriceDto>, PostData>(
-                    HistoryPriceConst.Uri_GetData,
+                return client.PostAndReadAs<IEnumerable<StockHistoryPriceDto>, Get1MinutePostData>(
+                    HistoryPriceConst.Uri_1MinuteData,
                     data);
             }
         }
 
         [DataContract]
-        private class PostData
+        private class Get1MinutePostData
         {
             [DataMember(Name = "stockCodes")]
-            public string StockCodes { get; set; }
-
-            [DataMember(Name = "dataType")]
-            public PriceDataTypeDto DataType { get; set; }
+            public string StockCode { get; set; }
 
             [DataMember(Name = "startDate")]
             public DateTime StartDate { get; set; }

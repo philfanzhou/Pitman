@@ -1,7 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
 using Pitman.DistributedService.Contracts;
-using Pitman.DistributedService.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +45,7 @@ namespace Pitman.DistributedService
                 Current = priceData.Current,
                 High = priceData.High,
                 Low = priceData.Low,
-                Market = (MarketDto)Enum.Parse(typeof(MarketDto), priceData.Market.ToString()),
+                MarketStr = priceData.Market.ToString(),
                 ShortName = priceData.ShortName,
                 Time = priceData.Time,
                 TodayOpen = priceData.TodayOpen,
