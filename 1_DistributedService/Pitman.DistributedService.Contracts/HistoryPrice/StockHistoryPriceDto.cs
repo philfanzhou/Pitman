@@ -4,8 +4,8 @@ using System.Runtime.Serialization;
 
 namespace Pitman.DistributedService.Contracts
 {
-    [DataContract(Name = "stockHistoryPrice")]
-    public class StockHistoryPriceDto : IStockHistoryPrice
+    [DataContract(Name = "stockKLine")]
+    public class StockKLineDto : IStockKLine
     {
         /// <summary>
         /// 交易代码

@@ -8,7 +8,7 @@ namespace Pitman.Application.MarketData
 {
     public class HistoryPriceAppService
     {
-        public IEnumerable<IStockHistoryPrice> GetMinutesData(string stockCodes, DateTime startDate, DateTime endDate)
+        public IEnumerable<IStockKLine> GetMinutesData(string stockCodes, DateTime startDate, DateTime endDate)
         {
             StockHistoryPrice data = new StockHistoryPrice()
             {

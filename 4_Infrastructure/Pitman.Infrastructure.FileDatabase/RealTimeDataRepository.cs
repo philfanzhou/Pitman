@@ -8,7 +8,7 @@ namespace Pitman.Infrastructure.FileDatabase
 {
     public class RealTimeDataRepository
     {
-        public void Add(IStockRealTimePrice data)
+        public void Add(IStockRealTime data)
         {
             using (var file = RealTimeFile.CreateOrOpen(data.Code, data.Time))
             {
@@ -17,7 +17,7 @@ namespace Pitman.Infrastructure.FileDatabase
             }
         }
 
-        public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
+        public IEnumerable<IStockRealTime> GetLatest(IEnumerable<string> stockCodes)
         {
             List<RealTimeItem> result = new List<RealTimeItem>();
             foreach(string code in stockCodes)
@@ -30,10 +30,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 }
             }
 
-            return result.Cast<IStockRealTimePrice>();
+            return result.Cast<IStockRealTime>();
         }
 
-        public IEnumerable<IStockRealTimePrice> GetData(string stockCode, DateTime startDate, DateTime endDate)
+        public IEnumerable<IStockRealTime> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
             List<string> pathList = PathHelper.GetFilePath(stockCode, startDate, endDate).ToList();
 
@@ -47,13 +47,13 @@ namespace Pitman.Infrastructure.FileDatabase
                 }
             }
 
-            return result.Cast<IStockRealTimePrice>();
+            return result.Cast<IStockRealTime>();
         }
     }
 
     internal static class StockRealTimePriceExt
     {
-        public static RealTimeItem Convert(this IStockRealTimePrice self)
+        public static RealTimeItem Convert(this IStockRealTime self)
         {
             RealTimeItem outputData = new RealTimeItem
             {

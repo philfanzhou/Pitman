@@ -7,13 +7,13 @@ namespace Pitman.Application.MarketData
 {
     public class RealTimePriceAppService
     {
-        public IEnumerable<IStockRealTimePrice> GetLatest(IEnumerable<string> stockCodes)
+        public IEnumerable<IStockRealTime> GetLatest(IEnumerable<string> stockCodes)
         {
             RealTimeDataRepository repository = new RealTimeDataRepository();
             return repository.GetLatest(stockCodes);
         }
 
-        public IEnumerable<IStockRealTimePrice> GetData(string stockCodes, DateTime startDate, DateTime endDate)
+        public IEnumerable<IStockRealTime> GetData(string stockCodes, DateTime startDate, DateTime endDate)
         {
             RealTimeDataRepository repository = new RealTimeDataRepository();
             return repository.GetData(stockCodes, startDate, endDate);

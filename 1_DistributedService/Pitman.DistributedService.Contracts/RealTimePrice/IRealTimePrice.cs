@@ -8,10 +8,10 @@ namespace Pitman.DistributedService.Contracts
     public interface IRealTimePrice
     {
         [OperationContract]
-        IEnumerable<StockRealTimePriceDto> GetLatest(IEnumerable<string> stockCodes);
+        IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes);
 
         [OperationContract]
-        IEnumerable<StockRealTimePriceDto> GetData(
+        IEnumerable<StockRealTimeDto> GetData(
             string stockCodes,
             DateTime startDate,
             DateTime endDate);

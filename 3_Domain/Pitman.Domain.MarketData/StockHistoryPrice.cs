@@ -3,7 +3,7 @@ using System;
 
 namespace Pitman.Domain.MarketData
 {
-    public class StockHistoryPrice : IStockHistoryPrice
+    public class StockHistoryPrice : IStockKLine
     {
         public double Amount { get; set; }
 

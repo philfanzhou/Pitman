@@ -11,7 +11,7 @@ namespace Test.Infrastructure.FileDatabase
     [TestClass]
     public class TestRealTime
     {
-        private void CompareDataField(IStockRealTimePrice expected, IStockRealTimePrice actual)
+        private void CompareDataField(IStockRealTime expected, IStockRealTime actual)
         {
             Assert.AreEqual(expected.Amount, actual.Amount);
             Assert.AreEqual(expected.Buy1Price, actual.Buy1Price);

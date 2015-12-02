@@ -26,11 +26,11 @@ namespace Pitman.Application.DataCollection
         /// </summary>
         private Timer saveDataTimer = new Timer(1000);
 
-        private Dictionary<string, IStockRealTimePrice> previousData
-            = new Dictionary<string, IStockRealTimePrice>();
+        private Dictionary<string, IStockRealTime> previousData
+            = new Dictionary<string, IStockRealTime>();
 
-        private Queue<IStockRealTimePrice> dataQueue
-            = new Queue<IStockRealTimePrice>();
+        private Queue<IStockRealTime> dataQueue
+            = new Queue<IStockRealTime>();
 
         /// <summary>
         /// 分时数据的精度为5秒，这里取3秒时间差作为数据是否已经更新的依据
@@ -101,7 +101,7 @@ namespace Pitman.Application.DataCollection
         {
             getDataTimer.Enabled = false;
 
-            IEnumerable<IStockRealTimePrice> datas = GetRealTimeDatas();
+            IEnumerable<IStockRealTime> datas = GetRealTimeDatas();
             CheckDataAndAddToQueue(datas);
 
             getDataTimer.Enabled = true;
@@ -143,25 +143,25 @@ namespace Pitman.Application.DataCollection
             return result;
         }
 
-        private IEnumerable<IStockRealTimePrice> GetRealTimeDatas()
+        private IEnumerable<IStockRealTime> GetRealTimeDatas()
         {
             IEnumerable<ISecurity> stocks = GetStockList();
             SinaRealTimePriceAPI api = new SinaRealTimePriceAPI();
 
-            IEnumerable<IStockRealTimePrice> datas;
+            IEnumerable<IStockRealTime> datas;
             try
             {
                 datas = api.GetData(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
             }
             catch
             {
-                datas = new List<IStockRealTimePrice>();
+                datas = new List<IStockRealTime>();
             }
 
             return datas;
         }
 
-        private void CheckDataAndAddToQueue(IEnumerable<IStockRealTimePrice> datas)
+        private void CheckDataAndAddToQueue(IEnumerable<IStockRealTime> datas)
         {
             foreach(var currentData in datas)
             {

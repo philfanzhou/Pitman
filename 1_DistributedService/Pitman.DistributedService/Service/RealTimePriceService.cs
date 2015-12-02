@@ -16,7 +16,7 @@ namespace Pitman.DistributedService
     {
         [WebInvoke(UriTemplate = RealTimePriceConst.Uri_GetLatest, 
             ResponseFormat = WebMessageFormat.Json)]
-        public IEnumerable<StockRealTimePriceDto> GetLatest(IEnumerable<string> stockCodes)
+        public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
             RealTimePriceAppService appService = new RealTimePriceAppService();
             var result = appService.GetLatest(stockCodes);
@@ -26,7 +26,7 @@ namespace Pitman.DistributedService
         [WebInvoke(UriTemplate = RealTimePriceConst.Uri_GetData,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public IEnumerable<StockRealTimePriceDto> GetData(
+        public IEnumerable<StockRealTimeDto> GetData(
             string stockCodes, 
             DateTime startDate, 
             DateTime endDate)
@@ -36,9 +36,9 @@ namespace Pitman.DistributedService
             return result.Select(t => ConvertToDto(t));
         }
 
-        private static StockRealTimePriceDto ConvertToDto(IStockRealTimePrice priceData)
+        private static StockRealTimeDto ConvertToDto(IStockRealTime priceData)
         {
-            return new StockRealTimePriceDto
+            return new StockRealTimeDto
             {
                 Amount = priceData.Amount,
                 Code = priceData.Code,

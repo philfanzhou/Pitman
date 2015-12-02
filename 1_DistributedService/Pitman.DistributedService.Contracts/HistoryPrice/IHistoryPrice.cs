@@ -8,6 +8,6 @@ namespace Pitman.DistributedService.Contracts
     public interface IHistoryPrice
     {
         [OperationContract]
-        IEnumerable<StockHistoryPriceDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime);
+        IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime);
     }
 }

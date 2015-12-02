@@ -9,17 +9,17 @@ namespace Pitman.Presentation.RESTfulClient
     {
         public RealTimePriceClient(string serverAddress) : base(serverAddress, RealTimePriceConst.ServiceName) { }
 
-        public IEnumerable<StockRealTimePriceDto> GetLatest(IEnumerable<string> stockCodes)
+        public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockRealTimePriceDto>, IEnumerable<string>>(
+                return client.PostAndReadAs<IEnumerable<StockRealTimeDto>, IEnumerable<string>>(
                     RealTimePriceConst.Uri_GetLatest, 
                     stockCodes);
             }
         }
 
-        public IEnumerable<StockRealTimePriceDto> GetData(
+        public IEnumerable<StockRealTimeDto> GetData(
             string stockCodes, 
             DateTime startDate, 
             DateTime endDate)
@@ -33,7 +33,7 @@ namespace Pitman.Presentation.RESTfulClient
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockRealTimePriceDto>, PostData>(
+                return client.PostAndReadAs<IEnumerable<StockRealTimeDto>, PostData>(
                     RealTimePriceConst.Uri_GetData,
                     data);
             }

@@ -18,16 +18,16 @@ namespace Pitman.DistributedService
         [WebInvoke(UriTemplate = HistoryPriceConst.Uri_1MinuteData,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public IEnumerable<StockHistoryPriceDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
+        public IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
         {
             HistoryPriceAppService appService = new HistoryPriceAppService();
             var result = appService.GetMinutesData(stockCode, startTime, endTime);
             return result.Select(t => ConvertToDto(t));
         }
 
-        private static StockHistoryPriceDto ConvertToDto(IStockHistoryPrice priceData)
+        private static StockKLineDto ConvertToDto(IStockKLine priceData)
         {
-            return new StockHistoryPriceDto
+            return new StockKLineDto
             {
                 Amount = priceData.Amount,
                 Code = priceData.Code,

@@ -7,7 +7,7 @@ namespace Pitman.Infrastructure.FileDatabase
     /// <summary>
     /// 实时数据结构体定义
     /// </summary>
-    internal struct RealTimeItem : IStockRealTimePrice
+    internal struct RealTimeItem : IStockRealTime
     {
         private String64 code;
         /// <summary>

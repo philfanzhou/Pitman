@@ -9,7 +9,7 @@ namespace Pitman.Presentation.RESTfulClient
     {
         public HistoryPriceClient(string serverAddress) : base(serverAddress, HistoryPriceConst.ServiceName) { }
 
-        public IEnumerable<StockHistoryPriceDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
+        public IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
         {
             Get1MinutePostData data = new Get1MinutePostData
             {
@@ -20,7 +20,7 @@ namespace Pitman.Presentation.RESTfulClient
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockHistoryPriceDto>, Get1MinutePostData>(
+                return client.PostAndReadAs<IEnumerable<StockKLineDto>, Get1MinutePostData>(
                     HistoryPriceConst.Uri_1MinuteData,
                     data);
             }
