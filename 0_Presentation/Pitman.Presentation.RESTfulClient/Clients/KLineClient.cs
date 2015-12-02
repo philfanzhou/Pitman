@@ -5,13 +5,13 @@ using System.Runtime.Serialization;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class HistoryPriceClient : RestfulClient, IHistoryPrice
+    internal class KLineClient : RestfulClient, IKLineService
     {
-        public HistoryPriceClient(string serverAddress) : base(serverAddress, HistoryPriceConst.ServiceName) { }
+        public KLineClient(string serverAddress) : base(serverAddress, KLineServiceConst.ServiceName) { }
 
-        public IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
+        public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime)
         {
-            Get1MinutePostData data = new Get1MinutePostData
+            PostData data = new PostData
             {
                 StockCode = stockCode,
                 StartDate = startTime,
@@ -20,14 +20,14 @@ namespace Pitman.Presentation.RESTfulClient
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockKLineDto>, Get1MinutePostData>(
-                    HistoryPriceConst.Uri_1MinuteData,
+                return client.PostAndReadAs<IEnumerable<StockKLineDto>, PostData>(
+                    KLineServiceConst.Uri_GetBy1Minute,
                     data);
             }
         }
 
         [DataContract]
-        private class Get1MinutePostData
+        private class PostData
         {
             [DataMember(Name = "stockCodes")]
             public string StockCode { get; set; }

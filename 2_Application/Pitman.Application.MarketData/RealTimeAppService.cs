@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Pitman.Application.MarketData
 {
-    public class RealTimePriceAppService
+    public class RealTimeAppService
     {
         public IEnumerable<IStockRealTime> GetLatest(IEnumerable<string> stockCodes)
         {
@@ -13,10 +13,10 @@ namespace Pitman.Application.MarketData
             return repository.GetLatest(stockCodes);
         }
 
-        public IEnumerable<IStockRealTime> GetData(string stockCodes, DateTime startDate, DateTime endDate)
+        public IEnumerable<IStockRealTime> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
             RealTimeDataRepository repository = new RealTimeDataRepository();
-            return repository.GetData(stockCodes, startDate, endDate);
+            return repository.GetData(stockCode, startDate, endDate);
         }
     }
 }

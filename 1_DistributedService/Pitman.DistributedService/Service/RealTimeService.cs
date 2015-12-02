@@ -1,7 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
 using Pitman.DistributedService.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -12,27 +11,14 @@ namespace Pitman.DistributedService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    internal class RealTimePriceService : IRealTimePrice
+    internal class RealTimeService : IRealTimeService
     {
-        [WebInvoke(UriTemplate = RealTimePriceConst.Uri_GetLatest, 
+        [WebInvoke(UriTemplate = Contracts.RealTimeService.Uri_GetLatest, 
             ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
-            RealTimePriceAppService appService = new RealTimePriceAppService();
+            RealTimeAppService appService = new RealTimeAppService();
             var result = appService.GetLatest(stockCodes);
-            return result.Select(t => ConvertToDto(t));
-        }
-
-        [WebInvoke(UriTemplate = RealTimePriceConst.Uri_GetData,
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public IEnumerable<StockRealTimeDto> GetData(
-            string stockCodes, 
-            DateTime startDate, 
-            DateTime endDate)
-        {
-            RealTimePriceAppService appService = new RealTimePriceAppService();
-            var result = appService.GetData(stockCodes, startDate, endDate);
             return result.Select(t => ConvertToDto(t));
         }
 

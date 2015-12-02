@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Pitman.Application.MarketData
 {
-    public class HistoryPriceAppService
+    public class KLineAppService
     {
         public IEnumerable<IStockKLine> GetMinutesData(string stockCodes, DateTime startDate, DateTime endDate)
         {

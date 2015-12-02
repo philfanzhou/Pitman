@@ -5,9 +5,9 @@ using System.ServiceModel;
 namespace Pitman.DistributedService.Contracts
 {
     [ServiceContract]
-    public interface IHistoryPrice
+    public interface IKLineService
     {
         [OperationContract]
-        IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime);
+        IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime);
     }
 }

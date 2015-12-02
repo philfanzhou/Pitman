@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace Pitman.DistributedService.Contracts
 {
     [ServiceContract]
-    public interface ICollectionStatus
+    public interface ICollectionStatusService
     {
         [OperationContract]
         string GetStatus(string serviceName);

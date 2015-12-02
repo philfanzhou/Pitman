@@ -13,14 +13,14 @@ namespace Pitman.DistributedService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     [AspNetCompatibilityRequirements(
         RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    internal class HistoryPriceService : IHistoryPrice
+    internal class KLineService : IKLineService
     {
-        [WebInvoke(UriTemplate = HistoryPriceConst.Uri_1MinuteData,
+        [WebInvoke(UriTemplate = KLineServiceConst.Uri_GetBy1Minute,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public IEnumerable<StockKLineDto> Get1MinuteData(string stockCode, DateTime startTime, DateTime endTime)
+        public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime)
         {
-            HistoryPriceAppService appService = new HistoryPriceAppService();
+            KLineAppService appService = new KLineAppService();
             var result = appService.GetMinutesData(stockCode, startTime, endTime);
             return result.Select(t => ConvertToDto(t));
         }

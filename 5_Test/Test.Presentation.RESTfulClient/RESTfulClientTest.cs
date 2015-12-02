@@ -34,20 +34,10 @@ namespace Test.Presentation.RESTfulClient
         }
 
         [TestMethod]
-        public void TestRealTimePriceClient1()
-        {
-            var client = ClientFactory.CreateRealTimePrice(serverAddress);
-            var result = client.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual("600036", result[0].Code);
-        }
-
-        [TestMethod]
         public void Test1MinuteDataClient()
         {
             var client = ClientFactory.CreateHistoryPriceClient(serverAddress);
-            var result = client.Get1MinuteData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+            var result = client.GetBy1Minute("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
 
             Assert.IsNotNull(result);
         }

@@ -1,8 +1,8 @@
 ﻿namespace Pitman.DistributedService.Contracts
 {
-    public class CollectionStatusConst
+    public class CollectionStatusServiceConst
     {
-        public const string ServiceName = "CollectionStatus";
+        public const string ServiceName = "CollectionStatusService";
 
         public const string Uri_GetAllServiceName = "AllServiceName";
 

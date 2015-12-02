@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HistoryPriceAppService.cs" />
+    <Compile Include="KLineAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealTimePriceAppService.cs" />
+    <Compile Include="RealTimeAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\3_Domain\Pitman.Domain.MarketData\Pitman.Domain.MarketData.csproj">

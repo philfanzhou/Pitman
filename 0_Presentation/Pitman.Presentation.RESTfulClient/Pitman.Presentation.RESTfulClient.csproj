@@ -46,12 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\RestfulClient.cs" />
-    <Compile Include="Clients\RealTimePriceClient.cs" />
+    <Compile Include="Clients\RealTimeClient.cs" />
     <Compile Include="ClientFactory.cs" />
     <Compile Include="Clients\CollectionStatusClient.cs" />
     <Compile Include="Base\HttpClientEx.cs" />
     <Compile Include="Base\JsonSerializer.cs" />
-    <Compile Include="Clients\HistoryPriceClient.cs" />
+    <Compile Include="Clients\KLineClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

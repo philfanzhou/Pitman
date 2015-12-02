@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class CollectionStatusClient : RestfulClient, ICollectionStatus
+    internal class CollectionStatusClient : RestfulClient, ICollectionStatusService
     {
-        public CollectionStatusClient(string serverAddress) : base(serverAddress, CollectionStatusConst.ServiceName) { }
+        public CollectionStatusClient(string serverAddress) : base(serverAddress, CollectionStatusServiceConst.ServiceName) { }
 
         public IEnumerable<string> GetAllServiceName()
         {
             using (var client = GetHttpClient())
             {
-                return client.GetAndReadAs<IEnumerable<string>>(CollectionStatusConst.Uri_GetAllServiceName);
+                return client.GetAndReadAs<IEnumerable<string>>(CollectionStatusServiceConst.Uri_GetAllServiceName);
             }
         }
 
@@ -19,7 +19,7 @@ namespace Pitman.Presentation.RESTfulClient
         {
             using (var client = GetHttpClient())
             {
-                string uri = string.Format(CollectionStatusConst.Uri_GetStatus_ClientSide, serviceName);
+                string uri = string.Format(CollectionStatusServiceConst.Uri_GetStatus_ClientSide, serviceName);
                 return client.GetAndReadAs<string>(uri);
             }
         }

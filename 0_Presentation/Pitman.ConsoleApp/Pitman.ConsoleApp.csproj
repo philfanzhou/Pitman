@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Framework.DistributedService">
+      <HintPath>..\..\Refer.Dll\Framework.DistributedService.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,10 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Framework\2_DistributedService\Framework.DistributedService\Framework.DistributedService.csproj">
-      <Project>{a40855f6-ceda-4464-976d-4bd9536365ce}</Project>
-      <Name>Framework.DistributedService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService\Pitman.DistributedService.csproj">
       <Project>{5cc7b231-73a3-49e4-82f4-dfff14e9d0a2}</Project>
       <Name>Pitman.DistributedService</Name>

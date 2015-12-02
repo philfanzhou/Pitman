@@ -3,10 +3,10 @@ using Pitman.DistributedService.Contracts;
 
 namespace Pitman.DistributedService
 {
-    internal class HistoryPriceHost : WebHttpHost<IHistoryPrice, HistoryPriceService>
+    internal class HistoryPriceHost : WebHttpHost<IKLineService, KLineService>
     {
         internal HistoryPriceHost(string serverAddress)
-            : base(serverAddress, HistoryPriceConst.ServiceName)
+            : base(serverAddress, KLineServiceConst.ServiceName)
         { }
     }
 }

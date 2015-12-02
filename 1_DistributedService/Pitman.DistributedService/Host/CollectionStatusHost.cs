@@ -3,10 +3,10 @@ using Pitman.DistributedService.Contracts;
 
 namespace Pitman.DistributedService
 {
-    internal class CollectionStatusHost : WebHttpHost<ICollectionStatus, CollectionStatusService>
+    internal class CollectionStatusHost : WebHttpHost<ICollectionStatusService, CollectionStatusService>
     {
         internal CollectionStatusHost(string serverAddress)
-            : base(serverAddress, CollectionStatusConst.ServiceName)
+            : base(serverAddress, CollectionStatusServiceConst.ServiceName)
         { }
     }
 }

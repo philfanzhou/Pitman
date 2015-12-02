@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Pitman.DistributedService.Contracts
 {
-    [DataContract(Name = "stockRealTimePrice")]
+    [DataContract(Name = "stockRealTime")]
     public class StockRealTimeDto : IStockRealTime
     {
         /// <summary>

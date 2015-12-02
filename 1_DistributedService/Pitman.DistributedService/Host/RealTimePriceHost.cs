@@ -3,10 +3,10 @@ using Pitman.DistributedService.Contracts;
 
 namespace Pitman.DistributedService
 {
-    internal class RealTimePriceHost : WebHttpHost<IRealTimePrice, RealTimePriceService>
+    internal class RealTimePriceHost : WebHttpHost<IRealTimeService, RealTimeService>
     {
         internal RealTimePriceHost(string serverAddress)
-            : base(serverAddress, RealTimePriceConst.ServiceName)
+            : base(serverAddress, Contracts.RealTimeService.ServiceName)
         { }
     }
 }
