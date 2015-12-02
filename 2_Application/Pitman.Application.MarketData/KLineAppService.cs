@@ -8,9 +8,10 @@ namespace Pitman.Application.MarketData
 {
     public class KLineAppService
     {
-        public IEnumerable<IStockKLine> GetMinutesData(string stockCodes, DateTime startDate, DateTime endDate)
+        public IEnumerable<IStockKLine> GetBy1Minute(string stockCodes, DateTime startDate, DateTime endDate)
         {
-            StockHistoryPrice data = new StockHistoryPrice()
+            /*******************test code***********************/
+            StockKLine data = new StockKLine()
             {
                 Amount = 0.1,
                 Code = "600036",
@@ -24,9 +25,10 @@ namespace Pitman.Application.MarketData
                 Time = DateTime.Now,
                 Volume = 88.88
             };
-            List<StockHistoryPrice> result = new List<StockHistoryPrice>();
+            List<StockKLine> result = new List<StockKLine>();
             result.Add(data);
             return result;
+            /*******************test code***********************/
 
             //RealTimeDataRepository repository = new RealTimeDataRepository();
             //var realTimeData = repository.GetData(stockCodes, startDate, endDate);

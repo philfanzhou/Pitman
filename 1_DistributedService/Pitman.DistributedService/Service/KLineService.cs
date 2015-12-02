@@ -21,7 +21,7 @@ namespace Pitman.DistributedService
         public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime)
         {
             KLineAppService appService = new KLineAppService();
-            var result = appService.GetMinutesData(stockCode, startTime, endTime);
+            var result = appService.GetBy1Minute(stockCode, startTime, endTime);
             return result.Select(t => ConvertToDto(t));
         }
 
