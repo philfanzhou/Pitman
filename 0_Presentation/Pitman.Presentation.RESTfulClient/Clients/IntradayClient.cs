@@ -5,11 +5,11 @@ using System.Runtime.Serialization;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class KLineClient : RestfulClient, IKLineService
+    internal class IntradayClient : RestfulClient, IIntradayService
     {
-        public KLineClient(string serverAddress) : base(serverAddress, KLineServiceConst.ServiceName) { }
+        public IntradayClient(string serverAddress) : base(serverAddress, IntradayServiceConst.ServiceName) { }
 
-        public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startDate, DateTime endDate)
+        public IEnumerable<StockIntradayDto> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
             PostData data = new PostData
             {
@@ -20,8 +20,8 @@ namespace Pitman.Presentation.RESTfulClient
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockKLineDto>, PostData>(
-                    KLineServiceConst.Uri_GetBy1Minute,
+                return client.PostAndReadAs<IEnumerable<StockIntradayDto>, PostData>(
+                    IntradayServiceConst.Uri_GetData,
                     data);
             }
         }

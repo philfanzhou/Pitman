@@ -19,18 +19,26 @@ namespace Pitman.DistributedService.Contracts
         [DataMember(Name = "shortName")]
         public string ShortName { get; set; }
 
-        /// <summary>
-        /// 交易市场
-        /// </summary>
         [DataMember(Name = "market")]
-        public string MarketStr { get; set; }
-
+        private string market = Market.Unknown.ToString();
         public Market Market
         {
             get
             {
-                return (Market)Enum.Parse(typeof(Market), MarketStr);
+                return (Market)Enum.Parse(typeof(Market), market);
             }
+            set
+            {
+                market = value.ToString();
+            }
+        }
+
+        [DataMember(Name = "time")]
+        private string time = "1970-01-01 00:00:00";
+        public DateTime Time
+        {
+            get { return DateTime.Parse(time); }
+            set { time = value.ToString("yyyy-MM-dd hh:mm:ss"); }
         }
 
         /// <summary>
@@ -74,17 +82,6 @@ namespace Pitman.DistributedService.Contracts
         /// </summary>
         [DataMember(Name = "amount")]
         public double Amount { get; set; }
-
-        [DataMember(Name = "time")]
-        private string time = "1970-01-01 00:00:00";
-        /// <summary>
-        /// 日期与时间
-        /// </summary>
-        public DateTime Time
-        {
-            get { return DateTime.Parse(time); }
-            set { time = value.ToString("yyyy-MM-dd hh:mm:ss"); }
-        }
 
         #region 卖盘
 

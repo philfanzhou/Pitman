@@ -49,14 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Host\HistoryPriceHost.cs" />
+    <Compile Include="Host\KLineHost.cs" />
+    <Compile Include="Host\IntradayHost.cs" />
+    <Compile Include="Service\IntradayService.cs" />
     <Compile Include="Service\KLineService.cs" />
     <Compile Include="Host\CollectionStatusHost.cs" />
     <Compile Include="Service\CollectionStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DistributedHostManager.cs" />
     <Compile Include="Service\RealTimeService.cs" />
-    <Compile Include="Host\RealTimePriceHost.cs" />
+    <Compile Include="Host\RealTimeHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2_Application\Pitman.Application.DataCollection\Pitman.Application.DataCollection.csproj">

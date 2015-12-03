@@ -26,7 +26,7 @@ namespace Test.Presentation.RESTfulClient
         [TestMethod]
         public void TestRealTimePriceClient()
         {
-            var client = ClientFactory.CreateRealTimePrice(serverAddress);
+            var client = ClientFactory.CreateRealTimeClient(serverAddress);
             var result = client.GetLatest(new List<string>() { "600036"}).ToList();
 
             Assert.IsNotNull(result);
@@ -36,8 +36,17 @@ namespace Test.Presentation.RESTfulClient
         [TestMethod]
         public void Test1MinuteDataClient()
         {
-            var client = ClientFactory.CreateHistoryPriceClient(serverAddress);
+            var client = ClientFactory.CreateKLineClient(serverAddress);
             var result = client.GetBy1Minute("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestIntradayClient()
+        {
+            var client = ClientFactory.CreateIntradayClient(serverAddress);
+            var result = client.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
 
             Assert.IsNotNull(result);
         }

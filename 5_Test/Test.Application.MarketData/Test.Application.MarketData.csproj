@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F69768A9-EFA9-4E9C-93D1-A5AC792F6FBC}</ProjectGuid>
+    <ProjectGuid>{D3849FD0-5F79-4BB4-87EE-01AA0019D08F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test.Domain.MarketData</RootNamespace>
-    <AssemblyName>Test.Domain.MarketData</AssemblyName>
+    <RootNamespace>Test.Application.MarketData</RootNamespace>
+    <AssemblyName>Test.Application.MarketData</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -45,24 +48,32 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IntradayInfoTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151106.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151109.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151110.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151111.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
       <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
       <Name>Pitman.Application.MarketData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.MarketData\Pitman.Domain.MarketData.csproj">
-      <Project>{5791453e-1ee3-4b33-a3aa-ed1c3cf0de69}</Project>
-      <Name>Pitman.Domain.MarketData</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

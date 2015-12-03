@@ -9,14 +9,19 @@ namespace Pitman.Presentation.RESTfulClient
             return new CollectionStatusClient(serverAddress);
         }
 
-        public static IRealTimeService CreateRealTimePrice(string serverAddress)
+        public static IRealTimeService CreateRealTimeClient(string serverAddress)
         {
             return new RealTimeClient(serverAddress);
         }
 
-        public static IKLineService CreateHistoryPriceClient(string serverAddress)
+        public static IKLineService CreateKLineClient(string serverAddress)
         {
             return new KLineClient(serverAddress);
+        }
+
+        public static IIntradayService CreateIntradayClient(string serverAddress)
+        {
+            return new IntradayClient(serverAddress);
         }
     }
 }

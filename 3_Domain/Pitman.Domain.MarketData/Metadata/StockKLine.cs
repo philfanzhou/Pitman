@@ -3,7 +3,7 @@ using System;
 
 namespace Pitman.Domain.MarketData
 {
-    public class StockKLine : IStockKLine
+    internal class StockKLine : IStockKLine
     {
         public string Code { get; set; }
 

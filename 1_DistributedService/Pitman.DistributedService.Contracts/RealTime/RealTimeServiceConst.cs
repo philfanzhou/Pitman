@@ -1,6 +1,6 @@
 ﻿namespace Pitman.DistributedService.Contracts
 {
-    public class RealTimeService
+    public class RealTimeServiceConst
     {
         public const string ServiceName = "RealTimeService";
 

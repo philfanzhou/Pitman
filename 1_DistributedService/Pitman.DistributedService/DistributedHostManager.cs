@@ -11,8 +11,9 @@ namespace Pitman.DistributedService
             SetStatusReportInterval(30000);
 
             AddHost(new CollectionStatusHost(_serverAddress));
-            AddHost(new RealTimePriceHost(_serverAddress));
-            AddHost(new HistoryPriceHost(_serverAddress));
+            AddHost(new RealTimeHost(_serverAddress));
+            AddHost(new KLineHost(_serverAddress));
+            AddHost(new IntradayHost(_serverAddress));
         }
     }
 }

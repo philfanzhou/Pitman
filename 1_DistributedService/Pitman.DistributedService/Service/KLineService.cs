@@ -11,8 +11,7 @@ using System.ServiceModel.Web;
 namespace Pitman.DistributedService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    [AspNetCompatibilityRequirements(
-        RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     internal class KLineService : IKLineService
     {
         [WebInvoke(UriTemplate = KLineServiceConst.Uri_GetBy1Minute,
@@ -21,8 +20,17 @@ namespace Pitman.DistributedService
         public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime)
         {
             KLineAppService appService = new KLineAppService();
-            var result = appService.GetBy1Minute(stockCode, startTime, endTime);
+
+            /*test code for communication*************************************/
+            List<IStockKLine> result = new List<IStockKLine>();
+            StockKLineDto item = new StockKLineDto();
+            item.Code = stockCode;
+            result.Add(item);
             return result.Select(t => ConvertToDto(t));
+            /*test code for communication*************************************/
+
+            //var result = appService.GetBy1Minute(stockCode, startTime, endTime);
+            //return result.Select(t => ConvertToDto(t));
         }
 
         private static StockKLineDto ConvertToDto(IStockKLine priceData)
@@ -34,7 +42,7 @@ namespace Pitman.DistributedService
                 Current = priceData.Current,
                 High = priceData.High,
                 Low = priceData.Low,
-                MarketStr = priceData.Market.ToString(),
+                Market = priceData.Market,
                 ShortName = priceData.ShortName,
                 Time = priceData.Time,
                 Open = priceData.Open,

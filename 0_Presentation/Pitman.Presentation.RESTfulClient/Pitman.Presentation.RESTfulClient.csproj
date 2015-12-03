@@ -52,6 +52,7 @@
     <Compile Include="Base\HttpClientEx.cs" />
     <Compile Include="Base\JsonSerializer.cs" />
     <Compile Include="Clients\KLineClient.cs" />
+    <Compile Include="Clients\IntradayClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

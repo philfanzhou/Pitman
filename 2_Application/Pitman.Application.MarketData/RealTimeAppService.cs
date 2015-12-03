@@ -12,11 +12,5 @@ namespace Pitman.Application.MarketData
             RealTimeDataRepository repository = new RealTimeDataRepository();
             return repository.GetLatest(stockCodes);
         }
-
-        public IEnumerable<IStockRealTime> GetData(string stockCode, DateTime startDate, DateTime endDate)
-        {
-            RealTimeDataRepository repository = new RealTimeDataRepository();
-            return repository.GetData(stockCode, startDate, endDate);
-        }
     }
 }

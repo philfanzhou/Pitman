@@ -5,14 +5,14 @@ namespace Pitman.Presentation.RESTfulClient
 {
     internal class RealTimeClient : RestfulClient, IRealTimeService
     {
-        public RealTimeClient(string serverAddress) : base(serverAddress, RealTimeService.ServiceName) { }
+        public RealTimeClient(string serverAddress) : base(serverAddress, RealTimeServiceConst.ServiceName) { }
 
         public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
             using (var client = GetHttpClient())
             {
                 return client.PostAndReadAs<IEnumerable<StockRealTimeDto>, IEnumerable<string>>(
-                    RealTimeService.Uri_GetLatest, 
+                    RealTimeServiceConst.Uri_GetLatest, 
                     stockCodes);
             }
         }

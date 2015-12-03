@@ -13,13 +13,22 @@ namespace Pitman.DistributedService
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     internal class RealTimeService : IRealTimeService
     {
-        [WebInvoke(UriTemplate = Contracts.RealTimeService.Uri_GetLatest, 
+        [WebInvoke(UriTemplate = Contracts.RealTimeServiceConst.Uri_GetLatest, 
             ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
             RealTimeAppService appService = new RealTimeAppService();
-            var result = appService.GetLatest(stockCodes);
+
+            /*test code for communication*************************************/
+            List<IStockRealTime> result = new List<IStockRealTime>();
+            StockRealTimeDto item = new StockRealTimeDto();
+            item.Code = stockCodes.Last();
+            result.Add(item);
             return result.Select(t => ConvertToDto(t));
+            /*test code for communication*************************************/
+
+            //var result = appService.GetLatest(stockCodes);
+            //return result.Select(t => ConvertToDto(t));
         }
 
         private static StockRealTimeDto ConvertToDto(IStockRealTime priceData)
@@ -31,7 +40,7 @@ namespace Pitman.DistributedService
                 Current = priceData.Current,
                 High = priceData.High,
                 Low = priceData.Low,
-                MarketStr = priceData.Market.ToString(),
+                Market = priceData.Market,
                 ShortName = priceData.ShortName,
                 Time = priceData.Time,
                 TodayOpen = priceData.TodayOpen,

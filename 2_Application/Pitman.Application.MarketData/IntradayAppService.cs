@@ -1,9 +1,8 @@
 ﻿using Ore.Infrastructure.MarketData;
+using Pitman.Domain.MarketData;
+using Pitman.Infrastructure.FileDatabase;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Application.MarketData
 {
@@ -11,7 +10,9 @@ namespace Pitman.Application.MarketData
     {
         public IEnumerable<IStockIntraday> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            RealTimeDataRepository repository = new RealTimeDataRepository();
+            var realTimeData = repository.GetData(stockCode, startDate, endDate);
+            return IntradayConverter.ConvertToIntraday(realTimeData);
         }
     }
 }

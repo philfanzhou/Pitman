@@ -3,7 +3,7 @@ using System;
 
 namespace Pitman.Domain.MarketData
 {
-    public class StockIntraday : IStockIntraday
+    internal class StockIntraday : IStockIntraday
     {
         public string Code { get; set; }
 
@@ -11,7 +11,7 @@ namespace Pitman.Domain.MarketData
 
         public string ShortName { get; set; }
 
-        public double Price { get; set; }
+        public double Current { get; set; }
 
         public double AveragePrice { get; set; }
 
@@ -19,10 +19,26 @@ namespace Pitman.Domain.MarketData
 
         public double ChangeRate { get; set; }
 
-        public double Volume { get; set; }
+        public double Volume
+        {
+            get { return IntradayVolume; }
+            set { IntradayVolume = value; }
+        }
 
-        public double Amount { get; set; }
+        public double Amount
+        {
+            get { return IntradayAmount; }
+            set { IntradayAmount = value; }
+        }
 
         public DateTime Time { get; set; }
+
+        public double IntradayVolume { get; set; }
+
+        public double IntradayAmount { get; set; }
+
+        public double TotalVolume { get; set; }
+
+        public double TotalAmount { get; set; }
     }
 }
