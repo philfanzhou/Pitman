@@ -11,13 +11,11 @@ namespace Pitman.Domain.MarketData
 
         public string ShortName { get; set; }
 
+        public double YesterdayClose { get; set; }
+
         public double Current { get; set; }
 
         public double AveragePrice { get; set; }
-
-        public double Change { get; set; }
-
-        public double ChangeRate { get; set; }
 
         public double Volume
         {
@@ -32,6 +30,10 @@ namespace Pitman.Domain.MarketData
         }
 
         public DateTime Time { get; set; }
+
+        public double BuyVolume { get; set; }
+
+        public double SellVolume { get; set; }
 
         public double IntradayVolume { get; set; }
 

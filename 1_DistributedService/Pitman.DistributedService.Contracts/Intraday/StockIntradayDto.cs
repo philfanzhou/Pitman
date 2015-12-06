@@ -35,22 +35,25 @@ namespace Pitman.DistributedService.Contracts
             set { time = value.ToString("yyyy-MM-dd hh:mm:ss"); }
         }
 
+        [DataMember(Name = "yesterdayClose")]
+        public double YesterdayClose { get; set; }
+
         [DataMember(Name = "current")]
         public double Current { get; set; }
 
         [DataMember(Name = "averagePrice")]
         public double AveragePrice { get; set; }
 
-        [DataMember(Name = "change")]
-        public double Change { get; set; }
-
-        [DataMember(Name = "changeRate")]
-        public double ChangeRate { get; set; }
-
         [DataMember(Name = "volume")]
         public double Volume { get; set; }
 
         [DataMember(Name = "amount")]
         public double Amount { get; set; }
+
+        [DataMember(Name = "buyVolume")]
+        public double BuyVolume { get; set; }
+
+        [DataMember(Name = "sellVolume")]
+        public double SellVolume { get; set; }
     }
 }

@@ -39,14 +39,15 @@ namespace Pitman.DistributedService
             {
                 Amount = data.Amount,
                 AveragePrice = data.AveragePrice,
-                Change = data.Change,
-                ChangeRate = data.ChangeRate,
                 Code = data.Code,
+                YesterdayClose = data.YesterdayClose,
                 Current = data.Current,
                 Market = data.Market,
                 ShortName = data.ShortName,
                 Time = data.Time,
-                Volume = data.Volume
+                Volume = data.Volume,
+                BuyVolume = data.BuyVolume,
+                SellVolume = data.SellVolume
             };
         }
     }

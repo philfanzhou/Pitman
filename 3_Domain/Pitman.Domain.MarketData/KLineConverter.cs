@@ -6,9 +6,16 @@ namespace Pitman.Domain.MarketData
 {
     public static class KLineConverter
     {
-        public static IEnumerable<IStockKLine> ConvertTo1Minute(IEnumerable<IStockRealTime> data)
+        public static IEnumerable<IStockKLine> ConvertTo1Minute(IEnumerable<IStockRealTime> realTimeItems)
         {
-            throw new NotImplementedException();
+            List<IStockKLine> result = new List<IStockKLine>();
+
+            foreach (var realTimeItem in realTimeItems)
+            {
+
+            }
+
+            return result;
         }
     }
 }
