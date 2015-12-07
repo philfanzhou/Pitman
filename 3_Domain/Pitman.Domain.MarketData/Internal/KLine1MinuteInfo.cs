@@ -113,8 +113,8 @@ namespace Pitman.Domain.MarketData
                 currentItem.Volume = realTimeItem.Volume;
                 currentItem.Amount = realTimeItem.Amount;
 
-                // 如果是某一天的第一条数据，前收盘价就留到合并数据的时候进行处理，这里略过
-                //currentItem.PreClose
+                // 如果是某一天的第一条数据，前收盘价就取昨日收盘价
+                currentItem.PreClose = realTimeItem.YesterdayClose;
             }
         }
     }

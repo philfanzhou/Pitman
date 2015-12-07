@@ -57,16 +57,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151106.dat">
+    <None Include="Data\RealTimeData\Shanghai\600036\20151201.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151109.dat">
+    <None Include="Data\RealTimeData\Shanghai\600036\20151202.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151110.dat">
+    <None Include="Data\RealTimeData\Shanghai\600036\20151203.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151111.dat">
+    <None Include="Data\RealTimeData\Shanghai\600036\20151204.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RealTimeData\Shanghai\600036\20151207.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

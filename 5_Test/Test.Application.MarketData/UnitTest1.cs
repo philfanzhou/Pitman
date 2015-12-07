@@ -16,5 +16,12 @@ namespace Test.Application.MarketData
             var appService = new IntradayAppService();
             List<IStockIntraday> intradayList = appService.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 13)).ToList();
         }
+
+        [TestMethod]
+        public void TestGet1MinuteKLine()
+        {
+            var appService = new KLineAppService();
+            List<IStockKLine> kLineList = appService.GetBy1Minute("600036", DateTime.Now, DateTime.Now).ToList();
+        }
     }
 }
