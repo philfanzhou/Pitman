@@ -79,5 +79,10 @@ namespace Pitman.DistributedService.Contracts
         /// </summary>
         [DataMember(Name = "amount")]
         public double Amount { get; set; }
+
+        public override string ToString()
+        {
+            return this.time + string.Format("  Current:{0}", Current);
+        }
     }
 }

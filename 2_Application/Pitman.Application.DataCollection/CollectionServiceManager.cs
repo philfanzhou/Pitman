@@ -26,12 +26,16 @@ namespace Pitman.Application.DataCollection
         }
         #endregion
 
+        public void Start()
+        {
+            ServiceStatusCheckTimer.Enabled = true;
+            ServiceStatusCheckTimer.Start();
+        }
+
         private CollectionServiceManager()
         {
             // 启动服务观察timer
             ServiceStatusCheckTimer.Elapsed += ServiceStatusCheckTimer_Elapsed;
-            ServiceStatusCheckTimer.Enabled = true;
-            ServiceStatusCheckTimer.Start();
         }
 
         public IEnumerable<string> GetAllServiceName()

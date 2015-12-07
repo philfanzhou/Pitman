@@ -1,4 +1,5 @@
 ﻿using Framework.DistributedService;
+using Pitman.Application.DataCollection;
 using Pitman.DistributedService.Contracts;
 
 namespace Pitman.DistributedService
@@ -7,6 +8,8 @@ namespace Pitman.DistributedService
     {
         internal CollectionStatusHost(string serverAddress)
             : base(serverAddress, CollectionStatusServiceConst.ServiceName)
-        { }
+        {
+            CollectionServiceManager.Instance.Start();
+        }
     }
 }

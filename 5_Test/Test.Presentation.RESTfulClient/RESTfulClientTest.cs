@@ -9,8 +9,8 @@ namespace Test.Presentation.RESTfulClient
     [TestClass]
     public class RESTfulClientTest
     {
-        private string serverAddress = "http://localhost:9999";
-        //private string serverAddress = "http://quantum1234.cloudapp.net:6688";
+        //private string serverAddress = "http://localhost:9999";
+        private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
         [TestMethod]
         public void TestCollectionStatusClient()
@@ -46,7 +46,8 @@ namespace Test.Presentation.RESTfulClient
         public void TestIntradayClient()
         {
             var client = ClientFactory.CreateIntradayClient(serverAddress);
-            var result = client.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+            //var result = client.GetData("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+            var result = client.GetData("600036", DateTime.Now, DateTime.Now).ToList();
 
             Assert.IsNotNull(result);
         }

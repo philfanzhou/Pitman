@@ -83,6 +83,11 @@ namespace Pitman.DistributedService.Contracts
         [DataMember(Name = "amount")]
         public double Amount { get; set; }
 
+        public override string ToString()
+        {
+            return this.time + string.Format("  Current:{0}", Current);
+        }
+
         #region 卖盘
 
         /// <summary>
