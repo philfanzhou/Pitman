@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Domain.MarketData
 {
@@ -15,8 +13,17 @@ namespace Pitman.Domain.MarketData
         private static readonly TimeSpan span = new TimeSpan(0, 1, 0);
 
         private readonly List<StockMinutesKLine> _items = new List<StockMinutesKLine>();
+        private readonly DateTime date;
 
-        private DateTime currentDate = new DateTime();
+        public KLine1MinuteInfo(DateTime date)
+        {
+            this.date = date.Date;
+        }
+
+        public override string ToString()
+        {
+            return this.date.ToString("yyyy-MM-dd");
+        }
 
         public IEnumerable<IStockKLine> Items
         {
@@ -35,6 +42,11 @@ namespace Pitman.Domain.MarketData
 
         public void Add(IStockRealTime realTimeItem)
         {
+            if (realTimeItem.Time.Date != this.date.Date)
+                throw new ArgumentOutOfRangeException("item");
+
+            // todo: 过滤掉非交易时间的数据
+
             AddNewItemIfNeeded(realTimeItem);
 
             UpdateLastItemInfo(realTimeItem);
@@ -42,8 +54,8 @@ namespace Pitman.Domain.MarketData
 
         private void AddNewItemIfNeeded(IStockRealTime realTimeItem)
         {
-            if (currentDate.Date != realTimeItem.Time.Date ||
-                            realTimeItem.Time - _items.Last().Time > span)
+            if (_items.Count < 1 || 
+                realTimeItem.Time - _items.Last().Time > span)
             {
                 var newItem = new StockMinutesKLine
                 {
@@ -68,7 +80,6 @@ namespace Pitman.Domain.MarketData
                 };
 
                 _items.Add(newItem);
-                currentDate = realTimeItem.Time.Date;
             }
         }
 
@@ -88,7 +99,23 @@ namespace Pitman.Domain.MarketData
                 currentItem.Low = realTimeItem.Current;
             }
 
-            //currentItem.PreClose
+            // 根据前面的数据，求出分时成交量和成交额, 以及前收盘价
+            if (_items.Count > 1)
+            {
+                StockMinutesKLine previousDate = _items[_items.Count - 2];
+                currentItem.Volume = realTimeItem.Volume - previousDate.CurrentTotalVolume;
+                currentItem.Amount = realTimeItem.Amount - previousDate.CurrentTotalAmount;
+
+                currentItem.PreClose = previousDate.Current;
+            }
+            else
+            {
+                currentItem.Volume = realTimeItem.Volume;
+                currentItem.Amount = realTimeItem.Amount;
+
+                // 如果是某一天的第一条数据，前收盘价就留到合并数据的时候进行处理，这里略过
+                //currentItem.PreClose
+            }
         }
     }
 }

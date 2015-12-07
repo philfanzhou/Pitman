@@ -52,8 +52,8 @@ namespace Pitman.Domain.MarketData
 
         private void AddNewIntradayItemIfNeeded(IStockRealTime realTimeItem)
         {
-            if (_intradayItems.Count < 1 ||
-                            realTimeItem.Time - _intradayItems.Last().Time > span)
+            if (_intradayItems.Count < 1 || 
+                realTimeItem.Time - _intradayItems.Last().Time > span)
             {
                 var newItem = new StockIntraday
                 {
@@ -82,8 +82,8 @@ namespace Pitman.Domain.MarketData
             intradayItem.BuyVolume = realTimeItem.BuyVolume();
             intradayItem.SellVolume = realTimeItem.SellVolume();
 
-            intradayItem.TotalVolume = realTimeItem.Volume;
-            intradayItem.TotalAmount = realTimeItem.Amount;
+            intradayItem.CurrentTotalVolume = realTimeItem.Volume;
+            intradayItem.CurrentTotalAmount = realTimeItem.Amount;
 
             // 集合竞价期间需要对当前价格进行特殊处理,因为集合竞价期间不存在成交价，只存在委卖委买价
             intradayItem.Current = Math.Abs(realTimeItem.Current) < 0.00001
@@ -98,8 +98,8 @@ namespace Pitman.Domain.MarketData
             if (_intradayItems.Count > 1)
             {
                 StockIntraday previousDate = _intradayItems[_intradayItems.Count - 2];
-                intradayItem.Volume = realTimeItem.Volume - previousDate.TotalVolume;
-                intradayItem.Amount = realTimeItem.Amount - previousDate.TotalAmount;
+                intradayItem.Volume = realTimeItem.Volume - previousDate.CurrentTotalVolume;
+                intradayItem.Amount = realTimeItem.Amount - previousDate.CurrentTotalAmount;
             }
             else
             {

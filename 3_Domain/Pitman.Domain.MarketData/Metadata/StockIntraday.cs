@@ -32,12 +32,12 @@ namespace Pitman.Domain.MarketData
         /// <summary>
         /// 当前时刻的总成交量
         /// </summary>
-        public double TotalVolume { get; set; }
+        public double CurrentTotalVolume { get; set; }
 
         /// <summary>
         /// 当前时刻的总成交额
         /// </summary>
-        public double TotalAmount { get; set; }
+        public double CurrentTotalAmount { get; set; }
 
         public override string ToString()
         {
