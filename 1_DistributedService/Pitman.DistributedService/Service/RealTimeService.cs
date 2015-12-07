@@ -19,16 +19,16 @@ namespace Pitman.DistributedService
         {
             RealTimeAppService appService = new RealTimeAppService();
 
-            /*test code for communication*************************************/
-            List<IStockRealTime> result = new List<IStockRealTime>();
-            StockRealTimeDto item = new StockRealTimeDto();
-            item.Code = stockCodes.Last();
-            result.Add(item);
-            return result.Select(t => ConvertToDto(t));
-            /*test code for communication*************************************/
-
-            //var result = appService.GetLatest(stockCodes);
+            ///*test code for communication*************************************/
+            //List<IStockRealTime> result = new List<IStockRealTime>();
+            //StockRealTimeDto item = new StockRealTimeDto();
+            //item.Code = stockCodes.Last();
+            //result.Add(item);
             //return result.Select(t => ConvertToDto(t));
+            ///*test code for communication*************************************/
+
+            var result = appService.GetLatest(stockCodes);
+            return result.Select(t => ConvertToDto(t));
         }
 
         private static StockRealTimeDto ConvertToDto(IStockRealTime priceData)

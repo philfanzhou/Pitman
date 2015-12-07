@@ -49,7 +49,7 @@
     <Compile Include="KLineConverter.cs" />
     <Compile Include="Internal\KLine1MinuteInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Metadata\StockKLine.cs" />
+    <Compile Include="Metadata\StockMinutesKLine.cs" />
     <Compile Include="Metadata\StockIntraday.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

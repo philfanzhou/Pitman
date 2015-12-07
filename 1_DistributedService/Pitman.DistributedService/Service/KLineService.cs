@@ -21,16 +21,16 @@ namespace Pitman.DistributedService
         {
             KLineAppService appService = new KLineAppService();
 
-            /*test code for communication*************************************/
-            List<IStockKLine> result = new List<IStockKLine>();
-            StockKLineDto item = new StockKLineDto();
-            item.Code = stockCode;
-            result.Add(item);
-            return result.Select(t => ConvertToDto(t));
-            /*test code for communication*************************************/
-
-            //var result = appService.GetBy1Minute(stockCode, startTime, endTime);
+            ///*test code for communication*************************************/
+            //List<IStockKLine> result = new List<IStockKLine>();
+            //StockKLineDto item = new StockKLineDto();
+            //item.Code = stockCode;
+            //result.Add(item);
             //return result.Select(t => ConvertToDto(t));
+            ///*test code for communication*************************************/
+
+            var result = appService.GetBy1Minute(stockCode, startTime, endTime);
+            return result.Select(t => ConvertToDto(t));
         }
 
         private static StockKLineDto ConvertToDto(IStockKLine priceData)

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.Infrastructure.FileDatabase;
-using Ore.Infrastructure.MarketData.DataSource.Sina;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ore.Infrastructure.MarketData;
+using Pitman.Infrastructure.FileDatabase;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.Infrastructure.FileDatabase
 {
@@ -91,7 +90,6 @@ namespace Test.Infrastructure.FileDatabase
 
             Assert.IsFalse(string.IsNullOrEmpty(path));
         }
-
 
         [TestMethod]
         public void TestPathHelper()

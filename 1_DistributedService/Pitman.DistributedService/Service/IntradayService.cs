@@ -21,16 +21,16 @@ namespace Pitman.DistributedService
         {
             IntradayAppService appService = new IntradayAppService();
 
-            /*test code for communication*************************************/
-            List<IStockIntraday> result = new List<IStockIntraday>();
-            StockIntradayDto item = new StockIntradayDto();
-            item.Code = stockCode;
-            result.Add(item);
-            return result.Select(t => ConvertToDto(t));
-            /*test code for communication*************************************/
-            
-            //var result = appService.GetData(stockCode, startDate, endDate);
+            ///*test code for communication*************************************/
+            //List<IStockIntraday> result = new List<IStockIntraday>();
+            //StockIntradayDto item = new StockIntradayDto();
+            //item.Code = stockCode;
+            //result.Add(item);
             //return result.Select(t => ConvertToDto(t));
+            ///*test code for communication*************************************/
+
+            var result = appService.GetData(stockCode, startDate, endDate);
+            return result.Select(t => ConvertToDto(t));
         }
 
         private StockIntradayDto ConvertToDto(IStockIntraday data)

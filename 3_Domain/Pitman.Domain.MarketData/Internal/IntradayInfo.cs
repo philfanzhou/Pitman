@@ -79,12 +79,18 @@ namespace Pitman.Domain.MarketData
             StockIntraday intradayItem = _intradayItems.Last();
 
             intradayItem.YesterdayClose = realTimeItem.YesterdayClose;
-            intradayItem.Current = realTimeItem.Current;
-            intradayItem.TotalVolume = realTimeItem.Volume;
-            intradayItem.TotalAmount = realTimeItem.Amount;
             intradayItem.BuyVolume = realTimeItem.BuyVolume();
             intradayItem.SellVolume = realTimeItem.SellVolume();
-            
+
+            intradayItem.TotalVolume = realTimeItem.Volume;
+            intradayItem.TotalAmount = realTimeItem.Amount;
+
+            // 集合竞价期间需要对当前价格进行特殊处理,因为集合竞价期间不存在成交价，只存在委卖委买价
+            intradayItem.Current = Math.Abs(realTimeItem.Current) < 0.00001
+                ? realTimeItem.Sell1Price
+                : realTimeItem.Current;
+
+            // 集合竞价期间无成交量，不进行均价计算
             intradayItem.AveragePrice = Math.Abs(realTimeItem.Volume) < 0.00001 ? 0 :
                 Math.Round(realTimeItem.Amount / realTimeItem.Volume, 2);
 
@@ -92,13 +98,13 @@ namespace Pitman.Domain.MarketData
             if (_intradayItems.Count > 1)
             {
                 StockIntraday previousDate = _intradayItems[_intradayItems.Count - 2];
-                intradayItem.IntradayVolume = realTimeItem.Volume - previousDate.TotalVolume;
-                intradayItem.IntradayAmount = realTimeItem.Amount - previousDate.TotalAmount;
+                intradayItem.Volume = realTimeItem.Volume - previousDate.TotalVolume;
+                intradayItem.Amount = realTimeItem.Amount - previousDate.TotalAmount;
             }
             else
             {
-                intradayItem.IntradayVolume = realTimeItem.Volume;
-                intradayItem.IntradayAmount = realTimeItem.Amount;
+                intradayItem.Volume = realTimeItem.Volume;
+                intradayItem.Amount = realTimeItem.Amount;
             }
         }
     }

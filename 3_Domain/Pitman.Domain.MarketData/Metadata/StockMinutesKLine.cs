@@ -3,13 +3,16 @@ using System;
 
 namespace Pitman.Domain.MarketData
 {
-    internal class StockKLine : IStockKLine
+    internal class StockMinutesKLine : IStockKLine
     {
+        #region IStockKLine Members
         public string Code { get; set; }
 
         public Market Market { get; set; }
 
         public string ShortName { get; set; }
+
+        public DateTime Time { get; set; }
 
         public double Open { get; set; }
 
@@ -24,7 +27,15 @@ namespace Pitman.Domain.MarketData
         public double Volume { get; set; }
 
         public double Amount { get; set; }
+        #endregion
 
-        public DateTime Time { get; set; }
+        public double CurrentTotalVolume { get; set; }
+
+        public double CurrentTotalAmount { get; set; }
+
+        public override string ToString()
+        {
+            return Time.ToString("yyyy-MM-dd hh:mm:ss") + string.Format("  Price:{0}", Current);
+        }
     }
 }

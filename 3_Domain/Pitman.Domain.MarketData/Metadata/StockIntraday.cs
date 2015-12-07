@@ -5,11 +5,14 @@ namespace Pitman.Domain.MarketData
 {
     internal class StockIntraday : IStockIntraday
     {
+        #region IStockIntraday Members
         public string Code { get; set; }
 
         public Market Market { get; set; }
 
         public string ShortName { get; set; }
+
+        public DateTime Time { get; set; }
 
         public double YesterdayClose { get; set; }
 
@@ -17,30 +20,28 @@ namespace Pitman.Domain.MarketData
 
         public double AveragePrice { get; set; }
 
-        public double Volume
-        {
-            get { return IntradayVolume; }
-            set { IntradayVolume = value; }
-        }
+        public double Volume { get; set; }
 
-        public double Amount
-        {
-            get { return IntradayAmount; }
-            set { IntradayAmount = value; }
-        }
-
-        public DateTime Time { get; set; }
+        public double Amount { get; set; }
 
         public double BuyVolume { get; set; }
 
         public double SellVolume { get; set; }
+        #endregion
 
-        public double IntradayVolume { get; set; }
-
-        public double IntradayAmount { get; set; }
-
+        /// <summary>
+        /// 当前时刻的总成交量
+        /// </summary>
         public double TotalVolume { get; set; }
 
+        /// <summary>
+        /// 当前时刻的总成交额
+        /// </summary>
         public double TotalAmount { get; set; }
+
+        public override string ToString()
+        {
+            return Time.ToString("yyyy-MM-dd hh:mm:ss") + string.Format("   Current:{0}", Current);
+        }
     }
 }
