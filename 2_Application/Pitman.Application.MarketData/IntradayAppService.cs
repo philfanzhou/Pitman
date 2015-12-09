@@ -1,6 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
-using Pitman.Domain.MarketData;
 using Pitman.Infrastructure.FileDatabase;
+using Quantum.Domain.MarketData;
 using System;
 using System.Collections.Generic;
 

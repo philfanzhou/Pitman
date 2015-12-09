@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
+    <Reference Include="Quantum.Domain.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Refer.Dll\Quantum.Domain.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,10 +53,6 @@
     <Compile Include="RealTimeAppService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.MarketData\Pitman.Domain.MarketData.csproj">
-      <Project>{5791453e-1ee3-4b33-a3aa-ed1c3cf0de69}</Project>
-      <Name>Pitman.Domain.MarketData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
       <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
       <Name>Pitman.Infrastructure.FileDatabase</Name>
