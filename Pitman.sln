@@ -53,6 +53,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Server", "0_Server", "{10
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Application.MarketData", "5_Test\Test.Application.MarketData\Test.Application.MarketData.csproj", "{D3849FD0-5F79-4BB4-87EE-01AA0019D08F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.WebApi", "1_DistributedService\Pitman.WebApi\Pitman.WebApi.csproj", "{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{D3849FD0-5F79-4BB4-87EE-01AA0019D08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3849FD0-5F79-4BB4-87EE-01AA0019D08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3849FD0-5F79-4BB4-87EE-01AA0019D08F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +154,6 @@ Global
 		{724AE691-AAD1-4A7C-880A-2A3672457B84} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 		{10A56582-8425-4E86-9F11-935FBE102022} = {A7008C68-B65C-4CB1-81CF-D0BC591A61DD}
 		{D3849FD0-5F79-4BB4-87EE-01AA0019D08F} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
+		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93} = {9FF38106-1F22-4F16-B40B-5BE1FA50D5CC}
 	EndGlobalSection
 EndGlobal
