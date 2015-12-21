@@ -60,6 +60,9 @@
     <Compile Include="RealTime\StockRealTimeDto.cs" />
     <Compile Include="Intraday\StockIntradayDto.cs" />
     <Compile Include="Security\SecurityDto.cs" />
+    <Compile Include="Bonus\StockBonusDto.cs" />
+    <Compile Include="Profile\StockProfileDto.cs" />
+    <Compile Include="Structure\StockStructureDto.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
