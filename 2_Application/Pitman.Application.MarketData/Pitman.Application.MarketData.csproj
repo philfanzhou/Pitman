@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
+    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Eastmoney">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Eastmoney.dll</HintPath>
+    </Reference>
     <Reference Include="Quantum.Domain.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Quantum.Domain.MarketData.dll</HintPath>

@@ -1,5 +1,5 @@
 ﻿using Ore.Infrastructure.MarketData;
-using System;
+using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
 using System.Collections.Generic;
 
 namespace Pitman.Application.MarketData
@@ -8,7 +8,8 @@ namespace Pitman.Application.MarketData
     {
         public IEnumerable<ISecurity> GetAll()
         {
-            throw new NotFiniteNumberException();
+            SecurityInfoApi api = new SecurityInfoApi();
+            return api.GetAllSecurity();
         }
     }
 }

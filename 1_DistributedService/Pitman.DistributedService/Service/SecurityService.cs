@@ -19,22 +19,22 @@ namespace Pitman.DistributedService
         {
             SecurityAppService appService = new SecurityAppService();
 
-            /*test code for communication*************************************/
-            var dto = new SecurityDto()
-            {
-                Code = "600036",
-                Market = Market.XSHG,
-                ShortName = "招商银行",
-                Type = SecurityType.Sotck
-            };
+            ///*test code for communication*************************************/
+            //var dto = new SecurityDto()
+            //{
+            //    Code = "600036",
+            //    Market = Market.XSHG,
+            //    ShortName = "招商银行",
+            //    Type = SecurityType.Sotck
+            //};
 
-            var result = new List<SecurityDto>();
-            result.Add(dto);
-            return result.Select(t => ConvertToDto(t));
-            /*test code for communication*************************************/
-
-            //var result = appService.GetAll();
+            //var result = new List<SecurityDto>();
+            //result.Add(dto);
             //return result.Select(t => ConvertToDto(t));
+            ///*test code for communication*************************************/
+
+            var result = appService.GetAll();
+            return result.Select(t => ConvertToDto(t));
         }
 
         private static SecurityDto ConvertToDto(ISecurity securityData)
