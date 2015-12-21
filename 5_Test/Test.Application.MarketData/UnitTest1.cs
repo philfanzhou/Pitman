@@ -30,5 +30,12 @@ namespace Test.Application.MarketData
             var appService = new SecurityAppService();
             List<ISecurity> securities = appService.GetAll().ToList();
         }
+
+        [TestMethod]
+        public void TestBonusInfo()
+        {
+            var appService = new FundamentalAppService();
+            List<IStockBonus> result = appService.GetBonus("600036").ToList();
+        }
     }
 }

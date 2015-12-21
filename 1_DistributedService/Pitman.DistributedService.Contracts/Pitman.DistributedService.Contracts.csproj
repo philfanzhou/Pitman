@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionStatus\CollectionStatusServiceConst.cs" />
+    <Compile Include="Fundamental\FundamentalServiceConst.cs" />
+    <Compile Include="Fundamental\IFundamentalService.cs" />
     <Compile Include="Intraday\IntradayServiceConst.cs" />
     <Compile Include="Intraday\IIntradayService.cs" />
     <Compile Include="Security\SecurityServiceConst.cs" />
@@ -60,9 +62,9 @@
     <Compile Include="RealTime\StockRealTimeDto.cs" />
     <Compile Include="Intraday\StockIntradayDto.cs" />
     <Compile Include="Security\SecurityDto.cs" />
-    <Compile Include="Bonus\StockBonusDto.cs" />
-    <Compile Include="Profile\StockProfileDto.cs" />
-    <Compile Include="Structure\StockStructureDto.cs" />
+    <Compile Include="Fundamental\StockBonusDto.cs" />
+    <Compile Include="Fundamental\StockProfileDto.cs" />
+    <Compile Include="Fundamental\StockStructureDto.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
