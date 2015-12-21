@@ -14,6 +14,7 @@ namespace Pitman.DistributedService
             AddHost(new RealTimeHost(_serverAddress));
             AddHost(new KLineHost(_serverAddress));
             AddHost(new IntradayHost(_serverAddress));
+            AddHost(new SecurityHost(_serverAddress));
         }
     }
 }

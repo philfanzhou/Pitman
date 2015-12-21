@@ -146,7 +146,7 @@ namespace Pitman.Application.DataCollection
         private IEnumerable<IStockRealTime> GetRealTimeDatas()
         {
             IEnumerable<ISecurity> stocks = GetStockList();
-            SinaRealTimePriceAPI api = new SinaRealTimePriceAPI();
+            StockRealTimeApi api = new StockRealTimeApi();
 
             IEnumerable<IStockRealTime> datas;
             try

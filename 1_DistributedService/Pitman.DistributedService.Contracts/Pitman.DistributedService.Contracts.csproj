@@ -48,6 +48,8 @@
     <Compile Include="CollectionStatus\CollectionStatusServiceConst.cs" />
     <Compile Include="Intraday\IntradayServiceConst.cs" />
     <Compile Include="Intraday\IIntradayService.cs" />
+    <Compile Include="Security\SecurityServiceConst.cs" />
+    <Compile Include="Security\ISecurityService.cs" />
     <Compile Include="KLine\KLineServiceConst.cs" />
     <Compile Include="KLine\IKLineService.cs" />
     <Compile Include="KLine\StockKLineDto.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="RealTime\RealTimeServiceConst.cs" />
     <Compile Include="RealTime\StockRealTimeDto.cs" />
     <Compile Include="Intraday\StockIntradayDto.cs" />
+    <Compile Include="Security\SecurityDto.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

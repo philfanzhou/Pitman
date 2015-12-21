@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Host\KLineHost.cs" />
     <Compile Include="Host\IntradayHost.cs" />
+    <Compile Include="Host\SecurityHost.cs" />
+    <Compile Include="Service\SecurityService.cs" />
     <Compile Include="Service\IntradayService.cs" />
     <Compile Include="Service\KLineService.cs" />
     <Compile Include="Host\CollectionStatusHost.cs" />

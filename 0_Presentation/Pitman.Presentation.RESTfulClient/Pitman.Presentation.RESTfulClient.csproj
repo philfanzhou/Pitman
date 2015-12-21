@@ -54,6 +54,7 @@
     <Compile Include="Clients\KLineClient.cs" />
     <Compile Include="Clients\IntradayClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Clients\SecurityClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">

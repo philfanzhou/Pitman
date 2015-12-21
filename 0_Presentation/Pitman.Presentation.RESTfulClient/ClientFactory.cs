@@ -23,5 +23,10 @@ namespace Pitman.Presentation.RESTfulClient
         {
             return new IntradayClient(serverAddress);
         }
+
+        public static ISecurityService CreateSecurityService(string serverAddress)
+        {
+            return new SecurityClient(serverAddress);
+        }
     }
 }
