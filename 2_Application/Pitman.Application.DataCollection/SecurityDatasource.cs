@@ -2,9 +2,9 @@
 using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
 using System.Collections.Generic;
 
-namespace Pitman.Application.MarketData
+namespace Pitman.Application.DataCollection
 {
-    public class SecurityAppService
+    public class SecurityDatasource
     {
         public IEnumerable<ISecurity> GetAll()
         {

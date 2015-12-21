@@ -34,12 +34,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
-    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Eastmoney">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Eastmoney.dll</HintPath>
-    </Reference>
-    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Sina">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Sina.dll</HintPath>
-    </Reference>
     <Reference Include="Quantum.Domain.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Quantum.Domain.MarketData.dll</HintPath>
@@ -53,12 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FundamentalAppService.cs" />
     <Compile Include="IntradayAppService.cs" />
     <Compile Include="KLineAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimeAppService.cs" />
-    <Compile Include="SecurityAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">

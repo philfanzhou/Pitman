@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pitman.Application.MarketData
+namespace Pitman.Application.DataCollection
 {
-    public class FundamentalAppService
+    public class FundamentalDatasource
     {
         public IStockProfile GetProfile(string stockCode)
         {
