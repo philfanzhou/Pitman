@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class SecurityClient : RestfulClient, ISecurityService
+    internal class SecurityClient : RestfulClient
     {
         public SecurityClient(string serverAddress) : base(serverAddress, SecurityServiceConst.ServiceName) { }
 
