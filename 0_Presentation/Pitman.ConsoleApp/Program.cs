@@ -1,5 +1,6 @@
 ﻿using Framework.DistributedService;
 using Pitman.DistributedService;
+using Pitman.WebApi;
 using System;
 using System.Reflection;
 using System.Threading;
@@ -37,14 +38,11 @@ namespace Pitman.ConsoleApp
                 serviceManager.OpenAllService();
 
                 Assembly.Load("Pitman.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken = null");
-                HttpSelfHostConfiguration configuration =
-                new HttpSelfHostConfiguration("http://localhost:9999");
-                HttpSelfHostServer httpServer =
-                new HttpSelfHostServer(configuration);
-                httpServer.Configuration.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+                var configuration = new HttpSelfHostConfiguration("http://localhost:9999");
+                var httpServer = new HttpSelfHostServer(configuration);
+
+                RouteConfig.Register(httpServer.Configuration);
+
                 httpServer.OpenAsync();
 
                 while (true)

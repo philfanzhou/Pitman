@@ -28,5 +28,20 @@ namespace Pitman.Presentation.RESTfulClient
         {
             return new SecurityClient(serverAddress);
         }
+
+        public static IStockBonusClient CreateStockBonusClient(string serverAddress)
+        {
+            return new StockBonusClient(serverAddress);
+        }
+
+        public static IStockProfileClient CreateStockProfileClient(string serverAddress)
+        {
+            return new StockProfileClient(serverAddress);
+        }
+
+        public static IStockStructureClient CreateStockStructureClient(string serverAddress)
+        {
+            return new StockStructureClient(serverAddress);
+        }
     }
 }

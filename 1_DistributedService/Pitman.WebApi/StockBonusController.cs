@@ -1,26 +1,26 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.DistributedService.Contracts;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Pitman.WebApi
 {
-    public class SecuritiesController : ApiController
+    public class StockBonusController : ApiController
     {
-        // http://book.51cto.com/art/201408/448647.htm
-        // http://www.cnblogs.com/artech/p/web-api-sample.html
-
-        public IEnumerable<SecurityDto> Get()
+        public IEnumerable<StockBonusDto> Get(string stockCode)
         {
-            var dto = new SecurityDto()
+            var dto = new StockBonusDto()
             {
                 Code = "600036",
                 Market = Market.XSHG,
                 ShortName = "招商银行",
-                Type = SecurityType.Sotck
             };
 
-            var result = new List<SecurityDto>();
+            var result = new List<StockBonusDto>();
             result.Add(dto);
 
             return result;

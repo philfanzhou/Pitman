@@ -59,10 +59,10 @@
     <Compile Include="RealTime\RealTimeServiceConst.cs" />
     <Compile Include="RealTime\StockRealTimeDto.cs" />
     <Compile Include="Intraday\StockIntradayDto.cs" />
-    <Compile Include="Security\SecurityDto.cs" />
-    <Compile Include="Fundamental\StockBonusDto.cs" />
-    <Compile Include="Fundamental\StockProfileDto.cs" />
-    <Compile Include="Fundamental\StockStructureDto.cs" />
+    <Compile Include="Metadata\SecurityDto.cs" />
+    <Compile Include="Metadata\StockBonusDto.cs" />
+    <Compile Include="Metadata\StockProfileDto.cs" />
+    <Compile Include="Metadata\StockStructureDto.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

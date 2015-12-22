@@ -60,5 +60,32 @@ namespace Test.Presentation.RESTfulClient
 
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void TestStockBonusClient()
+        {
+            var client = ClientFactory.CreateStockBonusClient(serverAddress);
+            var result = client.Get("600036");
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestStockProfileClient()
+        {
+            var client = ClientFactory.CreateStockProfileClient(serverAddress);
+            var result = client.Get("600036");
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestStockStructureClient()
+        {
+            var client = ClientFactory.CreateStockStructureClient(serverAddress);
+            var result = client.Get("600036");
+
+            Assert.IsNotNull(result);
+        }
     }
 }

@@ -54,8 +54,14 @@
     <Compile Include="Clients\KLineClient.cs" />
     <Compile Include="Clients\IntradayClient.cs" />
     <Compile Include="ISecurityClient.cs" />
+    <Compile Include="IStockBonusClient.cs" />
+    <Compile Include="IStockProfileClient.cs" />
+    <Compile Include="IStockStructureClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clients\SecurityClient.cs" />
+    <Compile Include="Clients\StockBonusClient.cs" />
+    <Compile Include="Clients\StockProfileClient.cs" />
+    <Compile Include="Clients\StockStructureClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">

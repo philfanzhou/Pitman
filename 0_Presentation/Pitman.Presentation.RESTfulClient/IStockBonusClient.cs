@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    public interface ISecurityClient
+    public interface IStockBonusClient
     {
-        IEnumerable<ISecurity> GetAll();
+        IEnumerable<IStockBonus> Get(string stockCode);
     }
 }
