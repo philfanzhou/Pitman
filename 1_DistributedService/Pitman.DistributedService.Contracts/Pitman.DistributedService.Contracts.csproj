@@ -50,8 +50,6 @@
     <Compile Include="Fundamental\IFundamentalService.cs" />
     <Compile Include="Intraday\IntradayServiceConst.cs" />
     <Compile Include="Intraday\IIntradayService.cs" />
-    <Compile Include="Security\SecurityServiceConst.cs" />
-    <Compile Include="Security\ISecurityService.cs" />
     <Compile Include="KLine\KLineServiceConst.cs" />
     <Compile Include="KLine\IKLineService.cs" />
     <Compile Include="KLine\StockKLineDto.cs" />

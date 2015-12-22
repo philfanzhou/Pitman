@@ -56,11 +56,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SecuritiesController.cs" />
-    <Compile Include="SecurityDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
+      <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
+      <Name>Pitman.DistributedService.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

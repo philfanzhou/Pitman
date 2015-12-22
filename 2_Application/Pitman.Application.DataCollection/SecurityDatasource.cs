@@ -6,7 +6,7 @@ namespace Pitman.Application.DataCollection
 {
     public class SecurityDatasource
     {
-        public IEnumerable<ISecurity> GetAll()
+        public static IEnumerable<ISecurity> GetAll()
         {
             SecurityInfoApi api = new SecurityInfoApi();
             return api.GetAllSecurity();

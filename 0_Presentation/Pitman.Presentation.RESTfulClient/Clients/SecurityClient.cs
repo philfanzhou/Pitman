@@ -1,17 +1,18 @@
-﻿using Pitman.DistributedService.Contracts;
+﻿using Ore.Infrastructure.MarketData;
+using Pitman.DistributedService.Contracts;
 using System.Collections.Generic;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class SecurityClient : RestfulClient
+    internal class SecurityClient : RestfulClient, ISecurityClient
     {
-        public SecurityClient(string serverAddress) : base(serverAddress, SecurityServiceConst.ServiceName) { }
+        public SecurityClient(string serverAddress) : base(serverAddress, "api") { }
 
-        public IEnumerable<SecurityDto> GetAll()
+        public IEnumerable<ISecurity> GetAll()
         {
             using (var client = GetHttpClient())
             {
-                return client.GetAndReadAs<IEnumerable<SecurityDto>>(SecurityServiceConst.Uri_GetAll);
+                return client.GetAndReadAs<IEnumerable<SecurityDto>>("Securities");
             }
         }
     }

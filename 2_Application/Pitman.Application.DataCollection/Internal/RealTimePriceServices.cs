@@ -126,18 +126,18 @@ namespace Pitman.Application.DataCollection
             }
         }
 
-        private IEnumerable<ISecurity> GetStockList()
+        private IEnumerable<string> GetStockList()
         {
-            List<ISecurity> result = new List<ISecurity>();
-            result.Add(new StockInfo { Code = "600518", Market = Market.XSHG });
-            result.Add(new StockInfo { Code = "600036", Market = Market.XSHG });
-            result.Add(new StockInfo { Code = "600298", Market = Market.XSHG });
-            result.Add(new StockInfo { Code = "601933", Market = Market.XSHG });
-            result.Add(new StockInfo { Code = "600660", Market = Market.XSHG });
-            result.Add(new StockInfo { Code = "600196", Market = Market.XSHG });
+            List<string> result = new List<string>();
+            result.Add("600518");
+            result.Add("600036");
+            result.Add("600298");
+            result.Add("601933");
+            result.Add("600660");
+            result.Add("600196");
 
-            result.Add(new StockInfo { Code = "300118", Market = Market.XSHE });
-            result.Add(new StockInfo { Code = "000800", Market = Market.XSHE });
+            result.Add("300118");
+            result.Add("000800");
 
 
             return result;
@@ -145,13 +145,11 @@ namespace Pitman.Application.DataCollection
 
         private IEnumerable<IStockRealTime> GetRealTimeDatas()
         {
-            IEnumerable<ISecurity> stocks = GetStockList();
-            StockRealTimeApi api = new StockRealTimeApi();
-
+            IEnumerable<string> stocks = GetStockList();
             IEnumerable<IStockRealTime> datas;
             try
             {
-                datas = api.GetData(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
+                datas = RealTimeDatasource.GetLatest(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
             }
             catch
             {

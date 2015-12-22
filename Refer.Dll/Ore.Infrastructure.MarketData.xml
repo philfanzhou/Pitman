@@ -24,6 +24,11 @@
             交易市场枚举
             </summary>
         </member>
+        <member name="F:Ore.Infrastructure.MarketData.Market.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
         <member name="F:Ore.Infrastructure.MarketData.Market.XSHG">
             <summary>
             上海证券交易所
@@ -849,6 +854,11 @@
             上市状态枚举
             </summary>
         </member>
+        <member name="F:Ore.Infrastructure.MarketData.ListStatus.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
         <member name="F:Ore.Infrastructure.MarketData.ListStatus.List">
             <summary>
             上市
@@ -872,6 +882,11 @@
         <member name="T:Ore.Infrastructure.MarketData.SecurityType">
             <summary>
             证券类型枚举
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.SecurityType.Unknown">
+            <summary>
+            未知
             </summary>
         </member>
         <member name="F:Ore.Infrastructure.MarketData.SecurityType.Sotck">
