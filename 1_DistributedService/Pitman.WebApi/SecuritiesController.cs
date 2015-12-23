@@ -12,6 +12,7 @@ namespace Pitman.WebApi
 
         public IEnumerable<SecurityDto> Get()
         {
+            /*test code for communication*************************************/
             var dto = new SecurityDto()
             {
                 Code = "600036",
@@ -19,11 +20,10 @@ namespace Pitman.WebApi
                 ShortName = "招商银行",
                 Type = SecurityType.Sotck
             };
-
             var result = new List<SecurityDto>();
             result.Add(dto);
-
             return result;
+            /*test code for communication*************************************/
         }
     }
 }

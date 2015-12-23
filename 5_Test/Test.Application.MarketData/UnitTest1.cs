@@ -23,19 +23,5 @@ namespace Test.Application.MarketData
             var appService = new KLineAppService();
             List<IStockKLine> kLineList = appService.GetBy1Minute("600036", new DateTime(2015, 12, 7), new DateTime(2015, 12, 7)).ToList();
         }
-
-        [TestMethod]
-        public void TestSecurityInfo()
-        {
-            //var appService = new SecurityAppService();
-            //List<ISecurity> securities = appService.GetAll().ToList();
-        }
-
-        [TestMethod]
-        public void TestBonusInfo()
-        {
-            //var appService = new FundamentalAppService();
-            //List<IStockBonus> result = appService.GetBonus("600036").ToList();
-        }
     }
 }

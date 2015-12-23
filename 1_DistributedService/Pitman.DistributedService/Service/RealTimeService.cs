@@ -17,8 +17,6 @@ namespace Pitman.DistributedService
             ResponseFormat = WebMessageFormat.Json)]
         public IEnumerable<StockRealTimeDto> GetLatest(IEnumerable<string> stockCodes)
         {
-            RealTimeAppService appService = new RealTimeAppService();
-
             ///*test code for communication*************************************/
             //List<IStockRealTime> result = new List<IStockRealTime>();
             //StockRealTimeDto item = new StockRealTimeDto();
@@ -27,6 +25,7 @@ namespace Pitman.DistributedService
             //return result.Select(t => ConvertToDto(t));
             ///*test code for communication*************************************/
 
+            RealTimeAppService appService = new RealTimeAppService();
             var result = appService.GetLatest(stockCodes);
             return result.Select(t => ConvertToDto(t));
         }

@@ -43,9 +43,6 @@ namespace Pitman.DistributedService.Contracts
         [DataMember(Name = "englishName")]
         public string EnglishName { get; set; }
 
-        [DataMember(Name = "establishmentDate")]
-        public DateTime EstablishmentDate { get; set; }
-
         [DataMember(Name = "exchange")]
         public Market Exchange { get; set; }
 
@@ -70,14 +67,11 @@ namespace Pitman.DistributedService.Contracts
         [DataMember(Name = "legalRepresentative")]
         public string LegalRepresentative { get; set; }
 
-        [DataMember(Name = "listDate")]
-        public DateTime ListDate { get; set; }
+        [DataMember(Name = "numberOfEmployees")]
+        public int NumberOfEmployees { get; set; }
 
         [DataMember(Name = "nameUsedBefore")]
         public string NameUsedBefore { get; set; }
-
-        [DataMember(Name = "numberOfEmployees")]
-        public int NumberOfEmployees { get; set; }
 
         [DataMember(Name = "numberOfManagement")]
         public int NumberOfManagement { get; set; }
@@ -111,5 +105,21 @@ namespace Pitman.DistributedService.Contracts
 
         [DataMember(Name = "zipCode")]
         public string ZipCode { get; set; }
+
+        [DataMember(Name = "establishmentDate")]
+        private string establishmentDate = "1970-01-01 00:00:00";
+        public DateTime EstablishmentDate
+        {
+            get { return DateTime.Parse(establishmentDate); }
+            set { establishmentDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+        }
+
+        [DataMember(Name = "listDate")]
+        private string listDate = "1970-01-01 00:00:00";
+        public DateTime ListDate
+        {
+            get { return DateTime.Parse(listDate); }
+            set { listDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+        }
     }
 }

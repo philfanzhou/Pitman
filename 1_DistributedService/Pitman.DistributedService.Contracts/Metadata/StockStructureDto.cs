@@ -11,10 +11,20 @@ namespace Pitman.DistributedService.Contracts
         public string Code { get; set; }
 
         [DataMember(Name = "dateOfChange")]
-        public DateTime DateOfChange { get; set; }
+        private string dateOfChange = "1970-01-01 00:00:00";
+        public DateTime DateOfChange
+        {
+            get { return DateTime.Parse(dateOfChange); }
+            set { dateOfChange = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+        }
 
         [DataMember(Name = "dateOfDeclaration")]
-        public DateTime DateOfDeclaration { get; set; }
+        private string dateOfDeclaration = "1970-01-01 00:00:00";
+        public DateTime DateOfDeclaration
+        {
+            get { return DateTime.Parse(dateOfDeclaration); }
+            set { dateOfDeclaration = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+        }
 
         [DataMember(Name = "domesticLegalPersonShares")]
         public double DomesticLegalPersonShares { get; set; }

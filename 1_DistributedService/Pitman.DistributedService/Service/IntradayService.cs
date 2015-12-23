@@ -19,8 +19,6 @@ namespace Pitman.DistributedService
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         public IEnumerable<StockIntradayDto> GetData(string stockCode, DateTime startDate, DateTime endDate)
         {
-            IntradayAppService appService = new IntradayAppService();
-
             ///*test code for communication*************************************/
             //List<IStockIntraday> result = new List<IStockIntraday>();
             //StockIntradayDto item = new StockIntradayDto();
@@ -29,6 +27,7 @@ namespace Pitman.DistributedService
             //return result.Select(t => ConvertToDto(t));
             ///*test code for communication*************************************/
 
+            IntradayAppService appService = new IntradayAppService();
             var result = appService.GetData(stockCode, startDate, endDate);
             return result.Select(t => ConvertToDto(t));
         }

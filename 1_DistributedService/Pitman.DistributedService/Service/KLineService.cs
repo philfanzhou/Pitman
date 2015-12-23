@@ -19,8 +19,6 @@ namespace Pitman.DistributedService
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startTime, DateTime endTime)
         {
-            KLineAppService appService = new KLineAppService();
-
             ///*test code for communication*************************************/
             //List<IStockKLine> result = new List<IStockKLine>();
             //StockKLineDto item = new StockKLineDto();
@@ -29,6 +27,7 @@ namespace Pitman.DistributedService
             //return result.Select(t => ConvertToDto(t));
             ///*test code for communication*************************************/
 
+            KLineAppService appService = new KLineAppService();
             var result = appService.GetBy1Minute(stockCode, startTime, endTime);
             return result.Select(t => ConvertToDto(t));
         }

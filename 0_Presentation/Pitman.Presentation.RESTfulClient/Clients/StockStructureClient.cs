@@ -13,7 +13,7 @@ namespace Pitman.Presentation.RESTfulClient
             using (var client = GetHttpClient())
             {
                 string uri = string.Format("StockStructure/{0}", stockCode);
-                return client.GetAndReadAs<IEnumerable<StockStructureDto>>("StockStructure");
+                return client.GetAndReadAs<IEnumerable<StockStructureDto>>(uri);
             }
         }
     }

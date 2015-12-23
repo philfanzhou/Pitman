@@ -13,17 +13,17 @@ namespace Pitman.WebApi
     {
         public IEnumerable<StockBonusDto> Get(string stockCode)
         {
+            /*test code for communication*************************************/
             var dto = new StockBonusDto()
             {
                 Code = "600036",
                 Market = Market.XSHG,
                 ShortName = "招商银行",
             };
-
             var result = new List<StockBonusDto>();
             result.Add(dto);
-
             return result;
+            /*test code for communication*************************************/
         }
     }
 }
