@@ -37,16 +37,12 @@ namespace Pitman.DistributedService
             return new StockKLineDto
             {
                 Amount = priceData.Amount,
-                Code = priceData.Code,
-                Current = priceData.Current,
                 High = priceData.High,
                 Low = priceData.Low,
-                Market = priceData.Market,
-                ShortName = priceData.ShortName,
                 Time = priceData.Time,
                 Open = priceData.Open,
                 Volume = priceData.Volume,
-                PreClose = priceData.PreClose
+                Close = priceData.Close
             };
         }
     }

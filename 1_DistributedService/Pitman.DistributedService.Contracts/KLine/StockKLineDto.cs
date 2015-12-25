@@ -7,26 +7,6 @@ namespace Pitman.DistributedService.Contracts
     [DataContract(Name = "stockKLine")]
     public class StockKLineDto : IStockKLine
     {
-        [DataMember(Name = "code")]
-        public string Code { get; set; }
-
-        [DataMember(Name = "shortName")]
-        public string ShortName { get; set; }
-
-        [DataMember(Name = "market")]
-        private string market = Market.Unknown.ToString();
-        public Market Market
-        {
-            get
-            {
-                return (Market)Enum.Parse(typeof(Market), market);
-            }
-            set
-            {
-                market = value.ToString();
-            }
-        }
-
         [DataMember(Name = "time")]
         private string time = "1970-01-01 00:00:00";
         /// <summary>
@@ -43,18 +23,6 @@ namespace Pitman.DistributedService.Contracts
         /// </summary>
         [DataMember(Name = "open")]
         public double Open { get; set; }
-
-        /// <summary>
-        /// 昨收
-        /// </summary>
-        [DataMember(Name = "preClose")]
-        public double PreClose { get; set; }
-
-        /// <summary>
-        /// 当前成交价
-        /// </summary>
-        [DataMember(Name = "current")]
-        public double Current { get; set; }
 
         /// <summary>
         /// 最高
@@ -80,9 +48,15 @@ namespace Pitman.DistributedService.Contracts
         [DataMember(Name = "amount")]
         public double Amount { get; set; }
 
+        /// <summary>
+        /// 收盘价
+        /// </summary>
+        [DataMember(Name = "close")]
+        public double Close { get; set; }
+
         public override string ToString()
         {
-            return this.time + string.Format("  Current:{0}", Current);
+            return this.time + string.Format("  Current:{0}", Close);
         }
     }
 }

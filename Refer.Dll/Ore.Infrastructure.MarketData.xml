@@ -64,6 +64,61 @@
             香港证券交易所
             </summary>
         </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Daily">
+            <summary>
+            日线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Min1">
+            <summary>
+            1分钟线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Min5">
+            <summary>
+            5分钟线
+            </summary>
+        </member>
+        <member name="T:Ore.Infrastructure.MarketData.IParticipation">
+            <summary>
+            定义机构参与度数据接口
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.Code">
+            <summary>
+            挂牌代码
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.Time">
+            <summary>
+            日期与时间
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.Value">
+            <summary>
+            机构参与度（%） : 45
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.MainForceInflows">
+            <summary>
+            主力净流入
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.SuperLargeInflows">
+            <summary>
+            超大单流入
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.CostPrice1Day">
+            <summary>
+            最近1日主力成本
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.IParticipation.CostPrice20Day">
+            <summary>
+            最近20日主力成本
+            </summary>
+        </member>
         <member name="T:Ore.Infrastructure.MarketData.IStockBonus">
             <summary>
             股票分红配股信息
@@ -304,34 +359,14 @@
             K线数据定义
             </summary>
         </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Code">
+        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Time">
             <summary>
-            代码
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Market">
-            <summary>
-            交易市场
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.ShortName">
-            <summary>
-            简称
+            日期与时间
             </summary>
         </member>
         <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Open">
             <summary>
             今开
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.PreClose">
-            <summary>
-            昨收
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Current">
-            <summary>
-            当前成交价
             </summary>
         </member>
         <member name="P:Ore.Infrastructure.MarketData.IStockKLine.High">
@@ -344,6 +379,11 @@
             最低
             </summary>
         </member>
+        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Close">
+            <summary>
+            收盘
+            </summary>
+        </member>
         <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Volume">
             <summary>
             成交量
@@ -352,11 +392,6 @@
         <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Amount">
             <summary>
             成交额
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Time">
-            <summary>
-            日期与时间
             </summary>
         </member>
         <member name="T:Ore.Infrastructure.MarketData.IStockRealTime">
