@@ -5,6 +5,6 @@ namespace Pitman.Presentation.RESTfulClient
 {
     public interface IStockProfileClient
     {
-        IEnumerable<IStockProfile> Get(string stockCode);
+        IStockProfile Get(string stockCode);
     }
 }

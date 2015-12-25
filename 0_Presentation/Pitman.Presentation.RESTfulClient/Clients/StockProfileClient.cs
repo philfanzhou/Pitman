@@ -8,12 +8,12 @@ namespace Pitman.Presentation.RESTfulClient
     {
         public StockProfileClient(string serverAddress) : base(serverAddress, "api") { }
 
-        public IEnumerable<IStockProfile> Get(string stockCode)
+        public IStockProfile Get(string stockCode)
         {
             using (var client = GetHttpClient())
             {
                 string uri = string.Format("StockProfile/{0}", stockCode);
-                return client.GetAndReadAs<IEnumerable<StockProfileDto>>(uri);
+                return client.GetAndReadAs<StockProfileDto>(uri);
             }
         }
     }
