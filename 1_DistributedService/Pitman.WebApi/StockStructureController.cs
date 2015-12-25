@@ -11,19 +11,19 @@ namespace Pitman.WebApi
     {
         public IEnumerable<StockStructureDto> Get(string stockCode)
         {
-            ///*test code for communication*************************************/
-            //var dto = new StockStructureDto()
-            //{
-            //    Code = "600036",
-            //    Market = Market.XSHG,
-            //    ShortName = "招商银行",
-            //};
-            //var result = new List<StockStructureDto>();
-            //result.Add(dto);
-            //return result;
-            ///*test code for communication*************************************/
+            /*test code for communication*************************************/
+            var dto = new StockStructureDto()
+            {
+                Code = "600036",
+                Market = Market.XSHG,
+                ShortName = "招商银行",
+            };
+            var result = new List<StockStructureDto>();
+            result.Add(dto);
+            return result;
+            /*test code for communication*************************************/
 
-            return FundamentalDatasource.GetStructure(stockCode).Select(t => ConvertToDto(t));
+            //return FundamentalDatasource.GetStructure(stockCode).Select(t => ConvertToDto(t));
         }
 
         private static StockStructureDto ConvertToDto(IStockStructure data)

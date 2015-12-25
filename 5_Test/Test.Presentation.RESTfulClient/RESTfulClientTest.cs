@@ -9,8 +9,8 @@ namespace Test.Presentation.RESTfulClient
     [TestClass]
     public class RESTfulClientTest
     {
-        private string serverAddress = "http://localhost:9999";
-        //private string serverAddress = "http://quantum1234.cloudapp.net:6688";
+        //private string serverAddress = "http://localhost:9999";
+        private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
         [TestMethod]
         public void TestCollectionStatusClient()

@@ -14,20 +14,20 @@ namespace Pitman.WebApi
 
         public IEnumerable<SecurityDto> Get()
         {
-            ///*test code for communication*************************************/
-            //var dto = new SecurityDto()
-            //{
-            //    Code = "600036",
-            //    Market = Market.XSHG,
-            //    ShortName = "招商银行",
-            //    Type = SecurityType.Sotck
-            //};
-            //var result = new List<SecurityDto>();
-            //result.Add(dto);
-            //return result;
-            ///*test code for communication*************************************/
+            /*test code for communication * ************************************/
+            var dto = new SecurityDto()
+            {
+                Code = "600036",
+                Market = Market.XSHG,
+                ShortName = "招商银行",
+                Type = SecurityType.Sotck
+            };
+            var result = new List<SecurityDto>();
+            result.Add(dto);
+            return result;
+            /*test code for communication************************************/
 
-            return SecurityDatasource.GetAll().Select(t => ConvertToDto(t));
+            //return SecurityDatasource.GetAll().Select(t => ConvertToDto(t));
         }
 
         private static SecurityDto ConvertToDto(ISecurity data)

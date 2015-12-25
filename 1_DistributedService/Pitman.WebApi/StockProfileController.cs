@@ -9,17 +9,15 @@ namespace Pitman.WebApi
     {
         public StockProfileDto Get(string stockCode)
         {
-            ///*test code for communication*************************************/
-            //var dto = new StockProfileDto()
-            //{
-            //    CodeA = "600036",
-            //};
-            //var result = new List<StockProfileDto>();
-            //result.Add(dto);
-            //return result;
-            ///*test code for communication*************************************/
+            /*test code for communication*************************************/
+            var dto = new StockProfileDto()
+            {
+                CodeA = "600036",
+            };
+            return dto;
+            /*test code for communication*************************************/
 
-            return ConvertToDto(FundamentalDatasource.GetProfile(stockCode));
+            //return ConvertToDto(FundamentalDatasource.GetProfile(stockCode));
         }
 
         private static StockProfileDto ConvertToDto(IStockProfile data)
