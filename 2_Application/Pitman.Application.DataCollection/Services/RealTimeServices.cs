@@ -8,7 +8,7 @@ using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    internal class RealTimePriceServices : ICollectionService
+    internal class RealTimeServices : ICollectionService
     {
         #region Field
         private readonly TimeSpan morningStart = new DateTime(1900, 1, 1, 9, 10, 0).TimeOfDay;
@@ -45,7 +45,7 @@ namespace Pitman.Application.DataCollection
         }
         #endregion
 
-        public RealTimePriceServices()
+        public RealTimeServices()
         {
             getDataTimer.Elapsed += GetDataTimer_Elapsed;
             saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
