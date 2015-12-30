@@ -51,7 +51,7 @@ namespace Pitman.Application.DataCollection
             }
             else
             {
-                return ServiceStatus.Unknown.ToString();
+                return ServiceStatus.Stopped.ToString();
             }
         }
 
