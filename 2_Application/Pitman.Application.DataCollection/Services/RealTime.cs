@@ -8,7 +8,7 @@ using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    internal class RealTimeServices : ICollectionService
+    internal class RealTime : ICollectionService
     {
         #region Field
         private readonly TimeSpan morningStart = new DateTime(1900, 1, 1, 9, 10, 0).TimeOfDay;
@@ -45,7 +45,7 @@ namespace Pitman.Application.DataCollection
         }
         #endregion
 
-        public RealTimeServices()
+        public RealTime()
         {
             getDataTimer.Elapsed += GetDataTimer_Elapsed;
             saveDataTimer.Elapsed += SaveDataTimer_Elapsed;
@@ -94,6 +94,12 @@ namespace Pitman.Application.DataCollection
             WriteDataToFile();
 
             Status = ServiceStatus.Stopped;
+        }
+
+        internal static IEnumerable<IStockRealTime> GetDataFromApi(IEnumerable<string> stockCodes)
+        {
+            StockRealTimeApi api = new StockRealTimeApi();
+            return api.GetData(stockCodes);
         }
 
         #region Private Method
@@ -149,7 +155,7 @@ namespace Pitman.Application.DataCollection
             IEnumerable<IStockRealTime> datas;
             try
             {
-                datas = RealTimeDatasource.GetLatest(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
+                datas = GetDataFromApi(stocks).Where(p => p.Time.Date == DateTime.Now.Date);
             }
             catch
             {

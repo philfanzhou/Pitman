@@ -9,7 +9,7 @@ namespace Pitman.Application.DataCollection
 
         internal CollectionServiceContainer()
         {
-            _serviceList.Add("RealTimePriceServices", new RealTimeServices());
+            _serviceList.Add("RealTimePriceServices", new RealTime());
         }
 
         public IReadOnlyDictionary<string, ICollectionService> Services
