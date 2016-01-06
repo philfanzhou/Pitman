@@ -1,5 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
+using Pitman.Distributed.Dto;
 using Pitman.DistributedService.Contracts;
 using System.Collections.Generic;
 using System.Linq;

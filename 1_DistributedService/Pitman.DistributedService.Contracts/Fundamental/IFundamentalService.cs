@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Pitman.Distributed.Dto;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Pitman.DistributedService.Contracts

@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.DistributedService.Contracts
+namespace Pitman.Distributed.Dto
 {
     [DataContract(Name = "stockProfile")]
     public class StockProfileDto : IStockProfile

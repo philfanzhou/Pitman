@@ -1,4 +1,5 @@
-﻿using Pitman.DistributedService.Contracts;
+﻿using Pitman.Distributed.Dto;
+using Pitman.DistributedService.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;

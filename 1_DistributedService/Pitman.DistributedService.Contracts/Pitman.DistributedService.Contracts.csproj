@@ -52,19 +52,17 @@
     <Compile Include="Intraday\IIntradayService.cs" />
     <Compile Include="KLine\KLineServiceConst.cs" />
     <Compile Include="KLine\IKLineService.cs" />
-    <Compile Include="KLine\StockKLineDto.cs" />
     <Compile Include="RealTime\IRealTimeService.cs" />
     <Compile Include="CollectionStatus\ICollectionStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTime\RealTimeServiceConst.cs" />
-    <Compile Include="RealTime\StockRealTimeDto.cs" />
-    <Compile Include="Intraday\StockIntradayDto.cs" />
-    <Compile Include="Metadata\SecurityDto.cs" />
-    <Compile Include="Metadata\StockBonusDto.cs" />
-    <Compile Include="Metadata\StockProfileDto.cs" />
-    <Compile Include="Metadata\StockStructureDto.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
+      <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
+      <Name>Pitman.Distributed.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

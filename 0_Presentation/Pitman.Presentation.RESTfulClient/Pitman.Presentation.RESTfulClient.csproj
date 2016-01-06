@@ -64,6 +64,10 @@
     <Compile Include="Clients\StockStructureClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\1_DistributedService\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
+      <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
+      <Name>Pitman.Distributed.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
       <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
       <Name>Pitman.DistributedService.Contracts</Name>

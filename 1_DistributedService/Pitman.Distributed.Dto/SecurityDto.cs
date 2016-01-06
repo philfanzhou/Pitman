@@ -1,7 +1,7 @@
 ﻿using Ore.Infrastructure.MarketData;
 using System.Runtime.Serialization;
 
-namespace Pitman.DistributedService.Contracts
+namespace Pitman.Distributed.Dto
 {
     [DataContract(Name = "security")]
     public class SecurityDto : ISecurity
