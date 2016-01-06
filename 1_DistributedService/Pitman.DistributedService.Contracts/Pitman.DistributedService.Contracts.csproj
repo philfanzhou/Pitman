@@ -46,8 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionStatus\CollectionStatusServiceConst.cs" />
-    <Compile Include="Fundamental\FundamentalServiceConst.cs" />
-    <Compile Include="Fundamental\IFundamentalService.cs" />
     <Compile Include="Intraday\IntradayServiceConst.cs" />
     <Compile Include="Intraday\IIntradayService.cs" />
     <Compile Include="KLine\KLineServiceConst.cs" />
