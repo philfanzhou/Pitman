@@ -53,6 +53,7 @@
     <Compile Include="Base\JsonSerializer.cs" />
     <Compile Include="Clients\KLineClient.cs" />
     <Compile Include="Clients\IntradayClient.cs" />
+    <Compile Include="IClient.cs" />
     <Compile Include="ISecurityClient.cs" />
     <Compile Include="IStockBonusClient.cs" />
     <Compile Include="IStockProfileClient.cs" />
