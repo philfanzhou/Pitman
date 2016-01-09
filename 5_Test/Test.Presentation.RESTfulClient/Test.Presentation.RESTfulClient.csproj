@@ -66,10 +66,6 @@
       <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
       <Name>Pitman.Distributed.Dto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
-      <Project>{7B5F4FAA-78BC-4481-AE7A-8C0F7FCD4B33}</Project>
-      <Name>Pitman.DistributedService.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

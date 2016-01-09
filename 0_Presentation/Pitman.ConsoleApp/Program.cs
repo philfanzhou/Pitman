@@ -1,10 +1,8 @@
 ﻿using Framework.DistributedService;
-using Pitman.DistributedService;
 using Pitman.WebApi;
 using System;
 using System.Reflection;
 using System.Threading;
-using System.Web.Http;
 using System.Web.Http.SelfHost;
 
 namespace Pitman.ConsoleApp
@@ -12,9 +10,7 @@ namespace Pitman.ConsoleApp
     class Program
     {
         private static Mutex mutex;
-
-        private static DistributedHostManager serviceManager;
-
+        
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -32,10 +28,10 @@ namespace Pitman.ConsoleApp
             }
             else
             {
-                serviceManager = new DistributedHostManager();
-                serviceManager.Initialize();
-                serviceManager.HostStatusReportEvent += ServiceManager_HostStatusReportEvent;
-                serviceManager.OpenAllService();
+                //serviceManager = new DistributedHostManager();
+                //serviceManager.Initialize();
+                //serviceManager.HostStatusReportEvent += ServiceManager_HostStatusReportEvent;
+                //serviceManager.OpenAllService();
 
                 Assembly.Load("Pitman.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken = null");
                 var configuration = new HttpSelfHostConfiguration("http://localhost:9999");

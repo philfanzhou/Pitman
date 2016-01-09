@@ -1,7 +1,5 @@
 ﻿using Ore.Infrastructure.MarketData;
-using Pitman.Application.DataCollection;
 using Pitman.Distributed.Dto;
-using Pitman.DistributedService.Contracts;
 using System.Web.Http;
 
 namespace Pitman.WebApi

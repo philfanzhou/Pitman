@@ -46,15 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\RestfulClient.cs" />
-    <Compile Include="Clients\RealTimeClient.cs" />
     <Compile Include="ClientFactory.cs" />
-    <Compile Include="Clients\CollectionStatusClient.cs" />
+    <Compile Include="Clients\ServiceStatusClient.cs" />
     <Compile Include="Base\HttpClientEx.cs" />
     <Compile Include="Base\JsonSerializer.cs" />
     <Compile Include="Clients\KLineClient.cs" />
-    <Compile Include="Clients\IntradayClient.cs" />
     <Compile Include="IKLineClient.cs" />
     <Compile Include="ISecurityClient.cs" />
+    <Compile Include="IServiceStatusClient.cs" />
     <Compile Include="IStockBonusClient.cs" />
     <Compile Include="IStockProfileClient.cs" />
     <Compile Include="IStockStructureClient.cs" />
@@ -68,10 +67,6 @@
     <ProjectReference Include="..\..\1_DistributedService\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
       <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
       <Name>Pitman.Distributed.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
-      <Project>{7b5f4faa-78bc-4481-ae7a-8c0f7fcd4b33}</Project>
-      <Name>Pitman.DistributedService.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

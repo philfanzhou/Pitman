@@ -8,15 +8,15 @@ namespace Pitman.WebApi
         {
             config.MapHttpAttributeRoutes();
 
-            //config.Routes.MapHttpRoute(
-            //        name: "StockCode",
-            //        routeTemplate: "api/{controller}/{stockCode}",
-            //        defaults: new
-            //        {
-            //            //controller = "StockBonus",
-            //            //action = "Get"
-            //        }
-            //    );
+            config.Routes.MapHttpRoute(
+                    name: "CollectionStatus",
+                    routeTemplate: "api/CollectionStatus/{serviceName}",
+                    defaults: new
+                    {
+                        controller = "CollectionStatus",
+                        serviceName = RouteParameter.Optional
+                    }
+                );
 
 
             config.Routes.MapHttpRoute(

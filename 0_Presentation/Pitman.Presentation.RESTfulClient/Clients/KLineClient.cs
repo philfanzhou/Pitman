@@ -1,9 +1,7 @@
-﻿using Pitman.Distributed.Dto;
-using Pitman.DistributedService.Contracts;
+﻿using Ore.Infrastructure.MarketData;
+using Pitman.Distributed.Dto;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Ore.Infrastructure.MarketData;
 
 namespace Pitman.Presentation.RESTfulClient
 {
