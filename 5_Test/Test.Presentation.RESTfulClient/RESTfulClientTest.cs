@@ -9,8 +9,8 @@ namespace Test.Presentation.RESTfulClient
     [TestClass]
     public class RESTfulClientTest
     {
-        //private string serverAddress = "http://localhost:9999";
-        private string serverAddress = "http://quantum1234.cloudapp.net:6688";
+        private string serverAddress = "http://localhost:9999";
+        //private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
         [TestMethod]
         public void TestCollectionStatusClient()
@@ -34,10 +34,10 @@ namespace Test.Presentation.RESTfulClient
         }
 
         [TestMethod]
-        public void Test1MinuteDataClient()
+        public void TestKLineClient()
         {
             var client = ClientFactory.CreateKLineClient(serverAddress);
-            var result = client.GetBy1Minute("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+            var result = client.GetDay("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
 
             Assert.IsNotNull(result);
         }

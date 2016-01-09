@@ -3,41 +3,27 @@ using Pitman.DistributedService.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Ore.Infrastructure.MarketData;
 
 namespace Pitman.Presentation.RESTfulClient
 {
-    internal class KLineClient : RestfulClient, IKLineService
+    internal class KLineClient : RestfulClient, IKLineClient
     {
-        public KLineClient(string serverAddress) : base(serverAddress, KLineServiceConst.ServiceName) { }
-
-        public IEnumerable<StockKLineDto> GetBy1Minute(string stockCode, DateTime startDate, DateTime endDate)
+        public KLineClient(string serverAddress) : base(serverAddress, "api") { }
+        
+        public IEnumerable<IStockKLine> GetDay(string stockCode, DateTime startTime, DateTime endTime)
         {
-            PostData data = new PostData
+            KLineArgs data = new KLineArgs
             {
                 StockCode = stockCode,
-                StartDate = startDate,
-                EndDate = endDate
+                StartDate = startTime,
+                EndDate = endTime
             };
 
             using (var client = GetHttpClient())
             {
-                return client.PostAndReadAs<IEnumerable<StockKLineDto>, PostData>(
-                    KLineServiceConst.Uri_GetBy1Minute,
-                    data);
+                return client.PostAndReadAs<IEnumerable<StockKLineDto>, KLineArgs>("KLineDay", data);
             }
-        }
-
-        [DataContract]
-        private class PostData
-        {
-            [DataMember(Name = "stockCode")]
-            public string StockCode { get; set; }
-
-            [DataMember(Name = "startDate")]
-            public DateTime StartDate { get; set; }
-
-            [DataMember(Name = "endDate")]
-            public DateTime EndDate { get; set; }
         }
     }
 }

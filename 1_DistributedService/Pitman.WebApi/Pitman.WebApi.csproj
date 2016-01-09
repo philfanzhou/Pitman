@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KLineDayController.cs" />
     <Compile Include="SecuritiesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockBonusController.cs" />

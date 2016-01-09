@@ -44,14 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Request\KLineArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecurityDto.cs" />
-    <Compile Include="StockBonusDto.cs" />
-    <Compile Include="StockIntradayDto.cs" />
-    <Compile Include="StockKLineDto.cs" />
-    <Compile Include="StockProfileDto.cs" />
-    <Compile Include="StockRealTimeDto.cs" />
-    <Compile Include="StockStructureDto.cs" />
+    <Compile Include="Response\SecurityDto.cs" />
+    <Compile Include="Response\StockBonusDto.cs" />
+    <Compile Include="Response\StockIntradayDto.cs" />
+    <Compile Include="Response\StockKLineDto.cs" />
+    <Compile Include="Response\StockProfileDto.cs" />
+    <Compile Include="Response\StockRealTimeDto.cs" />
+    <Compile Include="Response\StockStructureDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

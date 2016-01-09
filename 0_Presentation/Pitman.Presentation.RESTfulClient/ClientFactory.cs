@@ -14,7 +14,7 @@ namespace Pitman.Presentation.RESTfulClient
             return new RealTimeClient(serverAddress);
         }
 
-        public static IKLineService CreateKLineClient(string serverAddress)
+        public static IKLineClient CreateKLineClient(string serverAddress)
         {
             return new KLineClient(serverAddress);
         }
