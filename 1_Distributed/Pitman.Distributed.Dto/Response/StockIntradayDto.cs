@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Pitman.Distributed.Dto
 {
-    [DataContract(Name = "stockKLine")]
+    [DataContract(Name = "stockIntraday")]
     public class StockIntradayDto : IStockIntraday
     {
         [DataMember(Name = "code")]

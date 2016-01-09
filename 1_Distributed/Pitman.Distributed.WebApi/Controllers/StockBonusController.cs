@@ -9,6 +9,7 @@ namespace Pitman.Distributed.WebApi
     {
         public IEnumerable<StockBonusDto> Get(string stockCode)
         {
+#if DEBUG
             /*test code for communication*************************************/
             var dto = new StockBonusDto()
             {
@@ -20,6 +21,8 @@ namespace Pitman.Distributed.WebApi
             result.Add(dto);
             return result;
             /*test code for communication*************************************/
+#endif
+            throw new System.NotImplementedException();
 
             //return FundamentalDatasource.GetBonus(stockCode).Select(t => ConvertToDto(t));
         }

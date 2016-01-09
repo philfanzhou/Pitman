@@ -1,14 +1,20 @@
 ﻿using System.Web.Http;
+using System.Web.Http.SelfHost;
 
 namespace Pitman.Distributed.WebApi
 {
-    public static class RouteConfig
+    public class WebApiServer
     {
-        public static void Register(HttpConfiguration config)
-        {
-            config.MapHttpAttributeRoutes();
+        private HttpSelfHostServer _httpServer;
 
-            config.Routes.MapHttpRoute(
+        public void Open(int port)
+        {
+            var configuration = new HttpSelfHostConfiguration(string.Format("http://localhost:{0}", port));
+            _httpServer = new HttpSelfHostServer(configuration);
+
+            configuration.MapHttpAttributeRoutes();
+
+            configuration.Routes.MapHttpRoute(
                     name: "CollectionStatus",
                     routeTemplate: "api/CollectionStatus/{serviceName}",
                     defaults: new
@@ -18,8 +24,7 @@ namespace Pitman.Distributed.WebApi
                     }
                 );
 
-
-            config.Routes.MapHttpRoute(
+            configuration.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{stockCode}",
                 defaults: new
@@ -27,6 +32,8 @@ namespace Pitman.Distributed.WebApi
                     stockCode = RouteParameter.Optional
                 }
             );
+
+            _httpServer.OpenAsync();
         }
     }
 }

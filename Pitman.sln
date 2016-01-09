@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Distributed.Dto", "1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Distributed.WebApi", "1_Distributed\Pitman.Distributed.WebApi\Pitman.Distributed.WebApi.csproj", "{7680DF62-4C79-4858-804F-04DB1F06CBC9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Domain", "3_Domain", "{D7DA5BB2-4BDB-45B4-8004-F944AEFFE712}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

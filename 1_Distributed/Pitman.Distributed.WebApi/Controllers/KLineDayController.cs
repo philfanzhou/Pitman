@@ -9,6 +9,7 @@ namespace Pitman.Distributed.WebApi
     {
         public IEnumerable<IStockKLine> Post([FromBody]KLineArgs args)
         {
+#if DEBUG
             /*test code for communication * ************************************/
             var dto = new StockKLineDto()
             {
@@ -20,6 +21,8 @@ namespace Pitman.Distributed.WebApi
             result.Add(dto);
             return result;
             /*test code for communication************************************/
+#endif
+            throw new System.NotImplementedException();
         }
 
         private static StockKLineDto ConvertToDto(IStockKLine data)

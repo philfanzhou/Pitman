@@ -7,11 +7,9 @@ namespace Pitman.Distributed.WebApi
 {
     public class SecuritiesController : ApiController
     {
-        // http://book.51cto.com/art/201408/448647.htm
-        // http://www.cnblogs.com/artech/p/web-api-sample.html
-
         public IEnumerable<SecurityDto> Get()
         {
+#if DEBUG
             /*test code for communication * ************************************/
             var dto = new SecurityDto()
             {
@@ -24,6 +22,8 @@ namespace Pitman.Distributed.WebApi
             result.Add(dto);
             return result;
             /*test code for communication************************************/
+#endif
+            throw new System.NotImplementedException();
 
             //return SecurityDatasource.GetAll().Select(t => ConvertToDto(t));
         }

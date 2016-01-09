@@ -8,6 +8,7 @@ namespace Pitman.Distributed.WebApi
     {
         public StockProfileDto Get(string stockCode)
         {
+#if DEBUG
             /*test code for communication*************************************/
             var dto = new StockProfileDto()
             {
@@ -15,6 +16,8 @@ namespace Pitman.Distributed.WebApi
             };
             return dto;
             /*test code for communication*************************************/
+#endif
+            throw new System.NotImplementedException();
 
             //return ConvertToDto(FundamentalDatasource.GetProfile(stockCode));
         }
