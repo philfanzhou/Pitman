@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01D4BF12-C5A9-4D8E-9CC0-1DD52926BCEA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{174152CF-6749-493A-899C-5053E62902E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pitman.ConsoleApp</RootNamespace>
-    <AssemblyName>Pitman</AssemblyName>
+    <RootNamespace>Pitman.RESTful.Client</RootNamespace>
+    <AssemblyName>Pitman.RESTful.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,13 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Base\HttpClientEx.cs" />
+    <Compile Include="Base\JsonSerializer.cs" />
+    <Compile Include="Base\RestfulClient.cs" />
+    <Compile Include="ClientFactory.cs" />
+    <Compile Include="Clients\KLineClient.cs" />
+    <Compile Include="Clients\SecurityClient.cs" />
+    <Compile Include="Clients\ServiceStatusClient.cs" />
+    <Compile Include="Clients\StockBonusClient.cs" />
+    <Compile Include="Clients\StockProfileClient.cs" />
+    <Compile Include="Clients\StockStructureClient.cs" />
+    <Compile Include="IKLineClient.cs" />
+    <Compile Include="ISecurityClient.cs" />
+    <Compile Include="IServiceStatusClient.cs" />
+    <Compile Include="IStockBonusClient.cs" />
+    <Compile Include="IStockProfileClient.cs" />
+    <Compile Include="IStockStructureClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.WebApi\Pitman.Distributed.WebApi.csproj">
-      <Project>{7680df62-4c79-4858-804f-04db1f06cbc9}</Project>
-      <Name>Pitman.Distributed.WebApi</Name>
+    <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
+      <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
+      <Name>Pitman.Distributed.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

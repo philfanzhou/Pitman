@@ -1,4 +1,4 @@
-﻿using Pitman.WebApi;
+﻿using Pitman.Distributed.WebApi;
 using System;
 using System.Threading;
 

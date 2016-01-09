@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pitman.Presentation.RESTfulClient;
+using Pitman.RESTful.Client;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Test.Presentation.RESTfulClient
