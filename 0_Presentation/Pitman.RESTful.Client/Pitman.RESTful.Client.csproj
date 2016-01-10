@@ -54,6 +54,7 @@
     <Compile Include="Clients\StockBonusClient.cs" />
     <Compile Include="Clients\StockProfileClient.cs" />
     <Compile Include="Clients\StockStructureClient.cs" />
+    <Compile Include="IClient.cs" />
     <Compile Include="IKLineClient.cs" />
     <Compile Include="ISecurityClient.cs" />
     <Compile Include="IServiceStatusClient.cs" />

@@ -2,6 +2,20 @@
 {
     public static class ClientFactory
     {
+        //public static TClient Create<TClient>(string serverAddress)
+        //    where TClient : IClient
+        //{
+        //    if(typeof(TClient) == typeof(IKLineClient))
+        //    {
+        //        var client = new KLineClient(serverAddress);
+        //        return (IKLineClient)client;
+        //    }
+        //    else
+        //    {
+        //        return default(TClient);
+        //    }
+        //}
+
         public static IServiceStatusClient CreateCollectionStatusClient(string serverAddress)
         {
             return new ServiceStatusClient(serverAddress);

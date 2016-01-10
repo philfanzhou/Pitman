@@ -4,7 +4,7 @@ using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    public class CollectionServiceManager
+    public class CollectionServices
     {
         /// <summary>
         /// 服务控制timer，每30秒刷新一次
@@ -15,9 +15,9 @@ namespace Pitman.Application.DataCollection
             new CollectionServiceContainer();
 
         #region Singleton
-        private static CollectionServiceManager _instance = new CollectionServiceManager();
+        private static CollectionServices _instance = new CollectionServices();
 
-        public static CollectionServiceManager Instance
+        public static CollectionServices Instance
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Pitman.Application.DataCollection
             ServiceStatusCheckTimer.Start();
         }
 
-        private CollectionServiceManager()
+        private CollectionServices()
         {
             // 启动服务观察timer
             ServiceStatusCheckTimer.Elapsed += ServiceStatusCheckTimer_Elapsed;

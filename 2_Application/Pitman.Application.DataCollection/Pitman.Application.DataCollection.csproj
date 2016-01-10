@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Internal\CollectionServiceBase.cs" />
     <Compile Include="Internal\CollectionServiceContainer.cs" />
-    <Compile Include="CollectionServiceManager.cs" />
+    <Compile Include="CollectionServices.cs" />
     <Compile Include="ICollectionService.cs" />
     <Compile Include="Internal\Pregress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

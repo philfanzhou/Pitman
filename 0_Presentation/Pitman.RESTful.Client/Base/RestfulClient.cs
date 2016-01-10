@@ -2,7 +2,7 @@
 
 namespace Pitman.RESTful.Client
 {
-    internal class RestfulClient
+    internal class RestfulClient : IClient
     {
         private string _serverAddress;
         private string _serviceName;
@@ -13,14 +13,9 @@ namespace Pitman.RESTful.Client
             this._serviceName = serviceName;
         }
 
-        protected string HostName
+        public string ServerAddress
         {
             get { return _serverAddress; }
-        }
-
-        protected string ServiceName
-        {
-            get { return _serviceName; }
         }
 
         protected HttpClientEx GetHttpClient()
