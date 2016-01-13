@@ -59,6 +59,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Application.DataCollec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Distributed.Dto", "1_DistributedService\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj", "{ED41D995-E605-4D35-8766-1371B6461179}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.EF.Repository", "4_Infrastructure\Pitman.Infrastructure.EF.Repository\Pitman.Infrastructure.EF.Repository.csproj", "{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Infrastructure.EF.Repository", "5_Test\Test.Infrastructure.EF.Repository\Test.Infrastructure.EF.Repository.csproj", "{74481CAE-C17D-4AD3-978C-FA9A13837080}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +145,14 @@ Global
 		{ED41D995-E605-4D35-8766-1371B6461179}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED41D995-E605-4D35-8766-1371B6461179}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED41D995-E605-4D35-8766-1371B6461179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74481CAE-C17D-4AD3-978C-FA9A13837080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74481CAE-C17D-4AD3-978C-FA9A13837080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74481CAE-C17D-4AD3-978C-FA9A13837080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74481CAE-C17D-4AD3-978C-FA9A13837080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,5 +181,7 @@ Global
 		{BEFF5EB9-08B4-4F5E-B9D2-5EEC4764DC93} = {9FF38106-1F22-4F16-B40B-5BE1FA50D5CC}
 		{DBB6D99E-93FE-43A2-8CAE-DF2CEDAAFC7E} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 		{ED41D995-E605-4D35-8766-1371B6461179} = {9FF38106-1F22-4F16-B40B-5BE1FA50D5CC}
+		{E9BBE4BD-63E5-4848-A0C8-29F99F7FF64F} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{74481CAE-C17D-4AD3-978C-FA9A13837080} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 	EndGlobalSection
 EndGlobal
