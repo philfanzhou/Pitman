@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextFactory.cs" />
+    <Compile Include="ContextType.cs" />
     <Compile Include="DbConfig\KLineConfig.cs" />
     <Compile Include="DbContext\KLineContext.cs" />
     <Compile Include="Metadata\KLine.cs" />
