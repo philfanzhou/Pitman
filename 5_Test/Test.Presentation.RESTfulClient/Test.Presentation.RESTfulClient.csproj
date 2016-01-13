@@ -58,17 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\0_Presentation\Pitman.Presentation.RESTfulClient\Pitman.Presentation.RESTfulClient.csproj">
-      <Project>{d1405086-d3e8-4457-916c-2f378e122cd2}</Project>
-      <Name>Pitman.Presentation.RESTfulClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\1_DistributedService\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
-      <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
-      <Name>Pitman.Distributed.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\1_DistributedService\Pitman.DistributedService.Contracts\Pitman.DistributedService.Contracts.csproj">
-      <Project>{7B5F4FAA-78BC-4481-AE7A-8C0F7FCD4B33}</Project>
-      <Name>Pitman.DistributedService.Contracts</Name>
+    <ProjectReference Include="..\..\0_Presentation\Pitman.RESTful.Client\Pitman.RESTful.Client.csproj">
+      <Project>{174152cf-6749-493a-899c-5053e62902e6}</Project>
+      <Name>Pitman.RESTful.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
