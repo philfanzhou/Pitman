@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pitman.Infrastructure.EF.Repository")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Motorola")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Pitman.Infrastructure.EF.Repository")]
-[assembly: AssemblyCopyright("Copyright © Motorola 2016")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

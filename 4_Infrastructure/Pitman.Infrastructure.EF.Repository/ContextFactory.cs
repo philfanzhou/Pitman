@@ -6,7 +6,7 @@ namespace Pitman.Infrastructure.EF.Repository
 {
     public static class ContextFactory
     {
-        public static IRepositoryContext CreateContext(ContextType type, string fullPath)
+        public static IRepositoryContext Create(ContextType type, string fullPath)
         {
             IRepositoryContext context = null;
             switch (type)

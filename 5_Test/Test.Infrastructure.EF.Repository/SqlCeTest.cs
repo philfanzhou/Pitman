@@ -49,7 +49,7 @@ namespace Test.Infrastructure.EF.Repository
             string fullPath = Path.Combine(directory, fileName);
 
             // Add
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.KLine, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
                 var repository = new Repository<KLine>(context);
                 repository.Add(insertData);
@@ -58,7 +58,7 @@ namespace Test.Infrastructure.EF.Repository
 
             // Read
             KLine readData;
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.KLine, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
                 var repository = new Repository<KLine>(context);
                 readData = repository.Get(insertData.Time);
@@ -69,14 +69,14 @@ namespace Test.Infrastructure.EF.Repository
             // update
             KLine updatedData = readData;
             updatedData.Open = 100;
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.KLine, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
                 var repository = new Repository<KLine>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.KLine, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
                 var repository = new Repository<KLine>(context);
                 readData = repository.Get(insertData.Time);
@@ -99,7 +99,7 @@ namespace Test.Infrastructure.EF.Repository
             string fullPath = Path.Combine(directory, fileName);
 
             // Add
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.Security, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
                 var repository = new Repository<Security>(context);
                 repository.Add(insertData);
@@ -108,7 +108,7 @@ namespace Test.Infrastructure.EF.Repository
 
             // Read
             Security readData;
-            using (IRepositoryContext context = ContextFactory.CreateContext(ContextType.Security, fullPath))
+            using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
                 var repository = new Repository<Security>(context);
                 readData = repository.Get(insertData.Code);
