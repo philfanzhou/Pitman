@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Pitman.Application.DataReview")]
+[assembly: AssemblyTitle("Pitman.Domain.FileStructure")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Pitman.Application.DataReview")]
+[assembly: AssemblyProduct("Pitman.Domain.FileStructure")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0d9afcd-2037-4875-9de9-b114eb97e8c9")]
+[assembly: Guid("6a13acf4-99a1-4d6a-b95a-538f9a9bb8bc")]
 
 // Version information for an assembly consists of the following four values:
 //
