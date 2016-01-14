@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9c3a5dd3-6865-4226-baf7-9a40f7924e62</ProjectGuid>
+    <ProjectGuid>f0d9afcd-2037-4875-9de9-b114eb97e8c9</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pitman.Application.DataReview</RootNamespace>

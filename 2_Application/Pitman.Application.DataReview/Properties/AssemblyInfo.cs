@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pitman.Application.DataReview")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Motorola")]
 [assembly: AssemblyProduct("Pitman.Application.DataReview")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © Motorola 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9c3a5dd3-6865-4226-baf7-9a40f7924e62")]
+[assembly: Guid("f0d9afcd-2037-4875-9de9-b114eb97e8c9")]
 
 // Version information for an assembly consists of the following four values:
 //
