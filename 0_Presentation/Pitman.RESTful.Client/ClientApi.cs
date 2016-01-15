@@ -80,7 +80,6 @@ namespace Pitman.RESTful.Client
                 EndDate = endTime
             };
 
-
             return _httpClient.PostAndReadAs<IEnumerable<StockKLineDto>, KLineArgs>("KLineDay", data);
         }
     }

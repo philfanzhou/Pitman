@@ -10,12 +10,12 @@ namespace Test.Application.DataCollection
     [TestClass]
     public class TestDatasource
     {
-        [TestMethod]
-        public void TestRealTimeInfo()
-        {
-            List<IStockRealTime> realTimes = RealTime.GetDataFromApi(new[] { "600036" }).ToList();
-            Assert.IsNotNull(realTimes);
-        }
+        //[TestMethod]
+        //public void TestRealTimeInfo()
+        //{
+        //    List<IStockRealTime> realTimes = RealTime.GetDataFromApi(new[] { "600036" }).ToList();
+        //    Assert.IsNotNull(realTimes);
+        //}
 
         [TestMethod]
         public void TestSecurityInfo()

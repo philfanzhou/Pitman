@@ -4,12 +4,28 @@ namespace Pitman.Application.DataCollection
 {
     internal interface ICollectionService
     {
+        string ServiceName { get; }
+
         ServiceStatus Status { get; }
 
-        bool IsWorkingTime(DateTime now);
+        DateTime StartTime { get; }
 
-        void Start();
+        TimeSpan ElapsedRuntime { get; }
 
-        void Stop();
+        double Progress { get; }
+
+        string GetStatusReport();
+    }
+
+    internal enum ServiceStatus
+    {
+        /// <summary>
+        /// 已停止
+        /// </summary>
+        Stopped = 1,
+        /// <summary>
+        /// 运行中
+        /// </summary>
+        Running = 2
     }
 }
