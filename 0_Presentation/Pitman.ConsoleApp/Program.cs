@@ -76,7 +76,7 @@ namespace Pitman.ConsoleApp
             Console.WriteLine("Collection Service is started...");
 
             // 启动WebApi
-            _webApiServer = new WebApiServer(_webApiPort);
+            _webApiServer = new WebApiServer(_webApiPort, _collectionServiceManager);
             if(_webApiServer.Open())
             {
                 Console.WriteLine(string.Format("WebApi is listening at {0}", _webApiServer.BasicAddress));

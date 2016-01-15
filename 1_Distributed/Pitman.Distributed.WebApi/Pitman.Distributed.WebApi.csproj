@@ -72,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\2_Application\Pitman.Application.DataCollection\Pitman.Application.DataCollection.csproj">
+      <Project>{e6bf2980-c230-41bc-9001-5480aece5280}</Project>
+      <Name>Pitman.Application.DataCollection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
       <Project>{7481a981-5d62-4b50-8b39-640b4671f60e}</Project>
       <Name>Pitman.Distributed.Dto</Name>

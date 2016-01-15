@@ -37,12 +37,12 @@ namespace Pitman.Application.DataCollection
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.AppendLine(string.Format("ServiceName:{0}", this.ServiceName));
             strBuilder.AppendLine(string.Format("Status:{0}", this._status.ToString()));
-            strBuilder.AppendLine(string.Format("StartTime:{0)", _startTime.ToString("yyyyMMdd hh:mm:ss")));
+            strBuilder.AppendLine(string.Format("StartTime:{0}", _startTime.ToString("yy-MM-dd hh:mm:ss")));
             if (_status == ServiceStatus.Stopped)
             {
-                strBuilder.AppendLine(string.Format("StopTime:{0)", _stopTime.ToString("yyyyMMdd hh:mm:ss")));
+                strBuilder.AppendLine(string.Format("StopTime:{0}", _stopTime.ToString("yy-MM-dd hh:mm:ss")));
             }
-            strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (DateTime.Now - _startTime).ToString("hh:mm:ss")));
+            strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (DateTime.Now - _startTime).ToString()));
             if(_status == ServiceStatus.Running && _progress != null)
             {
                 strBuilder.Append(string.Format("Progess:{0}%", _progress.Value));
@@ -75,6 +75,16 @@ namespace Pitman.Application.DataCollection
         #endregion
 
         #region Protected Method
+        protected DateTime StartTime
+        {
+            get { return this._startTime; }
+        }
+
+        protected DateTime StopTime
+        {
+            get { return this._stopTime; }
+        }
+
         protected abstract bool IsWorkingTime(DateTime now);
 
         protected virtual void Finished()

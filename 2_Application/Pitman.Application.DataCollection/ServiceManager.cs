@@ -33,6 +33,11 @@ namespace Pitman.Application.DataCollection
         #region Private Method
         private void InitServices()
         {
+#if DEBUG
+            var serviceForTest = new ServiceForTest();
+            _serviceContainer.Add(serviceForTest.ServiceName, serviceForTest);
+#endif
+
             //var security = new Security();
             //_serviceContainer.Add(security.ServiceName, security);
         }

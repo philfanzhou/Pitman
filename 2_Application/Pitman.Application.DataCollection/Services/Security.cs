@@ -10,18 +10,11 @@ namespace Pitman.Application.DataCollection
 {
     internal class Security : CollectionService
     {
+        private const string _serviceName = "Security";
+
         public override string ServiceName
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        internal static IEnumerable<ISecurity> GetDataFromApi()
-        {
-            SecurityInfoApi api = new SecurityInfoApi();
-            return api.GetAllSecurity();
+            get { return _serviceName; }
         }
 
         protected override void DoWork()
@@ -32,6 +25,12 @@ namespace Pitman.Application.DataCollection
         protected override bool IsWorkingTime(DateTime now)
         {
             throw new NotImplementedException();
+        }
+
+        internal static IEnumerable<ISecurity> GetDataFromApi()
+        {
+            SecurityInfoApi api = new SecurityInfoApi();
+            return api.GetAllSecurity();
         }
     }
 }

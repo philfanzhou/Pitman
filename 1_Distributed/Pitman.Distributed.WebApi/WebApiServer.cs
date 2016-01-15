@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pitman.Application.DataCollection;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -12,9 +13,12 @@ namespace Pitman.Distributed.WebApi
         private readonly int _port;
         private HttpSelfHostServer _httpServer;
 
-        public WebApiServer(int port)
+        private static IServiceManager _collectionServiceManager;
+
+        public WebApiServer(int port, IServiceManager collectionServiceManager)
         {
             _port = port;
+            _collectionServiceManager = collectionServiceManager;
         }
 
         public void Dispose()
@@ -69,14 +73,20 @@ namespace Pitman.Distributed.WebApi
 
             _httpServer.OpenAsync().Wait();
 
-            return CheckListeningStatus();
+            return IsListening();
+        }
+
+        public bool Close()
+        {
+            _httpServer.CloseAsync().Wait();
+            return !IsListening();
         }
 
         /// <summary>
         /// 获取当前服务的监听状况
         /// </summary>
         /// <returns></returns>
-        private bool CheckListeningStatus()
+        private bool IsListening()
         {
             //获取本地计算机的网络连接和通信统计数据的信息
             IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
@@ -103,6 +113,11 @@ namespace Pitman.Distributed.WebApi
             {
                 return false;
             }
+        }
+
+        internal static IServiceManager CollectionServiceManager
+        {
+            get { return _collectionServiceManager; }
         }
     }
 }
