@@ -1,19 +1,20 @@
-﻿using Pitman.Distributed.WebApi;
+﻿using Pitman.Application.DataCollection;
+using Pitman.Distributed.WebApi;
 using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Threading;
-using System.Linq;
 
 namespace Pitman.ConsoleApp
 {
     class Program
     {
+        #region Field
         private static Mutex mutex = new Mutex(true, "Pitman.OnlyRun");
 
         private static WebApiServer _webApiServer;
         private static int _webApiPort = 9999;
+
+        private static ServiceManager _collectionServiceManager;
+        #endregion
 
         static void Main(string[] args)
         {
@@ -69,10 +70,16 @@ namespace Pitman.ConsoleApp
 
         private static void StarService()
         {
+            // 启动数据收集服务
+            _collectionServiceManager = new ServiceManager();
+            _collectionServiceManager.StartService();
+            Console.WriteLine("Collection Service is started...");
+
+            // 启动WebApi
             _webApiServer = new WebApiServer(_webApiPort);
             if(_webApiServer.Open())
             {
-                Console.WriteLine(string.Format("Service is listening at {0}", _webApiServer.BasicAddress));
+                Console.WriteLine(string.Format("WebApi is listening at {0}", _webApiServer.BasicAddress));
             }
         }
     }

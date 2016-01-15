@@ -54,6 +54,10 @@
       <Project>{7680df62-4c79-4858-804f-04db1f06cbc9}</Project>
       <Name>Pitman.Distributed.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\2_Application\Pitman.Application.DataCollection\Pitman.Application.DataCollection.csproj">
+      <Project>{e6bf2980-c230-41bc-9001-5480aece5280}</Project>
+      <Name>Pitman.Application.DataCollection</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Octopus.ico" />

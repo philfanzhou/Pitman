@@ -1,20 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    internal abstract class CollectionService : ICollectionService
+    internal abstract partial class CollectionService
     {
+        #region Field
         private ServiceStatus _status = ServiceStatus.Stopped;
         private DateTime _startTime = DateTime.MinValue;
         private DateTime _stopTime = DateTime.MinValue;
 
         protected Progress _progress;
+        #endregion
 
+        #region Property
+        public abstract string ServiceName { get; }
+        #endregion
+
+        #region Public Method
         public void Heartbeat()
         {
             if (_status == ServiceStatus.Running)
@@ -24,13 +28,32 @@ namespace Pitman.Application.DataCollection
 
             if (IsWorkingTime(DateTime.Now))
             {
-                Start();
+                StartWork();
             }
         }
 
-        protected abstract bool IsWorkingTime(DateTime now);
+        public string GetStatusReport()
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.AppendLine(string.Format("ServiceName:{0}", this.ServiceName));
+            strBuilder.AppendLine(string.Format("Status:{0}", this._status.ToString()));
+            strBuilder.AppendLine(string.Format("StartTime:{0)", _startTime.ToString("yyyyMMdd hh:mm:ss")));
+            if (_status == ServiceStatus.Stopped)
+            {
+                strBuilder.AppendLine(string.Format("StopTime:{0)", _stopTime.ToString("yyyyMMdd hh:mm:ss")));
+            }
+            strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (DateTime.Now - _startTime).ToString("hh:mm:ss")));
+            if(_status == ServiceStatus.Running && _progress != null)
+            {
+                strBuilder.Append(string.Format("Progess:{0}%", _progress.Value));
+            }
 
-        private void Start()
+            return strBuilder.ToString();
+        }
+        #endregion
+
+        #region Private Method
+        private void StartWork()
         {
             if (_status == ServiceStatus.Running)
             {
@@ -43,14 +66,18 @@ namespace Pitman.Application.DataCollection
             Action action = () =>
             {
                 DoWork();
-                Stop();
+                Finished();
             };
 
             Task tast = new Task(action);
             tast.Start();
         }
+        #endregion
 
-        protected virtual void Stop()
+        #region Protected Method
+        protected abstract bool IsWorkingTime(DateTime now);
+
+        protected virtual void Finished()
         {
             if(_status == ServiceStatus.Stopped)
             {
@@ -62,40 +89,6 @@ namespace Pitman.Application.DataCollection
         }
 
         protected abstract void DoWork();
-
-        #region ICollectionService Members
-        public abstract string ServiceName { get; }
-
-        public ServiceStatus Status
-        {
-            get { return _status; }
-        }
-
-        public DateTime StartTime
-        {
-            get { return _startTime; }
-        }
-
-        public TimeSpan ElapsedRuntime
-        {
-            get
-            {
-                return _status == ServiceStatus.Stopped ? TimeSpan.Zero : DateTime.Now - _startTime;
-            }
-        }
-
-        public double Progress
-        {
-            get
-            {
-                return _progress == null ? 0 : _progress.Value;
-            }
-        }
-
-        public string GetStatusReport()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }

@@ -1,48 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    public class ServiceManager
+    internal class ServiceManager : IServiceManager
     {
+        #region Field
         private Dictionary<string, CollectionService> _serviceContainer 
             = new Dictionary<string, CollectionService>();
         
         private readonly Timer _heartbeatTimer = new Timer(30000);
+        #endregion
 
-        public ServiceManager()
+        #region Public Method
+        public void StartService()
         {
+            InitServices();
+
             _heartbeatTimer.Elapsed += HeartbeatTimer_Elapsed;
-
-            var security = new Security();
-            _serviceContainer.Add(security.ServiceName, security);
-        }
-
-        public IEnumerable<string> GetAllServiceName()
-        {
-            return _serviceContainer.Keys;
-        }
-
-        public string GetServiceStatus(string serviceName)
-        {
-            string result = string.Empty;
-            CollectionService service;
-            if (_serviceContainer.TryGetValue(serviceName, out service))
-            {
-                result = service.GetStatusReport();
-            }
-
-            return result;
-        }
-
-        public void Start()
-        {
             _heartbeatTimer.Enabled = true;
             _heartbeatTimer.Start();
+        }
+
+        public void StopService()
+        {
+            _heartbeatTimer.Elapsed -= HeartbeatTimer_Elapsed;
+            _heartbeatTimer.Enabled = false;
+            _heartbeatTimer.Stop();
+        }
+        #endregion
+
+        #region Private Method
+        private void InitServices()
+        {
+            //var security = new Security();
+            //_serviceContainer.Add(security.ServiceName, security);
         }
 
         private void HeartbeatTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -56,5 +48,25 @@ namespace Pitman.Application.DataCollection
 
             _heartbeatTimer.Enabled = true;
         }
+        #endregion
+
+        #region IServiceManager Member
+        IEnumerable<string> IServiceManager.GetAllServiceName()
+        {
+            return _serviceContainer.Keys;
+        }
+
+        string IServiceManager.GetServiceStatus(string serviceName)
+        {
+            string result = string.Empty;
+            CollectionService service;
+            if (_serviceContainer.TryGetValue(serviceName, out service))
+            {
+                result = service.GetStatusReport();
+            }
+
+            return result;
+        }
+        #endregion
     }
 }
