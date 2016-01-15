@@ -44,23 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\HttpClientEx.cs" />
-    <Compile Include="Base\JsonSerializer.cs" />
-    <Compile Include="Base\RestfulClient.cs" />
-    <Compile Include="ClientFactory.cs" />
-    <Compile Include="Clients\KLineClient.cs" />
-    <Compile Include="Clients\SecurityClient.cs" />
-    <Compile Include="Clients\ServiceStatusClient.cs" />
-    <Compile Include="Clients\StockBonusClient.cs" />
-    <Compile Include="Clients\StockProfileClient.cs" />
-    <Compile Include="Clients\StockStructureClient.cs" />
-    <Compile Include="IClient.cs" />
-    <Compile Include="IKLineClient.cs" />
-    <Compile Include="ISecurityClient.cs" />
-    <Compile Include="IServiceStatusClient.cs" />
-    <Compile Include="IStockBonusClient.cs" />
-    <Compile Include="IStockProfileClient.cs" />
-    <Compile Include="IStockStructureClient.cs" />
+    <Compile Include="ClientApi.cs" />
+    <Compile Include="Internal\HttpClientEx.cs" />
+    <Compile Include="Internal\JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

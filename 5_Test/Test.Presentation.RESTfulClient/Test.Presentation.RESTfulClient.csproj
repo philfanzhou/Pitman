@@ -54,8 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="RESTfulClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RESTfulClientTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\0_Presentation\Pitman.RESTful.Client\Pitman.RESTful.Client.csproj">
