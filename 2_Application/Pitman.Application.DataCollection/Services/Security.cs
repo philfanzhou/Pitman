@@ -22,7 +22,7 @@ namespace Pitman.Application.DataCollection
             throw new NotImplementedException();
         }
 
-        protected override bool IsWorkingTime(DateTime now)
+        protected override bool IsWorkingTime()
         {
             throw new NotImplementedException();
         }

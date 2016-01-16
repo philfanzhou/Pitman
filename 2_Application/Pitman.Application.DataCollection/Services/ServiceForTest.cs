@@ -18,16 +18,24 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
-            int dataCount = 90;
+            int dataCount = 30;
+
+            //设置进度对象
+            base.Progress = new Progress(dataCount);
+
             for(int i = 0; i < dataCount; i++)
             {
+                // 模拟进行工作
                 System.Threading.Thread.Sleep(1000);
+
+                // 更新进度
+                base.Progress.Increase();
             }
         }
 
-        protected override bool IsWorkingTime(DateTime now)
+        protected override bool IsWorkingTime()
         {
-            if(now - base.StopTime > new TimeSpan(0, 1, 0))
+            if(DateTime.Now - base.StopTime > new TimeSpan(0, 1, 0))
             {
                 return true;
             }

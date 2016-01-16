@@ -10,8 +10,7 @@ namespace Pitman.Application.DataCollection
         private ServiceStatus _status = ServiceStatus.Stopped;
         private DateTime _startTime = DateTime.MinValue;
         private DateTime _stopTime = DateTime.MinValue;
-
-        protected Progress _progress;
+        private Progress _progress;
         #endregion
 
         #region Property
@@ -26,7 +25,7 @@ namespace Pitman.Application.DataCollection
                 return;
             }
 
-            if (IsWorkingTime(DateTime.Now))
+            if (IsWorkingTime())
             {
                 StartWork();
             }
@@ -38,11 +37,17 @@ namespace Pitman.Application.DataCollection
             strBuilder.AppendLine(string.Format("ServiceName:{0}", this.ServiceName));
             strBuilder.AppendLine(string.Format("Status:{0}", this._status.ToString()));
             strBuilder.AppendLine(string.Format("StartTime:{0}", _startTime.ToString("yy-MM-dd hh:mm:ss")));
+
             if (_status == ServiceStatus.Stopped)
             {
                 strBuilder.AppendLine(string.Format("StopTime:{0}", _stopTime.ToString("yy-MM-dd hh:mm:ss")));
+                strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (_stopTime - _startTime).ToString()));
             }
-            strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (DateTime.Now - _startTime).ToString()));
+            else
+            {
+                strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (DateTime.Now - _startTime).ToString()));
+            }
+
             if(_status == ServiceStatus.Running && _progress != null)
             {
                 strBuilder.Append(string.Format("Progess:{0}%", _progress.Value));
@@ -85,7 +90,13 @@ namespace Pitman.Application.DataCollection
             get { return this._stopTime; }
         }
 
-        protected abstract bool IsWorkingTime(DateTime now);
+        protected Progress Progress
+        {
+            get { return _progress; }
+            set { _progress = value; }
+        }
+
+        protected abstract bool IsWorkingTime();
 
         protected virtual void Finished()
         {
