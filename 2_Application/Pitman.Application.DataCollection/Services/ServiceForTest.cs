@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Ore.Infrastructure.MarketData;
+using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
+using Pitman.Application.MarketData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Application.DataCollection
 {
@@ -18,15 +19,29 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
-            int dataCount = 30;
+            // 获取所有证券信息
+            var securities = GetDataFromApi().ToList();
 
             //设置进度对象
-            base.Progress = new Progress(dataCount);
+            base.Progress = new Progress(securities.Count);
 
-            for(int i = 0; i < dataCount; i++)
+            // 获取数据服务
+            var appService = new SecurityAppService();
+
+            // 检查并更新或增加
+            foreach (var security in securities)
             {
-                // 模拟进行工作
-                System.Threading.Thread.Sleep(1000);
+                // 检查是否已经存在记录
+                if (appService.Exists(security))
+                {
+                    // 如果已经存在就更新
+                    appService.Update(security);
+                }
+                else
+                {
+                    // 不存在就添加
+                    appService.Add(security);
+                }
 
                 // 更新进度
                 base.Progress.Increase();
@@ -35,7 +50,7 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            if(DateTime.Now - base.StopTime > new TimeSpan(0, 1, 0))
+            if(DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
             {
                 return true;
             }
@@ -43,6 +58,12 @@ namespace Pitman.Application.DataCollection
             {
                 return false;
             }
+        }
+
+        internal static IEnumerable<ISecurity> GetDataFromApi()
+        {
+            SecurityInfoApi api = new SecurityInfoApi();
+            return api.GetAllSecurity();
         }
     }
 }
