@@ -53,30 +53,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="SecurityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151201.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151202.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151203.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151204.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\RealTimeData\Shanghai\600036\20151207.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
+      <Project>{7481a981-5d62-4b50-8b39-640b4671f60e}</Project>
+      <Name>Pitman.Distributed.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\2_Application\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
       <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
       <Name>Pitman.Application.MarketData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.FileStructure\Pitman.Domain.FileStructure.csproj">
+      <Project>{6a13acf4-99a1-4d6a-b95a-538f9a9bb8bc}</Project>
+      <Name>Pitman.Domain.FileStructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
