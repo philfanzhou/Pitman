@@ -38,8 +38,8 @@ namespace Pitman.Application.DataCollection
             _serviceContainer.Add(serviceForTest.ServiceName, serviceForTest);
 #endif
 
-            //var security = new Security();
-            //_serviceContainer.Add(security.ServiceName, security);
+            var security = new SecurityService();
+            _serviceContainer.Add(security.ServiceName, security);
         }
 
         private void HeartbeatTimer_Elapsed(object sender, ElapsedEventArgs e)

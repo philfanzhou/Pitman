@@ -59,9 +59,9 @@
     <Compile Include="ContextType.cs" />
     <Compile Include="DbConfig\KLineConfig.cs" />
     <Compile Include="DbContext\KLineContext.cs" />
-    <Compile Include="Metadata\KLine.cs" />
+    <Compile Include="Metadata\KLineDbo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Metadata\Security.cs" />
+    <Compile Include="Metadata\SecurityDbo.cs" />
     <Compile Include="DbConfig\SecurityConfig.cs" />
     <Compile Include="DbContext\SecurityContext.cs" />
   </ItemGroup>

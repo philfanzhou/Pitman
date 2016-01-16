@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pitman.Application.DataCollection
 {
-    internal class StockProfile
+    internal class StockProfileService
     {
         internal static IStockProfile GetDataFromApi(string stockCode)
         {

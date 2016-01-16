@@ -3,7 +3,7 @@ using System;
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    public class KLine : IStockKLine
+    public class KLineDbo : IStockKLine
     {
         public DateTime Time { get; set; }
 

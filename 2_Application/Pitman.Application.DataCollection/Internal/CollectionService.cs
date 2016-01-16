@@ -68,6 +68,7 @@ namespace Pitman.Application.DataCollection
             _status = ServiceStatus.Running;
             _startTime = DateTime.Now;
 
+            // TODO: 考虑异常处理
             Action action = () =>
             {
                 DoWork();
@@ -110,6 +111,15 @@ namespace Pitman.Application.DataCollection
         }
 
         protected abstract void DoWork();
+
+        /// <summary>
+        /// 判断今天是否已经完成过任务
+        /// </summary>
+        /// <returns></returns>
+        protected bool IsCompletedToday()
+        {
+            return DateTime.Now.Date == _startTime.Date;
+        }
         #endregion
     }
 }

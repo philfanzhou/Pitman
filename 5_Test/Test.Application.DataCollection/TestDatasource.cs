@@ -20,28 +20,28 @@ namespace Test.Application.DataCollection
         [TestMethod]
         public void TestSecurityInfo()
         {
-            List<ISecurity> securities = Security.GetDataFromApi().ToList();
+            List<ISecurity> securities = SecurityService.GetDataFromApi().ToList();
             Assert.IsNotNull(securities);
         }
 
         [TestMethod]
         public void TestBonusInfo()
         {
-            List<IStockBonus> result = StockBonus.GetDataFromApi("600036").ToList();
+            List<IStockBonus> result = StockBonusService.GetDataFromApi("600036").ToList();
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
         public void TestProfileInfo()
         {
-            IStockProfile result = StockProfile.GetDataFromApi("600036");
+            IStockProfile result = StockProfileService.GetDataFromApi("600036");
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
         public void TestStructureInfo()
         {
-            List<IStockStructure> result = StockStructure.GetDataFromApi("600036").ToList();
+            List<IStockStructure> result = StockStructureService.GetDataFromApi("600036").ToList();
             Assert.IsNotNull(result);
         }
     }

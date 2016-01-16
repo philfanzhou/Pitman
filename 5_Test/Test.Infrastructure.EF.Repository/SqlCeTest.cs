@@ -34,7 +34,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestKLineReadAndWrite()
         {
-            KLine insertData = new KLine()
+            KLineDbo insertData = new KLineDbo()
             {
                 Amount = 123214124,
                 Close = 19.96,
@@ -51,34 +51,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLine>(context);
+                var repository = new Repository<KLineDbo>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            KLine readData;
+            KLineDbo readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLine>(context);
+                var repository = new Repository<KLineDbo>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.Time, readData.Time);
 
             // update
-            KLine updatedData = readData;
+            KLineDbo updatedData = readData;
             updatedData.Open = 100;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLine>(context);
+                var repository = new Repository<KLineDbo>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLine>(context);
+                var repository = new Repository<KLineDbo>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsTrue(readData.Open - 100 < 0.0000001);
@@ -87,7 +87,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestSecurityReadAndWrite()
         {
-            Security insertData = new Security()
+            SecurityDbo insertData = new SecurityDbo()
             {
                 Code = "600036",
                 ShortName = "招商银行招商银行招商银行",
@@ -101,16 +101,16 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
-                var repository = new Repository<Security>(context);
+                var repository = new Repository<SecurityDbo>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            Security readData;
+            SecurityDbo readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
-                var repository = new Repository<Security>(context);
+                var repository = new Repository<SecurityDbo>(context);
                 readData = repository.Get(insertData.Code);
             }
             Assert.IsNotNull(readData);

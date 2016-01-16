@@ -56,16 +56,16 @@
     <Compile Include="Services\ServiceForTest.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Internal\ServiceStatus.cs" />
-    <Compile Include="Services\Security.cs" />
+    <Compile Include="Services\SecurityService.cs" />
     <Compile Include="Services\RealTime.cs" />
-    <Compile Include="Services\StockProfile.cs" />
-    <Compile Include="Services\StockBonus.cs" />
-    <Compile Include="Services\StockStructure.cs" />
+    <Compile Include="Services\StockProfileService.cs" />
+    <Compile Include="Services\StockBonusService.cs" />
+    <Compile Include="Services\StockStructureService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
-      <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
-      <Name>Pitman.Infrastructure.FileDatabase</Name>
+    <ProjectReference Include="..\Pitman.Application.MarketData\Pitman.Application.MarketData.csproj">
+      <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
+      <Name>Pitman.Application.MarketData</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

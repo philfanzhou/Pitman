@@ -2,7 +2,7 @@
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    public class Security : ISecurity
+    public class SecurityDbo : ISecurity
     {
         public string Code { get; set; }
 

@@ -30,13 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Framework.Infrastructure.Repository">
+      <HintPath>..\..\Refer.Dll\Framework.Infrastructure.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
-    </Reference>
-    <Reference Include="Quantum.Domain.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Refer.Dll\Quantum.Domain.MarketData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,15 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntradayAppService.cs" />
     <Compile Include="KLineAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealTimeAppService.cs" />
+    <Compile Include="SecurityAppService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj">
-      <Project>{6456216b-27eb-40a3-b6b9-c58a9cab0e71}</Project>
-      <Name>Pitman.Infrastructure.FileDatabase</Name>
+    <ProjectReference Include="..\..\3_Domain\Pitman.Domain.FileStructure\Pitman.Domain.FileStructure.csproj">
+      <Project>{6a13acf4-99a1-4d6a-b95a-538f9a9bb8bc}</Project>
+      <Name>Pitman.Domain.FileStructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.EF.Repository\Pitman.Infrastructure.EF.Repository.csproj">
+      <Project>{e9bbe4bd-63e5-4848-a0c8-29f99f7ff64f}</Project>
+      <Name>Pitman.Infrastructure.EF.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

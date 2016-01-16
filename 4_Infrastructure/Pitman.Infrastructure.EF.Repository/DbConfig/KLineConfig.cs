@@ -2,7 +2,7 @@
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    internal class KLineConfig : EntityTypeConfiguration<KLine>
+    internal class KLineConfig : EntityTypeConfiguration<KLineDbo>
     {
         public KLineConfig()
         {

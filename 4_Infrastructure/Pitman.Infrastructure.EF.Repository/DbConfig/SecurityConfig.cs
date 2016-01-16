@@ -2,7 +2,7 @@
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    internal class SecurityConfig : EntityTypeConfiguration<Security>
+    internal class SecurityConfig : EntityTypeConfiguration<SecurityDbo>
     {
         public SecurityConfig()
         {
