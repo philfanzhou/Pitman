@@ -49,6 +49,9 @@
     <Compile Include="KLineAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityAppService.cs" />
+    <Compile Include="StockBonusAppService.cs" />
+    <Compile Include="StockProfileAppService.cs" />
+    <Compile Include="StockStructureAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\3_Domain\Pitman.Domain.FileStructure\Pitman.Domain.FileStructure.csproj">

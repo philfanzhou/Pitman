@@ -25,7 +25,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<SecurityDbo>(context);
-                repository.Add(security.ConvertToDbo());
+                repository.Add(ConvertToDbo(security));
                 repository.UnitOfWork.Commit();
             }
         }
@@ -35,7 +35,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<SecurityDbo>(context);
-                repository.Update(security.ConvertToDbo());
+                repository.Update(ConvertToDbo(security));
                 repository.UnitOfWork.Commit();
             }
         }
@@ -57,11 +57,8 @@ namespace Pitman.Application.MarketData
 
             return context;
         }
-    }
 
-    internal static class SecurityExt
-    {
-        public static SecurityDbo ConvertToDbo(this ISecurity self)
+        private static SecurityDbo ConvertToDbo(ISecurity self)
         {
             SecurityDbo outputData = new SecurityDbo
             {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Ore.Infrastructure.MarketData;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Pitman.Domain.FileStructure
@@ -17,6 +20,20 @@ namespace Pitman.Domain.FileStructure
             string folder = Path.Combine(DataFolder, "SecurityData");
             CreateFolderIsNotExist(folder);
             return Path.Combine(folder, "Securities.sdf");// 注意文件后缀名必须是sdf
+        }
+
+        public static string GetStockBonusFile(string stockCode)
+        {
+            /*因为是一只股票一个文件，所以需要传入参数*/
+            throw new NotImplementedException();
+        }
+
+        public static IEnumerable<string> GetKLineFiles(
+            KLineType type, string stockCode,
+            DateTime startTime, DateTime endTime)
+        {
+            /*因为时间跨度可能导致多个存储文件，所以这里的Path返回是一个集合*/
+            throw new NotImplementedException();
         }
 
         private static void CreateFolderIsNotExist(string folder)
