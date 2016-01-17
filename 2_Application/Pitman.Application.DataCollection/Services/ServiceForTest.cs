@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace Pitman.Application.DataCollection
 {
+    /// <summary>
+    /// 测试使用服务
+    /// </summary>
     internal class ServiceForTest : CollectionService
     {
         public override string ServiceName

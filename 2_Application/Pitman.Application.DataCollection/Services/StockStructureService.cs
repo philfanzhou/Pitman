@@ -10,6 +10,8 @@ namespace Pitman.Application.DataCollection
 {
     internal class StockStructureService
     {
+        // 每天凌晨0：00进行一次数据获取
+
         internal static IEnumerable<IStockStructure> GetDataFromApi(string stockCode)
         {
             StockStructureApi api = new StockStructureApi();
