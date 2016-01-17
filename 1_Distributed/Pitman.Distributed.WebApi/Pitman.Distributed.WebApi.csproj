@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionServiceHandler.cs" />
     <Compile Include="Controllers\CollectionStatusController.cs" />
     <Compile Include="Controllers\KLineDayController.cs" />
     <Compile Include="Controllers\SecuritiesController.cs" />

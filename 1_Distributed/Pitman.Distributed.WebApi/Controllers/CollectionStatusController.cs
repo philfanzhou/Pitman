@@ -15,9 +15,9 @@ namespace Pitman.Distributed.WebApi
 //            /*test code for communication************************************/
 //#endif
 
-            if(WebApiServer.CollectionServiceManager != null)
+            if(CollectionServiceHandler.Manager != null)
             {
-                return WebApiServer.CollectionServiceManager.GetAllServiceName();
+                return CollectionServiceHandler.Manager.GetAllServiceName();
             }
             else
             {
@@ -33,9 +33,9 @@ namespace Pitman.Distributed.WebApi
             //            /*test code for communication************************************/
             //#endif
 
-            if (WebApiServer.CollectionServiceManager != null)
+            if (CollectionServiceHandler.Manager != null)
             {
-                return WebApiServer.CollectionServiceManager.GetServiceStatus(serviceName);
+                return CollectionServiceHandler.Manager.GetServiceStatus(serviceName);
             }
             else
             {

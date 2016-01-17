@@ -1,5 +1,4 @@
-﻿using Pitman.Application.DataCollection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -13,12 +12,9 @@ namespace Pitman.Distributed.WebApi
         private readonly int _port;
         private HttpSelfHostServer _httpServer;
 
-        private static IServiceManager _collectionServiceManager;
-
-        public WebApiServer(int port, IServiceManager collectionServiceManager)
+        public WebApiServer(int port)
         {
             _port = port;
-            _collectionServiceManager = collectionServiceManager;
         }
 
         public void Dispose()
@@ -49,7 +45,26 @@ namespace Pitman.Distributed.WebApi
         {
             var configuration = new HttpSelfHostConfiguration(string.Format("http://localhost:{0}", _port));
             _httpServer = new HttpSelfHostServer(configuration);
+            SetRoutes(configuration);
 
+            _httpServer.OpenAsync().Wait();
+
+            return IsListening(_port);
+        }
+
+        public bool Close()
+        {
+            _httpServer.CloseAsync().Wait();
+            return !IsListening(_port);
+        }
+
+        #region Private Method
+        /// <summary>
+        /// 配置服务路由
+        /// </summary>
+        /// <param name="configuration"></param>
+        private static void SetRoutes(HttpSelfHostConfiguration configuration)
+        {
             configuration.MapHttpAttributeRoutes();
 
             configuration.Routes.MapHttpRoute(
@@ -70,23 +85,13 @@ namespace Pitman.Distributed.WebApi
                     stockCode = RouteParameter.Optional
                 }
             );
-
-            _httpServer.OpenAsync().Wait();
-
-            return IsListening();
-        }
-
-        public bool Close()
-        {
-            _httpServer.CloseAsync().Wait();
-            return !IsListening();
         }
 
         /// <summary>
-        /// 获取当前服务的监听状况
+        /// 检查服务是否正在监听指定的端口
         /// </summary>
         /// <returns></returns>
-        private bool IsListening()
+        private static bool IsListening(int port)
         {
             //获取本地计算机的网络连接和通信统计数据的信息
             IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
@@ -105,7 +110,7 @@ namespace Pitman.Distributed.WebApi
             foreach (IPEndPoint ep in ipsUDP) allPorts.Add(ep.Port);
             foreach (TcpConnectionInformation conn in tcpConnInfoArray) allPorts.Add(conn.LocalEndPoint.Port);
 
-            if(allPorts.Contains(_port))
+            if(allPorts.Contains(port))
             {
                 return true;
             }
@@ -114,10 +119,6 @@ namespace Pitman.Distributed.WebApi
                 return false;
             }
         }
-
-        internal static IServiceManager CollectionServiceManager
-        {
-            get { return _collectionServiceManager; }
-        }
+        #endregion
     }
 }
