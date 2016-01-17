@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Timers;
 
 namespace Pitman.Application.DataCollection
 {
-    internal class ServiceManager : IServiceManager
+    internal class ServiceManager : IServiceManager, IDisposable
     {
         #region Field
         private Dictionary<string, CollectionService> _serviceContainer 
@@ -24,6 +25,8 @@ namespace Pitman.Application.DataCollection
 
         public void StopService()
         {
+            // todo: 停止所有服务
+
             _heartbeatTimer.Elapsed -= HeartbeatTimer_Elapsed;
             _heartbeatTimer.Enabled = false;
             _heartbeatTimer.Stop();
@@ -31,17 +34,6 @@ namespace Pitman.Application.DataCollection
         #endregion
 
         #region Private Method
-        private void InitServices()
-        {
-#if DEBUG
-            var serviceForTest = new ServiceForTest();
-            _serviceContainer.Add(serviceForTest.ServiceName, serviceForTest);
-#endif
-
-            var security = new SecurityService();
-            _serviceContainer.Add(security.ServiceName, security);
-        }
-
         private void HeartbeatTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _heartbeatTimer.Enabled = false;
@@ -52,6 +44,17 @@ namespace Pitman.Application.DataCollection
             }
 
             _heartbeatTimer.Enabled = true;
+        }
+
+        private void InitServices()
+        {
+#if DEBUG
+            var serviceForTest = new ServiceForTest();
+            _serviceContainer.Add(serviceForTest.ServiceName, serviceForTest);
+#endif
+
+            var security = new SecurityService();
+            _serviceContainer.Add(security.ServiceName, security);
         }
         #endregion
 
@@ -71,6 +74,13 @@ namespace Pitman.Application.DataCollection
             }
 
             return result;
+        }
+        #endregion
+
+        #region IDisposable Members
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

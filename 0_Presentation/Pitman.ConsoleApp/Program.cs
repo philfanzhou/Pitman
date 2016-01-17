@@ -10,9 +10,9 @@ namespace Pitman.ConsoleApp
         #region Field
         private static Mutex mutex = new Mutex(true, "Pitman.OnlyRun");
 
-        private static WebApiServer _webApiServer;
         private static int _webApiPort = 9999;
 
+        private static WebApiServer _webApiServer;
         private static ServiceManager _collectionServiceManager;
         #endregion
 
@@ -31,7 +31,7 @@ namespace Pitman.ConsoleApp
 
             try
             {
-                StarService();
+                Start();
             }
             catch(Exception e)
             {
@@ -68,7 +68,7 @@ namespace Pitman.ConsoleApp
             }
         }
 
-        private static void StarService()
+        private static void Start()
         {
             // 启动数据收集服务
             _collectionServiceManager = new ServiceManager();
@@ -81,6 +81,30 @@ namespace Pitman.ConsoleApp
             if(_webApiServer.Open())
             {
                 Console.WriteLine(string.Format("WebApi is listening at {0}", _webApiServer.BasicAddress));
+            }
+            else
+            {
+                Console.WriteLine(string.Format("WebApi startup failed at port:{0}", _webApiPort));
+            }
+        }
+
+        private static void Stop()
+        {
+            /*Stop操作顺序与启动顺序相反*/
+
+            if(_webApiServer != null)
+            {
+                _webApiServer.Close();
+                _webApiServer.Dispose();
+                _webApiServer = null;
+            }
+
+            CollectionServiceHandler.Manager = null;
+            if(_collectionServiceManager != null)
+            {
+                _collectionServiceManager.StopService();
+                _collectionServiceManager.Dispose();
+                _collectionServiceManager = null;
             }
         }
     }
