@@ -64,9 +64,34 @@
             香港证券交易所
             </summary>
         </member>
-        <member name="F:Ore.Infrastructure.MarketData.KLineType.Daily">
+        <member name="T:Ore.Infrastructure.MarketData.KLineType">
+            <summary>
+            K线周期枚举
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Day">
             <summary>
             日线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Week">
+            <summary>
+            周线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Month">
+            <summary>
+            月线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Quarter">
+            <summary>
+            季线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Year">
+            <summary>
+            年线
             </summary>
         </member>
         <member name="F:Ore.Infrastructure.MarketData.KLineType.Min1">
@@ -77,6 +102,21 @@
         <member name="F:Ore.Infrastructure.MarketData.KLineType.Min5">
             <summary>
             5分钟线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Min15">
+            <summary>
+            15分钟线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Min30">
+            <summary>
+            30分钟线
+            </summary>
+        </member>
+        <member name="F:Ore.Infrastructure.MarketData.KLineType.Min60">
+            <summary>
+            60分钟线
             </summary>
         </member>
         <member name="T:Ore.Infrastructure.MarketData.IParticipation">

@@ -70,17 +70,57 @@ namespace Pitman.RESTful.Client
             return _httpClient.GetAndReadAs<IEnumerable<StockStructureDto>>(uri);
         }
 
-        public IEnumerable<IStockKLine> GetStockKLine_Day(
-            string stockCode, DateTime startTime, DateTime endTime)
+        public IEnumerable<IStockKLine> GetStockKLine(
+            KLineType type, string stockCode, 
+            DateTime startTime, DateTime endTime)
         {
-            KLineArgs data = new KLineArgs
+            KLineArgs args = new KLineArgs
             {
                 StockCode = stockCode,
                 StartDate = startTime,
                 EndDate = endTime
             };
 
-            return _httpClient.PostAndReadAs<IEnumerable<StockKLineDto>, KLineArgs>("KLineDay", data);
+            string controllerName;
+            switch(type)
+            {
+                case KLineType.Day:
+                    controllerName = "KLineDay";
+                    break;
+                case KLineType.Week:
+                    controllerName = "KLineWeek";
+                    break;
+                case KLineType.Month:
+                    controllerName = "KLineMonth";
+                    break;
+                case KLineType.Quarter:
+                    controllerName = "KLineQuarter";
+                    break;
+                case KLineType.Year:
+                    controllerName = "KLineYear";
+                    break;
+                case KLineType.Min1:
+                    controllerName = "KLineMin1";
+                    break;
+                case KLineType.Min5:
+                    controllerName = "KLineMin5";
+                    break;
+                case KLineType.Min15:
+                    controllerName = "KLineMin15";
+                    break;
+                case KLineType.Min30:
+                    controllerName = "KLineMin30";
+                    break;
+                case KLineType.Min60:
+                    controllerName = "KLineMin60";
+                    break;
+                default:
+                    controllerName = string.Empty;
+                    break;
+            }
+
+            var result = _httpClient.PostAndReadAs<IEnumerable<StockKLineDto>, KLineArgs>(controllerName, args);
+            return result;
         }
     }
 }

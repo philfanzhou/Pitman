@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ore.Infrastructure.MarketData;
 using Pitman.RESTful.Client;
 using System;
 using System.Linq;
@@ -21,17 +22,6 @@ namespace Test.Presentation.RESTfulClient
 
                 var status = client.GetServiceStatus(result[0]);
                 Assert.IsNotNull(status);
-            }
-        }
-
-        [TestMethod]
-        public void TestKLineClient()
-        {
-            using (var client = new ClientApi(serverAddress))
-            {
-                var result = client.GetStockKLine_Day("600036", new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
-
-                Assert.IsNotNull(result);
             }
         }
 
@@ -78,5 +68,147 @@ namespace Test.Presentation.RESTfulClient
                 Assert.IsNotNull(result);
             }
         }
+
+        #region KLine
+        [TestMethod]
+        public void TestKLineDayClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Day, "600036", 
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 10.01 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineWeekClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Week, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 22.22 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMonthClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Month, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 33.33 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineQuarterClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Quarter, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 44.44 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineYearClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Year, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 55.55 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMin1Client()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Min1, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 32.09 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMin5Client()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Min5, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 8.88 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMin15Client()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Min15, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 66.66 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMin30Client()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Min30, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 77.77 < 0.00000001);
+            }
+        }
+
+        [TestMethod]
+        public void TestKLineMin60Client()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetStockKLine(
+                    KLineType.Min60, "600036",
+                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+
+                Assert.IsNotNull(result);
+                Assert.IsTrue(result[0].Open - 88.88 < 0.00000001);
+            }
+        }
+        #endregion
     }
 }

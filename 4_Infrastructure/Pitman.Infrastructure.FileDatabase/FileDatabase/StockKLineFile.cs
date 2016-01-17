@@ -50,7 +50,7 @@ namespace Pitman.Infrastructure.FileDatabase
             switch (kLineType)
             {
                 /// 日线
-                case KLineType.Daily:
+                case KLineType.Day:
                     maxCount = maxCount_Day;
                     break;
                 /// 1分钟线

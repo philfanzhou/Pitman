@@ -257,39 +257,39 @@ namespace Test.Infrastructure.FileDatabase
 
             foreach(var it in exampleDay_600036)
             {
-                if (!repository.Exists("600036", KLineType.Daily, it.Time))
-                    repository.Add("600036", KLineType.Daily, it);
+                if (!repository.Exists("600036", KLineType.Day, it.Time))
+                    repository.Add("600036", KLineType.Day, it);
             }
 
             foreach (var it in exampleDay_000400)
             {
-                if (!repository.Exists("000400", KLineType.Daily, it.Time))
-                    repository.Add("000400", KLineType.Daily, it);
+                if (!repository.Exists("000400", KLineType.Day, it.Time))
+                    repository.Add("000400", KLineType.Day, it);
             }
 
-            var dataDay_600036_20140111 = repository.GetData("600036", KLineType.Daily, new DateTime(2014, 1, 11));//周末没有数据
+            var dataDay_600036_20140111 = repository.GetData("600036", KLineType.Day, new DateTime(2014, 1, 11));//周末没有数据
             Assert.IsNull(dataDay_600036_20140111);
-            var dataDay_600036_20141013 = repository.GetData("600036", KLineType.Daily, new DateTime(2014, 10, 13));
+            var dataDay_600036_20141013 = repository.GetData("600036", KLineType.Day, new DateTime(2014, 10, 13));
             Assert.IsNotNull(dataDay_600036_20141013);
             Assert.IsTrue(dataDay_600036_20141013.Time == new DateTime(2014, 10, 13));
 
-            var dataDay_000400_20151011 = repository.GetData("000400", KLineType.Daily, new DateTime(2015, 10, 11));//周末没有数据
+            var dataDay_000400_20151011 = repository.GetData("000400", KLineType.Day, new DateTime(2015, 10, 11));//周末没有数据
             Assert.IsNull(dataDay_000400_20151011);
-            var dataDay_000400_20151012 = repository.GetData("000400", KLineType.Daily, new DateTime(2015, 10, 12));
+            var dataDay_000400_20151012 = repository.GetData("000400", KLineType.Day, new DateTime(2015, 10, 12));
             Assert.IsNotNull(dataDay_000400_20151012);
             Assert.IsTrue(dataDay_000400_20151012.Time == new DateTime(2015, 10, 12));
 
-            var dataDay_600036_20140101_20151231 = repository.GetData("600036", KLineType.Daily, new DateTime(2014, 1, 1), new DateTime(2015, 12, 31)).ToList();
+            var dataDay_600036_20140101_20151231 = repository.GetData("600036", KLineType.Day, new DateTime(2014, 1, 1), new DateTime(2015, 12, 31)).ToList();
             Assert.IsNotNull(dataDay_600036_20140101_20151231);
             Assert.IsTrue(dataDay_600036_20140101_20151231.Count == exampleDay_600036.Count());
             Assert.IsTrue(dataDay_600036_20140101_20151231[4].Time == new DateTime(2014, 1, 7));
 
-            var dataDay_000400_20150101_20151231 = repository.GetData("000400", KLineType.Daily, new DateTime(2015, 1, 1), new DateTime(2015, 12, 31)).ToList();
+            var dataDay_000400_20150101_20151231 = repository.GetData("000400", KLineType.Day, new DateTime(2015, 1, 1), new DateTime(2015, 12, 31)).ToList();
             Assert.IsNotNull(dataDay_000400_20150101_20151231);
             Assert.IsTrue(dataDay_000400_20150101_20151231.Count == exampleDay_000400.Count());
             Assert.IsTrue(dataDay_000400_20150101_20151231[6].Time == new DateTime(2015, 1, 9));
 
-            var latestDay = repository.GetLatest(stockCodes, KLineType.Daily).ToList();
+            var latestDay = repository.GetLatest(stockCodes, KLineType.Day).ToList();
             Assert.IsNotNull(latestDay);
             Assert.IsTrue(latestDay.Count == 2);
             Assert.IsTrue(latestDay[0].Time == new DateTime(2015, 12, 31));

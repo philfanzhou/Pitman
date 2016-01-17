@@ -61,11 +61,21 @@
   <ItemGroup>
     <Compile Include="CollectionServiceHandler.cs" />
     <Compile Include="Controllers\CollectionStatusController.cs" />
-    <Compile Include="Controllers\KLineDayController.cs" />
+    <Compile Include="Controllers\KLine\KLineDayController.cs" />
+    <Compile Include="Controllers\KLine\KLineMin1Controller.cs" />
     <Compile Include="Controllers\SecuritiesController.cs" />
     <Compile Include="Controllers\StockBonusController.cs" />
     <Compile Include="Controllers\StockProfileController.cs" />
     <Compile Include="Controllers\StockStructureController.cs" />
+    <Compile Include="Controllers\KLine\KLineMin5Controller.cs" />
+    <Compile Include="Controllers\KLine\KLineWeekController.cs" />
+    <Compile Include="Controllers\KLine\KLineMonthController.cs" />
+    <Compile Include="Controllers\KLine\KLineQuarterController.cs" />
+    <Compile Include="Controllers\KLine\KLineYearController.cs" />
+    <Compile Include="Controllers\KLine\KLineMin15Controller.cs" />
+    <Compile Include="Controllers\KLine\KLineMin30Controller.cs" />
+    <Compile Include="Controllers\KLine\KLineMin60Controller.cs" />
+    <Compile Include="Controllers\KLine\KLineConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiServer.cs" />
   </ItemGroup>
