@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
-      <Project>{ed41d995-e605-4d35-8766-1371b6461179}</Project>
+      <Project>{7481a981-5d62-4b50-8b39-640b4671f60e}</Project>
       <Name>Pitman.Distributed.Dto</Name>
     </ProjectReference>
   </ItemGroup>

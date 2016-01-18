@@ -17,6 +17,22 @@ namespace Pitman.Infrastructure.EF.Repository
                 case ContextType.Security:
                     context = CreateContext(new SecurityContext(fullPath));
                     break;
+                // 分红配股
+                case ContextType.StockBonus:
+                    context = CreateContext(new StockBonusContext(fullPath));
+                    break;
+                // 基本信息
+                case ContextType.StockProfile:
+                    context = CreateContext(new StockProfileContext(fullPath));
+                    break;
+                // 股本结构
+                case ContextType.StockStructure:
+                    context = CreateContext(new StockStructureContext(fullPath));
+                    break;
+                // 机构参与度
+                case ContextType.Participation:
+                    context = CreateContext(new ParticipationContext(fullPath));
+                    break;
             }
             return context;
         }

@@ -21,6 +21,10 @@
         /// <summary>
         /// 股本结构
         /// </summary>
-        StockStructure
+        StockStructure,
+        /// <summary>
+        /// 机构参与度
+        /// </summary>
+        Participation
     }
 }
