@@ -12,6 +12,8 @@ namespace Pitman.Application.DataCollection
     /// </summary>
     internal class ServiceForTest : CollectionService
     {
+        // 这个类只是测试使用的，无任何业务逻辑，不用关心此类
+
         public override string ServiceName
         {
             get
