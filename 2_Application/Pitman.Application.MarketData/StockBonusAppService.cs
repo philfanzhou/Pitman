@@ -10,17 +10,17 @@ namespace Pitman.Application.MarketData
 {
     public class StockBonusAppService
     {
-        public bool Exists(IStockBonus stockBonus)
+        public bool Exists(string stockCode, IStockBonus stockBonus)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(IStockBonus stockBonus)
+        public void Add(string stockCode, IStockBonus stockBonus)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(IStockBonus stockBonus)
+        public void Update(string stockCode, IStockBonus stockBonus)
         {
             throw new NotImplementedException();
         }

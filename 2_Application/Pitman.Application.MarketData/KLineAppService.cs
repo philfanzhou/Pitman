@@ -11,17 +11,17 @@ namespace Pitman.Application.MarketData
 {
     internal class KLineAppService
     {
-        public bool Exist(KLineType type, IStockKLine kLine)
+        public bool Exist(KLineType type, string stockCode, IStockKLine kLine)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(KLineType type, IStockKLine kLine)
+        public void Add(KLineType type, string stockCode, IStockKLine kLine)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(KLineType type, IStockKLine kLine)
+        public void Update(KLineType type, string stockCode, IStockKLine kLine)
         {
             throw new NotImplementedException();
         }
