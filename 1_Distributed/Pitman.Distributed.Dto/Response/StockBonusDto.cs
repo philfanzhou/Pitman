@@ -58,20 +58,11 @@ namespace Pitman.Distributed.Dto
         [DataMember(Name = "reserveSurplusIncreaseRate")]
         public double ReserveSurplusIncreaseRate { get; set; }
 
-        [DataMember(Name = "code")]
-        public string Code { get; set; }
-
         [DataMember(Name = "description")]
         public string Description { get; set; }
 
-        [DataMember(Name = "shortName")]
-        public string ShortName { get; set; }
-
         [DataMember(Name = "issuingObject")]
         public string IssuingObject { get; set; }
-
-        [DataMember(Name = "market")]
-        public Market Market { get; set; }
 
         [DataMember(Name = "type")]
         public BounsType Type { get; set; }

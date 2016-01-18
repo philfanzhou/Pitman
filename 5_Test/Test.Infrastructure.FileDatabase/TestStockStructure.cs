@@ -763,14 +763,14 @@ namespace Test.Infrastructure.FileDatabase
             {
                 foreach (var item in stockStructure_600036)
                 {
-                    repository.Add(item);
+                    repository.Add("600036", item);
                 }
             }
             if (!repository.Exists("600518"))
             {
                 foreach (var item in stockStructure_600518)
                 {
-                    repository.Add(item);
+                    repository.Add("600518", item);
                 }
             }
 

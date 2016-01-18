@@ -10,9 +10,9 @@ namespace Pitman.Infrastructure.FileDatabase
 {
     public class ParticipationDataRepository
     {
-        public void Add(IParticipation data)
+        public void Add(string stockCode, IParticipation data)
         {
-            using (var file = ParticipationFile.CreateOrOpen(data.Code))
+            using (var file = ParticipationFile.CreateOrOpen(stockCode))
             {
                 ParticipationDataItem dataItem = data.Convert();
                 file.Add(dataItem);
@@ -43,27 +43,27 @@ namespace Pitman.Infrastructure.FileDatabase
                              orderby it.Time descending  
                              select it;
                 IParticipation fst = result.First();
-                if (fst != null && !string.IsNullOrEmpty(fst.Code))
+                if (fst != null)
                     return fst;
             }
 
             return null;
         }
 
-        public bool Exists(IParticipation participation)
-        {
-            var lstAll = GetData(participation.Code);
-            var query = from it in lstAll
-                        where it.Code == participation.Code &&
-                        it.CostPrice1Day == participation.CostPrice1Day &&
-                        it.CostPrice20Day == participation.CostPrice20Day &&
-                        it.MainForceInflows == participation.MainForceInflows &&
-                        it.SuperLargeInflows == participation.SuperLargeInflows &&
-                        it.Time == participation.Time &&
-                        it.Value == participation.Value
-                        select it;
-            return (query != null && query.Count() > 0);
-        }
+        //public bool Exists(IParticipation participation)
+        //{
+        //    var lstAll = GetData(participation.Code);
+        //    var query = from it in lstAll
+        //                where it.Code == participation.Code &&
+        //                it.CostPrice1Day == participation.CostPrice1Day &&
+        //                it.CostPrice20Day == participation.CostPrice20Day &&
+        //                it.MainForceInflows == participation.MainForceInflows &&
+        //                it.SuperLargeInflows == participation.SuperLargeInflows &&
+        //                it.Time == participation.Time &&
+        //                it.Value == participation.Value
+        //                select it;
+        //    return (query != null && query.Count() > 0);
+        //}
     }
 
     internal static class ParticipationExt
@@ -72,10 +72,10 @@ namespace Pitman.Infrastructure.FileDatabase
         {
             ParticipationDataItem outputData = new ParticipationDataItem
             {
-                //
-                // 摘要:
-                //     挂牌代码
-                Code = self.Code,
+                ////
+                //// 摘要:
+                ////     挂牌代码
+                //Code = self.Code,
                 //
                 // 摘要:
                 //     最近1日主力成本

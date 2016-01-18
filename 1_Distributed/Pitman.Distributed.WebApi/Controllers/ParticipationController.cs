@@ -16,7 +16,6 @@ namespace Pitman.Distributed.WebApi
             /*test code for communication*************************************/
             var dto = new ParticipationDto()
             {
-                Code = "600036",
                 CostPrice1Day = 20,
                 CostPrice20Day = 30,
                 Time = new DateTime(1999, 9, 9, 9, 9, 9)

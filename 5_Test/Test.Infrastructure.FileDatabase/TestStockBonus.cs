@@ -419,7 +419,7 @@ namespace Test.Infrastructure.FileDatabase
             {
                 foreach (var item in stockBonus_600036)
                 {
-                    repository.Add(item);
+                    repository.Add("600036", item);
                 }
             }
 
@@ -427,7 +427,7 @@ namespace Test.Infrastructure.FileDatabase
             {
                 foreach (var item in stockBonus_600518)
                 {
-                    repository.Add(item);
+                    repository.Add("600518", item);
                 }
             }
 

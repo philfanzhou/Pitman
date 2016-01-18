@@ -13,9 +13,8 @@ namespace Pitman.Distributed.WebApi
             /*test code for communication*************************************/
             var dto = new StockStructureDto()
             {
-                Code = "600036",
-                Market = Market.XSHG,
-                ShortName = "招商银行",
+                SharesA = 12324232,
+                Reason = "测试测试测试"
             };
             var result = new List<StockStructureDto>();
             result.Add(dto);
@@ -31,9 +30,6 @@ namespace Pitman.Distributed.WebApi
         {
             return new StockStructureDto
             {
-                Code = data.Code,
-                ShortName = data.ShortName,
-                Market = data.Market,
                 SharesA = data.SharesA,
                 SharesB = data.SharesB,
                 SharesH = data.SharesH,

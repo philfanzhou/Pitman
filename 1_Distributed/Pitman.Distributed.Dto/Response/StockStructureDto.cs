@@ -7,9 +7,6 @@ namespace Pitman.Distributed.Dto
     [DataContract(Name = "stockStructure")]
     public class StockStructureDto : IStockStructure
     {
-        [DataMember(Name = "code")]
-        public string Code { get; set; }
-
         [DataMember(Name = "dateOfChange")]
         private DateTimeDto dateOfChange = new DateTimeDto();
         public DateTime DateOfChange
@@ -44,9 +41,6 @@ namespace Pitman.Distributed.Dto
         [DataMember(Name = "internalStaffShares")]
         public double InternalStaffShares { get; set; }
 
-        [DataMember(Name = "market")]
-        public Market Market { get; set; }
-
         [DataMember(Name = "preferredStock")]
         public double PreferredStock { get; set; }
 
@@ -70,9 +64,6 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "sharesH")]
         public double SharesH { get; set; }
-
-        [DataMember(Name = "shortName")]
-        public string ShortName { get; set; }
 
         [DataMember(Name = "stateOwnedLegalPersonShares")]
         public double StateOwnedLegalPersonShares { get; set; }

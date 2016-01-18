@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace Pitman.RESTful.Client
 {
+    /// <summary>
+    /// WebApi的Client实现
+    /// </summary>
     public class ClientApi : IDisposable
     {
         #region Field
@@ -12,6 +15,10 @@ namespace Pitman.RESTful.Client
         #endregion
 
         #region constructor
+        /// <summary>
+        /// 创建Client实例
+        /// </summary>
+        /// <param name="serverAddress">webApi的地址</param>
         public ClientApi(string serverAddress)
         {
             _httpClient = new HttpClientEx(serverAddress);
@@ -28,6 +35,9 @@ namespace Pitman.RESTful.Client
         #endregion
 
         #region Property
+        /// <summary>
+        /// 获取WebApi的地址
+        /// </summary>
         public string ServerAddress
         {
             get { return _httpClient.BaseAddress.ToString(); }

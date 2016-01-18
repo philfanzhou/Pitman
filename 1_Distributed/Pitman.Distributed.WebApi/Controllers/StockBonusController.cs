@@ -13,9 +13,7 @@ namespace Pitman.Distributed.WebApi
             /*test code for communication*************************************/
             var dto = new StockBonusDto()
             {
-                Code = "600036",
-                Market = Market.XSHG,
-                ShortName = "招商银行",
+                ShareSplitCount = 100,
             };
             var result = new List<StockBonusDto>();
             result.Add(dto);
@@ -31,9 +29,6 @@ namespace Pitman.Distributed.WebApi
         {
             return new StockBonusDto
             {
-                Code = data.Code,
-                ShortName = data.ShortName,
-                Market = data.Market,
                 Type = data.Type,
                 ShareSplitCount = data.ShareSplitCount,
                 StartOrArriveDate = data.StartOrArriveDate,

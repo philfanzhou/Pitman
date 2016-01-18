@@ -10,9 +10,9 @@ namespace Pitman.Infrastructure.FileDatabase
 {
     public class StockStructureDataRepository
     {
-        public void Add(IStockStructure data)
+        public void Add(string stockCode, IStockStructure data)
         {
-            using (var file = StockStructureFile.CreateOrOpen(data.Code))
+            using (var file = StockStructureFile.CreateOrOpen(stockCode))
             {
                 StockStructureDataItem dataItem = data.Convert();
                 file.Add(dataItem);
@@ -83,10 +83,10 @@ namespace Pitman.Infrastructure.FileDatabase
         {
             StockStructureDataItem outputData = new StockStructureDataItem
             {
-                //
-                // 摘要:
-                //     代码
-                Code = self.Code,
+                ////
+                //// 摘要:
+                ////     代码
+                //Code = self.Code,
                 //
                 // 摘要:
                 //     变动日期
@@ -119,10 +119,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 // 摘要:
                 //     内部职工股
                 InternalStaffShares = self.InternalStaffShares,
-                //
-                // 摘要:
-                //     交易市场
-                Market = self.Market,
+                ////
+                //// 摘要:
+                ////     交易市场
+                //Market = self.Market,
                 //
                 // 摘要:
                 //     优先股
@@ -155,10 +155,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 // 摘要:
                 //     流通H股
                 SharesH = self.SharesH,
-                //
-                // 摘要:
-                //     简称
-                ShortName = self.ShortName,
+                ////
+                //// 摘要:
+                ////     简称
+                //ShortName = self.ShortName,
                 //
                 // 摘要:
                 //     国有法人股

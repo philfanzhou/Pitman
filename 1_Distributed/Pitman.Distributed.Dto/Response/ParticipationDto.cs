@@ -7,9 +7,6 @@ namespace Pitman.Distributed.Dto
     [DataContract(Name = "participation")]
     public class ParticipationDto : IParticipation
     {
-        [DataMember(Name = "code")]
-        public string Code { get; set; }
-
         [DataMember(Name = "time")]
         private DateTimeDto time = new DateTimeDto();
         public DateTime Time

@@ -7,6 +7,12 @@ namespace Pitman.Distributed.Dto
     [DataContract(Name = "stockProfile")]
     public class StockProfileDto : IStockProfile
     {
+        [DataMember(Name = "codeA")]
+        public string CodeA { get; set; }
+
+        [DataMember(Name = "shortNameA")]
+        public string ShortNameA { get; set; }
+
         [DataMember(Name = "accountingFirm")]
         public string AccountingFirm { get; set; }
 
@@ -21,9 +27,6 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "chairman")]
         public string Chairman { get; set; }
-
-        [DataMember(Name = "codeA")]
-        public string CodeA { get; set; }
 
         [DataMember(Name = "codeB")]
         public string CodeB { get; set; }
@@ -90,9 +93,6 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "securitiesAffairsRepresentatives")]
         public string SecuritiesAffairsRepresentatives { get; set; }
-
-        [DataMember(Name = "shortNameA")]
-        public string ShortNameA { get; set; }
 
         [DataMember(Name = "shortNameB")]
         public string ShortNameB { get; set; }

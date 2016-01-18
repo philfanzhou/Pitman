@@ -7,26 +7,6 @@ namespace Pitman.Distributed.Dto
     [DataContract(Name = "stockIntraday")]
     public class StockIntradayDto : IStockIntraday
     {
-        [DataMember(Name = "code")]
-        public string Code { get; set; }
-
-        [DataMember(Name = "shortName")]
-        public string ShortName { get; set; }
-
-        [DataMember(Name = "market")]
-        private string market = Market.Unknown.ToString();
-        public Market Market
-        {
-            get
-            {
-                return (Market)Enum.Parse(typeof(Market), market);
-            }
-            set
-            {
-                market = value.ToString();
-            }
-        }
-
         [DataMember(Name = "time")]
         private DateTimeDto time = new DateTimeDto();
         public DateTime Time

@@ -17,20 +17,20 @@ namespace Pitman.Infrastructure.FileDatabase
         {
             StockIntradayDataItem outputData = new StockIntradayDataItem
             {
-                /// <summary>
-                /// 代码
-                /// </summary>
-                Code = self.Code,
+                ///// <summary>
+                ///// 代码
+                ///// </summary>
+                //Code = self.Code,
 
-                /// <summary>
-                /// 交易市场
-                /// </summary>
-                Market = self.Market,
+                ///// <summary>
+                ///// 交易市场
+                ///// </summary>
+                //Market = self.Market,
 
-                /// <summary>
-                /// 简称
-                /// </summary>
-                ShortName = self.ShortName,
+                ///// <summary>
+                ///// 简称
+                ///// </summary>
+                //ShortName = self.ShortName,
 
                 /// <summary>
                 /// 时间

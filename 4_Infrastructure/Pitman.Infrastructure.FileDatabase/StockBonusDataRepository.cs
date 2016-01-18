@@ -10,9 +10,9 @@ namespace Pitman.Infrastructure.FileDatabase
 {
     public class StockBonusDataRepository
     {
-        public void Add(IStockBonus data)
+        public void Add(string stockCode, IStockBonus data)
         {
-            using (var file = StockBonusFile.CreateOrOpen(data.Code))
+            using (var file = StockBonusFile.CreateOrOpen(stockCode))
             {
                 StockBonusDataItem dataItem = data.Convert();
                 file.Add(dataItem);
@@ -111,10 +111,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 // 摘要:
                 //     资本公积金转增比例（10转增）
                 CapitalSurplusIncreaseRate = self.CapitalSurplusIncreaseRate,
-                //
-                // 摘要:
-                //     代码
-                Code = self.Code,
+                ////
+                //// 摘要:
+                ////     代码
+                //Code = self.Code,
                 //
                 // 摘要:
                 //     可转债享受权益转股截止日
@@ -171,10 +171,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 // 摘要:
                 //     最后交易日
                 LastTradingDay = self.LastTradingDay,
-                //
-                // 摘要:
-                //     交易市场
-                Market = self.Market,
+                ////
+                //// 摘要:
+                ////     交易市场
+                //Market = self.Market,
                 //
                 // 摘要:
                 //     税前红利（10派）（报价币种）
@@ -195,10 +195,10 @@ namespace Pitman.Infrastructure.FileDatabase
                 // 摘要:
                 //     每股拆细数
                 ShareSplitCount = self.ShareSplitCount,
-                //
-                // 摘要:
-                //     简称
-                ShortName = self.ShortName,
+                ////
+                //// 摘要:
+                ////     简称
+                //ShortName = self.ShortName,
                 //
                 // 摘要:
                 //     红利/配股起始日（送、转股到账日)
