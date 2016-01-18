@@ -69,6 +69,18 @@ namespace Test.Presentation.RESTfulClient
             }
         }
 
+        [TestMethod]
+        public void TestParticipationClient()
+        {
+            using (var client = new ClientApi(serverAddress))
+            {
+                var result = client.GetParticipation("600036").ToList()[0];
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual(new DateTime(1999,9,9,9,9,9), result.Time);
+            }
+        }
+
         #region KLine
         [TestMethod]
         public void TestKLineDayClient()

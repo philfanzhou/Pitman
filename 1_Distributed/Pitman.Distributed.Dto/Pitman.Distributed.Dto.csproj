@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DateTimeDto.cs" />
+    <Compile Include="Response\ParticipationDto.cs" />
     <Compile Include="Request\KLineArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\SecurityDto.cs" />

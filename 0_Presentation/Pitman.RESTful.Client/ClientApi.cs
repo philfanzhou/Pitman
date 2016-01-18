@@ -35,11 +35,20 @@ namespace Pitman.RESTful.Client
         #endregion
 
         #region Collection Service Status
+        /// <summary>
+        /// 获取所有数据收集服务名称
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetAllServiceName()
         {
             return _httpClient.GetAndReadAs<IEnumerable<string>>("CollectionStatus");
         }
 
+        /// <summary>
+        /// 获取指定的数据收集服务的状态报告
+        /// </summary>
+        /// <param name="serviceName"></param>
+        /// <returns></returns>
         public string GetServiceStatus(string serviceName)
         {
             string uri = string.Format("CollectionStatus/{0}", serviceName);
@@ -47,29 +56,56 @@ namespace Pitman.RESTful.Client
         }
         #endregion
 
+        /// <summary>
+        /// 获取所有证券代码信息
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ISecurity> GetAllSecurity()
         {
             return _httpClient.GetAndReadAs<IEnumerable<SecurityDto>>("Securities");
         }
 
+        /// <summary>
+        /// 获取指定股票的基本信息
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
         public IStockProfile GetStockProfile(string stockCode)
         {
             string uri = string.Format("StockProfile/{0}", stockCode);
             return _httpClient.GetAndReadAs<StockProfileDto>(uri);
         }
 
+        /// <summary>
+        /// 获取指定股票的分红配股信息
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
         public IEnumerable<IStockBonus> GetStockBonus(string stockCode)
         {
             string uri = string.Format("StockBonus/{0}", stockCode);
             return _httpClient.GetAndReadAs<IEnumerable<StockBonusDto>>(uri);
         }
 
+        /// <summary>
+        /// 获取指定股票的股本结构信息
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
         public IEnumerable<IStockStructure> GetStockStructure(string stockCode)
         {
             string uri = string.Format("StockStructure/{0}", stockCode);
             return _httpClient.GetAndReadAs<IEnumerable<StockStructureDto>>(uri);
         }
 
+        /// <summary>
+        /// 获取K线数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="stockCode"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
         public IEnumerable<IStockKLine> GetStockKLine(
             KLineType type, string stockCode, 
             DateTime startTime, DateTime endTime)
@@ -121,6 +157,17 @@ namespace Pitman.RESTful.Client
 
             var result = _httpClient.PostAndReadAs<IEnumerable<StockKLineDto>, KLineArgs>(controllerName, args);
             return result;
+        }
+
+        /// <summary>
+        /// 获取指定股票的机构持仓信息
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public IEnumerable<IParticipation> GetParticipation(string stockCode)
+        {
+            string uri = string.Format("Participation/{0}", stockCode);
+            return _httpClient.GetAndReadAs<IEnumerable<ParticipationDto>>(uri);
         }
     }
 }

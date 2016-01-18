@@ -34,11 +34,11 @@ namespace Pitman.Distributed.Dto
         }
 
         [DataMember(Name = "time")]
-        private string time = "1970-01-01 00:00:00";
+        private DateTimeDto time = new DateTimeDto();
         public DateTime Time
         {
-            get { return DateTime.Parse(time); }
-            set { time = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return time.Value; }
+            set { time.Value = value; }
         }
 
         /// <summary>

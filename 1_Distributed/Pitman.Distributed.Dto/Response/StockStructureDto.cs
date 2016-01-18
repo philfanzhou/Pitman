@@ -11,19 +11,19 @@ namespace Pitman.Distributed.Dto
         public string Code { get; set; }
 
         [DataMember(Name = "dateOfChange")]
-        private string dateOfChange = "1970-01-01 00:00:00";
+        private DateTimeDto dateOfChange = new DateTimeDto();
         public DateTime DateOfChange
         {
-            get { return DateTime.Parse(dateOfChange); }
-            set { dateOfChange = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return dateOfChange.Value; }
+            set { dateOfChange.Value = value; }
         }
 
         [DataMember(Name = "dateOfDeclaration")]
-        private string dateOfDeclaration = "1970-01-01 00:00:00";
+        private DateTimeDto dateOfDeclaration = new DateTimeDto();
         public DateTime DateOfDeclaration
         {
-            get { return DateTime.Parse(dateOfDeclaration); }
-            set { dateOfDeclaration = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return dateOfDeclaration.Value; }
+            set { dateOfDeclaration.Value = value; }
         }
 
         [DataMember(Name = "domesticLegalPersonShares")]

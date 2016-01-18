@@ -77,91 +77,91 @@ namespace Pitman.Distributed.Dto
         public BounsType Type { get; set; }
 
         [DataMember(Name = "capitalStockBaseDate")]
-        private string capitalStockBaseDate = "1970-01-01 00:00:00";
+        private DateTimeDto capitalStockBaseDate = new DateTimeDto();
         public DateTime CapitalStockBaseDate
         {
-            get { return DateTime.Parse(capitalStockBaseDate); }
-            set { capitalStockBaseDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return capitalStockBaseDate.Value; }
+            set { capitalStockBaseDate.Value = value; }
         }
 
         [DataMember(Name = "convertibleBondDate")]
-        private string convertibleBondDate = "1970-01-01 00:00:00";
+        private DateTimeDto convertibleBondDate = new DateTimeDto();
         public DateTime ConvertibleBondDate
         {
-            get { return DateTime.Parse(convertibleBondDate); }
-            set { convertibleBondDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return convertibleBondDate.Value; }
+            set { convertibleBondDate.Value = value; }
         }
 
         [DataMember(Name = "dateOfDeclaration")]
-        private string dateOfDeclaration = "1970-01-01 00:00:00";
+        private DateTimeDto dateOfDeclaration = new DateTimeDto();
         public DateTime DateOfDeclaration
         {
-            get { return DateTime.Parse(dateOfDeclaration); }
-            set { dateOfDeclaration = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return dateOfDeclaration.Value; }
+            set { dateOfDeclaration.Value = value; }
         }
 
         [DataMember(Name = "dispatchExpiryDate")]
-        private string dispatchExpiryDate = "1970-01-01 00:00:00";
+        private DateTimeDto dispatchExpiryDate = new DateTimeDto();
         public DateTime DispatchExpiryDate
         {
-            get { return DateTime.Parse(dispatchExpiryDate); }
-            set { dispatchExpiryDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return dispatchExpiryDate.Value; }
+            set { dispatchExpiryDate.Value = value; }
         }
 
         [DataMember(Name = "dispatchListingDate")]
-        private string dispatchListingDate = "1970-01-01 00:00:00";
+        private DateTimeDto dispatchListingDate = new DateTimeDto();
         public DateTime DispatchListingDate
         {
-            get { return DateTime.Parse(dispatchListingDate); }
-            set { dispatchListingDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return dispatchListingDate.Value; }
+            set { dispatchListingDate.Value = value; }
         }
 
         [DataMember(Name = "exdividendDate")]
-        private string exdividendDate = "1970-01-01 00:00:00";
+        private DateTimeDto exdividendDate = new DateTimeDto();
         public DateTime ExdividendDate
         {
-            get { return DateTime.Parse(exdividendDate); }
-            set { exdividendDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return exdividendDate.Value; }
+            set { exdividendDate.Value = value; }
         }
 
         [DataMember(Name = "expirationDate")]
-        private string expirationDate = "1970-01-01 00:00:00";
+        private DateTimeDto expirationDate = new DateTimeDto();
         public DateTime ExpirationDate
         {
-            get { return DateTime.Parse(expirationDate); }
-            set { expirationDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return expirationDate.Value; }
+            set { expirationDate.Value = value; }
         }
 
         [DataMember(Name = "lastTradingDay")]
-        private string lastTradingDay = "1970-01-01 00:00:00";
+        private DateTimeDto lastTradingDay = new DateTimeDto();
         public DateTime LastTradingDay
         {
-            get { return DateTime.Parse(lastTradingDay); }
-            set { lastTradingDay = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return lastTradingDay.Value; }
+            set { lastTradingDay.Value = value; }
         }
 
         [DataMember(Name = "registerDate")]
-        private string registerDate = "1970-01-01 00:00:00";
+        private DateTimeDto registerDate = new DateTimeDto();
         public DateTime RegisterDate
         {
-            get { return DateTime.Parse(registerDate); }
-            set { registerDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return registerDate.Value; }
+            set { registerDate.Value = value; }
         }
 
         [DataMember(Name = "resolutionOfShareholdersMeetingDate")]
-        private string resolutionOfShareholdersMeetingDate = "1970-01-01 00:00:00";
+        private DateTimeDto resolutionOfShareholdersMeetingDate = new DateTimeDto();
         public DateTime ResolutionOfShareholdersMeetingDate
         {
-            get { return DateTime.Parse(resolutionOfShareholdersMeetingDate); }
-            set { resolutionOfShareholdersMeetingDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return resolutionOfShareholdersMeetingDate.Value; }
+            set { resolutionOfShareholdersMeetingDate.Value = value; }
         }
 
         [DataMember(Name = "startOrArriveDate")]
-        private string startOrArriveDate = "1970-01-01 00:00:00";
+        private DateTimeDto startOrArriveDate = new DateTimeDto();
         public DateTime StartOrArriveDate
         {
-            get { return DateTime.Parse(startOrArriveDate); }
-            set { startOrArriveDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return startOrArriveDate.Value; }
+            set { startOrArriveDate.Value = value; }
         }
     }
 }

@@ -107,19 +107,19 @@ namespace Pitman.Distributed.Dto
         public string ZipCode { get; set; }
 
         [DataMember(Name = "establishmentDate")]
-        private string establishmentDate = "1970-01-01 00:00:00";
+        private DateTimeDto establishmentDate = new DateTimeDto();
         public DateTime EstablishmentDate
         {
-            get { return DateTime.Parse(establishmentDate); }
-            set { establishmentDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return establishmentDate.Value; }
+            set { establishmentDate.Value = value; }
         }
 
         [DataMember(Name = "listDate")]
-        private string listDate = "1970-01-01 00:00:00";
+        private DateTimeDto listDate = new DateTimeDto();
         public DateTime ListDate
         {
-            get { return DateTime.Parse(listDate); }
-            set { listDate = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return listDate.Value; }
+            set { listDate.Value = value; }
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pitman.Distributed.Dto
 {
@@ -14,9 +10,19 @@ namespace Pitman.Distributed.Dto
         public string StockCode { get; set; }
 
         [DataMember(Name = "startDate")]
-        public DateTime StartDate { get; set; }
+        private DateTimeDto startDate = new DateTimeDto();
+        public DateTime StartDate
+        {
+            get { return startDate.Value; }
+            set { startDate.Value = value; }
+        }
 
         [DataMember(Name = "endDate")]
-        public DateTime EndDate { get; set; }
+        private DateTimeDto endDate = new DateTimeDto();
+        public DateTime EndDate
+        {
+            get { return endDate.Value; }
+            set { endDate.Value = value; }
+        }
     }
 }
