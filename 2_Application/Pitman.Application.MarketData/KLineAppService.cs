@@ -6,45 +6,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pitman.Domain.FileStructure;
 
 namespace Pitman.Application.MarketData
 {
-    internal class KLineAppService
+    public class KLineAppService
     {
-        public bool Exist(KLineType type, string stockCode, IStockKLine kLine)
+        public bool Exists(KLineType type, string stockCode, IStockKLine kLine)
         {
-            throw new NotImplementedException();
+            // 设置查询条件
+            var spec = Specification<KLineDbo>.Eval(p => p.Time.Equals(kLine.Time));
+            using (var context = GetContext(type, stockCode, kLine.Time))
+            {
+                var repository = new Repository<KLineDbo>(context);
+                return repository.Exists(spec);
+            }
         }
 
         public void Add(KLineType type, string stockCode, IStockKLine kLine)
         {
-            throw new NotImplementedException();
-        }
+            DateTime dtDebug = DateTime.Now;
+            using (var context = GetContext(type, stockCode, kLine.Time))
+            {
+                System.Diagnostics.Debug.Print("GetContext:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                dtDebug = DateTime.Now;
+
+                var repository = new Repository<KLineDbo>(context);
+                System.Diagnostics.Debug.Print("Repository:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                dtDebug = DateTime.Now;
+
+                repository.Add(ConvertToDbo(kLine));
+                System.Diagnostics.Debug.Print("repository.Add:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                dtDebug = DateTime.Now;
+
+                repository.UnitOfWork.Commit();//每条提交一次，效率很低
+                System.Diagnostics.Debug.Print("repository.UnitOfWork.Commit:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                dtDebug = DateTime.Now;
+            }
+        }        
 
         public void Update(KLineType type, string stockCode, IStockKLine kLine)
         {
-            throw new NotImplementedException();
+            using (var context = GetContext(type, stockCode, kLine.Time))
+            {
+                var repository = new Repository<KLineDbo>(context);
+                repository.Update(ConvertToDbo(kLine));
+                repository.UnitOfWork.Commit();
+            }
         }
 
-        public IEnumerable<IStockKLine> Get(
-            KLineType type, string stockCode, 
-            DateTime startTime, DateTime endTime)
+        public IEnumerable<IStockKLine> Get(KLineType type, string stockCode, DateTime startTime, DateTime endTime)
         {
             /*
             注意需要考虑到：
             1：如果查询的时间跨度很长，记录可能存放于不同的文件中，需要进行查询结果的拼接。
             2：同理在获取Context，以及FilePath的时候，也需要考虑时间跨度导致的多文件处理。
             */
+            // 设置查询条件
+            var spec = Specification<KLineDbo>.Eval(p => p.Time >= startTime && p.Time <= endTime);
 
-            throw new NotImplementedException();
+            List<IStockKLine> lstQuery = new List<IStockKLine>();
+            var contexts = GetContext(type, stockCode, startTime, endTime);
+            foreach(var context in contexts)
+            {
+                var repository = new Repository<KLineDbo>(context);
+                lstQuery.AddRange(repository.GetAll(spec));
+            }
+
+            return lstQuery;
         }
 
-        private IEnumerable<IRepositoryContext> GetContext(
-            KLineType type, string stockCode, 
-            DateTime startTime, DateTime endTime)
+        private IRepositoryContext GetContext(KLineType type, string stockCode, DateTime dt)
+        {
+            string fullPath = DataFiles.GetKLineFiles(type, stockCode, dt);
+            IRepositoryContext context
+                = ContextFactory.Create(ContextType.KLine, fullPath);
+
+            return context;
+        }
+
+        private IEnumerable<IRepositoryContext> GetContext(KLineType type, string stockCode, DateTime startTime, DateTime endTime)
         {
             /*因为时间跨度可能导致多个存储文件，所以这里的Context返回是一个集合*/
-            throw new NotImplementedException();
+            var fullPaths = DataFiles.GetKLineFiles(type, stockCode, startTime, endTime);
+            List<IRepositoryContext> lstRepositoryContext = new List<IRepositoryContext>();
+            foreach (var it in fullPaths)
+                lstRepositoryContext.Add(ContextFactory.Create(ContextType.KLine, it));
+
+            return lstRepositoryContext;
         }
 
         private static KLineDbo ConvertToDbo(IStockKLine self)
