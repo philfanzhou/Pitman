@@ -43,7 +43,32 @@ namespace Pitman.Application.MarketData
                 System.Diagnostics.Debug.Print("repository.UnitOfWork.Commit:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
                 dtDebug = DateTime.Now;
             }
-        }        
+        }
+        
+        public void Add(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+
+
+            //DateTime dtDebug = DateTime.Now;
+
+            //using (var context = GetContext(type, stockCode, kLine.Time))
+            //{
+            //    System.Diagnostics.Debug.Print("GetContext:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+            //    dtDebug = DateTime.Now;
+
+            //    var repository = new Repository<KLineDbo>(context);
+            //    System.Diagnostics.Debug.Print("Repository:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+            //    dtDebug = DateTime.Now;
+
+            //    repository.Add(ConvertToDbo(kLine));
+            //    System.Diagnostics.Debug.Print("repository.Add:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+            //    dtDebug = DateTime.Now;
+
+            //    repository.UnitOfWork.Commit();//每条提交一次，效率很低
+            //    System.Diagnostics.Debug.Print("repository.UnitOfWork.Commit:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+            //    dtDebug = DateTime.Now;
+            //}
+        }      
 
         public void Update(KLineType type, string stockCode, IStockKLine kLine)
         {
