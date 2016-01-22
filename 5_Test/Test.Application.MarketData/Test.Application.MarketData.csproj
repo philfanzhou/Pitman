@@ -61,6 +61,7 @@
     <Compile Include="StockProfileTest.cs" />
     <Compile Include="StockStructureTest.cs" />
     <Compile Include="KLineTest.cs" />
+    <Compile Include="ParticipationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
