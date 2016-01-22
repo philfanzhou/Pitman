@@ -31,6 +31,14 @@ namespace Pitman.Domain.FileStructure
             return Path.Combine(folder, stockCode + ".sdf");
         }
 
+        public static string GetParticipationFile(string stockCode)
+        {
+            /*因为是一只股票一个文件，所以需要传入参数*/
+            string folder = Path.Combine(DataFolder, "ParticipationData");
+            CreateFolderIsNotExist(folder);
+            return Path.Combine(folder, stockCode + ".sdf");
+        }
+
         public static string GetStockProfileFile()
         {
             string folder = Path.Combine(DataFolder, "StockProfileData");
