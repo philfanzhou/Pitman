@@ -7,15 +7,10 @@ using System.Linq;
 
 namespace Pitman.Domain.FileStructure
 {
-    public static class DataFiles
+    public static partial class DataFiles
     {
         private static readonly string DataFolder = Environment.CurrentDirectory + @"\Data";
-
-
-        /*需要将FileDatabase.PathHelper中的逻辑移动到此工程来。
-        因为Path的逻辑相对固定，属于Pitman的具体业务，和底层的具体实现无太大关系，所以移动到Domain里面来
-        */
-
+        
         public static string GetSecuritiesFile()
         {
             string folder = Path.Combine(DataFolder, "SecurityData");
@@ -74,7 +69,9 @@ namespace Pitman.Domain.FileStructure
             return filepath;
         }
 
-        public static IEnumerable<string> GetKLineFiles(KLineType type, string stockCode, DateTime startTime, DateTime endTime)
+        public static IEnumerable<string> GetKLineFiles(
+            KLineType type, string stockCode, 
+            DateTime startTime, DateTime endTime)
         {
             /*因为时间跨度可能导致多个存储文件，所以这里的Path返回是一个集合*/
             if (startTime > endTime)
@@ -90,23 +87,7 @@ namespace Pitman.Domain.FileStructure
             string folder = GetKLineFolder(type, stockCode);
 
             List<string> result = new List<string>();
-            ////方案1 
-            //while (startTime.Year <= endTime.Year)
-            //{
-            //    result.Add(Path.Combine(folder, startTime.ToString("yyyy") + ".sdf"));
-            //    startTime = startTime.AddYears(1);
-            //}
-            //if (Directory.Exists(folder))
-            //{
-            //    DirectoryInfo dir = new DirectoryInfo(folder);
-            //    var files = dir.GetFiles().Select(p =>
-            //    {
-            //        var dts = p.Name.Split('-');
-            //        return ((startTime.ToString("yyyy").CompareTo(dts[0]) == 0 || startTime.ToString("yyyy").CompareTo(dts[0]) > 0) &&
-            //        (dt.ToString("yyyy").CompareTo(dts[1]) == 0 || dt.ToString("yyyy").CompareTo(dts[1]) < 0));
-            //    });               
-            //}
-            //方案2
+
             var files = GetKLineFileNamePerYears(folder, startTime, endTime);
             foreach(var f in files)
             {
@@ -115,6 +96,7 @@ namespace Pitman.Domain.FileStructure
             return result;
         }
 
+        #region Private Method
         private static IEnumerable<string> GetKLineFileNamePerYears(string folder, DateTime startTime, DateTime endTime)
         {
             List<string> files = new List<string>();
@@ -142,13 +124,6 @@ namespace Pitman.Domain.FileStructure
             return files;
         }        
 
-        private static string GetKLineFolder(KLineType type, string stockCode)
-        {
-            string folder = Path.Combine(DataFolder, "KLineData", stockCode, type.ToString());
-            CreateFolderIsNotExist(folder);
-            return folder;
-        }
-
         private static void CreateFolderIsNotExist(string folder)
         {
             if(!Directory.Exists(folder))
@@ -156,6 +131,7 @@ namespace Pitman.Domain.FileStructure
                 Directory.CreateDirectory(folder);
             }
         }
+        #endregion
 
     }
 }

@@ -25,32 +25,7 @@ namespace Pitman.Application.MarketData
 
         public void Add(KLineType type, string stockCode, IStockKLine kLine)
         {
-            DateTime dtDebug = DateTime.Now;
-            using (var context = GetContext(type, stockCode, kLine.Time))
-            {
-                System.Diagnostics.Debug.Print("GetContext:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
-                dtDebug = DateTime.Now;
-
-                var repository = new Repository<KLineDbo>(context);
-                System.Diagnostics.Debug.Print("Repository:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
-                dtDebug = DateTime.Now;
-
-                repository.Add(ConvertToDbo(kLine));
-                System.Diagnostics.Debug.Print("repository.Add:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
-                dtDebug = DateTime.Now;
-
-                repository.UnitOfWork.Commit();//每条提交一次，效率很低
-                System.Diagnostics.Debug.Print("repository.UnitOfWork.Commit:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
-                dtDebug = DateTime.Now;
-            }
-        }
-        
-        public void Add(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
-        {
-
-
             //DateTime dtDebug = DateTime.Now;
-
             //using (var context = GetContext(type, stockCode, kLine.Time))
             //{
             //    System.Diagnostics.Debug.Print("GetContext:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
@@ -68,6 +43,52 @@ namespace Pitman.Application.MarketData
             //    System.Diagnostics.Debug.Print("repository.UnitOfWork.Commit:" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
             //    dtDebug = DateTime.Now;
             //}
+
+            Add(type, stockCode, new List<IStockKLine> { kLine });
+        }
+        
+        public void Add(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+            // 将数据分别放到对应的包裹里面
+            List<KLinePackage> packages = new List<KLinePackage>();
+            foreach (var kLine in kLines)
+            {
+                // 检查是否能够将数据插入到已有包裹
+                bool processed = false;
+                foreach (var package in packages)
+                {
+                    if(package.FileInfo.ContainsTime(kLine.Time))
+                    {
+                        package.Add(kLine);
+                        processed = true;
+                        break;
+                    }
+                }
+
+                // 如果已有包裹无法插入数据，新建包裹
+                if(!processed)
+                {
+                    KLineFileInfo fileInfo = DataFiles.GetKLineFileInfo(type, stockCode, kLine.Time);
+                    KLinePackage package = new KLinePackage(fileInfo);
+                    package.Add(kLine);
+                    packages.Add(package);
+                }
+            }
+
+            // 插入所有数据
+            foreach(var package in packages)
+            {
+                using (var context = package.FileInfo.CreateContext())
+                {
+                    var repository = new Repository<KLineDbo>(context);
+                    foreach(var kLine in package.KLines)
+                    {
+                        repository.Add(ConvertToDbo(kLine));
+                    }
+
+                    repository.UnitOfWork.Commit();
+                }
+            }
         }      
 
         public void Update(KLineType type, string stockCode, IStockKLine kLine)
@@ -101,6 +122,7 @@ namespace Pitman.Application.MarketData
             return lstQuery;
         }
 
+        #region Private Method
         private IRepositoryContext GetContext(KLineType type, string stockCode, DateTime dt)
         {
             string fullPath = DataFiles.GetKLineFiles(type, stockCode, dt);
@@ -156,6 +178,35 @@ namespace Pitman.Application.MarketData
             };
 
             return outputData;
+        }
+        #endregion
+
+        private class KLinePackage
+        {
+            private readonly KLineFileInfo _fileInfo;
+            private List<IStockKLine> _kLineList = new List<IStockKLine>();
+
+            public KLinePackage(KLineFileInfo fileInfo)
+            {
+                _fileInfo = fileInfo;
+            }
+
+            public KLineFileInfo FileInfo { get { return _fileInfo; } }
+
+            public IEnumerable<IStockKLine> KLines { get { return _kLineList; } }
+
+            public void Add(IStockKLine kLine)
+            {
+                _kLineList.Add(kLine);
+            }
+        }
+    }
+
+    internal static class KLineFileInfoEx
+    {
+        internal static IRepositoryContext CreateContext(this KLineFileInfo self)
+        {
+            return ContextFactory.Create(ContextType.KLine, self.FullPath);
         }
     }
 }
