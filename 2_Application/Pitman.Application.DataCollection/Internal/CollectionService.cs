@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Pitman.Application.DataCollection
 {
-    internal abstract partial class CollectionService
+    internal abstract class CollectionService
     {
         #region Field
         private ServiceStatus _status = ServiceStatus.Stopped;
