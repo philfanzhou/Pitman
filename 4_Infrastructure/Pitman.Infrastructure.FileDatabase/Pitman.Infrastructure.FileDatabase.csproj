@@ -30,12 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Infrastructure.MemoryMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Refer.Dll\Framework.Infrastructure.MemoryMap.dll</HintPath>
+    <Reference Include="Framework.Infrastructure.MemoryMap">
+      <HintPath>..\..\..\Framework\Publish.Dll\Framework.Infrastructure.MemoryMap\Framework.Infrastructure.MemoryMap.dll</HintPath>
     </Reference>
     <Reference Include="Ore.Infrastructure.MarketData">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

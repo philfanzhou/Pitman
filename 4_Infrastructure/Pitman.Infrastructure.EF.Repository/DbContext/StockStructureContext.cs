@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Framework.Infrastructure.Repository.EF.SqlServerCe;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Framework.Infrastructure.Repository.EF.SqlServerCe;
 
 namespace Pitman.Infrastructure.EF.Repository
 {

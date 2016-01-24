@@ -31,16 +31,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ore.Infrastructure.MarketData">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
-    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Eastmoney">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Eastmoney.dll</HintPath>
+    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Eastmoney, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData.DataSource.Eastmoney\Ore.Infrastructure.MarketData.DataSource.Eastmoney.dll</HintPath>
     </Reference>
-    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Sina">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.Sina.dll</HintPath>
+    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Sina, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData.DataSource.Sina\Ore.Infrastructure.MarketData.DataSource.Sina.dll</HintPath>
     </Reference>
     <Reference Include="Ore.Infrastructure.MarketData.DataSource.TongHuaShun">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.DataSource.TongHuaShun.dll</HintPath>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData.DataSource.TongHuaShun\Ore.Infrastructure.MarketData.DataSource.TongHuaShun.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

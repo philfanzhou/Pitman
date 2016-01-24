@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ore.Infrastructure.MarketData;
+﻿using Ore.Infrastructure.MarketData;
+using System;
 
 namespace Pitman.Infrastructure.EF.Repository
 {

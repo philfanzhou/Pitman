@@ -1,6 +1,5 @@
 ﻿namespace Pitman.Application.DataCollection
 {
-
     internal enum ServiceStatus
     {
         /// <summary>

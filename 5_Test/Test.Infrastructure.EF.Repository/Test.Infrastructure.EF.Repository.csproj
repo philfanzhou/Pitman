@@ -36,11 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Framework.Infrastructure.Repository">
-      <HintPath>..\..\Refer.Dll\Framework.Infrastructure.Repository.dll</HintPath>
+      <HintPath>..\..\..\Framework\Publish.Dll\Framework.Infrastructure.Repository.EF\Framework.Infrastructure.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

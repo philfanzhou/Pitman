@@ -1,11 +1,9 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.Sina;
+using Pitman.Application.MarketData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Pitman.Application.MarketData;
 
 namespace Pitman.Application.DataCollection
 {
