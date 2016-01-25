@@ -36,11 +36,11 @@ namespace Pitman.Application.DataCollection
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.AppendLine(string.Format("ServiceName:{0}", this.ServiceName));
             strBuilder.AppendLine(string.Format("Status:{0}", this._status.ToString()));
-            strBuilder.AppendLine(string.Format("StartTime:{0}", _startTime.ToString("yy-MM-dd hh:mm:ss")));
+            strBuilder.AppendLine(string.Format("StartTime:{0}", _startTime.ToString("yy-MM-dd HH:mm:ss")));
 
             if (_status == ServiceStatus.Stopped)
             {
-                strBuilder.AppendLine(string.Format("StopTime:{0}", _stopTime.ToString("yy-MM-dd hh:mm:ss")));
+                strBuilder.AppendLine(string.Format("StopTime:{0}", _stopTime.ToString("yy-MM-dd HH:mm:ss")));
                 strBuilder.AppendLine(string.Format("ElapsedTime:{0}", (_stopTime - _startTime).ToString()));
             }
             else

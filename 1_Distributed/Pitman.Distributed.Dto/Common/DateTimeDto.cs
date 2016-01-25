@@ -12,7 +12,7 @@ namespace Pitman.Distributed.Dto
         public DateTime Value
         {
             get { return DateTime.Parse(strValue); }
-            set { strValue = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            set { strValue = value.ToString("yyyy-MM-dd HH:mm:ss"); }
         }
     }
 }

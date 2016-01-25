@@ -10,9 +10,11 @@ namespace Pitman.Domain.FileStructure
 {
     public static partial class DataFiles
     {
-        public static IEnumerable<KLineFileInfo> GetKLineFileInfo(
-            KLineType type, string stockCode,
-            DateTime startTime, DateTime endTime)
+        private const string FileNameExtension = ".sdf";
+        private const int SpanYears = 10;
+        private static DateTime StockCreatedTime = new DateTime(1990, 1, 1, 0, 0, 0);
+
+        public static IEnumerable<KLineFileInfo> GetKLineFileInfo(KLineType type, string stockCode, DateTime startTime, DateTime endTime)
         {
             if (startTime > endTime)
             {
@@ -42,13 +44,96 @@ namespace Pitman.Domain.FileStructure
             return fileInfoList;
         }
 
-        public static KLineFileInfo GetKLineFileInfo(
-            KLineType type, string stockCode, DateTime time)
+        public static KLineFileInfo GetKLineFileInfo(KLineType type, string stockCode, DateTime time)
         {
-            return GetKLineFileInfo(type, stockCode, time, time).ToList()[0];
+            return GetKLineFileInfo(type, stockCode, time, time).ToList().First();
         }
 
         #region Private Method
+
+        private static List<KLineFileInfo> GetKLineFileInfos(string folder)
+        {
+            List<KLineFileInfo> kLineFileInfos = new List<KLineFileInfo>();
+            if (Directory.Exists(folder))
+            {
+                DirectoryInfo directory = new DirectoryInfo(folder);
+                FileInfo[] fileInfoArray = directory.GetFiles();
+                foreach (var fileInfo in fileInfoArray)
+                {
+                    var splitName = fileInfo.Name.Replace(FileNameExtension, "").Split('-');
+                    int bgnYear = 0;
+                    int endYear = 0;
+                    if (splitName.Count() == 1)
+                    {
+                        bgnYear = endYear = Int32.Parse(splitName[0]);
+                    }
+                    else if (splitName.Count() == 2)
+                    {
+                        bgnYear = Int32.Parse(splitName[0]);
+                        endYear = Int32.Parse(splitName[1]);
+                    }
+
+                    kLineFileInfos.Add(new KLineFileInfo(bgnYear, endYear, Path.Combine(folder, fileInfo.Name)));
+                }
+            }
+            return kLineFileInfos;
+        }
+        
+        private static List<KLineFileInfo> NewKLineDayFileInfo(string folder, DateTime startTime, DateTime endTime)
+        {
+            if (startTime > endTime)
+            {
+                throw new ArgumentOutOfRangeException("startTime", "startTime is less than endTime");
+            }
+
+            DateTime dtStockCreated = StockCreatedTime;
+            if (endTime.Year < dtStockCreated.Year)
+            {
+                throw new ArgumentOutOfRangeException("StockCreatedTime", "endTime is less than StockCreatedTime");
+            }
+
+            List<KLineFileInfo> kLineFileInfos = new List<KLineFileInfo>();            
+            while (endTime.Year >= dtStockCreated.Year)
+            {
+                if (startTime.Year <= dtStockCreated.AddYears(SpanYears).Year)
+                {
+                    string fullPath = Path.Combine(folder, string.Format("{0}-{1}{2}", dtStockCreated.Year, dtStockCreated.AddYears(SpanYears).Year, FileNameExtension));
+                    kLineFileInfos.Add(new KLineFileInfo(dtStockCreated.BeginYear(), dtStockCreated.AddYears(SpanYears).EndYear(), fullPath));
+                }
+
+                dtStockCreated = dtStockCreated.AddYears(SpanYears + 1);
+            }
+
+            return kLineFileInfos;
+        }
+
+        private static List<KLineFileInfo> NewKLineMinFileInfo(string folder, DateTime startTime, DateTime endTime)
+        {
+            if (startTime > endTime)
+            {
+                throw new ArgumentOutOfRangeException("startTime", "startTime is less than endTime");
+            }
+
+            List<KLineFileInfo> kLineFileInfos = new List<KLineFileInfo>();
+            if (startTime.Year == endTime.Year)
+            {
+                string fullPath = Path.Combine(folder, string.Format("{0}{1}", startTime.Year, FileNameExtension));
+                kLineFileInfos.Add(new KLineFileInfo(startTime.BeginYear(), startTime.EndYear(), fullPath));
+            }
+            else
+            {
+                DateTime dt = startTime;
+                while (dt.Year <= endTime.Year)
+                {
+                    string fullPath = Path.Combine(folder, string.Format("{0}{1}", dt.Year, FileNameExtension));
+                    kLineFileInfos.Add(new KLineFileInfo(dt.Year, dt.Year, fullPath));
+                    dt = dt.AddYears(1);
+                }
+            }
+
+            return kLineFileInfos;
+        }
+
         private static List<KLineFileInfo> GetKLineDayFileInfo(
             string folder, DateTime startTime, DateTime endTime)
         {
@@ -58,20 +143,45 @@ namespace Pitman.Domain.FileStructure
             3：min1和min5需要考虑分文件
             4：文件后缀名为sdf, 建议在这个类中用一个常量来表示，不用每个地方都硬编码
             */
+            var searchKLineFileInfos = GetKLineFileInfos(folder).Where(p =>
+            (startTime.Year >= p.StartTime.Year && startTime.Year <= p.EndTime.Year) ||
+            (endTime.Year >= p.StartTime.Year && endTime.Year <= p.EndTime.Year) ||
+            (startTime.Year <= p.StartTime.Year && endTime.Year >= p.EndTime.Year)).Select(p => p).ToList();
 
-            throw new NotImplementedException();
+            if (searchKLineFileInfos.Count < 1)
+            {
+                searchKLineFileInfos.AddRange(NewKLineDayFileInfo(folder, startTime, endTime));
+            }
+
+            return searchKLineFileInfos;
         }
 
         private static List<KLineFileInfo> GetKLineMin1FileInfo(
             string folder, DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            var searchKLineFileInfos = GetKLineFileInfos(folder).Where(p =>
+            startTime.Year <= p.StartTime.Year && endTime.Year >= p.EndTime.Year).Select(p => p).ToList();
+
+            if (searchKLineFileInfos.Count < 1)
+            {
+                searchKLineFileInfos.AddRange(NewKLineMinFileInfo(folder, startTime, endTime));
+            }
+
+            return searchKLineFileInfos;
         }
 
         private static List<KLineFileInfo> GetKLineMin5FileInfo(
             string folder, DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            var searchKLineFileInfos = GetKLineFileInfos(folder).Where(p =>
+            startTime.Year <= p.StartTime.Year && endTime.Year >= p.EndTime.Year).Select(p => p).ToList();
+
+            if (searchKLineFileInfos.Count < 1)
+            {
+                searchKLineFileInfos.AddRange(NewKLineMinFileInfo(folder, startTime, endTime));
+            }
+
+            return searchKLineFileInfos;
         }
 
         private static string GetKLineFolder(KLineType type, string stockCode)

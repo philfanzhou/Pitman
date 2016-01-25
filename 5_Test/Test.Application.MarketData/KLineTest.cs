@@ -13,13 +13,11 @@ namespace Test.Application.MarketData
     [TestClass]
     public class KLineTest
     {
-        //2014~2015
-        private IEnumerable<IStockKLine> ExampleStockKLineDay_600036()
+        //
+        private IEnumerable<IStockKLine> ExampleStockKLineDay(DateTime bgnDay, DateTime endDay)
         {
             List<IStockKLine> example = new List<IStockKLine>();
-
-            DateTime bgnDay = new DateTime(2014, 1, 1);
-            DateTime endDay = new DateTime(2015, 12, 31);
+            
             while (bgnDay <= endDay)
             {
                 if (bgnDay.DayOfWeek != DayOfWeek.Saturday && bgnDay.DayOfWeek != DayOfWeek.Sunday)
@@ -40,40 +38,11 @@ namespace Test.Application.MarketData
 
             return example;
         }
-        //2015
-        private IEnumerable<IStockKLine> ExampleStockKLineDay_000400()
+        //
+        private IEnumerable<IStockKLine> ExampleStockKLineMin1(DateTime bgnDay, DateTime endDay)
         {
             List<IStockKLine> example = new List<IStockKLine>();
-
-            DateTime bgnDay = new DateTime(2015, 1, 1);
-            DateTime endDay = new DateTime(2015, 12, 31);
-            while (bgnDay <= endDay)
-            {
-                if (bgnDay.DayOfWeek != DayOfWeek.Saturday && bgnDay.DayOfWeek != DayOfWeek.Sunday)
-                {
-                    example.Add(new StockKLineDto
-                    {
-                        Amount = 1100802350,
-                        Close = 32.05,
-                        Time = bgnDay,
-                        High = 32.21,
-                        Low = 30.5,
-                        Open = 30.9,
-                        Volume = 34821362
-                    });
-                }
-                bgnDay = bgnDay.AddDays(1);
-            }
-
-            return example;
-        }
-        //2015
-        private IEnumerable<IStockKLine> ExampleStockKLineMin1_600036()
-        {
-            List<IStockKLine> example = new List<IStockKLine>();
-
-            DateTime bgnDay = new DateTime(2015, 1, 1);
-            DateTime endDay = new DateTime(2015, 12, 31);
+            
             while (bgnDay <= endDay)
             {
                 if (bgnDay.DayOfWeek != DayOfWeek.Saturday && bgnDay.DayOfWeek != DayOfWeek.Sunday)
@@ -117,13 +86,11 @@ namespace Test.Application.MarketData
 
             return example;
         }
-        //2015
-        private IEnumerable<IStockKLine> ExampleStockKLineMin5_600036()
+        //
+        private IEnumerable<IStockKLine> ExampleStockKLineMin5(DateTime bgnDay, DateTime endDay)
         {
             List<IStockKLine> example = new List<IStockKLine>();
-
-            DateTime bgnDay = new DateTime(2015, 1, 1);
-            DateTime endDay = new DateTime(2015, 12, 31);
+            
             while (bgnDay <= endDay)
             {
                 if (bgnDay.DayOfWeek != DayOfWeek.Saturday && bgnDay.DayOfWeek != DayOfWeek.Sunday)
@@ -167,57 +134,18 @@ namespace Test.Application.MarketData
 
             return example;
         }
-        //2015
-        private IEnumerable<IStockKLine> ExampleStockKLineMin5_000400()
+
+        private List<StockKLineDto> GetKLineUpdates(List<IStockKLine> insertDatas)
         {
-            List<IStockKLine> example = new List<IStockKLine>();
-
-            DateTime bgnDay = new DateTime(2015, 1, 1);
-            DateTime endDay = new DateTime(2015, 12, 31);
-            while (bgnDay <= new DateTime(2015, 12, 31))
+            List<StockKLineDto> kLineUpdates = new List<StockKLineDto>();
+            foreach (StockKLineDto it in insertDatas)
             {
-                if (bgnDay.DayOfWeek != DayOfWeek.Saturday && bgnDay.DayOfWeek != DayOfWeek.Sunday)
-                {
-                    DateTime bgnAm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 9, 0, 0);
-                    DateTime endAm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 11, 30, 0);
-                    while (bgnAm <= endAm)
-                    {
-                        example.Add(new StockKLineDto
-                        {
-                            Amount = 10433224,
-                            Close = 19.34,
-                            Time = bgnAm,
-                            High = 19.38,
-                            Low = 19.26,
-                            Open = 19.35,
-                            Volume = 539815
-                        });
-                        bgnAm = bgnAm.AddMinutes(5);
-                    }
-
-                    DateTime bgnPm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 13, 0, 0);
-                    DateTime endPm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 15, 0, 0);
-                    while (bgnPm <= endPm)
-                    {
-                        example.Add(new StockKLineDto
-                        {
-                            Amount = 10433224,
-                            Close = 19.34,
-                            Time = bgnPm,
-                            High = 19.38,
-                            Low = 19.26,
-                            Open = 19.35,
-                            Volume = 539815
-                        });
-                        bgnPm = bgnPm.AddMinutes(5);
-                    }
-                }
-                bgnDay = bgnDay.AddDays(1);
+                it.Low = 1.0;
+                kLineUpdates.Add(it);
             }
-
-            return example;
+            return kLineUpdates;
         }
-
+        
         private void CleanupFiles(List<string> dataFiles)
         {
             if (dataFiles == null)
@@ -231,64 +159,66 @@ namespace Test.Application.MarketData
                 }
             }
         }
-
+        
         //
         // 摘要:
         //     日线
         [TestMethod]
-        public void TestMethodAdd_Day()
+        public void TestMethod_Day()
         {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineDay_600036().ToList();
+            string stockCode_600036 = "600036";
+            string stockCode_000400 = "000400";
+            DateTime startTime = new DateTime(2014, 1, 1);
+            DateTime endTime = new DateTime(2015, 12, 31);
+            List<IStockKLine> insertDatas = ExampleStockKLineDay(startTime, endTime).ToList();
 
-            List<string> dataFiles = DataFiles.GetKLineFiles(KLineType.Day, stockCode, new DateTime(2014, 1, 1), new DateTime(2015, 12, 31)).ToList();
-            CleanupFiles(dataFiles);
+            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_600036, startTime, endTime);
+            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p=>p.FullPath).ToList();
+            CleanupFiles(dataFiles_600036);
+
+            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_000400, startTime, endTime);
+            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
 
-            // 测试插入数据
-            foreach (var kLine in insertDatas)
-            {
-                appService.Add(KLineType.Day, stockCode, kLine);
-            }
-            //foreach (var kLine in insertDatas)
-            //{
-            //    Assert.IsTrue(appService.Exists(KLineType.Day, stockCode, kLine));
-            //}
-            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode, insertDatas[100]));            
-        }
-        [TestMethod]
-        public void TestMethodUpdate_Day()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineDay_600036().ToList();
-            
-            var appService = new KLineAppService();            
+            #region // 测试插入数据
+            appService.Add(KLineType.Day, stockCode_600036, insertDatas);
+            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode_600036, insertDatas[insertDatas.Count - 1]));
 
-            // 测试更新数据
+            int count = 100;
+            for (int i = 0; i < count; i++)
+            {
+                appService.Add(KLineType.Day, stockCode_000400, insertDatas[i]);
+            }
+            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode_000400, insertDatas[count -1]));
+            #endregion
+
+            #region // 测试更新数据
+            List<StockKLineDto> kLineUpdates = GetKLineUpdates(insertDatas);
+            appService.Update(KLineType.Day, stockCode_600036, kLineUpdates);
+            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode_600036, kLineUpdates[0]));
+
             StockKLineDto kLineUpdate = insertDatas[0] as StockKLineDto;
             kLineUpdate.Open = 0;
-            appService.Update(KLineType.Day, stockCode, kLineUpdate);
-
+            appService.Update(KLineType.Day, stockCode_000400, kLineUpdate);
             kLineUpdate.Close = 100;
-            appService.Update(KLineType.Day, stockCode, kLineUpdate);
+            appService.Update(KLineType.Day, stockCode_000400, kLineUpdate);
+            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode_000400, kLineUpdate));            
+            #endregion
 
-            Assert.IsTrue(appService.Exists(KLineType.Day, stockCode, kLineUpdate));
-        }
-        [TestMethod]
-        public void TestMethodRead_Day()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineDay_600036().ToList();
-            
-            var appService = new KLineAppService();
-            
-            // 测试读取数据
-            var securities = appService.Get(KLineType.Day, stockCode, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
-            Assert.IsNotNull(securities);
-            Assert.IsTrue(securities.Count == insertDatas.Count);
-            Assert.AreEqual(insertDatas[0].Open, securities[0].Open);
-            Assert.AreEqual(insertDatas[0].Close, securities[0].Close);
+            #region // 测试读取数据
+            var securities_600036 = appService.Get(KLineType.Day, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036);
+            Assert.IsTrue(securities_600036.Count == insertDatas.Count);
+            Assert.AreEqual(kLineUpdates[0].Low, securities_600036[0].Low);
+
+            var securities_000400 = appService.Get(KLineType.Day, stockCode_000400, insertDatas[0].Time, insertDatas[count - 1].Time).ToList();
+            Assert.IsNotNull(securities_000400);
+            Assert.IsTrue(securities_000400.Count == count);
+            Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
+            Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
+            #endregion
         }
         ////
         //// 摘要:
@@ -322,123 +252,127 @@ namespace Test.Application.MarketData
         // 摘要:
         //     1分钟线
         [TestMethod]
-        public void TestMethodAdd_Min1()
+        public void TestMethod_Min1()
         {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin1_600036().ToList();
+            string stockCode_600036 = "600036";
+            string stockCode_000400 = "000400";
+            DateTime startTime = new DateTime(2015, 1, 1);
+            DateTime endTime = new DateTime(2015, 1, 31);
+            List<IStockKLine> insertDatas = ExampleStockKLineMin1(startTime, endTime).ToList();
 
-            List<string> dataFiles = DataFiles.GetKLineFiles(KLineType.Min1, stockCode, new DateTime(2014, 1, 1), new DateTime(2015, 12, 31)).ToList();
-            CleanupFiles(dataFiles);
+            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_600036, startTime, endTime);
+            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            CleanupFiles(dataFiles_600036);
+
+            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_000400, startTime, endTime);
+            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
 
-            DateTime dtDebug = DateTime.Now;
-            // 测试插入数据
-            foreach (var kLine in insertDatas)
+            #region // 测试插入数据
+            appService.Add(KLineType.Min1, stockCode_600036, insertDatas);
+            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode_600036, insertDatas[insertDatas.Count - 1]));
+
+            int count = 100;
+            for (int i = 0; i < count; i++)
             {
-                dtDebug = DateTime.Now;
-                appService.Add(KLineType.Min1, stockCode, kLine);
-                System.Diagnostics.Debug.Print("=========>" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                appService.Add(KLineType.Min1, stockCode_000400, insertDatas[i]);
             }
-            //foreach (var kLine in insertDatas)
-            //{
-            //    Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode, kLine));
-            //}
-            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode, insertDatas[100]));            
-        }
-        [TestMethod]
-        public void TestMethodUpdate_Min1()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin1_600036().ToList();
-            
-            var appService = new KLineAppService();
-            
-            // 测试更新数据
-            StockKLineDto kLineUpdate = insertDatas[0] as StockKLineDto;
+            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode_000400, insertDatas[count - 1]));
+            #endregion
+
+            #region // 测试更新数据
+            List<StockKLineDto> kLineUpdates = GetKLineUpdates(insertDatas);
+            //此种方式实在慢的可以
+            //appService.Update(KLineType.Min1, stockCode_600036, kLineUpdates);
+            //Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode_600036, kLineUpdates[kLineUpdates.Count - 1]));
+            appService.Update(KLineType.Min1, stockCode_600036, kLineUpdates[0]);
+            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode_600036, kLineUpdates[kLineUpdates.Count - 1]));
+
+            StockKLineDto kLineUpdate = kLineUpdates[0];
             kLineUpdate.Open = 0;
-            appService.Update(KLineType.Min1, stockCode, kLineUpdate);
-
+            appService.Update(KLineType.Min1, stockCode_000400, kLineUpdate);
             kLineUpdate.Close = 100;
-            appService.Update(KLineType.Min1, stockCode, kLineUpdate);
+            appService.Update(KLineType.Min1, stockCode_000400, kLineUpdate);
+            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode_000400, kLineUpdate));
+            #endregion
 
-            Assert.IsTrue(appService.Exists(KLineType.Min1, stockCode, kLineUpdate));            
-        }
-        [TestMethod]
-        public void TestMethodRead_Min1()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin1_600036().ToList();
-            
-            var appService = new KLineAppService();
-            
-            // 测试读取数据
-            var securities = appService.Get(KLineType.Min1, stockCode, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
-            Assert.IsNotNull(securities);
-            Assert.IsTrue(securities.Count == insertDatas.Count);
-            Assert.AreEqual(insertDatas[0].Open, securities[0].Open);
-            Assert.AreEqual(insertDatas[0].Close, securities[0].Close);
+            #region // 测试读取数据
+            var securities_600036 = appService.Get(KLineType.Min1, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036);
+            Assert.IsTrue(securities_600036.Count == insertDatas.Count);
+            Assert.AreEqual(insertDatas[0].Low, securities_600036[0].Low);
+
+            var securities_000400 = appService.Get(KLineType.Min1, stockCode_000400, insertDatas[0].Time, insertDatas[count - 1].Time).ToList();
+            Assert.IsNotNull(securities_000400);
+            Assert.IsTrue(securities_000400.Count == count);
+            Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
+            Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
+            #endregion
         }
         //
         // 摘要:
         //     5分钟线
         [TestMethod]
-        public void TestMethodAdd_Min5()
+        public void TestMethod_Min5()
         {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin5_600036().ToList();
+            string stockCode_600036 = "600036";
+            string stockCode_000400 = "000400";
+            DateTime startTime = new DateTime(2015, 1, 1);
+            DateTime endTime = new DateTime(2015, 1, 1);            
+            List<IStockKLine> insertDatas = ExampleStockKLineMin5(startTime, endTime).ToList();
 
-            List<string> dataFiles = DataFiles.GetKLineFiles(KLineType.Min5, stockCode, new DateTime(2014, 1, 1), new DateTime(2015, 12, 31)).ToList();
-            CleanupFiles(dataFiles);
+            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_600036, startTime, endTime);
+            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            CleanupFiles(dataFiles_600036);
+
+            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_000400, startTime, endTime);
+            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
 
-            DateTime dtDebug = DateTime.Now;
-            // 测试插入数据
-            foreach (var kLine in insertDatas)
+            #region// 测试插入数据
+            appService.Add(KLineType.Min5, stockCode_600036, insertDatas);
+            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode_600036, insertDatas[insertDatas.Count - 1]));
+
+            int count = insertDatas.Count/2;
+            for (int i = 0; i < count; i++)
             {
-                dtDebug = DateTime.Now;
-                appService.Add(KLineType.Min5, stockCode, kLine);
-                System.Diagnostics.Debug.Print("=========>" + (DateTime.Now - dtDebug).TotalMilliseconds.ToString());
+                appService.Add(KLineType.Min5, stockCode_000400, insertDatas[i]);
             }
-            //foreach (var kLine in insertDatas)
-            //{
-            //    Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode, kLine));
-            //}
-            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode, insertDatas[100]));
-        }
-        [TestMethod]
-        public void TestMethodUpdate_Min5()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin5_600036().ToList();
+            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode_000400, insertDatas[count - 1]));
+            #endregion
 
-            var appService = new KLineAppService();
+            #region// 测试更新数据
+            List<StockKLineDto> kLineUpdates = GetKLineUpdates(insertDatas);
+            //此种方式实在慢的可以
+            //appService.Update(KLineType.Min5, stockCode_600036, kLineUpdates);
+            //Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode_600036, kLineUpdates[kLineUpdates.Count - 1]));
+            appService.Update(KLineType.Min5, stockCode_600036, kLineUpdates[0]);
+            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode_600036, kLineUpdates[kLineUpdates.Count - 1]));
 
-            // 测试更新数据
-            StockKLineDto kLineUpdate = insertDatas[0] as StockKLineDto;
+            StockKLineDto kLineUpdate = kLineUpdates[0];
             kLineUpdate.Open = 0;
-            appService.Update(KLineType.Min5, stockCode, kLineUpdate);
-
+            appService.Update(KLineType.Min5, stockCode_000400, kLineUpdate);
             kLineUpdate.Close = 100;
-            appService.Update(KLineType.Min5, stockCode, kLineUpdate);
+            appService.Update(KLineType.Min5, stockCode_000400, kLineUpdate);
+            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode_000400, kLineUpdate));            
+            #endregion
 
-            Assert.IsTrue(appService.Exists(KLineType.Min5, stockCode, kLineUpdate));
-        }
-        [TestMethod]
-        public void TestMethodRead_Min5()
-        {
-            string stockCode = "600036";
-            List<IStockKLine> insertDatas = ExampleStockKLineMin5_600036().ToList();
+            #region// 测试读取数据
+            var securities_600036 = appService.Get(KLineType.Min5, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036);
+            Assert.IsTrue(securities_600036.Count == insertDatas.Count);
+            Assert.AreEqual(kLineUpdates[0].Low, securities_600036[0].Low);
 
-            var appService = new KLineAppService();
-
-            // 测试读取数据
-            var securities = appService.Get(KLineType.Min5, stockCode, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
-            Assert.IsNotNull(securities);
-            Assert.IsTrue(securities.Count == insertDatas.Count);
-            Assert.AreEqual(insertDatas[0].Open, securities[0].Open);
-            Assert.AreEqual(insertDatas[0].Close, securities[0].Close);
+            var securities_000400 = appService.Get(KLineType.Min5, stockCode_000400, insertDatas[0].Time, insertDatas[count - 1].Time).ToList();
+            Assert.IsNotNull(securities_000400);
+            Assert.IsTrue(securities_000400.Count == count);
+            Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
+            Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
+            #endregion
         }
         ////
         //// 摘要:

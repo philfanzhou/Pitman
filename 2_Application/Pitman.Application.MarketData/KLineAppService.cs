@@ -50,42 +50,19 @@ namespace Pitman.Application.MarketData
         public void Add(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
         {
             // 将数据分别放到对应的包裹里面
-            List<KLinePackage> packages = new List<KLinePackage>();
-            foreach (var kLine in kLines)
-            {
-                // 检查是否能够将数据插入到已有包裹
-                bool processed = false;
-                foreach (var package in packages)
-                {
-                    if(package.FileInfo.ContainsTime(kLine.Time))
-                    {
-                        package.Add(kLine);
-                        processed = true;
-                        break;
-                    }
-                }
-
-                // 如果已有包裹无法插入数据，新建包裹
-                if(!processed)
-                {
-                    KLineFileInfo fileInfo = DataFiles.GetKLineFileInfo(type, stockCode, kLine.Time);
-                    KLinePackage package = new KLinePackage(fileInfo);
-                    package.Add(kLine);
-                    packages.Add(package);
-                }
-            }
+            List<KLinePackage> packages = GetKLinePackages(type, stockCode, kLines).ToList();
 
             // 插入所有数据
-            foreach(var package in packages)
+            foreach (var package in packages)
             {
                 using (var context = package.FileInfo.CreateContext())
                 {
                     var repository = new Repository<KLineDbo>(context);
-                    foreach(var kLine in package.KLines)
-                    {
-                        repository.Add(ConvertToDbo(kLine));
-                    }
-
+                    repository.AddRange(ConvertToDbo(package.KLines));
+                    //foreach (var kLine in package.KLines)
+                    //{
+                    //    repository.Add(ConvertToDbo(kLine)); 
+                    //}
                     repository.UnitOfWork.Commit();
                 }
             }
@@ -93,11 +70,32 @@ namespace Pitman.Application.MarketData
 
         public void Update(KLineType type, string stockCode, IStockKLine kLine)
         {
-            using (var context = GetContext(type, stockCode, kLine.Time))
+            //using (var context = GetContext(type, stockCode, kLine.Time))
+            //{
+            //    var repository = new Repository<KLineDbo>(context);
+            //    repository.Update(ConvertToDbo(kLine));
+            //    repository.UnitOfWork.Commit();
+            //}
+            Update(type, stockCode, new List<IStockKLine> { kLine });
+        }
+
+        public void Update(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+            List<KLinePackage> packages = GetKLinePackages(type, stockCode, kLines).ToList();
+
+            // 插入所有数据
+            foreach (var package in packages)
             {
-                var repository = new Repository<KLineDbo>(context);
-                repository.Update(ConvertToDbo(kLine));
-                repository.UnitOfWork.Commit();
+                using (var context = package.FileInfo.CreateContext())
+                {
+                    var repository = new Repository<KLineDbo>(context);
+                    foreach (var kLine in package.KLines)
+                    {
+                        repository.Update(ConvertToDbo(kLine));
+                    }
+
+                    repository.UnitOfWork.Commit();
+                }
             }
         }
 
@@ -112,17 +110,57 @@ namespace Pitman.Application.MarketData
             var spec = Specification<KLineDbo>.Eval(p => p.Time >= startTime && p.Time <= endTime);
 
             List<IStockKLine> lstQuery = new List<IStockKLine>();
-            var contexts = GetContext(type, stockCode, startTime, endTime);
-            foreach(var context in contexts)
-            {
-                var repository = new Repository<KLineDbo>(context);
-                lstQuery.AddRange(repository.GetAll(spec));
-            }
+            //var contexts = GetContext(type, stockCode, startTime, endTime);
+            //foreach(var context in contexts)
+            //{
+            //    var repository = new Repository<KLineDbo>(context);
+            //    lstQuery.AddRange(repository.GetAll(spec));
+            //}
 
+            List<KLineFileInfo> kLineFileInfos = DataFiles.GetKLineFileInfo(type, stockCode, startTime, endTime).ToList();
+            foreach (var fileInfo in kLineFileInfos)
+            {
+                using (var context = fileInfo.CreateContext())
+                {
+                    var repository = new Repository<KLineDbo>(context);
+                    lstQuery.AddRange(repository.GetAll(spec));
+                }
+            }
             return lstQuery;
         }
 
         #region Private Method
+        
+        private IEnumerable<KLinePackage> GetKLinePackages(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+            // 将数据分别放到对应的包裹里面
+            List<KLinePackage> packages = new List<KLinePackage>();
+            foreach (var kLine in kLines)
+            {
+                // 检查是否能够将数据插入到已有包裹
+                bool processed = false;
+                foreach (var package in packages)
+                {
+                    if (package.FileInfo.ContainsTime(kLine.Time))
+                    {
+                        package.Add(kLine);
+                        processed = true;
+                        break;
+                    }
+                }
+
+                // 如果已有包裹无法插入数据，新建包裹
+                if (!processed)
+                {
+                    KLineFileInfo fileInfo = DataFiles.GetKLineFileInfo(type, stockCode, kLine.Time);
+                    KLinePackage package = new KLinePackage(fileInfo);
+                    package.Add(kLine);
+                    packages.Add(package);
+                }
+            }
+            return packages;
+        }
+
         private IRepositoryContext GetContext(KLineType type, string stockCode, DateTime dt)
         {
             string fullPath = DataFiles.GetKLineFiles(type, stockCode, dt);
@@ -178,6 +216,47 @@ namespace Pitman.Application.MarketData
             };
 
             return outputData;
+        }
+
+        private static IEnumerable<KLineDbo> ConvertToDbo(IEnumerable<IStockKLine> kLines)
+        {
+            List<KLineDbo> outputDatas = new List<KLineDbo>();
+            foreach (var self in kLines)
+            {
+                outputDatas.Add(new KLineDbo
+                {
+                    //
+                    // 摘要:
+                    //     成交额
+                    Amount = self.Amount,
+                    //
+                    // 摘要:
+                    //     收盘
+                    Close = self.Close,
+                    //
+                    // 摘要:
+                    //     最高
+                    High = self.High,
+                    //
+                    // 摘要:
+                    //     最低
+                    Low = self.Low,
+                    //
+                    // 摘要:
+                    //     今开
+                    Open = self.Open,
+                    //
+                    // 摘要:
+                    //     日期与时间
+                    Time = self.Time,
+                    //
+                    // 摘要:
+                    //     成交量
+                    Volume = self.Volume
+                });                
+            }
+
+            return outputDatas;
         }
         #endregion
 
