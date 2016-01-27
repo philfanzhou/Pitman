@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_Infrastructure", "4_Infrastructure", "{63C2FF89-1BD4-4066-8E72-F803C1931F6C}"
 EndProject
@@ -62,6 +62,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Domain.FileStructure", "3_Domain\Pitman.Domain.FileStructure\Pitman.Domain.FileStructure.csproj", "{6A13ACF4-99A1-4D6A-B95A-538F9A9BB8BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.FileDatabase", "4_Infrastructure\Pitman.Infrastructure.FileDatabase\Pitman.Infrastructure.FileDatabase.csproj", "{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.SQLCE", "Test.SQLCE\Test.SQLCE.csproj", "{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +151,10 @@ Global
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{174152CF-6749-493A-899C-5053E62902E6} = {655FE28A-02FD-4271-9B2A-1CD9249614FD}
 		{6A13ACF4-99A1-4D6A-B95A-538F9A9BB8BC} = {85AA8B02-2443-4FC5-9ADE-DEDD368959CC}
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
 	EndGlobalSection
 EndGlobal
