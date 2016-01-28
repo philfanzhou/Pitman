@@ -41,7 +41,7 @@ namespace Test.SQLCE
         double Volume { get; }
     }
 
-    public class StockKLineDto : IStockKLine
+    public class StockKLineDbo : IStockKLine
     {
         /// <summary>
         /// 日期与时间

@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "stockRealTime")]
     public class StockRealTimeDto : IStockRealTime

@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
-      <Project>{7481a981-5d62-4b50-8b39-640b4671f60e}</Project>
-      <Name>Pitman.Distributed.Dto</Name>
+    <ProjectReference Include="..\..\1_Distributed\Pitman.Distributed.DataTransferObject\Pitman.Distributed.DataTransferObject.csproj">
+      <Project>{29191f8b-aee9-41bc-87b2-c9f92090b787}</Project>
+      <Name>Pitman.Distributed.DataTransferObject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

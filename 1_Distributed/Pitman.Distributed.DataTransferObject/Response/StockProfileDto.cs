@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "stockProfile")]
     public class StockProfileDto : IStockProfile
@@ -120,6 +120,53 @@ namespace Pitman.Distributed.Dto
         {
             get { return listDate.Value; }
             set { listDate.Value = value; }
+        }
+    }
+
+    public static class StockProfileConverter
+    {
+        public static StockProfileDto ToDto(this IStockProfile self)
+        {
+            StockProfileDto outputData = new StockProfileDto
+            {
+                AccountingFirm = self.AccountingFirm,
+                Area = self.Area,
+                BoardSecretary = self.BoardSecretary,
+                BusinessRegistration = self.BusinessRegistration,
+                Chairman = self.Chairman,
+                CodeA = self.CodeA,
+                CodeB = self.CodeB,
+                CodeH = self.CodeH,
+                CompanyProfile = self.CompanyProfile,
+                ContactNumber = self.ContactNumber,
+                Email = self.Email,
+                EnglishName = self.EnglishName,
+                EstablishmentDate = self.EstablishmentDate,
+                Exchange = self.Exchange,
+                Fax = self.Fax,
+                FullName = self.FullName,
+                GeneralManager = self.GeneralManager,
+                IndependentDirectors = self.IndependentDirectors,
+                Industry = self.Industry,
+                LawOffice = self.LawOffice,
+                LegalRepresentative = self.LegalRepresentative,
+                ListDate = self.ListDate,
+                NameUsedBefore = self.NameUsedBefore,
+                NumberOfEmployees = self.NumberOfEmployees,
+                NumberOfManagement = self.NumberOfManagement,
+                OfficeAddress = self.OfficeAddress,
+                PrimeBusiness = self.PrimeBusiness,
+                RegisteredAddress = self.RegisteredAddress,
+                RegisteredCapital = self.RegisteredCapital,
+                SecuritiesAffairsRepresentatives = self.SecuritiesAffairsRepresentatives,
+                ShortNameA = self.ShortNameA,
+                ShortNameB = self.ShortNameB,
+                ShortNameH = self.ShortNameH,
+                Website = self.Website,
+                ZipCode = self.ZipCode
+            };
+
+            return outputData;
         }
     }
 }

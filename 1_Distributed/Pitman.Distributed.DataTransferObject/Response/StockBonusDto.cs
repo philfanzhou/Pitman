@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "stockBonus")]
     public class StockBonusDto : IStockBonus
@@ -153,6 +153,49 @@ namespace Pitman.Distributed.Dto
         {
             get { return startOrArriveDate.Value; }
             set { startOrArriveDate.Value = value; }
+        }
+    }
+
+    public static class StockBonusConverter
+    {
+        public static StockBonusDto ToDto(this IStockBonus self)
+        {
+            StockBonusDto outputData = new StockBonusDto
+            {
+                ActualDispatchRate = self.ActualDispatchRate,
+                BAndHDividendAfterTax = self.BAndHDividendAfterTax,
+                BAndHPreTaxDividend = self.BAndHPreTaxDividend,
+                BonusRate = self.BonusRate,
+                CapitalStockBaseDate = self.CapitalStockBaseDate,
+                CapitalStockBeforeDispatch = self.CapitalStockBeforeDispatch,
+                CapitalSurplusIncreaseRate = self.CapitalSurplusIncreaseRate,
+                ConvertibleBondDate = self.ConvertibleBondDate,
+                DateOfDeclaration = self.DateOfDeclaration,
+                Description = self.Description,
+                DispatchExpiryDate = self.DispatchExpiryDate,
+                DispatchListingDate = self.DispatchListingDate,
+                DispatchPrice = self.DispatchPrice,
+                DispatchRate = self.DispatchRate,
+                DividendAfterTax = self.DividendAfterTax,
+                ExchangeRate = self.ExchangeRate,
+                ExdividendDate = self.ExdividendDate,
+                ExpirationDate = self.ExpirationDate,
+                IncreaseRate = self.IncreaseRate,
+                IssuingObject = self.IssuingObject,
+                LastTradingDay = self.LastTradingDay,
+                PreTaxDividend = self.PreTaxDividend,
+                RegisterDate = self.RegisterDate,
+                ReserveSurplusIncreaseRate = self.ReserveSurplusIncreaseRate,
+                ResolutionOfShareholdersMeetingDate = self.ResolutionOfShareholdersMeetingDate,
+                ShareSplitCount = self.ShareSplitCount,
+                StartOrArriveDate = self.StartOrArriveDate,
+                TotalDispatch = self.TotalDispatch,
+                TransferredAllottedPrice = self.TransferredAllottedPrice,
+                TransferredAllottedRate = self.TransferredAllottedRate,
+                Type = self.Type
+            };
+
+            return outputData;
         }
     }
 }

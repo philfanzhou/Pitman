@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "stockStructure")]
     public class StockStructureDto : IStockStructure
@@ -79,5 +79,38 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "transferredAllottedShares")]
         public double TransferredAllottedShares { get; set; }
+    }
+
+    public static class StockStructureConverter
+    {
+        public static StockStructureDto ToDto(this IStockStructure self)
+        {
+            StockStructureDto outputData = new StockStructureDto
+            {
+                DateOfChange = self.DateOfChange,
+                DateOfDeclaration = self.DateOfDeclaration,
+                DomesticLegalPersonShares = self.DomesticLegalPersonShares,
+                DomesticSponsorsShares = self.DomesticSponsorsShares,
+                ExecutiveShares = self.ExecutiveShares,
+                FundsShares = self.FundsShares,
+                GeneralLegalPersonShares = self.GeneralLegalPersonShares,
+                InternalStaffShares = self.InternalStaffShares,
+                PreferredStock = self.PreferredStock,
+                RaiseLegalPersonShares = self.RaiseLegalPersonShares,
+                Reason = self.Reason,
+                RestrictedSharesA = self.RestrictedSharesA,
+                RestrictedSharesB = self.RestrictedSharesB,
+                SharesA = self.SharesA,
+                SharesB = self.SharesB,
+                SharesH = self.SharesH,
+                StateOwnedLegalPersonShares = self.StateOwnedLegalPersonShares,
+                StateShares = self.StateShares,
+                StrategicInvestorsShares = self.StrategicInvestorsShares,
+                TotalShares = self.TotalShares,
+                TransferredAllottedShares = self.TransferredAllottedShares
+            };
+
+            return outputData;
+        }
     }
 }

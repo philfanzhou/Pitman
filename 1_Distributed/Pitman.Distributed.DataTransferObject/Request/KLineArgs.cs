@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract]
     public class KLineArgs

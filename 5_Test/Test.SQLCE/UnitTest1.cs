@@ -21,7 +21,7 @@ namespace Test.SQLCE
                     DateTime endAm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 11, 30, 0);
                     while (bgnAm <= endAm)
                     {
-                        example.Add(new StockKLineDto
+                        example.Add(new StockKLineDbo
                         {
                             Amount = 1945900,
                             Close = 17.79,
@@ -38,7 +38,7 @@ namespace Test.SQLCE
                     DateTime endPm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 15, 0, 0);
                     while (bgnPm <= endPm)
                     {
-                        example.Add(new StockKLineDto
+                        example.Add(new StockKLineDbo
                         {
                             Amount = 1945900,
                             Close = 17.79,

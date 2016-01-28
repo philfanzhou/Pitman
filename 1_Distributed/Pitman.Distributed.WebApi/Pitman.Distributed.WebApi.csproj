@@ -76,7 +76,6 @@
     <Compile Include="Controllers\KLine\KLineMin15Controller.cs" />
     <Compile Include="Controllers\KLine\KLineMin30Controller.cs" />
     <Compile Include="Controllers\KLine\KLineMin60Controller.cs" />
-    <Compile Include="Controllers\KLine\KLineConverter.cs" />
     <Compile Include="Controllers\ParticipationController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiServer.cs" />
@@ -93,9 +92,9 @@
       <Project>{279485c8-2084-4c2c-a8a4-7f90a21cbcb9}</Project>
       <Name>Pitman.Application.MarketData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Pitman.Distributed.Dto\Pitman.Distributed.Dto.csproj">
-      <Project>{7481a981-5d62-4b50-8b39-640b4671f60e}</Project>
-      <Name>Pitman.Distributed.Dto</Name>
+    <ProjectReference Include="..\Pitman.Distributed.DataTransferObject\Pitman.Distributed.DataTransferObject.csproj">
+      <Project>{29191f8b-aee9-41bc-87b2-c9f92090b787}</Project>
+      <Name>Pitman.Distributed.DataTransferObject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7481A981-5D62-4B50-8B39-640B4671F60E}</ProjectGuid>
+    <ProjectGuid>{29191F8B-AEE9-41BC-87B2-C9F92090B787}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pitman.Distributed.Dto</RootNamespace>
-    <AssemblyName>Pitman.Distributed.Dto</AssemblyName>
+    <RootNamespace>Pitman.Distributed.DataTransferObject</RootNamespace>
+    <AssemblyName>Pitman.Distributed.DataTransferObject</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Ore.Infrastructure.MarketData">
       <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -46,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DateTimeDto.cs" />
-    <Compile Include="Response\ParticipationDto.cs" />
-    <Compile Include="Request\KLineArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\KLineArgs.cs" />
+    <Compile Include="Response\ParticipationDto.cs" />
     <Compile Include="Response\SecurityDto.cs" />
     <Compile Include="Response\StockBonusDto.cs" />
     <Compile Include="Response\StockIntradayDto.cs" />

@@ -1,7 +1,7 @@
 ﻿using Ore.Infrastructure.MarketData;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "security")]
     public class SecurityDto : ISecurity
@@ -17,5 +17,21 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "type")]
         public SecurityType Type { get; set; }
+    }
+
+    public static class SecurityConverter
+    {
+        public static SecurityDto ToDto(this ISecurity self)
+        {
+            SecurityDto outputData = new SecurityDto
+            {
+                Code = self.Code,
+                ShortName = self.ShortName,
+                Market = self.Market,
+                Type = self.Type
+            };
+
+            return outputData;
+        }
     }
 }

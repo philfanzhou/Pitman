@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
-using Pitman.Distributed.Dto;
+using Pitman.Distributed.DataTransferObject;
 using Pitman.Domain.FileStructure;
 using System.IO;
 using System.Linq;

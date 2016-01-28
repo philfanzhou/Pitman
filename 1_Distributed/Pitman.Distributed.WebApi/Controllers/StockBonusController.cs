@@ -1,5 +1,5 @@
 ﻿using Ore.Infrastructure.MarketData;
-using Pitman.Distributed.Dto;
+using Pitman.Distributed.DataTransferObject;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -23,44 +23,6 @@ namespace Pitman.Distributed.WebApi
             throw new System.NotImplementedException();
 
             //return FundamentalDatasource.GetBonus(stockCode).Select(t => ConvertToDto(t));
-        }
-
-        private static StockBonusDto ConvertToDto(IStockBonus data)
-        {
-            return new StockBonusDto
-            {
-                Type = data.Type,
-                ShareSplitCount = data.ShareSplitCount,
-                StartOrArriveDate = data.StartOrArriveDate,
-                CapitalStockBaseDate = data.CapitalStockBaseDate,
-                CapitalStockBeforeDispatch = data.CapitalStockBeforeDispatch,
-                CapitalSurplusIncreaseRate = data.CapitalSurplusIncreaseRate,
-                ConvertibleBondDate = data.ConvertibleBondDate,
-                DateOfDeclaration = data.DateOfDeclaration,
-                Description = data.Description,
-                ReserveSurplusIncreaseRate = data.ReserveSurplusIncreaseRate,
-                ResolutionOfShareholdersMeetingDate = data.ResolutionOfShareholdersMeetingDate,
-                ActualDispatchRate = data.ActualDispatchRate,
-                BAndHDividendAfterTax = data.BAndHDividendAfterTax,
-                BAndHPreTaxDividend = data.BAndHPreTaxDividend,
-                DividendAfterTax = data.DividendAfterTax,
-                TransferredAllottedPrice = data.TransferredAllottedPrice,
-                TransferredAllottedRate = data.TransferredAllottedRate,
-                BonusRate = data.BonusRate,
-                DispatchExpiryDate = data.DispatchExpiryDate,
-                DispatchListingDate = data.DispatchListingDate,
-                DispatchPrice = data.DispatchPrice,
-                DispatchRate = data.DispatchRate,
-                ExdividendDate = data.ExdividendDate,
-                ExchangeRate = data.ExchangeRate,
-                ExpirationDate = data.ExpirationDate,
-                IncreaseRate = data.IncreaseRate,
-                LastTradingDay = data.LastTradingDay,
-                IssuingObject = data.IssuingObject,
-                PreTaxDividend = data.PreTaxDividend,
-                RegisterDate = data.RegisterDate,
-                TotalDispatch = data.TotalDispatch
-            };
         }
     }
 }

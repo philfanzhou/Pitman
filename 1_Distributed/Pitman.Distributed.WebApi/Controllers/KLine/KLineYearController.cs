@@ -1,5 +1,5 @@
 ﻿using Ore.Infrastructure.MarketData;
-using Pitman.Distributed.Dto;
+using Pitman.Distributed.DataTransferObject;
 using System.Collections.Generic;
 using System.Web.Http;
 

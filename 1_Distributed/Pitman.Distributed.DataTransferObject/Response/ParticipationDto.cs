@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Pitman.Distributed.Dto
+namespace Pitman.Distributed.DataTransferObject
 {
     [DataContract(Name = "participation")]
     public class ParticipationDto : IParticipation
@@ -29,5 +29,23 @@ namespace Pitman.Distributed.Dto
 
         [DataMember(Name = "value")]
         public double Value { get; set; }
+    }
+
+    public static class ParticipationConverter
+    {
+        public static ParticipationDto ToDto(this IParticipation self)
+        {
+            ParticipationDto outputData = new ParticipationDto
+            {
+                CostPrice1Day = self.CostPrice1Day,
+                CostPrice20Day = self.CostPrice20Day,
+                MainForceInflows = self.MainForceInflows,
+                SuperLargeInflows = self.SuperLargeInflows,
+                Time = self.Time,
+                Value = self.Value,
+            };
+
+            return outputData;
+        }
     }
 }

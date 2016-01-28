@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pitman.Application.MarketData;
+using Pitman.Distributed.DataTransferObject;
+using Pitman.Domain.FileStructure;
+using System;
 using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ore.Infrastructure.MarketData;
-using Pitman.Application.MarketData;
-using Pitman.Distributed.Dto;
-using Pitman.Domain.FileStructure;
 
 namespace Test.Application.MarketData
 {

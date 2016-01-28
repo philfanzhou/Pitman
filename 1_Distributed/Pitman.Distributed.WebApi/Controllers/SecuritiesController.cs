@@ -1,6 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 using Pitman.Application.MarketData;
-using Pitman.Distributed.Dto;
+using Pitman.Distributed.DataTransferObject;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -27,18 +27,7 @@ namespace Pitman.Distributed.WebApi
 //#endif
 
             var appservice = new SecurityAppService();
-            return appservice.GetAll().Select(t => ConvertToDto(t));
-        }
-
-        private static SecurityDto ConvertToDto(ISecurity data)
-        {
-            return new SecurityDto
-            {
-                Code = data.Code,
-                ShortName = data.ShortName,
-                Market = data.Market,
-                Type = data.Type
-            };
+            return appservice.GetAll().Select(t => t.ToDto());
         }
     }
 }
