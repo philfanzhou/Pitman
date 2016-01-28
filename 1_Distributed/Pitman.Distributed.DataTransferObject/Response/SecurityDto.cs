@@ -1,4 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Pitman.Distributed.DataTransferObject
@@ -21,6 +23,11 @@ namespace Pitman.Distributed.DataTransferObject
 
     public static class SecurityConverter
     {
+        public static IEnumerable<SecurityDto> ToDto(this IEnumerable<ISecurity> self)
+        {
+            return self.Select(p => p.ToDto());
+        }
+
         public static SecurityDto ToDto(this ISecurity self)
         {
             SecurityDto outputData = new SecurityDto

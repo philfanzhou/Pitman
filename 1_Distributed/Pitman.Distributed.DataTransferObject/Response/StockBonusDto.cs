@@ -1,5 +1,7 @@
 ﻿using Ore.Infrastructure.MarketData;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Pitman.Distributed.DataTransferObject
@@ -158,6 +160,11 @@ namespace Pitman.Distributed.DataTransferObject
 
     public static class StockBonusConverter
     {
+        public static IEnumerable<StockBonusDto> ToDto(this IEnumerable<IStockBonus> self)
+        {
+            return self.Select(p => p.ToDto());
+        }
+
         public static StockBonusDto ToDto(this IStockBonus self)
         {
             StockBonusDto outputData = new StockBonusDto

@@ -1,5 +1,5 @@
-﻿using Pitman.Distributed.DataTransferObject;
-using System;
+﻿using Pitman.Application.MarketData;
+using Pitman.Distributed.DataTransferObject;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -15,15 +15,16 @@ namespace Pitman.Distributed.WebApi
             {
                 CostPrice1Day = 20,
                 CostPrice20Day = 30,
-                Time = new DateTime(1999, 9, 9, 9, 9, 9)
+                Time = new System.DateTime(1999, 9, 9, 9, 9, 9)
             };
             var result = new List<ParticipationDto>();
             result.Add(dto);
             return result;
             /*test code for communication*************************************/
+#else
+            var appService = new ParticipationAppService();
+            return appService.Get(stockCode).ToDto();
 #endif
-            throw new System.NotImplementedException();
-
         }
     }
 }

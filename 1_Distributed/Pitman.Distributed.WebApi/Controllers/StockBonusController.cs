@@ -1,4 +1,4 @@
-﻿using Ore.Infrastructure.MarketData;
+﻿using Pitman.Application.MarketData;
 using Pitman.Distributed.DataTransferObject;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -19,10 +19,10 @@ namespace Pitman.Distributed.WebApi
             result.Add(dto);
             return result;
             /*test code for communication*************************************/
+#else
+            var appService = new StockBonusAppService();
+            return appService.Get(stockCode).ToDto();
 #endif
-            throw new System.NotImplementedException();
-
-            //return FundamentalDatasource.GetBonus(stockCode).Select(t => ConvertToDto(t));
         }
     }
 }

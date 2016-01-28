@@ -1,5 +1,4 @@
-﻿using Ore.Infrastructure.MarketData;
-using Pitman.Distributed.DataTransferObject;
+﻿using Pitman.Distributed.DataTransferObject;
 using System.Web.Http;
 
 namespace Pitman.Distributed.WebApi
@@ -16,10 +15,9 @@ namespace Pitman.Distributed.WebApi
             };
             return dto;
             /*test code for communication*************************************/
-#endif
+#else
             throw new System.NotImplementedException();
-
-            //return ConvertToDto(FundamentalDatasource.GetProfile(stockCode));
+#endif
         }
     }
 }
