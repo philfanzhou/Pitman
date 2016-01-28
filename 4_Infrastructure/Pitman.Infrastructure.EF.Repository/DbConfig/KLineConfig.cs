@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    internal class KLineConfig : EntityTypeConfiguration<KLineDbo>
+    internal class KLineConfig : EntityTypeConfiguration<StockKLineDbo>
     {
         public KLineConfig()
         {

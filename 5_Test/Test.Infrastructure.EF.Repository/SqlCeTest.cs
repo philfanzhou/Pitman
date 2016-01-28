@@ -35,7 +35,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestKLineReadAndWrite()
         {
-            KLineDbo insertData = new KLineDbo()
+            StockKLineDbo insertData = new StockKLineDbo()
             {
                 Amount = 123214124,
                 Close = 19.96,
@@ -52,34 +52,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLineDbo>(context);
+                var repository = new Repository<StockKLineDbo>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            KLineDbo readData;
+            StockKLineDbo readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLineDbo>(context);
+                var repository = new Repository<StockKLineDbo>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.Time, readData.Time);
 
             // update
-            KLineDbo updatedData = readData;
+            StockKLineDbo updatedData = readData;
             updatedData.Open = 100;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLineDbo>(context);
+                var repository = new Repository<StockKLineDbo>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<KLineDbo>(context);
+                var repository = new Repository<StockKLineDbo>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsTrue(readData.Open - 100 < 0.0000001);

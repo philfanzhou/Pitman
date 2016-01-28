@@ -35,12 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ore.Infrastructure.MarketData">
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -55,13 +54,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="KLineData.cs" />
-    <Compile Include="SQLCEWrapper.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.DatabaseObject\Pitman.Infrastructure.DatabaseObject.csproj">
+      <Project>{932d6247-d7b9-4635-aebd-e10992b5f89d}</Project>
+      <Name>Pitman.Infrastructure.DatabaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.SqlCe.Repository\Pitman.Infrastructure.SqlCe.Repository.csproj">
+      <Project>{82d05bb9-e5ad-44fd-a86f-e1cb77a083b1}</Project>
+      <Name>Pitman.Infrastructure.SqlCe.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -85,10 +89,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
-    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
-    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

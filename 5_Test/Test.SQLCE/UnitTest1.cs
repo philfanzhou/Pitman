@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ore.Infrastructure.MarketData;
+using Pitman.Infrastructure.DatabaseObject;
+using Pitman.Infrastructure.SqlCe.Repository;
+using System;
 using System.Collections.Generic;
-using System.Data;
+using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.SQLCE
 {
@@ -60,27 +63,42 @@ namespace Test.SQLCE
         [TestMethod]
         public void TestMethod1()
         {
-            SQLCEWrapper _sqlCeWrapper = new SQLCEWrapper();
-            _sqlCeWrapper.CreateDatabase();
+            //SQLCEWrapper _sqlCeWrapper = new SQLCEWrapper();
+            //_sqlCeWrapper.CreateDatabase();
 
-            _sqlCeWrapper.CreateKLineTable();
+            //_sqlCeWrapper.CreateKLineTable();
+            string filePath = Path.Combine(Environment.CurrentDirectory, "TestKine.sdf");
+            if(File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
 
             DateTime startTime = new DateTime(2015, 1, 1);
             DateTime endTime = new DateTime(2015, 12, 31);
             List<IStockKLine> kLines = ExampleStockKLineMin1(startTime, endTime).ToList();
             System.Diagnostics.Debug.Print(string.Format("KLine data count is {0}", kLines.Count));
-            _sqlCeWrapper.InsertIntoDatas(kLines);
 
-            string p_strSQL = "SELECT * FROM KLineTable;";
-            DataSet dataSet = _sqlCeWrapper.SelectDataSet(p_strSQL);
+            KLineRepository repository = new KLineRepository(filePath);
+            repository.AddRange(kLines);
+            //_sqlCeWrapper.InsertIntoDatas(kLines);
 
-            if (dataSet != null && dataSet.Tables.Count > 0)
+
+            //string p_strSQL = "SELECT * FROM KLineTable;";
+            //DataSet dataSet = _sqlCeWrapper.SelectDataSet(p_strSQL);
+            IList<IStockKLine> result = repository.GetAll().ToList();
+
+            //if (dataSet != null && dataSet.Tables.Count > 0)
+            //{
+            //    foreach (DataTable table in dataSet.Tables)
+            //        System.Diagnostics.Debug.Print(string.Format("table Rows count is {0}", table.Rows.Count));
+            //}
+            if(result != null && result.Count > 0)
             {
-                foreach (DataTable table in dataSet.Tables)
-                    System.Diagnostics.Debug.Print(string.Format("table Rows count is {0}", table.Rows.Count));
+                System.Diagnostics.Debug.Print(string.Format("KLine Data count is {0}", result.Count));
             }
+            Assert.AreEqual(kLines.Count, result.Count);
             
-            _sqlCeWrapper.DeleteDatabase();
+            //_sqlCeWrapper.DeleteDatabase();
         }
     }
 }

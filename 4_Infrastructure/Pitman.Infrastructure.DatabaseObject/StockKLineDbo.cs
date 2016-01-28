@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Pitman.Infrastructure.DatabaseObject
 {
-    public class KLineDbo : IStockKLine
+    public class StockKLineDbo : IStockKLine
     {
         public DateTime Time { get; set; }
 
@@ -24,14 +24,14 @@ namespace Pitman.Infrastructure.DatabaseObject
 
     public static class KLineConverter
     {
-        public static IEnumerable<KLineDbo> ToDbo(this IEnumerable<IStockKLine> self)
+        public static IEnumerable<StockKLineDbo> ToDbo(this IEnumerable<IStockKLine> self)
         {
             return self.Select(p => p.ToDbo());
         }
 
-        public static KLineDbo ToDbo(this IStockKLine self)
+        public static StockKLineDbo ToDbo(this IStockKLine self)
         {
-            KLineDbo outputData = new KLineDbo
+            StockKLineDbo outputData = new StockKLineDbo
             {
                 //
                 // 摘要:

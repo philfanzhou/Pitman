@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KLineDbo.cs" />
+    <Compile Include="StockKLineDbo.cs" />
     <Compile Include="ParticipationDbo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityDbo.cs" />
