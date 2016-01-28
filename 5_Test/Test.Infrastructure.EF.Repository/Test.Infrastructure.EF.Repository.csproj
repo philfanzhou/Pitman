@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.DatabaseObject\Pitman.Infrastructure.DatabaseObject.csproj">
+      <Project>{932d6247-d7b9-4635-aebd-e10992b5f89d}</Project>
+      <Name>Pitman.Infrastructure.DatabaseObject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.EF.Repository\Pitman.Infrastructure.EF.Repository.csproj">
       <Project>{e9bbe4bd-63e5-4848-a0c8-29f99f7ff64f}</Project>
       <Name>Pitman.Infrastructure.EF.Repository</Name>

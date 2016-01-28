@@ -1,7 +1,7 @@
 ﻿using Ore.Infrastructure.MarketData;
 using System;
 
-namespace Pitman.Infrastructure.EF.Repository
+namespace Pitman.Infrastructure.DatabaseObject
 {
     public class StockStructureDbo : IStockStructure
     {

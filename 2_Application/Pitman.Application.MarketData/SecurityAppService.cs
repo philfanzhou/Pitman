@@ -1,6 +1,7 @@
 ﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
+using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System.Collections.Generic;
 

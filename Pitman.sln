@@ -65,6 +65,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.FileD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.SQLCE", "Test.SQLCE\Test.SQLCE.csproj", "{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.SqlCe.Repository", "4_Infrastructure\Pitman.Infrastructure.SqlCe.Repository\Pitman.Infrastructure.SqlCe.Repository.csproj", "{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitman.Infrastructure.DatabaseObject", "4_Infrastructure\Pitman.Infrastructure.DatabaseObject\Pitman.Infrastructure.DatabaseObject.csproj", "{932D6247-D7B9-4635-AEBD-E10992B5F89D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +159,14 @@ Global
 		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932D6247-D7B9-4635-AEBD-E10992B5F89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932D6247-D7B9-4635-AEBD-E10992B5F89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932D6247-D7B9-4635-AEBD-E10992B5F89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932D6247-D7B9-4635-AEBD-E10992B5F89D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,5 +197,7 @@ Global
 		{6A13ACF4-99A1-4D6A-B95A-538F9A9BB8BC} = {85AA8B02-2443-4FC5-9ADE-DEDD368959CC}
 		{6456216B-27EB-40A3-B6B9-C58A9CAB0E71} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 		{ED29A319-E464-4EC5-BC9D-25EF0DC024A9} = {06EFF37A-0ADC-4793-AD48-5F1C3946BA9A}
+		{82D05BB9-E5AD-44FD-A86F-E1CB77A083B1} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
+		{932D6247-D7B9-4635-AEBD-E10992B5F89D} = {63C2FF89-1BD4-4066-8E72-F803C1931F6C}
 	EndGlobalSection
 EndGlobal

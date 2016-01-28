@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Framework.Infrastructure.Repository;
+﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
+using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
+using System.Collections.Generic;
 
 namespace Pitman.Application.MarketData
 {

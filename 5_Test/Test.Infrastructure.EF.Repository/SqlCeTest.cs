@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Framework.Infrastructure.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Framework.Infrastructure.Repository;
-using Pitman.Infrastructure.EF.Repository;
-using System.IO;
 using Ore.Infrastructure.MarketData;
+using Pitman.Infrastructure.DatabaseObject;
+using Pitman.Infrastructure.EF.Repository;
+using System;
+using System.IO;
 
 namespace Test.Infrastructure.EF.Repository
 {

@@ -1,6 +1,6 @@
 ﻿using Ore.Infrastructure.MarketData;
 
-namespace Pitman.Infrastructure.EF.Repository
+namespace Pitman.Infrastructure.DatabaseObject
 {
     public class SecurityDbo : ISecurity
     {
