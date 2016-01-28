@@ -47,4 +47,37 @@ namespace Pitman.Infrastructure.DatabaseObject
 
         public double TransferredAllottedShares { get; set; }
     }
+
+    public static class StockStructureConverter
+    {
+        public static StockStructureDbo ToDbo(this IStockStructure self)
+        {
+            StockStructureDbo outputData = new StockStructureDbo
+            {
+                DateOfChange = self.DateOfChange,
+                DateOfDeclaration = self.DateOfDeclaration,
+                DomesticLegalPersonShares = self.DomesticLegalPersonShares,
+                DomesticSponsorsShares = self.DomesticSponsorsShares,
+                ExecutiveShares = self.ExecutiveShares,
+                FundsShares = self.FundsShares,
+                GeneralLegalPersonShares = self.GeneralLegalPersonShares,
+                InternalStaffShares = self.InternalStaffShares,
+                PreferredStock = self.PreferredStock,
+                RaiseLegalPersonShares = self.RaiseLegalPersonShares,
+                Reason = self.Reason,
+                RestrictedSharesA = self.RestrictedSharesA,
+                RestrictedSharesB = self.RestrictedSharesB,
+                SharesA = self.SharesA,
+                SharesB = self.SharesB,
+                SharesH = self.SharesH,
+                StateOwnedLegalPersonShares = self.StateOwnedLegalPersonShares,
+                StateShares = self.StateShares,
+                StrategicInvestorsShares = self.StrategicInvestorsShares,
+                TotalShares = self.TotalShares,
+                TransferredAllottedShares = self.TransferredAllottedShares
+            };
+
+            return outputData;
+        }
+    }
 }

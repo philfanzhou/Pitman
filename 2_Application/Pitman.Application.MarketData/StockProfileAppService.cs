@@ -26,7 +26,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<StockProfileDbo>(context);
-                repository.Add(ConvertToDbo(stockProfile));
+                repository.Add(stockProfile.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -36,7 +36,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<StockProfileDbo>(context);
-                repository.Update(ConvertToDbo(stockProfile));
+                repository.Update(stockProfile.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -57,50 +57,6 @@ namespace Pitman.Application.MarketData
                 = ContextFactory.Create(ContextType.StockProfile, fullPath);
 
             return context;
-        }
-
-        private static StockProfileDbo ConvertToDbo(IStockProfile self)
-        {
-            StockProfileDbo outputData = new StockProfileDbo
-            {
-                AccountingFirm = self.AccountingFirm,
-                Area = self.Area,
-                BoardSecretary = self.BoardSecretary,
-                BusinessRegistration = self.BusinessRegistration,
-                Chairman = self.Chairman,
-                CodeA = self.CodeA,
-                CodeB = self.CodeB,
-                CodeH = self.CodeH,
-                CompanyProfile = self.CompanyProfile,
-                ContactNumber = self.ContactNumber,
-                Email = self.Email,
-                EnglishName = self.EnglishName,
-                EstablishmentDate = self.EstablishmentDate,
-                Exchange = self.Exchange,
-                Fax = self.Fax,
-                FullName = self.FullName,
-                GeneralManager = self.GeneralManager,
-                IndependentDirectors = self.IndependentDirectors,
-                Industry = self.Industry,
-                LawOffice = self.LawOffice,
-                LegalRepresentative = self.LegalRepresentative,
-                ListDate = self.ListDate,
-                NameUsedBefore = self.NameUsedBefore,
-                NumberOfEmployees = self.NumberOfEmployees,
-                NumberOfManagement = self.NumberOfManagement,
-                OfficeAddress = self.OfficeAddress,
-                PrimeBusiness = self.PrimeBusiness,
-                RegisteredAddress = self.RegisteredAddress,
-                RegisteredCapital = self.RegisteredCapital,
-                SecuritiesAffairsRepresentatives = self.SecuritiesAffairsRepresentatives,
-                ShortNameA = self.ShortNameA,
-                ShortNameB = self.ShortNameB,
-                ShortNameH = self.ShortNameH,
-                Website = self.Website,
-                ZipCode = self.ZipCode
-            };
-
-            return outputData;
         }
     }
 }

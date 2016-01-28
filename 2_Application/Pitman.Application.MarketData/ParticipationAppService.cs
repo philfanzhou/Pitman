@@ -26,7 +26,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext(stockCode))
             {
                 var repository = new Repository<ParticipationDbo>(context);
-                repository.Add(ConvertToDbo(participation));
+                repository.Add(participation.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -36,7 +36,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext(stockCode))
             {
                 var repository = new Repository<ParticipationDbo>(context);
-                repository.Update(ConvertToDbo(participation));
+                repository.Update(participation.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -57,21 +57,6 @@ namespace Pitman.Application.MarketData
                 = ContextFactory.Create(ContextType.Participation, fullPath);
 
             return context;
-        }
-
-        private static ParticipationDbo ConvertToDbo(IParticipation self)
-        {
-            ParticipationDbo outputData = new ParticipationDbo
-            {
-                CostPrice1Day = self.CostPrice1Day,
-                CostPrice20Day = self.CostPrice20Day,
-                MainForceInflows = self.MainForceInflows,
-                SuperLargeInflows = self.SuperLargeInflows,
-                Time = self.Time,
-                Value = self.Value,
-            };
-
-            return outputData;
         }
     }
 }

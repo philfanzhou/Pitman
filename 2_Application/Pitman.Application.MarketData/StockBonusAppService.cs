@@ -26,7 +26,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext(stockCode))
             {
                 var repository = new Repository<StockBonusDbo>(context);
-                repository.Add(ConvertToDbo(stockBonus));
+                repository.Add(stockBonus.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -36,7 +36,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext(stockCode))
             {
                 var repository = new Repository<StockBonusDbo>(context);
-                repository.Update(ConvertToDbo(stockBonus));
+                repository.Update(stockBonus.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -57,46 +57,6 @@ namespace Pitman.Application.MarketData
                 = ContextFactory.Create(ContextType.StockBonus, fullPath);
 
             return context;
-        }
-
-        private static StockBonusDbo ConvertToDbo(IStockBonus self)
-        {
-            StockBonusDbo outputData = new StockBonusDbo
-            {
-                ActualDispatchRate = self.ActualDispatchRate,
-                BAndHDividendAfterTax = self.BAndHDividendAfterTax,
-                BAndHPreTaxDividend = self.BAndHPreTaxDividend,
-                BonusRate = self.BonusRate,
-                CapitalStockBaseDate = self.CapitalStockBaseDate,
-                CapitalStockBeforeDispatch = self.CapitalStockBeforeDispatch,
-                CapitalSurplusIncreaseRate = self.CapitalSurplusIncreaseRate,
-                ConvertibleBondDate = self.ConvertibleBondDate,
-                DateOfDeclaration = self.DateOfDeclaration,
-                Description = self.Description,
-                DispatchExpiryDate = self.DispatchExpiryDate,
-                DispatchListingDate = self.DispatchListingDate,
-                DispatchPrice = self.DispatchPrice,
-                DispatchRate = self.DispatchRate,
-                DividendAfterTax = self.DividendAfterTax,
-                ExchangeRate = self.ExchangeRate,
-                ExdividendDate = self.ExdividendDate,
-                ExpirationDate = self.ExpirationDate,
-                IncreaseRate = self.IncreaseRate,
-                IssuingObject = self.IssuingObject,
-                LastTradingDay = self.LastTradingDay,
-                PreTaxDividend = self.PreTaxDividend,
-                RegisterDate = self.RegisterDate,
-                ReserveSurplusIncreaseRate = self.ReserveSurplusIncreaseRate,
-                ResolutionOfShareholdersMeetingDate = self.ResolutionOfShareholdersMeetingDate,
-                ShareSplitCount = self.ShareSplitCount,
-                StartOrArriveDate = self.StartOrArriveDate,
-                TotalDispatch = self.TotalDispatch,
-                TransferredAllottedPrice = self.TransferredAllottedPrice,
-                TransferredAllottedRate = self.TransferredAllottedRate,
-                Type = self.Type
-            };
-
-            return outputData;
         }
     }
 }

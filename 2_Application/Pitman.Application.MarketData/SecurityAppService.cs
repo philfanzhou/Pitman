@@ -26,7 +26,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<SecurityDbo>(context);
-                repository.Add(ConvertToDbo(security));
+                repository.Add(security.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -36,7 +36,7 @@ namespace Pitman.Application.MarketData
             using (var context = GetContext())
             {
                 var repository = new Repository<SecurityDbo>(context);
-                repository.Update(ConvertToDbo(security));
+                repository.Update(security.ToDbo());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -57,19 +57,6 @@ namespace Pitman.Application.MarketData
                 = ContextFactory.Create(ContextType.Security, fullPath);
 
             return context;
-        }
-
-        private static SecurityDbo ConvertToDbo(ISecurity self)
-        {
-            SecurityDbo outputData = new SecurityDbo
-            {
-                Code = self.Code,
-                ShortName = self.ShortName,
-                Market = self.Market,
-                Type = self.Type
-            };
-
-            return outputData;
         }
     }
 }

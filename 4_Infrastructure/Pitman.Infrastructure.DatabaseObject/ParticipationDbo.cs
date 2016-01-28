@@ -17,4 +17,22 @@ namespace Pitman.Infrastructure.DatabaseObject
 
         public double Value { get; set; }
     }
+
+    public static class ParticipationConverter
+    {
+        public static ParticipationDbo ToDbo(this IParticipation self)
+        {
+            ParticipationDbo outputData = new ParticipationDbo
+            {
+                CostPrice1Day = self.CostPrice1Day,
+                CostPrice20Day = self.CostPrice20Day,
+                MainForceInflows = self.MainForceInflows,
+                SuperLargeInflows = self.SuperLargeInflows,
+                Time = self.Time,
+                Value = self.Value,
+            };
+
+            return outputData;
+        }
+    }
 }

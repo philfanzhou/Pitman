@@ -12,4 +12,20 @@ namespace Pitman.Infrastructure.DatabaseObject
 
         public SecurityType Type { get; set; }
     }
+
+    public static class SecurityConverter
+    {
+        public static SecurityDbo ToDbo(this ISecurity self)
+        {
+            SecurityDbo outputData = new SecurityDbo
+            {
+                Code = self.Code,
+                ShortName = self.ShortName,
+                Market = self.Market,
+                Type = self.Type
+            };
+
+            return outputData;
+        }
+    }
 }

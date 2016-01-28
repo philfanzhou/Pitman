@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KLineAppService.cs" />
+    <Compile Include="KLine\KLinePackage.cs" />
+    <Compile Include="KLine\KLineAppService.cs" />
     <Compile Include="ParticipationAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityAppService.cs" />
