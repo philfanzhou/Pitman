@@ -1,5 +1,4 @@
 ﻿using Ore.Infrastructure.MarketData;
-using Pitman.Infrastructure.DatabaseObject;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -78,10 +77,10 @@ namespace Pitman.Infrastructure.SqlCe.Repository
                 using (SqlCeCommand cmd = new SqlCeCommand(sql, conn))
                 {
                     SqlCeDataReader reader = cmd.ExecuteReader();
-                    List<StockKLineDbo> result = new List<StockKLineDbo>();
+                    List<StockKLine> result = new List<StockKLine>();
                     while (reader.Read())
                     {
-                        StockKLineDbo dbo = new StockKLineDbo
+                        StockKLine dbo = new StockKLine
                         {
                             Amount = double.Parse(reader[Amount].ToString().Trim()),
                             Close = double.Parse(reader[Close].ToString().Trim()),

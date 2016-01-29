@@ -1,7 +1,6 @@
 ﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System.Collections.Generic;
 
@@ -12,11 +11,11 @@ namespace Pitman.Application.MarketData
         public bool Exists(string stockCode, IParticipation participation)
         {
             // 设置查询条件
-            var spec = Specification<ParticipationDbo>.Eval(p => p.Time.Equals(participation.Time));
+            var spec = Specification<Participation>.Eval(p => p.Time.Equals(participation.Time));
 
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<ParticipationDbo>(context);
+                var repository = new Repository<Participation>(context);
                 return repository.Exists(spec);
             }
         }
@@ -25,8 +24,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<ParticipationDbo>(context);
-                repository.Add(participation.ToDbo());
+                var repository = new Repository<Participation>(context);
+                repository.Add(participation.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -35,8 +34,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<ParticipationDbo>(context);
-                repository.Update(participation.ToDbo());
+                var repository = new Repository<Participation>(context);
+                repository.Update(participation.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -45,7 +44,7 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<ParticipationDbo>(context);
+                var repository = new Repository<Participation>(context);
                 return repository.GetAll();
             }
         }

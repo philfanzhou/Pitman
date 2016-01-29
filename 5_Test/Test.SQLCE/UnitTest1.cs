@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ore.Infrastructure.MarketData;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.SqlCe.Repository;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace Test.SQLCE
                     DateTime endAm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 11, 30, 0);
                     while (bgnAm <= endAm)
                     {
-                        example.Add(new StockKLineDbo
+                        example.Add(new StockKLine
                         {
                             Amount = 1945900,
                             Close = 17.79,
@@ -41,7 +40,7 @@ namespace Test.SQLCE
                     DateTime endPm = new DateTime(bgnDay.Year, bgnDay.Month, bgnDay.Day, 15, 0, 0);
                     while (bgnPm <= endPm)
                     {
-                        example.Add(new StockKLineDbo
+                        example.Add(new StockKLine
                         {
                             Amount = 1945900,
                             Close = 17.79,

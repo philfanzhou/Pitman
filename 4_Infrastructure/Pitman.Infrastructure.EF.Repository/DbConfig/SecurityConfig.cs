@@ -1,9 +1,9 @@
-﻿using Pitman.Infrastructure.DatabaseObject;
+﻿using Ore.Infrastructure.MarketData;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Pitman.Infrastructure.EF.Repository
 {
-    internal class SecurityConfig : EntityTypeConfiguration<SecurityDbo>
+    internal class SecurityConfig : EntityTypeConfiguration<Security>
     {
         public SecurityConfig()
         {

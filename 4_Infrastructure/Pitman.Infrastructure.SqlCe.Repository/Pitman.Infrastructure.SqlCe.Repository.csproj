@@ -55,12 +55,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Pitman.Infrastructure.DatabaseObject\Pitman.Infrastructure.DatabaseObject.csproj">
-      <Project>{932d6247-d7b9-4635-aebd-e10992b5f89d}</Project>
-      <Name>Pitman.Infrastructure.DatabaseObject</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

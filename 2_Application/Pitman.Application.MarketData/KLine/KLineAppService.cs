@@ -1,7 +1,6 @@
 ﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System;
 using System.Collections.Generic;
@@ -18,13 +17,13 @@ namespace Pitman.Application.MarketData
 
             /***********如果不使用ef，这段代码可能需要重新考虑**********************/
             // 设置查询条件
-            var spec = Specification<StockKLineDbo>.Eval(p => p.Time.Equals(kLine.Time));
+            var spec = Specification<StockKLine>.Eval(p => p.Time.Equals(kLine.Time));
             /***************************************************************/
 
             /***********如果不使用ef，需要替换掉这部分代码**********************/
             using (var context = ContextFactory.Create(ContextType.KLine, dbFilePath))
             {
-                var repository = new Repository<StockKLineDbo>(context);
+                var repository = new Repository<StockKLine>(context);
                 return repository.Exists(spec);
             }
             /***********如果不使用ef，需要替换掉这部分代码**********************/
@@ -49,8 +48,8 @@ namespace Pitman.Application.MarketData
                 /***********如果不使用ef，需要替换掉这部分代码**********************/
                 using (var context = ContextFactory.Create(ContextType.KLine, dbFilePath))
                 {
-                    var repository = new Repository<StockKLineDbo>(context);
-                    repository.AddRange(kLines.ToDbo());
+                    var repository = new Repository<StockKLine>(context);
+                    repository.AddRange(kLines.ToDataObject());
                     repository.UnitOfWork.Commit();
                 }
                 /***********如果不使用ef，需要替换掉这部分代码**********************/
@@ -75,10 +74,10 @@ namespace Pitman.Application.MarketData
                 /***********如果不使用ef，需要替换掉这部分代码**********************/
                 using (var context = ContextFactory.Create(ContextType.KLine, dbFilePath))
                 {
-                    var repository = new Repository<StockKLineDbo>(context);
+                    var repository = new Repository<StockKLine>(context);
                     foreach (var kLine in package.KLines)
                     {
-                        repository.Update(kLine.ToDbo());
+                        repository.Update(kLine.ToDataObject());
                     }
 
                     repository.UnitOfWork.Commit();
@@ -101,7 +100,7 @@ namespace Pitman.Application.MarketData
 
             /***********如果不使用ef，这段代码可能需要重新考虑**********************/
             // 设置查询条件
-            var spec = Specification<StockKLineDbo>.Eval(p => p.Time >= startTime && p.Time <= endTime);
+            var spec = Specification<StockKLine>.Eval(p => p.Time >= startTime && p.Time <= endTime);
             /***************************************************************/
 
             // 查询所有文件中的数据
@@ -113,7 +112,7 @@ namespace Pitman.Application.MarketData
                 /***********如果不使用ef，需要替换掉这部分代码**********************/
                 using (var context = ContextFactory.Create(ContextType.KLine, dbFilePath))
                 {
-                    var repository = new Repository<StockKLineDbo>(context);
+                    var repository = new Repository<StockKLine>(context);
 
                     // todo: 这个地方使用getall还存在问题，因为根据查询时间来查询，并不等于要把每个文件中的所有数据都取出来。
                     // 假如结束时间是在某个文件的中间一部分，那么getall就会把最后一个文件里面的所有数据都查出来

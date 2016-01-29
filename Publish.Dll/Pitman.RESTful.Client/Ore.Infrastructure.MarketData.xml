@@ -904,6 +904,161 @@
             未上市
             </summary>
         </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Market">
+            <summary>
+            交易市场
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.ShortName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.TodayOpen">
+            <summary>
+            今开
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.YesterdayClose">
+            <summary>
+            昨收
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Current">
+            <summary>
+            成交价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.High">
+            <summary>
+            最高
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Low">
+            <summary>
+            最低
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Volume">
+            <summary>
+            成交量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Amount">
+            <summary>
+            成交额
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Time">
+            <summary>
+            日期与时间
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell5Price">
+            <summary>
+            卖五价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell5Volume">
+            <summary>
+            卖五量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell4Price">
+            <summary>
+            卖四价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell4Volume">
+            <summary>
+            卖四量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell3Price">
+            <summary>
+            卖三价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell3Volume">
+            <summary>
+            卖三量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell2Price">
+            <summary>
+            卖二价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell2Volume">
+            <summary>
+            卖二量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell1Price">
+            <summary>
+            卖一价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell1Volume">
+            <summary>
+            卖一量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy1Price">
+            <summary>
+            买一价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy1Volume">
+            <summary>
+            买一量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy2Price">
+            <summary>
+            买二价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy2Volume">
+            <summary>
+            买二量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy3Price">
+            <summary>
+            买三价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy3Volume">
+            <summary>
+            买三量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy4Price">
+            <summary>
+            买四价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy4Volume">
+            <summary>
+            买四量
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy5Price">
+            <summary>
+            买五价
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Buy5Volume">
+            <summary>
+            买五量
+            </summary>
+        </member>
         <member name="T:Ore.Infrastructure.MarketData.SecurityType">
             <summary>
             证券类型枚举

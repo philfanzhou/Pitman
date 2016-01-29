@@ -1,7 +1,6 @@
 ﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System.Collections.Generic;
 
@@ -12,11 +11,11 @@ namespace Pitman.Application.MarketData
         public bool Exists(ISecurity security)
         {
             // 设置查询条件
-            var spec = Specification<SecurityDbo>.Eval(p => p.Code.Equals(security.Code));
+            var spec = Specification<Security>.Eval(p => p.Code.Equals(security.Code));
 
             using (var context = GetContext())
             {
-                var repository = new Repository<SecurityDbo>(context);
+                var repository = new Repository<Security>(context);
                 return repository.Exists(spec);
             }
         }
@@ -25,8 +24,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext())
             {
-                var repository = new Repository<SecurityDbo>(context);
-                repository.Add(security.ToDbo());
+                var repository = new Repository<Security>(context);
+                repository.Add(security.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -35,8 +34,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext())
             {
-                var repository = new Repository<SecurityDbo>(context);
-                repository.Update(security.ToDbo());
+                var repository = new Repository<Security>(context);
+                repository.Update(security.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -45,7 +44,7 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext())
             {
-                var repository = new Repository<SecurityDbo>(context);
+                var repository = new Repository<Security>(context);
                 return repository.GetAll();
             }
         }

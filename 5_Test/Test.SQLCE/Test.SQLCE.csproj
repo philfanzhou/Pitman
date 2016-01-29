@@ -58,10 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.DatabaseObject\Pitman.Infrastructure.DatabaseObject.csproj">
-      <Project>{932d6247-d7b9-4635-aebd-e10992b5f89d}</Project>
-      <Name>Pitman.Infrastructure.DatabaseObject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.SqlCe.Repository\Pitman.Infrastructure.SqlCe.Repository.csproj">
       <Project>{82d05bb9-e5ad-44fd-a86f-e1cb77a083b1}</Project>
       <Name>Pitman.Infrastructure.SqlCe.Repository</Name>

@@ -1,7 +1,6 @@
 ﻿using Framework.Infrastructure.Repository;
 using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System.Collections.Generic;
 
@@ -12,11 +11,11 @@ namespace Pitman.Application.MarketData
         public bool Exists(string stockCode, IStockStructure stockStructure)
         {
             // 设置查询条件
-            var spec = Specification<StockStructureDbo>.Eval(p => p.DateOfChange.Equals(stockStructure.DateOfChange));
+            var spec = Specification<StockStructure>.Eval(p => p.DateOfChange.Equals(stockStructure.DateOfChange));
 
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 return repository.Exists(spec);
             }
         }
@@ -25,8 +24,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<StockStructureDbo>(context);
-                repository.Add(stockStructure.ToDbo());
+                var repository = new Repository<StockStructure>(context);
+                repository.Add(stockStructure.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -35,8 +34,8 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<StockStructureDbo>(context);
-                repository.Update(stockStructure.ToDbo());
+                var repository = new Repository<StockStructure>(context);
+                repository.Update(stockStructure.ToDataObject());
                 repository.UnitOfWork.Commit();
             }
         }
@@ -45,7 +44,7 @@ namespace Pitman.Application.MarketData
         {
             using (var context = GetContext(stockCode))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 return repository.GetAll();
             }
         }

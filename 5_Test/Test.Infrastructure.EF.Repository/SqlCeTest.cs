@@ -1,7 +1,6 @@
 ﻿using Framework.Infrastructure.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ore.Infrastructure.MarketData;
-using Pitman.Infrastructure.DatabaseObject;
 using Pitman.Infrastructure.EF.Repository;
 using System;
 using System.IO;
@@ -35,7 +34,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestKLineReadAndWrite()
         {
-            StockKLineDbo insertData = new StockKLineDbo()
+            StockKLine insertData = new StockKLine()
             {
                 Amount = 123214124,
                 Close = 19.96,
@@ -52,34 +51,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<StockKLineDbo>(context);
+                var repository = new Repository<StockKLine>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            StockKLineDbo readData;
+            StockKLine readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<StockKLineDbo>(context);
+                var repository = new Repository<StockKLine>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.Time, readData.Time);
 
             // update
-            StockKLineDbo updatedData = readData;
+            StockKLine updatedData = readData;
             updatedData.Open = 100;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<StockKLineDbo>(context);
+                var repository = new Repository<StockKLine>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.KLine, fullPath))
             {
-                var repository = new Repository<StockKLineDbo>(context);
+                var repository = new Repository<StockKLine>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsTrue(readData.Open - 100 < 0.0000001);
@@ -88,7 +87,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestSecurityReadAndWrite()
         {
-            SecurityDbo insertData = new SecurityDbo()
+            Security insertData = new Security()
             {
                 Code = "600036",
                 ShortName = "招商银行招商银行招商银行",
@@ -102,16 +101,16 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
-                var repository = new Repository<SecurityDbo>(context);
+                var repository = new Repository<Security>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            SecurityDbo readData;
+            Security readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Security, fullPath))
             {
-                var repository = new Repository<SecurityDbo>(context);
+                var repository = new Repository<Security>(context);
                 readData = repository.Get(insertData.Code);
             }
             Assert.IsNotNull(readData);
@@ -121,7 +120,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestParticipationReadAndWrite()
         {
-            ParticipationDbo insertData = new ParticipationDbo()
+            Participation insertData = new Participation()
             {
                 Time = new DateTime(2016, 1, 11),
                 CostPrice1Day = 16.37,
@@ -137,16 +136,16 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Participation, fullPath))
             {
-                var repository = new Repository<ParticipationDbo>(context);
+                var repository = new Repository<Participation>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            ParticipationDbo readData;
+            Participation readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.Participation, fullPath))
             {
-                var repository = new Repository<ParticipationDbo>(context);
+                var repository = new Repository<Participation>(context);
                 readData = repository.Get(insertData.Time);
             }
             Assert.IsNotNull(readData);
@@ -156,7 +155,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestStockBonusReadAndWrite()
         {
-            StockBonusDbo insertData = new StockBonusDbo()
+            StockBonus insertData = new StockBonus()
             {
                 ActualDispatchRate = 0,
                 BAndHDividendAfterTax = 0,
@@ -196,34 +195,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockBonus, fullPath))
             {
-                var repository = new Repository<StockBonusDbo>(context);
+                var repository = new Repository<StockBonus>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            StockBonusDbo readData;
+            StockBonus readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockBonus, fullPath))
             {
-                var repository = new Repository<StockBonusDbo>(context);
+                var repository = new Repository<StockBonus>(context);
                 readData = repository.Get(insertData.DateOfDeclaration);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.DateOfDeclaration, readData.DateOfDeclaration);
 
             // update
-            StockBonusDbo updatedData = readData;
+            StockBonus updatedData = readData;
             updatedData.PreTaxDividend = 10;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockBonus, fullPath))
             {
-                var repository = new Repository<StockBonusDbo>(context);
+                var repository = new Repository<StockBonus>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockBonus, fullPath))
             {
-                var repository = new Repository<StockBonusDbo>(context);
+                var repository = new Repository<StockBonus>(context);
                 readData = repository.Get(insertData.DateOfDeclaration);
             }
             Assert.AreEqual(readData.PreTaxDividend, 10);
@@ -232,7 +231,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestStockProfileReadAndWrite()
         {
-            StockProfileDbo insertData = new StockProfileDbo()
+            StockProfile insertData = new StockProfile()
             {
                 AccountingFirm = "毕马威华振会计师事务所,毕马威会计师事务所",
                 Area = "广东",
@@ -276,34 +275,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockProfile, fullPath))
             {
-                var repository = new Repository<StockProfileDbo>(context);
+                var repository = new Repository<StockProfile>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            StockProfileDbo readData;
+            StockProfile readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockProfile, fullPath))
             {
-                var repository = new Repository<StockProfileDbo>(context);
+                var repository = new Repository<StockProfile>(context);
                 readData = repository.Get(insertData.CodeA);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.CodeA, readData.CodeA);
 
             // update
-            StockProfileDbo updatedData = readData;
+            StockProfile updatedData = readData;
             updatedData.CompanyProfile = "**************************";
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockProfile, fullPath))
             {
-                var repository = new Repository<StockProfileDbo>(context);
+                var repository = new Repository<StockProfile>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockProfile, fullPath))
             {
-                var repository = new Repository<StockProfileDbo>(context);
+                var repository = new Repository<StockProfile>(context);
                 readData = repository.Get(insertData.CodeA);
             }
             Assert.AreEqual(readData.CompanyProfile, "**************************");
@@ -312,7 +311,7 @@ namespace Test.Infrastructure.EF.Repository
         [TestMethod]
         public void TestStockStructureReadAndWrite()
         {
-            StockStructureDbo insertData = new StockStructureDbo()
+            StockStructure insertData = new StockStructure()
             {
                 /// <summary>
                 /// 变动日期
@@ -406,34 +405,34 @@ namespace Test.Infrastructure.EF.Repository
             // Add
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockStructure, fullPath))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 repository.Add(insertData);
                 repository.UnitOfWork.Commit();
             }
 
             // Read
-            StockStructureDbo readData;
+            StockStructure readData;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockStructure, fullPath))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 readData = repository.Get(insertData.DateOfChange);
             }
             Assert.IsNotNull(readData);
             Assert.AreEqual(insertData.DateOfChange, readData.DateOfChange);
 
             // update
-            StockStructureDbo updatedData = readData;
+            StockStructure updatedData = readData;
             updatedData.SharesA = 100;
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockStructure, fullPath))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 repository.Update(updatedData);
                 repository.UnitOfWork.Commit();
             }
             // Read
             using (IRepositoryContext context = ContextFactory.Create(ContextType.StockStructure, fullPath))
             {
-                var repository = new Repository<StockStructureDbo>(context);
+                var repository = new Repository<StockStructure>(context);
                 readData = repository.Get(insertData.DateOfChange);
             }
             Assert.AreEqual(readData.SharesA, 100);
