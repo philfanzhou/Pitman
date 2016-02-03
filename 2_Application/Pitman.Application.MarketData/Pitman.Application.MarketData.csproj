@@ -65,6 +65,10 @@
       <Project>{e9bbe4bd-63e5-4848-a0c8-29f99f7ff64f}</Project>
       <Name>Pitman.Infrastructure.EF.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.SqlCe.Repository\Pitman.Infrastructure.SqlCe.Repository.csproj">
+      <Project>{82d05bb9-e5ad-44fd-a86f-e1cb77a083b1}</Project>
+      <Name>Pitman.Infrastructure.SqlCe.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

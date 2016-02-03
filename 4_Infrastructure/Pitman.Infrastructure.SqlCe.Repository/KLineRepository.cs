@@ -8,15 +8,68 @@ namespace Pitman.Infrastructure.SqlCe.Repository
 {
     public class KLineRepository : SqlCeRepository
     {
-        private const string Amount = "KLineAmount";
-        private const string Close = "KLineClose";
-        private const string High = "KLineHigh";
-        private const string Low = "KLineLow";
-        private const string Open = "KLineOpen";
-        private const string Time = "KLineTime";
-        private const string Volume = "KLineVolume";
+        private const string tableName = "KLineTable";
+        private const string colAmount = "colAmount";
+        private const string colClose = "colClose";
+        private const string colHigh = "colHigh";
+        private const string colLow = "colLow";
+        private const string colOpen = "colOpen";
+        private const string colTime = "colTime";
+        private const string colVolume = "colVolume";
 
         public KLineRepository(string fullPath) : base(fullPath) { }
+
+        protected override void OnDbCreating()
+        {
+            // 初始化出一个新的数据库连接 
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                // 建立数据库连接 
+                conn.Open();
+
+                using (SqlCeCommand cmdSqlCe = conn.CreateCommand())
+                {
+                    cmdSqlCe.CommandText =
+                        string.Format("CREATE TABLE {0}({1} nvarchar(19) PRIMARY KEY, {2} money, {3} money, {4} money, {5} money, {6} money, {7} money)",
+                        tableName,
+                        colTime,
+                        colOpen,
+                        colClose,
+                        colHigh,
+                        colLow,
+                        colVolume,
+                        colAmount);
+                    cmdSqlCe.ExecuteNonQuery();
+                }
+
+                conn.Close();
+            }
+        }
+
+        public bool Exists(IStockKLine kLine)
+        {
+            bool bExists = false;
+            string sql = 
+                string.Format("SELECT * FROM {0} WHERE {1}='{2}'",
+                tableName,
+                colTime,
+                kLine.Time.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCeCommand sqlCmd = new SqlCeCommand(sql, conn))
+                {
+                    Object o = sqlCmd.ExecuteScalar();
+                    bExists = (o != null);
+                }
+
+                conn.Close();
+            }
+
+            return bExists;
+        }
 
         public void AddRange(IEnumerable<IStockKLine> kLines)
         {
@@ -29,14 +82,15 @@ namespace Pitman.Infrastructure.SqlCe.Repository
                 using (SqlCeCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = 
-                        string.Format("INSERT INTO KLineTable({0}, {1}, {2}, {3}, {4}, {5}, {6}) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                        Time,
-                        Open,
-                        Close,
-                        High,
-                        Low,
-                        Volume,
-                        Amount);
+                        string.Format("INSERT INTO {0}({1}, {2}, {3}, {4}, {5}, {6}, {7}) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                        tableName,
+                        colTime,
+                        colOpen,
+                        colClose,
+                        colHigh,
+                        colLow,
+                        colVolume,
+                        colAmount);
 
                     cmd.Parameters.Add(new SqlCeParameter("p1", SqlDbType.NVarChar));
                     cmd.Parameters.Add(new SqlCeParameter("p2", SqlDbType.Money));
@@ -66,9 +120,68 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             }
         }
 
+        public void UpdateRange(IEnumerable<IStockKLine> kLines)
+        {
+            // 初始化出一个新的数据库连接 
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                // 建立数据库连接 
+                conn.Open();
+
+                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+                using (SqlCeCommand cmd = conn.CreateCommand())
+                {
+                    sw.Start();
+
+                    SqlCeTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable);
+                    cmd.Transaction = transaction;
+                    try
+                    {
+                        cmd.CommandText =
+                            string.Format("UPDATE {0} SET {2}=@{2}, {3}=@{3}, {4}=@{4}, {5}=@{5}, {6}=@{6}, {7}=@{7} WHERE {1}=@{1}",
+                            tableName,
+                            colTime,
+                            colOpen,
+                            colClose,
+                            colHigh,
+                            colLow,
+                            colVolume,
+                            colAmount);
+
+                        foreach (var it in kLines)
+                        {
+                            cmd.Parameters.Add(new SqlCeParameter(colTime, it.Time.ToString("yyyy-MM-dd HH:mm:ss")));
+                            cmd.Parameters.Add(new SqlCeParameter(colOpen, it.Open));
+                            cmd.Parameters.Add(new SqlCeParameter(colClose, it.Close));
+                            cmd.Parameters.Add(new SqlCeParameter(colHigh, it.High));
+                            cmd.Parameters.Add(new SqlCeParameter(colLow, it.Low));
+                            cmd.Parameters.Add(new SqlCeParameter(colVolume, it.Volume));
+                            cmd.Parameters.Add(new SqlCeParameter(colAmount, it.Amount));
+
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Clear();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+
+                    sw.Stop();
+                    System.Diagnostics.Debug.Print(string.Format("Update time is {0} ms", sw.ElapsedMilliseconds));
+                }
+
+                conn.Close();
+            }
+        }
+                
         public IEnumerable<IStockKLine> GetAll()
         {
-            string sql = "SELECT * FROM KLineTable";
+            List<StockKLine> result = new List<StockKLine>();
+            string sql = string.Format("SELECT * FROM {0}", tableName);
 
             using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
             {
@@ -77,51 +190,69 @@ namespace Pitman.Infrastructure.SqlCe.Repository
                 using (SqlCeCommand cmd = new SqlCeCommand(sql, conn))
                 {
                     SqlCeDataReader reader = cmd.ExecuteReader();
-                    List<StockKLine> result = new List<StockKLine>();
+                   
                     while (reader.Read())
                     {
                         StockKLine dbo = new StockKLine
                         {
-                            Amount = double.Parse(reader[Amount].ToString().Trim()),
-                            Close = double.Parse(reader[Close].ToString().Trim()),
-                            High = double.Parse(reader[High].ToString().Trim()),
-                            Low = double.Parse(reader[Low].ToString().Trim()),
-                            Open = double.Parse(reader[Open].ToString().Trim()),
-                            Time = DateTime.Parse(reader[Time].ToString().Trim()),
-                            Volume = double.Parse(reader[Volume].ToString().Trim())
+                            Amount = double.Parse(reader[colAmount].ToString().Trim()),
+                            Close = double.Parse(reader[colClose].ToString().Trim()),
+                            High = double.Parse(reader[colHigh].ToString().Trim()),
+                            Low = double.Parse(reader[colLow].ToString().Trim()),
+                            Open = double.Parse(reader[colOpen].ToString().Trim()),
+                            Time = DateTime.Parse(reader[colTime].ToString().Trim()),
+                            Volume = double.Parse(reader[colVolume].ToString().Trim())
                         };
                         result.Add(dbo);
                     }
-                    reader.Close();
-                    return result;
-                }
-            }
-        }
 
-        protected override void OnDbCreating()
-        {
-            // 初始化出一个新的数据库连接 
-            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
-            {
-                // 建立数据库连接 
-                conn.Open();
-
-                using (SqlCeCommand cmdSqlCe = conn.CreateCommand())
-                {
-                    cmdSqlCe.CommandText = 
-                        string.Format("CREATE TABLE KLineTable({0} nvarchar(19) PRIMARY KEY, {1} money, {2} money, {3} money, {4} money, {5} money, {6} money)",
-                        Time,
-                        Open,
-                        Close,
-                        High,
-                        Low,
-                        Volume,
-                        Amount);
-                    cmdSqlCe.ExecuteNonQuery();
+                    reader.Close();                    
                 }
 
                 conn.Close();
             }
+
+            return result;
+        }
+
+        public IEnumerable<IStockKLine> Get(DateTime startTime, DateTime endTime)
+        {
+            List<StockKLine> result = new List<StockKLine>();
+            string sql = 
+                string.Format("SELECT * FROM {0} WHERE {1}>='{2}' AND {1}<='{3}'",
+                tableName,
+                colTime,
+                startTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCeCommand cmd = new SqlCeCommand(sql, conn))
+                {
+                    SqlCeDataReader reader = cmd.ExecuteReader();                    
+                    while (reader.Read())
+                    {
+                        StockKLine dbo = new StockKLine
+                        {
+                            Amount = double.Parse(reader[colAmount].ToString().Trim()),
+                            Close = double.Parse(reader[colClose].ToString().Trim()),
+                            High = double.Parse(reader[colHigh].ToString().Trim()),
+                            Low = double.Parse(reader[colLow].ToString().Trim()),
+                            Open = double.Parse(reader[colOpen].ToString().Trim()),
+                            Time = DateTime.Parse(reader[colTime].ToString().Trim()),
+                            Volume = double.Parse(reader[colVolume].ToString().Trim())
+                        };
+                        result.Add(dbo);
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+            }
+
+            return result;
         }
     }
 }

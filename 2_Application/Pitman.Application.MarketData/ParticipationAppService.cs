@@ -3,6 +3,7 @@ using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
 using Pitman.Infrastructure.EF.Repository;
 using System.Collections.Generic;
+using Pitman.Infrastructure.SqlCe.Repository;
 
 namespace Pitman.Application.MarketData
 {
@@ -10,43 +11,55 @@ namespace Pitman.Application.MarketData
     {
         public bool Exists(string stockCode, IParticipation participation)
         {
-            // 设置查询条件
-            var spec = Specification<Participation>.Eval(p => p.Time.Equals(participation.Time));
+            ParticipationRepository repository = new ParticipationRepository(DataFiles.GetParticipationFile(stockCode));
+            return repository.Exists(participation);
 
-            using (var context = GetContext(stockCode))
-            {
-                var repository = new Repository<Participation>(context);
-                return repository.Exists(spec);
-            }
+            //// 设置查询条件
+            //var spec = Specification<Participation>.Eval(p => p.Time.Equals(participation.Time));
+
+            //using (var context = GetContext(stockCode))
+            //{
+            //    var repository = new Repository<Participation>(context);
+            //    return repository.Exists(spec);
+            //}
         }
 
         public void Add(string stockCode, IParticipation participation)
         {
-            using (var context = GetContext(stockCode))
-            {
-                var repository = new Repository<Participation>(context);
-                repository.Add(participation.ToDataObject());
-                repository.UnitOfWork.Commit();
-            }
+            ParticipationRepository repository = new ParticipationRepository(DataFiles.GetParticipationFile(stockCode));
+            repository.AddRange(new IParticipation[] { participation });
+
+            //using (var context = GetContext(stockCode))
+            //{
+            //    var repository = new Repository<Participation>(context);
+            //    repository.Add(participation.ToDataObject());
+            //    repository.UnitOfWork.Commit();
+            //}
         }
 
         public void Update(string stockCode, IParticipation participation)
         {
-            using (var context = GetContext(stockCode))
-            {
-                var repository = new Repository<Participation>(context);
-                repository.Update(participation.ToDataObject());
-                repository.UnitOfWork.Commit();
-            }
+            ParticipationRepository repository = new ParticipationRepository(DataFiles.GetParticipationFile(stockCode));
+            repository.UpdateRange(new IParticipation[] { participation });
+
+            //using (var context = GetContext(stockCode))
+            //{
+            //    var repository = new Repository<Participation>(context);
+            //    repository.Update(participation.ToDataObject());
+            //    repository.UnitOfWork.Commit();
+            //}
         }
 
         public IEnumerable<IParticipation> Get(string stockCode)
         {
-            using (var context = GetContext(stockCode))
-            {
-                var repository = new Repository<Participation>(context);
-                return repository.GetAll();
-            }
+            ParticipationRepository repository = new ParticipationRepository(DataFiles.GetParticipationFile(stockCode));
+            return repository.GetAll();
+
+            //using (var context = GetContext(stockCode))
+            //{
+            //    var repository = new Repository<Participation>(context);
+            //    return repository.GetAll();
+            //}
         }
 
         private IRepositoryContext GetContext(string stockCode)

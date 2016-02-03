@@ -48,9 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KLineRepository.cs" />
+    <Compile Include="ParticipationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityRepository.cs" />
     <Compile Include="SqlCeRepository.cs" />
+    <Compile Include="StockBonusRepository.cs" />
+    <Compile Include="StockProfileRepository.cs" />
+    <Compile Include="StockStructureRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
