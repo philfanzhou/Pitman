@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Infrastructure.Repository, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Framework\Publish.Dll\Framework.Infrastructure.Repository\Framework.Infrastructure.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
@@ -60,10 +56,6 @@
     <ProjectReference Include="..\..\3_Domain\Pitman.Domain.FileStructure\Pitman.Domain.FileStructure.csproj">
       <Project>{6a13acf4-99a1-4d6a-b95a-538f9a9bb8bc}</Project>
       <Name>Pitman.Domain.FileStructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.EF.Repository\Pitman.Infrastructure.EF.Repository.csproj">
-      <Project>{e9bbe4bd-63e5-4848-a0c8-29f99f7ff64f}</Project>
-      <Name>Pitman.Infrastructure.EF.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\4_Infrastructure\Pitman.Infrastructure.SqlCe.Repository\Pitman.Infrastructure.SqlCe.Repository.csproj">
       <Project>{82d05bb9-e5ad-44fd-a86f-e1cb77a083b1}</Project>

@@ -1,11 +1,9 @@
-﻿using Framework.Infrastructure.Repository;
-using Ore.Infrastructure.MarketData;
+﻿using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.EF.Repository;
+using Pitman.Infrastructure.SqlCe.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pitman.Infrastructure.SqlCe.Repository;
 
 namespace Pitman.Application.MarketData
 {

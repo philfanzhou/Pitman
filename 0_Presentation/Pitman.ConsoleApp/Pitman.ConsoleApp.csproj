@@ -63,6 +63,14 @@
     <Content Include="Octopus.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT $(ConfigurationName) == Release GOTO end
+xcopy $(TargetDir)*.* $(SolutionDir)Release\  /y
+del $(SolutionDir)Release\*.pdb /f /s /q /a
+del $(SolutionDir)Release\*.xml /f /s /q /a
+del $(SolutionDir)Release\*.manifest /f /s /q /a
+del $(SolutionDir)Release\*.vshost.exe /f /s /q /a</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

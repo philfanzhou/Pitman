@@ -1,9 +1,7 @@
-﻿using Framework.Infrastructure.Repository;
-using Ore.Infrastructure.MarketData;
+﻿using Ore.Infrastructure.MarketData;
 using Pitman.Domain.FileStructure;
-using Pitman.Infrastructure.EF.Repository;
-using System.Collections.Generic;
 using Pitman.Infrastructure.SqlCe.Repository;
+using System.Collections.Generic;
 
 namespace Pitman.Application.MarketData
 {
@@ -60,15 +58,6 @@ namespace Pitman.Application.MarketData
             //    var repository = new Repository<StockProfile>(context);
             //    return repository.GetAll();
             //}
-        }
-
-        private IRepositoryContext GetContext()
-        {
-            string fullPath = DataFiles.GetStockProfileFile();
-            IRepositoryContext context
-                = ContextFactory.Create(ContextType.StockProfile, fullPath);
-
-            return context;
         }
     }
 }
