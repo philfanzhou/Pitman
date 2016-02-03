@@ -33,11 +33,19 @@ namespace Pitman.Application.MarketData
         public static IEnumerable<KLinePackage> SplitToPackages(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
         {
             List<KLinePackage> packages = new List<KLinePackage>();
-
+            //KLinePackage currentPackage = null;
             // 将数据分别放到对应的包裹里面
             foreach (var kLine in kLines)
             {
                 bool processed = false;
+
+                //// 检查能否插入到当前管理的package里面
+                //if(currentPackage != null
+                //    && currentPackage.FileInfo.ContainsTime(kLine.Time))
+                //{
+                //    currentPackage.Add(kLine);
+
+                //}
 
                 // 检查是否能够将数据插入到已有包裹
                 foreach (var package in packages)
