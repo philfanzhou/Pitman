@@ -4,6 +4,7 @@ using Pitman.Application.MarketData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework.Infrastructure.Log;
 
 namespace Pitman.Application.DataCollection
 {
@@ -25,35 +26,42 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
-            // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
-            //设置进度对象
-            base.Progress = new Progress(securities.Count);
-            // 获取数据服务
-            var appService = new StockBonusAppService();
-
-            // 检查并更新或增加
-            foreach (var security in securities)
+            try
             {
-                //股票的数据获取
-                var stockBonus = GetDataFromApi(security.Code);
-                foreach (var it in stockBonus)
-                {
-                    // 检查是否已经存在记录
-                    if (appService.Exists(security.Code, it))
-                    {
-                        // 如果已经存在就更新
-                        appService.Update(security.Code, it);
-                    }
-                    else
-                    {
-                        // 不存在就添加
-                        appService.Add(security.Code, it);
-                    }
-                }
+                // 获取所有证券信息
+                var securities = SecurityService.GetDataFromApi().ToList();
+                //设置进度对象
+                base.Progress = new Progress(securities.Count);
+                // 获取数据服务
+                var appService = new StockBonusAppService();
 
-                // 更新进度
-                base.Progress.Increase();
+                // 检查并更新或增加
+                foreach (var security in securities)
+                {
+                    //股票的数据获取
+                    var stockBonus = GetDataFromApi(security.Code);
+                    foreach (var it in stockBonus)
+                    {
+                        // 检查是否已经存在记录
+                        if (appService.Exists(security.Code, it))
+                        {
+                            // 如果已经存在就更新
+                            appService.Update(security.Code, it);
+                        }
+                        else
+                        {
+                            // 不存在就添加
+                            appService.Add(security.Code, it);
+                        }
+                    }
+
+                    // 更新进度
+                    base.Progress.Increase();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Logger.WriteLine("Pitman.Application.DataCollection.StockBonusService.DoWork" + ex.Message);
             }
         }
 
