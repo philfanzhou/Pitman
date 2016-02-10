@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework.Infrastructure.Log;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,8 +72,16 @@ namespace Pitman.Application.DataCollection
             // TODO: 考虑异常处理
             Action action = () =>
             {
-                DoWork();
-                Finished();
+                try
+                {
+
+                    DoWork();
+                    Finished();
+                }
+                catch(Exception ex)
+                {
+                    LogHelper.Logger.WriteLine(ex.ToString());
+                }
             };
 
             Task tast = new Task(action);

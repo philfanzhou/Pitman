@@ -69,7 +69,8 @@ xcopy $(TargetDir)*.* $(SolutionDir)Release\  /y
 del $(SolutionDir)Release\*.pdb /f /s /q /a
 del $(SolutionDir)Release\*.xml /f /s /q /a
 del $(SolutionDir)Release\*.manifest /f /s /q /a
-del $(SolutionDir)Release\*.vshost.exe /f /s /q /a</PostBuildEvent>
+del $(SolutionDir)Release\*.vshost.exe /f /s /q /a
+:end</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

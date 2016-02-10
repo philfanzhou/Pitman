@@ -50,7 +50,6 @@
     <Compile Include="Response\ParticipationDto.cs" />
     <Compile Include="Response\SecurityDto.cs" />
     <Compile Include="Response\StockBonusDto.cs" />
-    <Compile Include="Response\StockIntradayDto.cs" />
     <Compile Include="Response\StockKLineDto.cs" />
     <Compile Include="Response\StockProfileDto.cs" />
     <Compile Include="Response\StockRealTimeDto.cs" />

@@ -4,7 +4,6 @@ using Pitman.Application.MarketData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Framework.Infrastructure.Log;
 
 namespace Pitman.Application.DataCollection
 {
@@ -25,39 +24,32 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
-            try
+            // 获取所有证券信息
+            var securities = GetDataFromApi().ToList();
+
+            //设置进度对象
+            base.Progress = new Progress(securities.Count);
+
+            // 获取数据服务
+            var appService = new SecurityAppService();
+
+            // 检查并更新或增加
+            foreach (var security in securities)
             {
-                // 获取所有证券信息
-                var securities = GetDataFromApi().ToList();
-
-                //设置进度对象
-                base.Progress = new Progress(securities.Count);
-
-                // 获取数据服务
-                var appService = new SecurityAppService();
-
-                // 检查并更新或增加
-                foreach (var security in securities)
+                // 检查是否已经存在记录
+                if (appService.Exists(security))
                 {
-                    // 检查是否已经存在记录
-                    if (appService.Exists(security))
-                    {
-                        // 如果已经存在就更新
-                        appService.Update(security);
-                    }
-                    else
-                    {
-                        // 不存在就添加
-                        appService.Add(security);
-                    }
-
-                    // 更新进度
-                    base.Progress.Increase();
+                    // 如果已经存在就更新
+                    appService.Update(security);
                 }
-            }
-            catch(Exception ex)
-            {
-                LogHelper.Logger.WriteLine("Pitman.Application.DataCollection.ServiceForTest.DoWork" + ex.Message);
+                else
+                {
+                    // 不存在就添加
+                    appService.Add(security);
+                }
+
+                // 更新进度
+                base.Progress.Increase();
             }
         }
 

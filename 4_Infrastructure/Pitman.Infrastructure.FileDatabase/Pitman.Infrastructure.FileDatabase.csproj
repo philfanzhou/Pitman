@@ -56,8 +56,6 @@
     <Compile Include="FileDatabase\SecurityFile.cs" />
     <Compile Include="FileDatabase\StockBonusDataItem.cs" />
     <Compile Include="FileDatabase\StockBonusFile.cs" />
-    <Compile Include="FileDatabase\StockIntradayDataItem.cs" />
-    <Compile Include="FileDatabase\StockIntradayFile.cs" />
     <Compile Include="FileDatabase\StockKLineDataItem.cs" />
     <Compile Include="FileDatabase\StockKLineFile.cs" />
     <Compile Include="FileDatabase\StockProfileDataItem.cs" />
@@ -67,7 +65,6 @@
     <Compile Include="ParticipationDataRepository.cs" />
     <Compile Include="SecurityDataRepository.cs" />
     <Compile Include="StockBonusDataRepository.cs" />
-    <Compile Include="StockIntradayDataRepository.cs" />
     <Compile Include="StockKLineDataRepository.cs" />
     <Compile Include="StockProfileDataRepository.cs" />
     <Compile Include="StockStructureDataRepository.cs" />

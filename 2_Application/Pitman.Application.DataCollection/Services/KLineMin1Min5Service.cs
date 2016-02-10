@@ -4,7 +4,6 @@ using Pitman.Application.MarketData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Framework.Infrastructure.Log;
 
 namespace Pitman.Application.DataCollection
 {
@@ -25,39 +24,32 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
-            try
-            {
-                // 获取所有证券信息
-                var securities = SecurityService.GetDataFromApi().ToList();
-                //设置进度对象
-                base.Progress = new Progress(securities.Count);
-                // 获取数据服务
-                var appService = new KLineAppService();
+            // 获取所有证券信息
+            var securities = SecurityService.GetDataFromApi().ToList();
+            //设置进度对象
+            base.Progress = new Progress(securities.Count);
+            // 获取数据服务
+            var appService = new KLineAppService();
 
-                // 检查并更新或增加
-                foreach (var security in securities)
+            // 检查并更新或增加
+            foreach (var security in securities)
+            {
+                //股票的数据获取
+                var kLineMin1 = GetDataFromApi(security.Code, KLineType.Min1);
+                var kLineMin5 = GetDataFromApi(security.Code, KLineType.Min5);
+
+                foreach (var it in kLineMin1)
                 {
-                    //股票的数据获取
-                    var kLineMin1 = GetDataFromApi(security.Code, KLineType.Min1);
-                    var kLineMin5 = GetDataFromApi(security.Code, KLineType.Min5);
-
-                    foreach (var it in kLineMin1)
-                    {
-                        SaveDatas(appService, KLineType.Min1, security.Code, it);
-                    }
-
-                    foreach (var it in kLineMin5)
-                    {
-                        SaveDatas(appService, KLineType.Min5, security.Code, it);
-                    }
-
-                    // 更新进度
-                    base.Progress.Increase();
+                    SaveDatas(appService, KLineType.Min1, security.Code, it);
                 }
-            }
-            catch(Exception ex)
-            {
-                LogHelper.Logger.WriteLine("Pitman.Application.DataCollection.KLineMin1Min5Service.DoWork" + ex.Message);
+
+                foreach (var it in kLineMin5)
+                {
+                    SaveDatas(appService, KLineType.Min5, security.Code, it);
+                }
+
+                // 更新进度
+                base.Progress.Increase();
             }
         }
 
