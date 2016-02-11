@@ -211,22 +211,7 @@ namespace Pitman.Domain.FileStructure
 
         private static string GetStockMarket(string stockCode)
         {
-            if (stockCode.StartsWith("5") ||
-                stockCode.StartsWith("6") ||
-                stockCode.StartsWith("9"))
-            {
-                return "sh";
-            }
-            else if (stockCode.StartsWith("009") ||
-                stockCode.StartsWith("126") ||
-                stockCode.StartsWith("110"))
-            {
-                return "sh";
-            }
-            else
-            {
-                return "sz";
-            }
+            return FullStockCode.GetByCode(stockCode).Replace(stockCode, string.Empty);
         }
         #endregion
     }

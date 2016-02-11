@@ -1,8 +1,8 @@
-﻿using Ore.Infrastructure.MarketData;
+﻿using Framework.Infrastructure.Log;
+using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.Sina;
 using Pitman.Application.MarketData;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Pitman.Application.DataCollection
@@ -10,27 +10,38 @@ namespace Pitman.Application.DataCollection
     internal class KLineDayService : CollectionService
     {
         private const string _serviceName = "KLineDay";
+        // 获取数据API
+        private StockKLineApi  sinaApi = new StockKLineApi();
+        // 存储数据服务
+        private KLineAppService appService = new KLineAppService();
 
         public override string ServiceName
         {
             get { return _serviceName; }
         }
 
-        /*
-        1:调用Ore.sina里面的日线K线接口
-        2：每天下午3：10开始进行所有股票的数据获取
-        3：数据插入和更新，调用 Pitman.Application.MarketData.KLineAppService
-        */
-        internal static IEnumerable<IStockKLine> GetDataFromApi(IEnumerable<string> stockCodes)
+        protected override bool IsWorkingTime()
         {
-            StockKLineApi api = new StockKLineApi();
-            return api.GetLatest(stockCodes);
-        }
+            //// 每天只进行一次此任务
+            //if (IsCompletedToday())
+            //{
+            //    return false;
+            //}
 
-        internal static IStockKLine GetDataFromApi(string stockCode)
-        {
-            StockKLineApi api = new StockKLineApi();
-            return api.GetLatest(stockCode);
+            //// 每天下午3：10开始进行所有股票的数据获取
+            //return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
+
+
+            /*************test code*****************/
+            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            /******************************/
         }
 
         protected override void DoWork()
@@ -39,42 +50,70 @@ namespace Pitman.Application.DataCollection
             var securities = SecurityService.GetDataFromApi().ToList();
             //设置进度对象
             base.Progress = new Progress(securities.Count);
-            // 获取数据服务
-            var appService = new KLineAppService();
 
             // 检查并更新或增加
             foreach (var security in securities)
             {
-                //股票的数据获取
-                var kLine = GetDataFromApi(security.Code);
+                //获取数据
+                var kLine = GetKLine(security.Code);
 
-                // 检查是否已经存在记录
-                if (appService.Exists(KLineType.Day, security.Code, kLine))
+                if (kLine != null)
                 {
-                    // 如果已经存在就更新
-                    appService.Update(KLineType.Day, security.Code, kLine);
+                    //存储数据
+                    SaveKLineData(security.Code, kLine);
                 }
-                else
-                {
-                    // 不存在就添加
-                    appService.Add(KLineType.Day, security.Code, kLine);
-                }
+
+                // 降低获取数据的频率，避免被服务端封ip
+                System.Threading.Thread.Sleep(500);
 
                 // 更新进度
                 base.Progress.Increase();
             }
         }
 
-        protected override bool IsWorkingTime()
+        /// <summary>
+        /// 获取日线数据
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        private IStockKLine GetKLine(string stockCode)
         {
-            // 每天只进行一次此任务
-            if (IsCompletedToday())
+            IStockKLine result = null;
+
+            try
             {
-                return false;
+                result = sinaApi.GetLatest(stockCode);
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Logger.WriteLine(string.Format("Get stock[{0}] data error.", stockCode));
+                LogHelper.Logger.WriteLine(ex.ToString());
             }
 
-            // 每天下午3：10开始进行所有股票的数据获取
-            return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
+            return result;
+        }
+
+        /// <summary>
+        /// 存储数据
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <param name="kLine"></param>
+        private void SaveKLineData(string stockCode, IStockKLine kLine)
+        {
+            try
+            {
+                // 检查是否已经存在记录
+                if (!appService.Exists(KLineType.Day, stockCode, kLine))
+                {
+                    // 不存在就添加
+                    appService.Add(KLineType.Day, stockCode, kLine);
+                }
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Logger.WriteLine(string.Format("Save stock[{0}] data error.", stockCode));
+                LogHelper.Logger.WriteLine(ex.ToString());
+            }
         }
     }
 }

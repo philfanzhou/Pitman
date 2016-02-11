@@ -48,31 +48,26 @@ namespace Pitman.Application.DataCollection
 
         private void InitServices()
         {
-#if DEBUG
-            var serviceForTest = new ServiceForTest();
-            _serviceContainer.Add(serviceForTest.ServiceName, serviceForTest);
-#endif
-
             var security = new SecurityService();
             _serviceContainer.Add(security.ServiceName, security);
 
             var kLinDay = new KLineDayService();
             _serviceContainer.Add(kLinDay.ServiceName, kLinDay);
 
-            var kLineMin1Min5 = new KLineMin1Min5Service();
-            _serviceContainer.Add(kLineMin1Min5.ServiceName, kLineMin1Min5);
+            //var kLineMin1Min5 = new KLineMin1Min5Service();
+            //_serviceContainer.Add(kLineMin1Min5.ServiceName, kLineMin1Min5);
 
-            var participation = new ParticipationService();
-            _serviceContainer.Add(participation.ServiceName, participation);
+            //var participation = new ParticipationService();
+            //_serviceContainer.Add(participation.ServiceName, participation);
 
-            var stockBonus = new StockBonusService();
-            _serviceContainer.Add(stockBonus.ServiceName, stockBonus);
+            //var stockBonus = new StockBonusService();
+            //_serviceContainer.Add(stockBonus.ServiceName, stockBonus);
 
-            var stockProfile = new StockProfileService();
-            _serviceContainer.Add(stockProfile.ServiceName, stockProfile);
+            //var stockProfile = new StockProfileService();
+            //_serviceContainer.Add(stockProfile.ServiceName, stockProfile);
 
-            var stockStructure = new StockStructureService();
-            _serviceContainer.Add(stockStructure.ServiceName, stockStructure);
+            //var stockStructure = new StockStructureService();
+            //_serviceContainer.Add(stockStructure.ServiceName, stockStructure);
         }
         #endregion
 
