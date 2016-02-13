@@ -22,16 +22,7 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            //// 每天只进行一次此任务
-            //if (IsCompletedToday())
-            //{
-            //    return false;
-            //}
-
-            //// 每天下午3：10开始进行所有股票的数据获取
-            //return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
-
-
+#if DEBUG
             /*************test code*****************/
             if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
             {
@@ -42,6 +33,16 @@ namespace Pitman.Application.DataCollection
                 return false;
             }
             /******************************/
+#endif
+
+            // 每天只进行一次此任务
+            if (IsCompletedToday())
+            {
+                return false;
+            }
+
+            // 每天下午3：10开始进行所有股票的数据获取
+            return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
         }
 
         protected override void DoWork()

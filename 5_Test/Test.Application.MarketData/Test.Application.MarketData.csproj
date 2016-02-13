@@ -38,6 +38,9 @@
     <Reference Include="Ore.Infrastructure.MarketData">
       <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
+    <Reference Include="Quantum.Domain.TimeSeries">
+      <HintPath>..\..\..\Quantum\Publish.Dll\Quantum.Domain.TimeSeries\Quantum.Domain.TimeSeries.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>

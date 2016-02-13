@@ -34,6 +34,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
+    <Reference Include="Quantum.Domain.MarketData">
+      <HintPath>..\..\..\Quantum\Publish.Dll\Quantum.Domain.MarketData\Quantum.Domain.MarketData.dll</HintPath>
+    </Reference>
+    <Reference Include="Quantum.Domain.TimeSeries, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Quantum\Publish.Dll\Quantum.Domain.TimeSeries\Quantum.Domain.TimeSeries.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KLine\KLinePackage.cs" />
-    <Compile Include="KLine\KLineAppService.cs" />
+    <Compile Include="KLineAppService.cs" />
     <Compile Include="ParticipationAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityAppService.cs" />

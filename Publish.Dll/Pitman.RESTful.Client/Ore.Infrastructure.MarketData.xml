@@ -314,59 +314,9 @@
             权息说明
             </summary>
         </member>
-        <member name="T:Ore.Infrastructure.MarketData.IStockIntraday">
-            <summary>
-            分时数据定义
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.Time">
-            <summary>
-            时间
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.Current">
-            <summary>
-            当前价
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.AveragePrice">
-            <summary>
-            均价 = 当前时刻总成交额 / 当前时刻总成交量
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.YesterdayClose">
-            <summary>
-            前一交易日收盘价
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.Volume">
-            <summary>
-            分时成交量
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.Amount">
-            <summary>
-            分时成交额
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.BuyVolume">
-            <summary>
-            委买
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockIntraday.SellVolume">
-            <summary>
-            委卖
-            </summary>
-        </member>
         <member name="T:Ore.Infrastructure.MarketData.IStockKLine">
             <summary>
             K线数据定义
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Time">
-            <summary>
-            日期与时间
             </summary>
         </member>
         <member name="P:Ore.Infrastructure.MarketData.IStockKLine.Open">
@@ -452,11 +402,6 @@
         <member name="P:Ore.Infrastructure.MarketData.IStockRealTime.Amount">
             <summary>
             成交额
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.IStockRealTime.Time">
-            <summary>
-            日期与时间
             </summary>
         </member>
         <member name="P:Ore.Infrastructure.MarketData.IStockRealTime.Sell5Price">
@@ -904,6 +849,16 @@
             未上市
             </summary>
         </member>
+        <member name="T:Ore.Infrastructure.MarketData.ITimeSeries">
+            <summary>
+            定义具有时间序列的接口
+            </summary>
+        </member>
+        <member name="P:Ore.Infrastructure.MarketData.ITimeSeries.Time">
+            <summary>
+            日期与时间
+            </summary>
+        </member>
         <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Code">
             <summary>
             代码
@@ -952,11 +907,6 @@
         <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Amount">
             <summary>
             成交额
-            </summary>
-        </member>
-        <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Time">
-            <summary>
-            日期与时间
             </summary>
         </member>
         <member name="P:Ore.Infrastructure.MarketData.StockRealTime.Sell5Price">

@@ -172,12 +172,14 @@ namespace Test.Application.MarketData
             DateTime endTime = new DateTime(2015, 12, 31);
             List<IStockKLine> insertDatas = ExampleStockKLineDay(startTime, endTime).ToList();
 
-            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_600036, startTime, endTime);
-            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p=>p.FullPath).ToList();
+            //var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_600036, startTime, endTime);
+            //List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p=>p.FullPath).ToList();
+            List<string> dataFiles_600036 = new List<string> { new Day1KLineFile(stockCode_600036).GetFilePath() };
             CleanupFiles(dataFiles_600036);
 
-            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_000400, startTime, endTime);
-            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            //var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Day, stockCode_000400, startTime, endTime);
+            //List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            List<string> dataFiles_000400 = new List<string> { new Day1KLineFile(stockCode_000400).GetFilePath() };
             CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
@@ -260,12 +262,14 @@ namespace Test.Application.MarketData
             DateTime endTime = new DateTime(2015, 1, 31);
             List<IStockKLine> insertDatas = ExampleStockKLineMin1(startTime, endTime).ToList();
 
-            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_600036, startTime, endTime);
-            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            //var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_600036, startTime, endTime);
+            //List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            List<string> dataFiles_600036 = new Min1KLineFile(stockCode_600036).GetFilePath(startTime, endTime).ToList();
             CleanupFiles(dataFiles_600036);
 
-            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_000400, startTime, endTime);
-            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            //var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min1, stockCode_000400, startTime, endTime);
+            //List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            List<string> dataFiles_000400 = new Min1KLineFile(stockCode_000400).GetFilePath(startTime, endTime).ToList();
             CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
@@ -323,12 +327,14 @@ namespace Test.Application.MarketData
             DateTime endTime = new DateTime(2015, 1, 1);            
             List<IStockKLine> insertDatas = ExampleStockKLineMin5(startTime, endTime).ToList();
 
-            var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_600036, startTime, endTime);
-            List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            //var kLineFileInfos_600036 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_600036, startTime, endTime);
+            //List<string> dataFiles_600036 = kLineFileInfos_600036.Select(p => p.FullPath).ToList();
+            List<string> dataFiles_600036 = new Min5KLineFile(stockCode_600036).GetFilePath(startTime, endTime).ToList();
             CleanupFiles(dataFiles_600036);
 
-            var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_000400, startTime, endTime);
-            List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            //var kLineFileInfos_000400 = DataFiles.GetKLineFileInfo(KLineType.Min5, stockCode_000400, startTime, endTime);
+            //List<string> dataFiles_000400 = kLineFileInfos_000400.Select(p => p.FullPath).ToList();
+            List<string> dataFiles_000400 = new Min5KLineFile(stockCode_000400).GetFilePath(startTime, endTime).ToList();
             CleanupFiles(dataFiles_000400);
 
             var appService = new KLineAppService();
