@@ -71,6 +71,30 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             return bExists;
         }
 
+        public DateTime? GetLastTradeDate()
+        {
+            DateTime? result = null;
+            string sql = string.Format("SELECT MAX([{0}]) FROM {1}", colTime, tableName);            
+
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCeCommand sqlCmd = new SqlCeCommand(sql, conn))
+                {
+                    Object o = sqlCmd.ExecuteScalar();
+                    if (o != null && o != DBNull.Value)
+                    {
+                        result = Convert.ToDateTime(o);
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return result;
+        }
+
         public void AddRange(IEnumerable<IStockKLine> kLines)
         {
             // 初始化出一个新的数据库连接 

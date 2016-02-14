@@ -39,6 +39,22 @@ namespace Pitman.Application.MarketData
             }
         }
 
+        public DateTime? GetLastTradeDate(KLineType type, string stockCode)
+        {
+            ThrowIfTypeNotSupport(type);
+
+            if (type == KLineType.Day)
+            {
+                string dbFilePath = new Day1KLineFile(stockCode).GetFilePath();
+                KLineRepository repository = new KLineRepository(dbFilePath);
+                return repository.GetLastTradeDate();
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+        }
+
         public void Add(KLineType type, string stockCode, IStockKLine kLine)
         {
             Add(type, stockCode, new List<IStockKLine> { kLine });
