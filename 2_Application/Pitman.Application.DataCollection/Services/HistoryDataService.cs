@@ -41,8 +41,16 @@ namespace Pitman.Application.DataCollection.Services
                 }
                 else
                 {
-                    string startDate = lastTradeDate.Value.AddDays(1).ToString("yyyyMMdd");
-                    stockKLines = wmcloudApi.GetKLineFromWmcloudApi(security.Code, startDate);
+                    try
+                    {
+                        string startDate = lastTradeDate.Value.AddDays(1).ToString("yyyyMMdd");
+                        stockKLines = wmcloudApi.GetKLineFromWmcloudApi(security.Code, startDate);
+                    }
+                    catch (Exception ex)
+                    {
+                        //此处异常通常是因为security.Code并不是真正的股票代码(如：166105)，此时通联数据并不支持
+                        continue;
+                    }
                 }
 
                 appService.Add(KLineType.Day, security.Code, stockKLines);
