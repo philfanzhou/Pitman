@@ -48,14 +48,11 @@ namespace Pitman.Application.DataCollection
 
         private void InitServices()
         {
-            var security = new SecurityService();
-            _serviceContainer.Add(security.ServiceName, security);
+            AddService(new SecurityService());
 
-            var kLinDay = new KLineDayService();
-            _serviceContainer.Add(kLinDay.ServiceName, kLinDay);
+            AddService(new KLineDayService());
 
-            var dataReview = new DataReviewService();
-            _serviceContainer.Add(dataReview.ServiceName, dataReview);
+            AddService(new DataReviewService());
 
             //var participation = new ParticipationService();
             //_serviceContainer.Add(participation.ServiceName, participation);
@@ -69,6 +66,11 @@ namespace Pitman.Application.DataCollection
             //var stockStructure = new StockStructureService();
             //_serviceContainer.Add(stockStructure.ServiceName, stockStructure);
         }
+
+        private void AddService(CollectionService service)
+        {
+            _serviceContainer.Add(service.ServiceName.ToLower(), service);
+        }
         #endregion
 
         #region IServiceManager Member
@@ -80,6 +82,12 @@ namespace Pitman.Application.DataCollection
         string IServiceManager.GetServiceStatus(string serviceName)
         {
             string result = string.Empty;
+
+            if(!string.IsNullOrEmpty(serviceName))
+            {
+                serviceName = serviceName.ToLower();
+            }
+
             CollectionService service;
             if (_serviceContainer.TryGetValue(serviceName, out service))
             {
