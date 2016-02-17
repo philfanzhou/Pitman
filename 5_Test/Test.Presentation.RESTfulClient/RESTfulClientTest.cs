@@ -88,8 +88,8 @@ namespace Test.Presentation.RESTfulClient
             using (var client = new ClientApi(serverAddress))
             {
                 var result = client.GetStockKLine(
-                    KLineType.Day, "600036", 
-                    new DateTime(2015, 11, 10), new DateTime(2015, 11, 12)).ToList();
+                    KLineType.Day, "204001", 
+                    new DateTime(2015, 11, 10), new DateTime(2016, 11, 12)).ToList();
 
                 Assert.IsNotNull(result);
                 Assert.IsTrue(result[0].Open - 10.01 < 0.00000001);

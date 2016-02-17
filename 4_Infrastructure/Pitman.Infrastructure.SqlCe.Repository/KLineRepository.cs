@@ -144,6 +144,11 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             }
         }
 
+        public void AddIfNotExist(IEnumerable<IStockKLine> kLines)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateRange(IEnumerable<IStockKLine> kLines)
         {
             // 初始化出一个新的数据库连接 

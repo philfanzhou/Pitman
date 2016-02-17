@@ -62,7 +62,7 @@ namespace Pitman.Application.DataCollection
             foreach (var security in securities)
             {
                 //股票的数据获取
-                var kLineDay1 = GetDataFromApi(security.Code, KLineType.Min1);
+                var kLineDay1 = GetDataFromApi(security.Code, KLineType.Day);
                 var kLineMin1 = GetDataFromApi(security.Code, KLineType.Min1);
                 var kLineMin5 = GetDataFromApi(security.Code, KLineType.Min5);
 
