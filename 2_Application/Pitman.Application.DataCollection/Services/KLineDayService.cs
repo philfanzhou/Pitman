@@ -22,18 +22,16 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-#if DEBUG
-            /*************test code*****************/
-            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            /******************************/
-#endif
+            ///*************test code*****************/
+            //if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+            ///******************************/
 
             // 每天只进行一次此任务
             if (IsCompletedToday())
