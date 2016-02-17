@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace Pitman.Application.DataCollection
 {
+    /// <summary>
+    /// 每天定时获取日线数据的任务
+    /// </summary>
     internal class KLineDayService : CollectionService
     {
         private const string _serviceName = "KLineDay";

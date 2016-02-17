@@ -54,8 +54,8 @@ namespace Pitman.Application.DataCollection
             var kLinDay = new KLineDayService();
             _serviceContainer.Add(kLinDay.ServiceName, kLinDay);
 
-            //var kLineMin1Min5 = new KLineMin1Min5Service();
-            //_serviceContainer.Add(kLineMin1Min5.ServiceName, kLineMin1Min5);
+            var dataReview = new DataReviewService();
+            _serviceContainer.Add(dataReview.ServiceName, dataReview);
 
             //var participation = new ParticipationService();
             //_serviceContainer.Add(participation.ServiceName, participation);
