@@ -26,14 +26,14 @@ namespace Pitman.Domain.FileStructure
         public static string GetStockBonusFile(string stockCode)
         {
             // todo: 根据stockcode来存储文件的时候，为了避免重复代码，folder需要考虑市场子目录
-            string folder = Path.Combine(_dataFolder, "StockBonusData");
+            string folder = Path.Combine(_dataFolder, "StockBonusData", GetStockMarket(stockCode));
             CreateFolderIsNotExist(folder);
             return Path.Combine(folder, stockCode + _fileExtName);
         }
 
         public static string GetParticipationFile(string stockCode)
         {
-            string folder = Path.Combine(_dataFolder, "ParticipationData");
+            string folder = Path.Combine(_dataFolder, "ParticipationData", GetStockMarket(stockCode));
             CreateFolderIsNotExist(folder);
             return Path.Combine(folder, stockCode + _fileExtName);
         }
@@ -46,7 +46,7 @@ namespace Pitman.Domain.FileStructure
 
         public static string GetStockStructureFile(string stockCode)
         {
-            string folder = Path.Combine(_dataFolder, "StockStructureData");
+            string folder = Path.Combine(_dataFolder, "StockStructureData", GetStockMarket(stockCode));
             CreateFolderIsNotExist(folder);
             return Path.Combine(folder, stockCode + _fileExtName);
         }

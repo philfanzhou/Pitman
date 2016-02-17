@@ -49,13 +49,9 @@ namespace Pitman.Application.DataCollection
         private void InitServices()
         {
             AddService(new SecurityService());
-
             AddService(new KLineDayService());
-
             AddService(new DataReviewService());
-
-            //var participation = new ParticipationService();
-            //_serviceContainer.Add(participation.ServiceName, participation);
+            AddService(new ParticipationService());
 
             //var stockBonus = new StockBonusService();
             //_serviceContainer.Add(stockBonus.ServiceName, stockBonus);
