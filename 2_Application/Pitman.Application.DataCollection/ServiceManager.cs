@@ -52,9 +52,7 @@ namespace Pitman.Application.DataCollection
             AddService(new KLineDayService());
             AddService(new DataReviewService());
             AddService(new ParticipationService());
-
-            //var stockBonus = new StockBonusService();
-            //_serviceContainer.Add(stockBonus.ServiceName, stockBonus);
+            AddService(new StockBonusService());
 
             //var stockProfile = new StockProfileService();
             //_serviceContainer.Add(stockProfile.ServiceName, stockProfile);
