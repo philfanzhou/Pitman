@@ -48,6 +48,8 @@ namespace Pitman.Application.DataCollection
 
         private void InitServices()
         {
+            AddService(new ServiceForTest());
+
             AddService(new SecurityService());
             AddService(new KLineDayService());
             AddService(new DataReviewService());

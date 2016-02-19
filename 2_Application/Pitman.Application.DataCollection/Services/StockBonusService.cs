@@ -27,25 +27,25 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            /*************test code*****************/
-            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            /******************************/
-
-            //// 每天只进行一次此任务
-            //if (IsCompletedToday())
+            ///*************test code*****************/
+            //if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            //{
+            //    return true;
+            //}
+            //else
             //{
             //    return false;
             //}
+            ///******************************/
 
-            ////每天凌晨0：00进行一次数据获取
-            //return DateTime.Now.Hour == 0;
+            // 每天只进行一次此任务
+            if (IsCompletedToday())
+            {
+                return false;
+            }
+
+            //每天凌晨0：00进行一次数据获取
+            return DateTime.Now.Hour == 0;
         }
 
         protected override void DoWork()

@@ -74,13 +74,15 @@ namespace Pitman.Application.DataCollection
             {
                 try
                 {
-
                     DoWork();
-                    Finished();
                 }
                 catch(Exception ex)
                 {
                     LogHelper.Logger.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    Finished();
                 }
             };
 
@@ -110,13 +112,20 @@ namespace Pitman.Application.DataCollection
 
         protected virtual void Finished()
         {
-            if(_status == ServiceStatus.Stopped)
+            try
             {
-                return;
-            }
+                if (_status == ServiceStatus.Stopped)
+                {
+                    return;
+                }
 
-            _status = ServiceStatus.Stopped;
-            _stopTime = DateTime.Now;
+                _status = ServiceStatus.Stopped;
+                _stopTime = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Logger.WriteLine(ex.ToString());
+            }
         }
 
         protected abstract void DoWork();

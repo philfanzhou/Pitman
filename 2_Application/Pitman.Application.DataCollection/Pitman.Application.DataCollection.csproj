@@ -64,6 +64,7 @@
     <Compile Include="Internal\CollectionService.cs" />
     <Compile Include="Internal\Progress.cs" />
     <Compile Include="IServiceManager.cs" />
+    <Compile Include="Services\ServiceForTest.cs" />
     <Compile Include="Services\HistoryDataService.cs" />
     <Compile Include="Services\ParticipationService.cs" />
     <Compile Include="Services\KLineDayService.cs" />
