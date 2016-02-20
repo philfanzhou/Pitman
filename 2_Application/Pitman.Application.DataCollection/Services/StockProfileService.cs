@@ -68,6 +68,9 @@ namespace Pitman.Application.DataCollection
                     SaveData(stockProfile);
                 }
 
+                // 降低获取数据的频率，避免被服务端封ip
+                System.Threading.Thread.Sleep(500);
+
                 // 更新进度
                 base.Progress.Increase();
             }
