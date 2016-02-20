@@ -62,7 +62,7 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             sbSql.AppendFormat("{0} nvarchar(16)  PRIMARY KEY, ", colCodeA);
             sbSql.AppendFormat("{0} nvarchar(16), ", colCodeB);
             sbSql.AppendFormat("{0} nvarchar(16), ", colCodeH);
-            sbSql.AppendFormat("{0} nvarchar(1024), ", colCompanyProfile);
+            sbSql.AppendFormat("{0} nvarchar(2048), ", colCompanyProfile);
             sbSql.AppendFormat("{0} nvarchar(256), ", colContactNumber);
             sbSql.AppendFormat("{0} nvarchar(256), ", colEmail);
             sbSql.AppendFormat("{0} nvarchar(256), ", colEnglishName);
@@ -80,7 +80,7 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             sbSql.AppendFormat("{0} int, ", colNumberOfEmployees);
             sbSql.AppendFormat("{0} int, ", colNumberOfManagement);
             sbSql.AppendFormat("{0} nvarchar(256), ", colOfficeAddress);
-            sbSql.AppendFormat("{0} nvarchar(1024), ", colPrimeBusiness);
+            sbSql.AppendFormat("{0} nvarchar(2048), ", colPrimeBusiness);
             sbSql.AppendFormat("{0} nvarchar(256), ", colRegisteredAddress);
             sbSql.AppendFormat("{0} nvarchar(256), ", colRegisteredCapital);
             sbSql.AppendFormat("{0} nvarchar(256), ", colSecuritiesAffairsRepresentatives);
@@ -234,7 +234,7 @@ namespace Pitman.Infrastructure.SqlCe.Repository
                     cmd.Parameters[colCodeA].Size = 16;
                     cmd.Parameters[colCodeB].Size = 16;
                     cmd.Parameters[colCodeH].Size = 16;
-                    cmd.Parameters[colCompanyProfile].Size = 1024;
+                    cmd.Parameters[colCompanyProfile].Size = 2048;
                     cmd.Parameters[colContactNumber].Size = 256;
                     cmd.Parameters[colEmail].Size = 256;
                     cmd.Parameters[colEnglishName].Size = 256;
@@ -249,7 +249,7 @@ namespace Pitman.Infrastructure.SqlCe.Repository
                     cmd.Parameters[colListDate].Size = 19;
                     cmd.Parameters[colNameUsedBefore].Size = 256;
                     cmd.Parameters[colOfficeAddress].Size = 256;
-                    cmd.Parameters[colPrimeBusiness].Size = 1024;
+                    cmd.Parameters[colPrimeBusiness].Size = 2048;
                     cmd.Parameters[colRegisteredAddress].Size = 256;
                     cmd.Parameters[colRegisteredCapital].Size = 256;
                     cmd.Parameters[colSecuritiesAffairsRepresentatives].Size = 256;

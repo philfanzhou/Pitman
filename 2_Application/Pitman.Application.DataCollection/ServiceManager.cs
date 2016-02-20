@@ -57,12 +57,8 @@ namespace Pitman.Application.DataCollection
             AddService(new DataReviewService());
             AddService(new ParticipationService());
             AddService(new StockBonusService());
-
-            //var stockProfile = new StockProfileService();
-            //_serviceContainer.Add(stockProfile.ServiceName, stockProfile);
-
-            //var stockStructure = new StockStructureService();
-            //_serviceContainer.Add(stockStructure.ServiceName, stockStructure);
+            AddService(new StockProfileService());
+            AddService(new StockStructureService());
         }
 
         private void AddService(CollectionService service)

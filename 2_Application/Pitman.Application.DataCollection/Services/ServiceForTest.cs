@@ -15,12 +15,18 @@ namespace Pitman.Application.DataCollection
 
         protected override void DoWork()
         {
+
             //设置进度对象
             base.Progress = new Progress(20);
 
             for(int i = 0; i < 20; i++)
             {
                 System.Threading.Thread.Sleep(500);
+
+                //if(i == 11)
+                //{
+                //    throw new System.InvalidCastException();
+                //}
 
                 // 更新进度
                 base.Progress.Increase();
