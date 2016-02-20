@@ -3,6 +3,7 @@ using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.Sina;
 using Pitman.Application.MarketData;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pitman.Application.DataCollection
@@ -24,70 +25,68 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            ///*************test code*****************/
-            //if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            ///******************************/
-
-            // 每天只进行一次此任务
-            if (IsCompletedToday())
+            /*************test code*****************/
+            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }
+            /******************************/
 
-            // 每天下午3：10开始进行所有股票的数据获取
-            return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
+            //// 每天只进行一次此任务
+            //if (IsCompletedToday())
+            //{
+            //    return false;
+            //}
+
+            //// 每天下午3：10开始进行所有股票的数据获取
+            //return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
         }
 
         protected override void DoWork()
         {
             // 获取所有证券信息
-            var securities = GetAllSecurity().ToList();
+            var securities = GetAllSecurity();
+            // 批量获取所有数据
+            var datas = GetData(securities.Select(p => p.Code)).ToList();
             //设置进度对象
-            base.Progress = new Progress(securities.Count);
+            base.Progress = new Progress(datas.Count);
 
-            // 检查并更新或增加
-            foreach (var security in securities)
+            foreach (var data in datas)
             {
-                //获取数据
-                var kLine = GetData(security.Code);
-
-                if (kLine != null)
-                {
-                    //存储数据
-                    SaveData(security.Code, kLine);
-                }
-
-                // 降低获取数据的频率，避免被服务端封ip
-                System.Threading.Thread.Sleep(500);
-
+                //存储数据
+                SaveData(data.Key, data.Value);
                 // 更新进度
                 base.Progress.Increase();
             }
         }
 
-        /// <summary>
-        /// 获取日线数据
-        /// </summary>
-        /// <param name="stockCode"></param>
-        /// <returns></returns>
-        private IStockKLine GetData(string stockCode)
+        private IEnumerable<KeyValuePair<string, IStockKLine>> GetData(IEnumerable<string> stockCodes)
         {
-            try
+            IEnumerable<KeyValuePair<string, IStockKLine>> resule = null;
+            int i = 0;
+            do
             {
-                return _getDataApi.GetLatest(stockCode);
-            }
-            catch
-            {
-                // todo: 暂不处理获取数据的异常
-                return null;
-            }
+                try
+                {
+                    resule = _getDataApi.GetLatest(stockCodes);
+                }
+                finally
+                {
+                    i++;
+                }
+
+                // 尝试10次获取数据， 确保能够获取数据成功
+                if (i > 9)
+                {
+                    break;
+                }
+            } while (resule == null);
+
+            return resule;
         }
 
         /// <summary>

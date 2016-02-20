@@ -1,9 +1,11 @@
 ﻿using Framework.Infrastructure.Log;
 using Ore.Infrastructure.MarketData;
+using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
 using Pitman.Application.MarketData;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,6 +95,31 @@ namespace Pitman.Application.DataCollection
             Task tast = new Task(action);
             tast.Start();
         }
+
+        private IEnumerable<ISecurity> GetSecurityFromApi()
+        {
+            IEnumerable<ISecurity> result = null;
+            int i = 0;
+            do
+            {
+                try
+                {
+                    result = new SecurityInfoApi().GetAllSecurity();
+                }
+                finally
+                {
+                    i++;
+                }
+
+                // 尝试10次获取数据， 确保能够获取数据成功
+                if (i > 9)
+                {
+                    break;
+                }
+            } while (result == null);
+
+            return result;
+        }
         #endregion
 
         #region Protected Method
@@ -144,21 +171,29 @@ namespace Pitman.Application.DataCollection
         }
 
         /// <summary>
-        /// 从数据库内获取所有Security
+        /// 尝试从数据库或者Api获取所有Security
         /// </summary>
         /// <returns></returns>
         protected IEnumerable<ISecurity> GetAllSecurity()
         {
+            IEnumerable<ISecurity> result = null;
             try
             {
                 SecurityAppService appService = new SecurityAppService();
-                return appService.GetAll();
+                result = appService.GetAll();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Logger.WriteLine(ex.ToString());
-                return new List<ISecurity>();
             }
+
+            // 如果从数据库获取数据不成功，从网页进行数据获取
+            if( result == null || result.Count() <= 0)
+            {
+                result = GetSecurityFromApi();
+            }
+
+            return result == null ? new List<ISecurity>() : result;
         }
         #endregion
     }
