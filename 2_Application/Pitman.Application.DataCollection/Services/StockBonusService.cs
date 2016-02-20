@@ -10,19 +10,18 @@ namespace Pitman.Application.DataCollection
 {
     internal class StockBonusService : CollectionService
     {
-        private const string _serviceName = "StockBonus";
         /// <summary>
         /// 数据获取服务
         /// </summary>
-        private StockBonusApi _sinaApi = new StockBonusApi();
+        private StockBonusApi _getDataApi = new StockBonusApi();
         /// <summary>
         /// 数据存储服务
         /// </summary>
-        private StockBonusAppService _appService = new StockBonusAppService();
+        private StockBonusAppService _saveDataService = new StockBonusAppService();
 
         public override string ServiceName
         {
-            get { return _serviceName; }
+            get { return "StockBonus"; }
         }
 
         protected override bool IsWorkingTime()
@@ -51,7 +50,7 @@ namespace Pitman.Application.DataCollection
         protected override void DoWork()
         {
             // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
+            var securities = GetAllSecurity().ToList();
             //设置进度对象
             base.Progress = new Progress(securities.Count);
 
@@ -60,6 +59,8 @@ namespace Pitman.Application.DataCollection
             {
                 //股票的数据获取
                 var stockBonus = GetData(security.Code);
+
+                //写入数据
                 if (stockBonus != null)
                 {
                     foreach (var it in stockBonus)
@@ -77,28 +78,29 @@ namespace Pitman.Application.DataCollection
         {
             try
             {
-                return _sinaApi.GetStockBonus(stockCode);
+                return _getDataApi.GetStockBonus(stockCode);
             }
             catch
             {
+                // todo: 暂不处理获取数据的异常
                 return null;
             }
         }
 
-        private void SaveData(string stockCode, IStockBonus stockBonus)
+        private void SaveData(string stockCode, IStockBonus data)
         {
             try
             {
                 // 检查是否已经存在记录
-                if (_appService.Exists(stockCode, stockBonus))
+                if (_saveDataService.Exists(stockCode, data))
                 {
                     // 如果已经存在就更新
-                    _appService.Update(stockCode, stockBonus);
+                    _saveDataService.Update(stockCode, data);
                 }
                 else
                 {
                     // 不存在就添加
-                    _appService.Add(stockCode, stockBonus);
+                    _saveDataService.Add(stockCode, data);
                 }
             }
             catch (Exception ex)

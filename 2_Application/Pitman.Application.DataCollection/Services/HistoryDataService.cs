@@ -1,4 +1,5 @@
 ﻿using Ore.Infrastructure.MarketData;
+using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
 using Ore.Infrastructure.MarketData.DataSource.Wmcloud;
 using Pitman.Application.MarketData;
 using System;
@@ -19,7 +20,7 @@ namespace Pitman.Application.DataCollection.Services
         public void RefreshKLineData()
         {
             // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
+            var securities = new SecurityInfoApi().GetAllSecurity().ToList();
 
             // 检查并更新或增加
             foreach (var security in securities)

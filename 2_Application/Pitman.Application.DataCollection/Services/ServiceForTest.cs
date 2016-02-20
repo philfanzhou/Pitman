@@ -8,11 +8,9 @@ namespace Pitman.Application.DataCollection
 {
     internal class ServiceForTest : CollectionService
     {
-        private const string _serviceName = "ServiceForTest";
-
         public override string ServiceName
         {
-            get { return _serviceName; }
+            get { return "ServiceForTest"; }
         }
 
         protected override void DoWork()

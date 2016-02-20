@@ -48,7 +48,9 @@ namespace Pitman.Application.DataCollection
 
         private void InitServices()
         {
+#if DEBUG
             AddService(new ServiceForTest());
+#endif
 
             AddService(new SecurityService());
             AddService(new KLineDayService());

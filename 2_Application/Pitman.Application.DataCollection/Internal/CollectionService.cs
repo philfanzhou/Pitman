@@ -1,5 +1,9 @@
 ﻿using Framework.Infrastructure.Log;
+using Ore.Infrastructure.MarketData;
+using Pitman.Application.MarketData;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -137,6 +141,24 @@ namespace Pitman.Application.DataCollection
         protected bool IsCompletedToday()
         {
             return DateTime.Now.Date == _startTime.Date;
+        }
+
+        /// <summary>
+        /// 从数据库内获取所有Security
+        /// </summary>
+        /// <returns></returns>
+        protected IEnumerable<ISecurity> GetAllSecurity()
+        {
+            try
+            {
+                SecurityAppService appService = new SecurityAppService();
+                return appService.GetAll();
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Logger.WriteLine(ex.ToString());
+                return new List<ISecurity>();
+            }
         }
         #endregion
     }

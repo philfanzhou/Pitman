@@ -12,22 +12,18 @@ namespace Pitman.Application.DataCollection
     /// </summary>
     internal class ParticipationService : CollectionService
     {
-        // 每天晚上7：00进行一次数据获取
-        // 调用Ore.EastMoney内的接口
-        private const string _serviceName = "Participation";
-
         /// <summary>
         /// 东方财富Api
         /// </summary>
-        ParticipationApi _eastMoneyApi = new ParticipationApi();
+        ParticipationApi _getDataApi = new ParticipationApi();
         /// <summary>
         /// 存储数据服务
         /// </summary>
-        private ParticipationAppService _appService = new ParticipationAppService();
+        private ParticipationAppService _saveDataService = new ParticipationAppService();
 
         public override string ServiceName
         {
-            get { return _serviceName; }
+            get { return "Participation"; }
         }
 
         protected override bool IsWorkingTime()
@@ -57,7 +53,7 @@ namespace Pitman.Application.DataCollection
         protected override void DoWork()
         {
             // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
+            var securities = GetAllSecurity().ToList();
             //设置进度对象
             base.Progress = new Progress(securities.Count);
 
@@ -82,19 +78,15 @@ namespace Pitman.Application.DataCollection
 
         private IParticipation GetData(string stockCode)
         {
-            IParticipation result = null;
-
             try
             {
-                result = _eastMoneyApi.GetLatest(stockCode);
+                return  _getDataApi.GetLatest(stockCode);
             }
-            catch (Exception ex)
+            catch
             {
-                //LogHelper.Logger.WriteLine(string.Format("Get Participation[{0}] data error.", stockCode));
-                //LogHelper.Logger.WriteLine(ex.ToString());
+                // todo: 暂不处理获取数据的异常
+                return null;
             }
-
-            return result;
         }
 
         private void SaveData(string stockCode, IParticipation data)
@@ -102,15 +94,14 @@ namespace Pitman.Application.DataCollection
             try
             {
                 // 检查是否已经存在记录
-                if (_appService.Exists(stockCode, data))
+                if (_saveDataService.Exists(stockCode, data))
                 {
-                    //todo:
-                    // 已经存在的记录，需要考虑更新
+                    _saveDataService.Update(stockCode, data);
                 }
                 else
                 {
                     // 不存在就添加
-                    _appService.Add(stockCode, data);
+                    _saveDataService.Add(stockCode, data);
                 }
             }
             catch (Exception ex)

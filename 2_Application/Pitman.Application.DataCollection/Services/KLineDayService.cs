@@ -12,15 +12,14 @@ namespace Pitman.Application.DataCollection
     /// </summary>
     internal class KLineDayService : CollectionService
     {
-        private const string _serviceName = "KLineDay";
         // 获取数据API
-        private StockKLineApi  sinaApi = new StockKLineApi();
+        private StockKLineApi _getDataApi = new StockKLineApi();
         // 存储数据服务
-        private KLineAppService appService = new KLineAppService();
+        private KLineAppService _saveDataService = new KLineAppService();
 
         public override string ServiceName
         {
-            get { return _serviceName; }
+            get { return "KLineDay"; }
         }
 
         protected override bool IsWorkingTime()
@@ -49,7 +48,7 @@ namespace Pitman.Application.DataCollection
         protected override void DoWork()
         {
             // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
+            var securities = GetAllSecurity().ToList();
             //设置进度对象
             base.Progress = new Progress(securities.Count);
 
@@ -57,12 +56,12 @@ namespace Pitman.Application.DataCollection
             foreach (var security in securities)
             {
                 //获取数据
-                var kLine = GetKLine(security.Code);
+                var kLine = GetData(security.Code);
 
                 if (kLine != null)
                 {
                     //存储数据
-                    SaveKLineData(security.Code, kLine);
+                    SaveData(security.Code, kLine);
                 }
 
                 // 降低获取数据的频率，避免被服务端封ip
@@ -78,37 +77,33 @@ namespace Pitman.Application.DataCollection
         /// </summary>
         /// <param name="stockCode"></param>
         /// <returns></returns>
-        private IStockKLine GetKLine(string stockCode)
+        private IStockKLine GetData(string stockCode)
         {
-            IStockKLine result = null;
-
             try
             {
-                result = sinaApi.GetLatest(stockCode);
+                return _getDataApi.GetLatest(stockCode);
             }
-            catch(Exception ex)
+            catch
             {
-                LogHelper.Logger.WriteLine(string.Format("Get stock[{0}] data error.", stockCode));
-                LogHelper.Logger.WriteLine(ex.ToString());
+                // todo: 暂不处理获取数据的异常
+                return null;
             }
-
-            return result;
         }
 
         /// <summary>
         /// 存储数据
         /// </summary>
         /// <param name="stockCode"></param>
-        /// <param name="kLine"></param>
-        private void SaveKLineData(string stockCode, IStockKLine kLine)
+        /// <param name="data"></param>
+        private void SaveData(string stockCode, IStockKLine data)
         {
             try
             {
                 // 检查是否已经存在记录
-                if (!appService.Exists(KLineType.Day, stockCode, kLine))
+                if (!_saveDataService.Exists(KLineType.Day, stockCode, data))
                 {
                     // 不存在就添加
-                    appService.Add(KLineType.Day, stockCode, kLine);
+                    _saveDataService.Add(KLineType.Day, stockCode, data);
                 }
             }
             catch(Exception ex)

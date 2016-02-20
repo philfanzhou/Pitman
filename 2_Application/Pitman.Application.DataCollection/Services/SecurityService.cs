@@ -1,4 +1,5 @@
-﻿using Ore.Infrastructure.MarketData;
+﻿using Framework.Infrastructure.Log;
+using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.Eastmoney;
 using Pitman.Application.MarketData;
 using System;
@@ -9,42 +10,14 @@ namespace Pitman.Application.DataCollection
 {
     internal class SecurityService : CollectionService
     {
-        private const string _serviceName = "Security";
+        /// <summary>
+        /// 存储数据服务
+        /// </summary>
+        private SecurityAppService _saveDataService = new SecurityAppService();
 
         public override string ServiceName
         {
-            get { return _serviceName; }
-        }
-
-        protected override void DoWork()
-        {
-            // 获取所有证券信息
-            var securities = GetDataFromApi().ToList();
-
-            //设置进度对象
-            base.Progress = new Progress(securities.Count);
-
-            // 获取数据服务
-            var appService = new SecurityAppService();
-
-            // 检查并更新或增加
-            foreach (var security in securities)
-            {
-                // 检查是否已经存在记录
-                if (appService.Exists(security))
-                {
-                    // 如果已经存在就更新
-                    appService.Update(security);
-                }
-                else
-                {
-                    // 不存在就添加
-                    appService.Add(security);
-                }
-
-                // 更新进度
-                base.Progress.Increase();
-            }
+            get { return "Security"; }
         }
 
         protected override bool IsWorkingTime()
@@ -59,10 +32,59 @@ namespace Pitman.Application.DataCollection
             return DateTime.Now.Hour == 7;
         }
 
-        internal static IEnumerable<ISecurity> GetDataFromApi()
+        protected override void DoWork()
         {
-            SecurityInfoApi api = new SecurityInfoApi();
-            return api.GetAllSecurity();
+            // 获取所有证券信息
+            var securities = GetData().ToList();
+
+            //设置进度对象
+            base.Progress = new Progress(securities.Count);
+
+            // 检查并更新或增加
+            foreach (var security in securities)
+            {
+                SaveData(security);
+
+                // 更新进度
+                base.Progress.Increase();
+            }
+        }
+
+        private IEnumerable<ISecurity> GetData()
+        {
+            try
+            {
+                SecurityInfoApi api = new SecurityInfoApi();
+                return api.GetAllSecurity();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Logger.WriteLine(ex.ToString());
+                return new List<ISecurity>();
+            }
+        }
+
+        private void SaveData(ISecurity data)
+        {
+            try
+            {
+                // 检查是否已经存在记录
+                if (_saveDataService.Exists(data))
+                {
+                    // 如果已经存在就更新
+                    _saveDataService.Update(data);
+                }
+                else
+                {
+                    // 不存在就添加
+                    _saveDataService.Add(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Logger.WriteLine("Save Security data error.");
+                LogHelper.Logger.WriteLine(ex.ToString());
+            }
         }
     }
 }

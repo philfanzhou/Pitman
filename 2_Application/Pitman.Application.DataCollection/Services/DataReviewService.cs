@@ -13,19 +13,20 @@ namespace Pitman.Application.DataCollection
     /// </summary>
     internal class DataReviewService : CollectionService
     {
-        private const string _serviceName = "DataReview";
+        #region Field
         /// <summary>
         /// 同花顺Api
         /// </summary>
-        private ITongHuaShunReader tongHuaShunApi = ReaderFactory.Create();
+        private ITongHuaShunReader _tongHuaShunApi = ReaderFactory.Create();
         /// <summary>
         /// 存储数据服务
         /// </summary>
-        private KLineAppService appService = new KLineAppService();
+        private KLineAppService _saveDataService = new KLineAppService();
+        #endregion
 
         public override string ServiceName
         {
-            get { return _serviceName; }
+            get { return "DataReview"; }
         }
 
         protected override bool IsWorkingTime()
@@ -54,7 +55,7 @@ namespace Pitman.Application.DataCollection
         protected override void DoWork()
         {
             // 获取所有证券信息
-            var securities = SecurityService.GetDataFromApi().ToList();
+            var securities = GetAllSecurity().ToList();
             //设置进度对象
             base.Progress = new Progress(securities.Count);
 
@@ -62,23 +63,23 @@ namespace Pitman.Application.DataCollection
             foreach (var security in securities)
             {
                 //股票的数据获取
-                var kLineDay1 = GetDataFromApi(security.Code, KLineType.Day);
-                var kLineMin1 = GetDataFromApi(security.Code, KLineType.Min1);
-                var kLineMin5 = GetDataFromApi(security.Code, KLineType.Min5);
+                var kLineDay1 = GetData(security.Code, KLineType.Day);
+                var kLineMin1 = GetData(security.Code, KLineType.Min1);
+                var kLineMin5 = GetData(security.Code, KLineType.Min5);
 
                 foreach(var it in kLineDay1)
                 {
-                    SaveDatas(KLineType.Day, security.Code, it);
+                    SaveData(KLineType.Day, security.Code, it);
                 }
 
                 foreach (var it in kLineMin1)
                 {
-                    SaveDatas(KLineType.Min1, security.Code, it);
+                    SaveData(KLineType.Min1, security.Code, it);
                 }
 
                 foreach (var it in kLineMin5)
                 {
-                    SaveDatas(KLineType.Min5, security.Code, it);
+                    SaveData(KLineType.Min5, security.Code, it);
                 }
 
                 // 更新进度
@@ -86,12 +87,26 @@ namespace Pitman.Application.DataCollection
             }
         }
 
-        private void SaveDatas(KLineType type, string stockCode, IStockKLine kLine)
+        private IEnumerable<IStockKLine> GetData(string stockCode, KLineType type)
+        {
+            try
+            {
+                IEnumerable<IStockKLine> result = _tongHuaShunApi.GetKLine(stockCode, type);
+                return result == null ? new List<IStockKLine>() : result;
+            }
+            catch
+            {
+                // todo:因为同花顺数据可能不包含目前security的所有code，所以可能出现异常
+                return new List<IStockKLine>();
+            }
+        }
+
+        private void SaveData(KLineType type, string stockCode, IStockKLine kLine)
         {
             try
             {
                 // 检查是否已经存在记录
-                if (appService.Exists(type, stockCode, kLine))
+                if (_saveDataService.Exists(type, stockCode, kLine))
                 {
                     // Todo:
                     // 如果已经存在就检查是否存在差异
@@ -100,27 +115,13 @@ namespace Pitman.Application.DataCollection
                 else
                 {
                     // 不存在就添加
-                    appService.Add(type, stockCode, kLine);
+                    _saveDataService.Add(type, stockCode, kLine);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Logger.WriteLine(string.Format("Save stock[{0}] data error.", stockCode));
                 LogHelper.Logger.WriteLine(ex.ToString());
-            }
-        }
-
-        private IEnumerable<IStockKLine> GetDataFromApi(string stockCode, KLineType type)
-        {
-            try
-            {
-                IEnumerable<IStockKLine> result = tongHuaShunApi.GetKLine(stockCode, type);
-                return result == null ? new List<IStockKLine>() : result;
-            }
-            catch
-            {
-                // todo:因为同花顺数据可能不包含目前security的所有code，所以可能出现异常
-                return new List<IStockKLine>();
             }
         }
     }
