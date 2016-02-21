@@ -108,8 +108,8 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine(string.Format("Save StockBonus[{0}] data error.", stockCode));
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine(string.Format("Save StockBonus[{0}] data error.", stockCode), this.ServiceName);
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
         }
     }

@@ -70,7 +70,7 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
                 return new List<ISecurity>();
             }
         }
@@ -93,8 +93,8 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine("Save Security data error.");
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine("Save Security data error.", this.ServiceName);
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
         }
     }

@@ -107,7 +107,7 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
         }
     }

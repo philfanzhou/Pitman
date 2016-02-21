@@ -84,7 +84,7 @@ namespace Pitman.Application.DataCollection
                 }
                 catch(Exception ex)
                 {
-                    LogHelper.Logger.WriteLine(ex.ToString());
+                    LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
                 }
                 finally
                 {
@@ -155,7 +155,7 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
         }
 
@@ -184,7 +184,7 @@ namespace Pitman.Application.DataCollection
             }
             catch (Exception ex)
             {
-                LogHelper.Logger.WriteLine(ex.ToString());
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
 
             // 如果从数据库获取数据不成功，从网页进行数据获取
