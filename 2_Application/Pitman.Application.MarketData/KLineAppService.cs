@@ -95,6 +95,20 @@ namespace Pitman.Application.MarketData
             }
         }      
 
+        public void AddIfNotExist(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+            ThrowIfTypeNotSupport(type);
+
+            // 将待插入数据排序
+            var orderedKLines = kLines.OrderBy(p => p.Time).ToList();
+            // 根据需要插入数据的时间段，获取数据库内这段时间的所有数据的时间
+            var dateTimesInDb = Get(type, stockCode, orderedKLines.First().Time, orderedKLines.Last().Time).Select(p => p.Time).ToList();
+            // 判断哪些数据需要插入
+            var needsInsertKLines = orderedKLines.Where(p => !dateTimesInDb.Contains(p.Time));
+            // 批量插入不存在的数据
+            Add(type, stockCode, needsInsertKLines);
+        }
+
         public void Update(KLineType type, string stockCode, IStockKLine kLine)
         {
             Update(type, stockCode, new List<IStockKLine> { kLine });
@@ -135,6 +149,46 @@ namespace Pitman.Application.MarketData
             }
         }
 
+        public void Delete(KLineType type, string stockCode, IStockKLine kLine)
+        {
+            Delete(type, stockCode, new List<IStockKLine> { kLine });
+        }
+
+        public void Delete(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
+        {
+            ThrowIfTypeNotSupport(type);
+
+            if (type == KLineType.Day)
+            {
+                string dbFilePath = new Day1KLineFile(stockCode).GetFilePath();
+                KLineRepository repository = new KLineRepository(dbFilePath);
+                repository.DeleteRange(kLines);
+            }
+            else
+            {
+                Year1KLineFile file = null;
+                if (type == KLineType.Min1)
+                {
+                    file = new Min1KLineFile(stockCode);
+                }
+                else
+                {
+                    file = new Min5KLineFile(stockCode);
+                }
+                var packages = file.SplitToPackages(kLines);
+
+                // 插入所有数据
+                foreach (var package in packages)
+                {
+                    // 获取数据文件路径
+                    string dbFilePath = file.GetFilePath(package);
+
+                    KLineRepository repository = new KLineRepository(dbFilePath);
+                    repository.DeleteRange(package.Items);
+                }
+            }
+        }
+
         public IEnumerable<IStockKLine> Get(
             KLineType type, string stockCode, 
             DateTime startTime, DateTime endTime)
@@ -171,7 +225,6 @@ namespace Pitman.Application.MarketData
                 foreach (var dbFilePath in files)
                 {
                     // 获取数据文件路径
-
                     KLineRepository repository = new KLineRepository(dbFilePath);
                     result.AddRange(repository.Get(startTime, endTime));
                 }

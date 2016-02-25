@@ -221,6 +221,13 @@ namespace Test.Application.MarketData
             Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
             Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
             #endregion
+
+            #region // 测试删除数据
+            appService.Delete(KLineType.Day, stockCode_600036, insertDatas);
+            var securities_600036_afterDeleted = appService.Get(KLineType.Day, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036_afterDeleted);
+            Assert.IsTrue(securities_600036_afterDeleted.Count == 0);
+            #endregion
         }
         ////
         //// 摘要:
@@ -314,6 +321,13 @@ namespace Test.Application.MarketData
             Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
             Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
             #endregion
+
+            #region // 测试删除数据
+            appService.Delete(KLineType.Min1, stockCode_600036, insertDatas);
+            var securities_600036_afterDeleted = appService.Get(KLineType.Min1, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036_afterDeleted);
+            Assert.IsTrue(securities_600036_afterDeleted.Count == 0);
+            #endregion
         }
         //
         // 摘要:
@@ -378,6 +392,13 @@ namespace Test.Application.MarketData
             Assert.IsTrue(securities_000400.Count == count);
             Assert.AreEqual(kLineUpdate.Open, securities_000400[0].Open);
             Assert.AreEqual(kLineUpdate.Close, securities_000400[0].Close);
+            #endregion
+
+            #region // 测试删除数据
+            appService.Delete(KLineType.Min5, stockCode_600036, insertDatas);
+            var securities_600036_afterDeleted = appService.Get(KLineType.Min5, stockCode_600036, insertDatas[0].Time, insertDatas[insertDatas.Count - 1].Time).ToList();
+            Assert.IsNotNull(securities_600036_afterDeleted);
+            Assert.IsTrue(securities_600036_afterDeleted.Count == 0);
             #endregion
         }
         ////

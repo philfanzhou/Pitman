@@ -14,7 +14,7 @@ namespace Pitman.Application.DataCollection
     internal class KLineDayService : CollectionService
     {
         // 获取数据API
-        private StockKLineApi _getDataApi = new StockKLineApi();
+        private StockKLineDayApi _getDataApi = new StockKLineDayApi();
         // 存储数据服务
         private KLineAppService _saveDataService = new KLineAppService();
 
@@ -25,25 +25,32 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            /*************test code*****************/
-            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            /******************************/
-
-            //// 每天只进行一次此任务
-            //if (IsCompletedToday())
+            ///*************test code*****************/
+            //if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            //{
+            //    return true;
+            //}
+            //else
             //{
             //    return false;
             //}
+            ///******************************/
 
-            //// 每天下午3：10开始进行所有股票的数据获取
-            //return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
+            // 每天只进行一次此任务
+            if (IsCompletedToday())
+            {
+                return false;
+            }
+
+            // 周六周日不获取日线数据
+            if(DateTime.Now.DayOfWeek == DayOfWeek.Saturday ||
+                DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return false;
+            }
+
+            // 每天下午3：10开始进行所有股票的数据获取
+            return DateTime.Now.Hour == 15 && DateTime.Now.Minute == 10;
         }
 
         protected override void DoWork()
@@ -67,7 +74,7 @@ namespace Pitman.Application.DataCollection
         private IEnumerable<KeyValuePair<string, IStockKLine>> GetData(IEnumerable<string> stockCodes)
         {
             IEnumerable<KeyValuePair<string, IStockKLine>> resule = null;
-            int i = 0;
+            int retryCount = 0;
             do
             {
                 try
@@ -76,11 +83,11 @@ namespace Pitman.Application.DataCollection
                 }
                 finally
                 {
-                    i++;
+                    retryCount++;
                 }
 
                 // 尝试10次获取数据， 确保能够获取数据成功
-                if (i > 9)
+                if (retryCount > 9)
                 {
                     break;
                 }

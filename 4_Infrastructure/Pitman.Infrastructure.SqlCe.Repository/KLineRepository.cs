@@ -105,48 +105,59 @@ namespace Pitman.Infrastructure.SqlCe.Repository
 
                 using (SqlCeCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = 
-                        string.Format("INSERT INTO {0}({1}, {2}, {3}, {4}, {5}, {6}, {7}) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                        tableName,
-                        colTime,
-                        colOpen,
-                        colClose,
-                        colHigh,
-                        colLow,
-                        colVolume,
-                        colAmount);
-
-                    cmd.Parameters.Add(new SqlCeParameter("p1", SqlDbType.NVarChar));
-                    cmd.Parameters.Add(new SqlCeParameter("p2", SqlDbType.Money));
-                    cmd.Parameters.Add(new SqlCeParameter("p3", SqlDbType.Money));
-                    cmd.Parameters.Add(new SqlCeParameter("p4", SqlDbType.Money));
-                    cmd.Parameters.Add(new SqlCeParameter("p5", SqlDbType.Money));
-                    cmd.Parameters.Add(new SqlCeParameter("p6", SqlDbType.Money));
-                    cmd.Parameters.Add(new SqlCeParameter("p7", SqlDbType.Money));
-
-                    cmd.Parameters["p1"].Size = 19;
-                    cmd.Prepare();
-
-                    foreach (var it in kLines)
+                    SqlCeTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable);
+                    cmd.Transaction = transaction;
+                    try
                     {
-                        cmd.Parameters["p1"].Value = it.Time.ToString("yyyy-MM-dd HH:mm:ss");
-                        cmd.Parameters["p2"].Value = it.Open;
-                        cmd.Parameters["p3"].Value = it.Close;
-                        cmd.Parameters["p4"].Value = it.High;
-                        cmd.Parameters["p5"].Value = it.Low;
-                        cmd.Parameters["p6"].Value = it.Volume;
-                        cmd.Parameters["p7"].Value = it.Amount;
-                        cmd.ExecuteNonQuery();
+                        cmd.CommandText =
+                                        string.Format("INSERT INTO {0}({1}, {2}, {3}, {4}, {5}, {6}, {7}) VALUES (@{1}, @{2}, @{3}, @{4}, @{5}, @{6}, @{7})",
+                                        tableName,
+                                        colTime,
+                                        colOpen,
+                                        colClose,
+                                        colHigh,
+                                        colLow,
+                                        colVolume,
+                                        colAmount);
+
+                        cmd.Parameters.Add(new SqlCeParameter(colTime, SqlDbType.NVarChar));
+                        cmd.Parameters.Add(new SqlCeParameter(colOpen, SqlDbType.Money));
+                        cmd.Parameters.Add(new SqlCeParameter(colClose, SqlDbType.Money));
+                        cmd.Parameters.Add(new SqlCeParameter(colHigh, SqlDbType.Money));
+                        cmd.Parameters.Add(new SqlCeParameter(colLow, SqlDbType.Money));
+                        cmd.Parameters.Add(new SqlCeParameter(colVolume, SqlDbType.Money));
+                        cmd.Parameters.Add(new SqlCeParameter(colAmount, SqlDbType.Money));
+
+                        cmd.Parameters[colTime].Size = 19;
+                        cmd.Prepare();
+
+                        foreach (var it in kLines)
+                        {
+                            cmd.Parameters[colTime].Value = it.Time.ToString("yyyy-MM-dd HH:mm:ss");
+                            cmd.Parameters[colOpen].Value = it.Open;
+                            cmd.Parameters[colClose].Value = it.Close;
+                            cmd.Parameters[colHigh].Value = it.High;
+                            cmd.Parameters[colLow].Value = it.Low;
+                            cmd.Parameters[colVolume].Value = it.Volume;
+                            cmd.Parameters[colAmount].Value = it.Amount;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                    finally
+                    {
+                        transaction.Dispose();
                     }
                 }
 
                 conn.Close();
             }
-        }
-
-        public void AddIfNotExist(IEnumerable<IStockKLine> kLines)
-        {
-            throw new NotImplementedException();
         }
 
         public void UpdateRange(IEnumerable<IStockKLine> kLines)
@@ -156,12 +167,9 @@ namespace Pitman.Infrastructure.SqlCe.Repository
             {
                 // 建立数据库连接 
                 conn.Open();
-
-                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+                
                 using (SqlCeCommand cmd = conn.CreateCommand())
                 {
-                    sw.Start();
-
                     SqlCeTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable);
                     cmd.Transaction = transaction;
                     try
@@ -193,14 +201,59 @@ namespace Pitman.Infrastructure.SqlCe.Repository
 
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
-                        throw ex;
+                        throw;
                     }
+                    finally
+                    {
+                        transaction.Dispose();
+                    }
+                }
 
-                    sw.Stop();
-                    System.Diagnostics.Debug.Print(string.Format("Update time is {0} ms", sw.ElapsedMilliseconds));
+                conn.Close();
+            }
+        }
+
+        public void DeleteRange(IEnumerable<IStockKLine> kLines)
+        {
+            using (SqlCeConnection conn = new SqlCeConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCeCommand cmd = conn.CreateCommand())
+                {
+                    SqlCeTransaction transaction = conn.BeginTransaction(IsolationLevel.Serializable);
+                    cmd.Transaction = transaction;
+
+                    try
+                    {
+                        cmd.CommandText = string.Format("Delete from {0} where {1}=@{1}",
+                            tableName,
+                            colTime);
+
+                        cmd.Parameters.Add(new SqlCeParameter(colTime, SqlDbType.NVarChar));
+                        cmd.Parameters[colTime].Size = 19;
+                        cmd.Prepare();
+
+                        foreach (var item in kLines)
+                        {
+                            cmd.Parameters[colTime].Value = item.Time.ToString("yyyy-MM-dd HH:mm:ss");
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch(Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                    finally
+                    {
+                        transaction.Dispose();
+                    }
                 }
 
                 conn.Close();

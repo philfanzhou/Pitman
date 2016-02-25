@@ -47,9 +47,8 @@ namespace Pitman.Application.DataCollection
             {
                 return false;
             }
-
-            // 每天晚上8：00进行任务
-            return DateTime.Now.Hour == 20;
+            
+            return DateTime.Now.Hour == 17;
         }
 
         protected override void DoWork()
@@ -62,32 +61,45 @@ namespace Pitman.Application.DataCollection
             // 检查并更新或增加
             foreach (var security in securities)
             {
-                //股票的数据获取
-                var kLineDay1 = GetData(security.Code, KLineType.Day);
-                var kLineMin1 = GetData(security.Code, KLineType.Min1);
-                var kLineMin5 = GetData(security.Code, KLineType.Min5);
-
-                foreach(var it in kLineDay1)
-                {
-                    SaveData(KLineType.Day, security.Code, it);
-                }
-
-                foreach (var it in kLineMin1)
-                {
-                    SaveData(KLineType.Min1, security.Code, it);
-                }
-
-                foreach (var it in kLineMin5)
-                {
-                    SaveData(KLineType.Min5, security.Code, it);
-                }
+                DeleteNotOpenedDay1(security.Code);
+                
+                // 处理同花顺日线数据
+                var kLineDay1 = GetDataFromTongHuaShun(security.Code, KLineType.Day);
+                SaveIfNotExist(KLineType.Day, security.Code, kLineDay1);
+                // 处理同花顺Min1数据
+                var kLineMin1 = GetDataFromTongHuaShun(security.Code, KLineType.Min1);
+                SaveIfNotExist(KLineType.Min1, security.Code, kLineDay1);
+                // 处理同花顺Min5数据
+                var kLineMin5 = GetDataFromTongHuaShun(security.Code, KLineType.Min5);
+                SaveIfNotExist(KLineType.Min5, security.Code, kLineDay1);
 
                 // 更新进度
                 base.Progress.Increase();
             }
         }
 
-        private IEnumerable<IStockKLine> GetData(string stockCode, KLineType type)
+        /// <summary>
+        /// 临时添加的数据处理，删除掉数据库内错误的日线数据。
+        /// 删除已经停牌，但是记录了日线的数据。
+        /// </summary>
+        /// <param name="stockCode"></param>
+        private void DeleteNotOpenedDay1(string stockCode)
+        {
+            try
+            {
+                var kLines = _saveDataService.Get(KLineType.Day, stockCode, new DateTime(2016, 1, 1), DateTime.Now)
+                    .Where(p => p.Open - 0 < 0.000001);
+
+                _saveDataService.Delete(KLineType.Day, stockCode, kLines);
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Logger.WriteLine(string.Format("DeleteNotOpenedDay1 [{0}] data error.", stockCode), this.ServiceName);
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
+            }
+        }
+
+        private IEnumerable<IStockKLine> GetDataFromTongHuaShun(string stockCode, KLineType type)
         {
             try
             {
@@ -101,22 +113,11 @@ namespace Pitman.Application.DataCollection
             }
         }
 
-        private void SaveData(KLineType type, string stockCode, IStockKLine kLine)
+        private void SaveIfNotExist(KLineType type, string stockCode, IEnumerable<IStockKLine> kLines)
         {
             try
             {
-                // 检查是否已经存在记录
-                if (_saveDataService.Exists(type, stockCode, kLine))
-                {
-                    // Todo:
-                    // 如果已经存在就检查是否存在差异
-                    // 如果存在差异就记录下数据用于审查
-                }
-                else
-                {
-                    // 不存在就添加
-                    _saveDataService.Add(type, stockCode, kLine);
-                }
+                _saveDataService.AddIfNotExist(type, stockCode, kLines);
             }
             catch (Exception ex)
             {
