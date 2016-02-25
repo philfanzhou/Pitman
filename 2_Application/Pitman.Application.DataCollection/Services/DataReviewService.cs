@@ -1,6 +1,7 @@
 ﻿using Framework.Infrastructure.Log;
 using Ore.Infrastructure.MarketData;
 using Ore.Infrastructure.MarketData.DataSource.TongHuaShun;
+using Ore.Infrastructure.MarketData.DataSource.Wmcloud;
 using Pitman.Application.MarketData;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,9 @@ namespace Pitman.Application.DataCollection
             foreach (var security in securities)
             {
                 DeleteNotOpenedDay1(security.Code);
-                
+
+                HandleWmCloudDay1(security.Code);
+
                 // 处理同花顺日线数据
                 var kLineDay1 = GetDataFromTongHuaShun(security.Code, KLineType.Day);
                 SaveIfNotExist(KLineType.Day, security.Code, kLineDay1);
@@ -95,6 +98,25 @@ namespace Pitman.Application.DataCollection
             catch(Exception ex)
             {
                 LogHelper.Logger.WriteLine(string.Format("DeleteNotOpenedDay1 [{0}] data error.", stockCode), this.ServiceName);
+                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
+            }
+        }
+
+        private void HandleWmCloudDay1(string stockCode)
+        {
+            try
+            {
+                StockKLineApi wmcloudApi = new StockKLineApi();
+                var kLines = wmcloudApi.GetKLineFromWmcloudApi(stockCode).ToList();
+
+                if(kLines != null && kLines.Count > 0)
+                {
+                    SaveIfNotExist(KLineType.Day, stockCode, kLines);
+                }
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Logger.WriteLine(string.Format("HandleWmCloudDay1 [{0}] data error.", stockCode), this.ServiceName);
                 LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
             }
         }

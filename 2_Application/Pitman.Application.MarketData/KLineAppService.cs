@@ -101,6 +101,11 @@ namespace Pitman.Application.MarketData
 
             // 将待插入数据排序
             var orderedKLines = kLines.OrderBy(p => p.Time).ToList();
+            if(orderedKLines.Count < 1)
+            {
+                return;
+            }
+
             // 根据需要插入数据的时间段，获取数据库内这段时间的所有数据的时间
             var dateTimesInDb = Get(type, stockCode, orderedKLines.First().Time, orderedKLines.Last().Time).Select(p => p.Time).ToList();
             // 判断哪些数据需要插入
