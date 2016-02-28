@@ -32,28 +32,28 @@ namespace Pitman.Application.DataCollection
 
         protected override bool IsWorkingTime()
         {
-            /*************test code*****************/
-            if (IsCompletedToday())
-            {
-                return false;
-            }
-            if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            /******************************/
-
-            //// 每天只进行一次此任务
+            ///*************test code*****************/
             //if (IsCompletedToday())
             //{
             //    return false;
             //}
+            //if (DateTime.Now - base.StopTime > new TimeSpan(0, 2, 0))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+            ///******************************/
 
-            //return DateTime.Now.Hour == 17;
+            // 每天只进行一次此任务
+            if (IsCompletedToday())
+            {
+                return false;
+            }
+
+            return DateTime.Now.Hour == 19;
         }
 
         protected override void DoWork()
@@ -66,7 +66,7 @@ namespace Pitman.Application.DataCollection
             // 检查并更新或增加
             foreach (var security in securities)
             {
-                DeleteNotOpenedDay1(security.Code);
+                //DeleteNotOpenedDay1(security.Code);
 
                 HandleWmCloudDay1(security.Code);
 
@@ -85,26 +85,26 @@ namespace Pitman.Application.DataCollection
             }
         }
 
-        /// <summary>
-        /// 临时添加的数据处理，删除掉数据库内错误的日线数据。
-        /// 删除已经停牌，但是记录了日线的数据。
-        /// </summary>
-        /// <param name="stockCode"></param>
-        private void DeleteNotOpenedDay1(string stockCode)
-        {
-            try
-            {
-                var kLines = _saveDataService.Get(KLineType.Day, stockCode, new DateTime(2016, 1, 1), DateTime.Now)
-                    .Where(p => p.Open - 0 < 0.000001);
+        ///// <summary>
+        ///// 临时添加的数据处理，删除掉数据库内错误的日线数据。
+        ///// 删除已经停牌，但是记录了日线的数据。
+        ///// </summary>
+        ///// <param name="stockCode"></param>
+        //private void DeleteNotOpenedDay1(string stockCode)
+        //{
+        //    try
+        //    {
+        //        var kLines = _saveDataService.Get(KLineType.Day, stockCode, new DateTime(2016, 1, 1), DateTime.Now)
+        //            .Where(p => p.Open - 0 < 0.000001);
 
-                _saveDataService.Delete(KLineType.Day, stockCode, kLines);
-            }
-            catch(Exception ex)
-            {
-                LogHelper.Logger.WriteLine(string.Format("DeleteNotOpenedDay1 [{0}] data error.", stockCode), this.ServiceName);
-                LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
-            }
-        }
+        //        _saveDataService.Delete(KLineType.Day, stockCode, kLines);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        LogHelper.Logger.WriteLine(string.Format("DeleteNotOpenedDay1 [{0}] data error.", stockCode), this.ServiceName);
+        //        LogHelper.Logger.WriteLine(ex.ToString(), this.ServiceName);
+        //    }
+        //}
 
         private void HandleWmCloudDay1(string stockCode)
         {

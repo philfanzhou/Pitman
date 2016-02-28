@@ -92,7 +92,7 @@ namespace Test.Presentation.RESTfulClient
                     new DateTime(2015, 11, 10), DateTime.Now).ToList();
 
                 Assert.IsNotNull(result);
-                Assert.IsTrue(result[0].Open - 10.01 < 0.00000001);
+                Assert.IsTrue(result[0].Open - 18 < 0.00000001);
 
                 result = client.GetStockKLine(
                     KLineType.Day, "600000",
